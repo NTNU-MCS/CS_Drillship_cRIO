@@ -1,0 +1,3635 @@
+%implements s51_b0_c1dgk_Outputs "C"
+
+%function Outputs(block, system) Output
+%<SLibCGIRAccessLocalVar(44, 0)> %% rtb_CreateDiagonalMatrix4
+%<SLibCGIRAccessLocalVar(43, 0)> %% rtb_CreateDiagonalMatrix3
+%<SLibCGIRAccessLocalDWork(246, 0)> %% ForEach_itr
+%<SLibCGIRAccessLocalVar(105, 0)> %% rtb_ImpSel_InsertedFor_reset_at
+%<SLibCGIRAccessLocalVar(8, 0)> %% rtb_Integrator_n
+%<SLibCGIRAccessLocalVar(9, 0)> %% rtb_Integrator_g
+%<SLibCGIRAccessLocalVar(10, 0)> %% rtb_Integrator_l
+%<SLibCGIRAccessLocalVar(11, 0)> %% rtb_Integrator_k
+%<SLibCGIRAccessLocalVar(12, 0)> %% rtb_Integrator_c
+%<SLibCGIRAccessLocalVar(24, 0)> %% rtb_positivethrust2
+%<SLibCGIRAccessLocalVar(26, 0)> %% rtb_negativethrust2
+%<SLibCGIRAccessLocalVar(28, 0)> %% rtb_positivethrust3
+%<SLibCGIRAccessLocalVar(30, 0)> %% rtb_negativethrust3
+%<SLibCGIRAccessLocalVar(32, 0)> %% rtb_positivethrust4
+%<SLibCGIRAccessLocalVar(34, 0)> %% rtb_negativethrust4
+%<SLibCGIRAccessLocalVar(36, 0)> %% rtb_positivethrust5
+%<SLibCGIRAccessLocalVar(38, 0)> %% rtb_negativethrust5
+%<SLibCGIRAccessLocalVar(40, 0)> %% rtb_positivethrust6
+%<SLibCGIRAccessLocalVar(42, 0)> %% rtb_negativethrust6
+%<SLibCGIRAccessLocalVar(101, 0)> %% rtb_T_r_p
+%<SLibCGIRAccessLocalVar(98, 0)> %% rtb_T_r_e
+%<SLibCGIRAccessLocalVar(94, 0)> %% rtb_T_r
+%<SLibCGIRAccessLocalVar(112, 0)> %% rtb_sys
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+ZCEventType zcEvent;
+real_T s[6];
+real_T alpha[6];
+real_T K[6];
+real_T S_singular_cross[9];
+real_T T0[12];
+real_T c1[2];
+real_T U_singular[9];
+real_T b_V_singular[36];
+real_T varargin_1[2];
+static const int8_T d[12] = { 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 };
+static const int8_T e[12] = { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 };
+boolean_T f[9];
+real_T lambda_c;
+real_T rtb_MatrixMultiply4[3];
+real_T rtb_Row2;
+real_T rtb_Row1_d;
+real_T rtb_psi_dot;
+real_T rtb_Row1;
+real_T rtb_MatrixMultiply2[3];
+real_T rtb_MatrixMultiply1[3];
+real_T rtb_y[6];
+real_T rtb_ImpAsg_InsertedFor_commande[6];
+real_T rtb_Sum_m;
+real_T rtb_TmpSignalConversionAtSFun_i[6];
+real_T rtb_TmpSignalConversionAtSFun_n[10];
+real_T rtb_CreateDiagonalMatrix5[9];
+int32_T i;
+real_T c1_0[2];
+real_T c1_1[2];
+real_T c1_2[2];
+real_T c1_3[2];
+real_T c1_4[2];
+real_T c1_5[2];
+real_T d_0[36];
+boolean_T tmp[9];
+real_T rtb_y_0[18];
+real_T rtb_psi_dot_0[4];
+real_T rtb_psi_dot_1[4];
+real_T rtb_psi_dot_2[4];
+real_T rtb_psi_dot_3[4];
+real_T rtb_psi_dot_4[4];
+real_T rtb_psi_dot_5[4];
+real_T rtb_psi_dot_6[4];
+real_T rtb_psi_dot_7[4];
+real_T rtb_psi_dot_8[4];
+real_T rtb_psi_dot_9[4];
+real_T rtb_psi_dot_a[4];
+real_T rtb_psi_dot_b[4];
+real_T rtb_psi_dot_c[4];
+real_T rtb_psi_dot_d[4];
+real_T rtb_psi_dot_e[4];
+real_T rtb_psi_dot_f[4];
+real_T rtb_psi_dot_g[4];
+real_T rtb_psi_dot_h[4];
+real_T tmp_0[3];
+real_T tmp_1[3];
+real_T tmp_2[3];
+real_T rtb_y_1[18];
+int32_T b_i;
+real_T V_singular[18];
+real_T b_V_singular_0[36];
+real_T lambda_c_0[3];
+int32_T b_data[9];
+int32_T b_sizes;
+int32_T c_data[9];
+boolean_T f_0;
+real_T Alpha1_idx_2;
+real_T Alpha1_idx_3;
+real_T Alpha1_idx_4;
+boolean_T exitg1;
+boolean_T exitg2;
+boolean_T exitg3;
+boolean_T exitg4;
+boolean_T exitg5;
+boolean_T exitg6;
+boolean_T exitg7;
+boolean_T exitg8;
+boolean_T exitg9;
+boolean_T exitg10;
+boolean_T exitg11;
+boolean_T exitg12;
+%closefile localVarDecl
+%assign _modelSS = ""
+
+%assign tlcOutputsFcnOfS30B0 = OpaqueTLCBlockFcn("Outputs", 30, 0, 6, 43)
+%assign tlcOutputsFcnOfS30B1 = OpaqueTLCBlockFcn("Outputs", 30, 1, 6, 43)
+%assign tlcOutputsFcnOfS30B2 = OpaqueTLCBlockFcn("Outputs", 30, 2, 6, 43)
+%assign tlcOutputsFcnOfS30B3 = OpaqueTLCBlockFcn("Outputs", 30, 3, 6, 43)
+%assign tlcOutputsFcnOfS30B4 = OpaqueTLCBlockFcn("Outputs", 30, 4, 6, 43)
+%assign tlcOutputsFcnOfS30B5 = OpaqueTLCBlockFcn("Outputs", 30, 5, 6, 43)
+%assign tlcOutputsFcnOfS30B6 = OpaqueTLCBlockFcn("Outputs", 30, 6, 6, 43)
+%assign tlcOutputsFcnOfS30B7 = OpaqueTLCBlockFcn("Outputs", 30, 7, 6, 43)
+%assign tlcOutputsFcnOfS30B8 = OpaqueTLCBlockFcn("Outputs", 30, 8, 6, 43)
+%assign tlcOutputsFcnOfS30B9 = OpaqueTLCBlockFcn("Outputs", 30, 9, 6, 43)
+%assign tlcOutputsFcnOfS30B10 = OpaqueTLCBlockFcn("Outputs", 30, 10, 6, 43)
+%assign tlcOutputsFcnOfS30B11 = OpaqueTLCBlockFcn("Outputs", 30, 11, 6, 43)
+%assign tlcOutputsFcnOfS30B12 = OpaqueTLCBlockFcn("Outputs", 30, 12, 6, 43)
+%assign tlcOutputsFcnOfS30B13 = OpaqueTLCBlockFcn("Outputs", 30, 13, 6, 43)
+%assign tlcOutputsFcnOfS30B14 = OpaqueTLCBlockFcn("Outputs", 30, 14, 6, 43)
+%assign tlcOutputsFcnOfS30B20 = OpaqueTLCBlockFcn("Outputs", 30, 20, 6, 43)
+%assign tlcOutputsFcnOfS30B21 = OpaqueTLCBlockFcn("Outputs", 30, 21, 6, 43)
+%assign tlcOutputsFcnOfS30B22 = OpaqueTLCBlockFcn("Outputs", 30, 22, 6, 43)
+%assign tlcOutputsFcnOfS30B23 = OpaqueTLCBlockFcn("Outputs", 30, 23, 6, 43)
+%assign tlcOutputsFcnOfS30B24 = OpaqueTLCBlockFcn("Outputs", 30, 24, 6, 43)
+%assign tlcOutputsFcnOfS30B25 = OpaqueTLCBlockFcn("Outputs", 30, 25, 6, 43)
+%assign tlcOutputsFcnOfS30B26 = OpaqueTLCBlockFcn("Outputs", 30, 26, 6, 43)
+%assign tlcOutputsFcnOfS30B27 = OpaqueTLCBlockFcn("Outputs", 30, 27, 6, 43)
+%assign tlcOutputsFcnOfS30B28 = OpaqueTLCBlockFcn("Outputs", 30, 28, 6, 43)
+%assign tlcOutputsFcnOfS30B29 = OpaqueTLCBlockFcn("Outputs", 30, 29, 6, 43)
+%assign tlcOutputsFcnOfS30B30 = OpaqueTLCBlockFcn("Outputs", 30, 30, 6, 43)
+%assign tlcOutputsFcnOfS30B37 = OpaqueTLCBlockFcn("Outputs", 30, 37, 6, 43)
+%assign tlcOutputsFcnOfS30B38 = OpaqueTLCBlockFcn("Outputs", 30, 38, 6, 43)
+%assign tlcOutputsFcnOfS30B39 = OpaqueTLCBlockFcn("Outputs", 30, 39, 6, 43)
+%assign tlcOutputsFcnOfS30B40 = OpaqueTLCBlockFcn("Outputs", 30, 40, 6, 43)
+%assign tlcOutputsFcnOfS30B41 = OpaqueTLCBlockFcn("Outputs", 30, 41, 6, 43)
+%assign tlcOutputsFcnOfS30B42 = OpaqueTLCBlockFcn("Outputs", 30, 42, 6, 43)
+%assign tlcOutputsFcnOfS30B43 = OpaqueTLCBlockFcn("Outputs", 30, 43, 6, 43)
+%assign tlcOutputsFcnOfS30B44 = OpaqueTLCBlockFcn("Outputs", 30, 44, 6, 43)
+%assign tlcOutputsFcnOfS30B45 = OpaqueTLCBlockFcn("Outputs", 30, 45, 6, 43)
+%assign tlcOutputsFcnOfS30B46 = OpaqueTLCBlockFcn("Outputs", 30, 46, 6, 43)
+%assign tlcOutputsFcnOfS30B47 = OpaqueTLCBlockFcn("Outputs", 30, 47, 6, 43)
+%assign tlcOutputsFcnOfS30B48 = OpaqueTLCBlockFcn("Outputs", 30, 48, 6, 43)
+%assign tlcOutputsFcnOfS30B55 = OpaqueTLCBlockFcn("Outputs", 30, 55, 6, 43)
+%assign tlcOutputsFcnOfS30B56 = OpaqueTLCBlockFcn("Outputs", 30, 56, 6, 43)
+%assign tlcOutputsFcnOfS30B59 = OpaqueTLCBlockFcn("Outputs", 30, 59, 6, 43)
+%assign tlcOutputsFcnOfS30B60 = OpaqueTLCBlockFcn("Outputs", 30, 60, 6, 43)
+%assign tlcOutputsFcnOfS30B61 = OpaqueTLCBlockFcn("Outputs", 30, 61, 6, 43)
+%assign tlcOutputsFcnOfS30B62 = OpaqueTLCBlockFcn("Outputs", 30, 62, 6, 43)
+%assign tlcOutputsFcnOfS30B63 = OpaqueTLCBlockFcn("Outputs", 30, 63, 6, 43)
+%assign tlcOutputsFcnOfS30B64 = OpaqueTLCBlockFcn("Outputs", 30, 64, 6, 43)
+%assign tlcOutputsFcnOfS30B65 = OpaqueTLCBlockFcn("Outputs", 30, 65, 6, 43)
+%assign tlcOutputsFcnOfS30B75 = OpaqueTLCBlockFcn("Outputs", 30, 75, 6, 43)
+%assign tlcOutputsFcnOfS30B82 = OpaqueTLCBlockFcn("Outputs", 30, 82, 6, 43)
+%assign tlcOutputsFcnOfS30B89 = OpaqueTLCBlockFcn("Outputs", 30, 89, 6, 43)
+%assign tlcOutputsFcnOfS30B96 = OpaqueTLCBlockFcn("Outputs", 30, 96, 6, 43)
+%assign tlcOutputsFcnOfS30B103 = OpaqueTLCBlockFcn("Outputs", 30, 103, 6, 43)
+%assign tlcOutputsFcnOfS30B110 = OpaqueTLCBlockFcn("Outputs", 30, 110, 6, 43)
+%assign tlcOutputsFcnOfS30B111 = OpaqueTLCBlockFcn("Outputs", 30, 111, 6, 43)
+%assign tlcOutputsFcnOfS30B112 = OpaqueTLCBlockFcn("Outputs", 30, 112, 6, 43)
+%assign tlcOutputsFcnOfS30B113 = OpaqueTLCBlockFcn("Outputs", 30, 113, 6, 43)
+%assign tlcOutputsFcnOfS30B114 = OpaqueTLCBlockFcn("Outputs", 30, 114, 6, 43)
+%assign tlcOutputsFcnOfS30B115 = OpaqueTLCBlockFcn("Outputs", 30, 115, 6, 43)
+%assign tlcOutputsFcnOfS30B118 = OpaqueTLCBlockFcn("Outputs", 30, 118, 6, 43)
+%assign tlcOutputsFcnOfS30B120 = OpaqueTLCBlockFcn("Outputs", 30, 120, 6, 43)
+%assign tlcOutputsFcnOfS30B122 = OpaqueTLCBlockFcn("Outputs", 30, 122, 6, 43)
+%assign tlcOutputsFcnOfS30B124 = OpaqueTLCBlockFcn("Outputs", 30, 124, 6, 43)
+%assign tlcOutputsFcnOfS30B126 = OpaqueTLCBlockFcn("Outputs", 30, 126, 6, 43)
+%assign tlcOutputsFcnOfS30B128 = OpaqueTLCBlockFcn("Outputs", 30, 128, 6, 43)
+%assign tlcOutputsFcnOfS30B129 = OpaqueTLCBlockFcn("Outputs", 30, 129, 6, 43)
+%assign tlcOutputsFcnOfS30B136 = OpaqueTLCBlockFcn("Outputs", 30, 136, 6, 43)
+%assign tlcOutputsFcnOfS30B137 = OpaqueTLCBlockFcn("Outputs", 30, 137, 6, 43)
+%assign tlcOutputsFcnOfS30B138 = OpaqueTLCBlockFcn("Outputs", 30, 138, 6, 43)
+%assign tlcOutputsFcnOfS30B139 = OpaqueTLCBlockFcn("Outputs", 30, 139, 6, 43)
+%assign tlcOutputsFcnOfS30B140 = OpaqueTLCBlockFcn("Outputs", 30, 140, 6, 43)
+%assign tlcOutputsFcnOfS30B141 = OpaqueTLCBlockFcn("Outputs", 30, 141, 6, 43)
+%assign tlcOutputsFcnOfS30B142 = OpaqueTLCBlockFcn("Outputs", 30, 142, 6, 43)
+%assign tlcOutputsFcnOfS30B143 = OpaqueTLCBlockFcn("Outputs", 30, 143, 6, 43)
+%assign tlcOutputsFcnOfS30B144 = OpaqueTLCBlockFcn("Outputs", 30, 144, 6, 43)
+%assign tlcOutputsFcnOfS30B145 = OpaqueTLCBlockFcn("Outputs", 30, 145, 6, 43)
+%assign tlcOutputsFcnOfS30B146 = OpaqueTLCBlockFcn("Outputs", 30, 146, 6, 43)
+%assign tlcOutputsFcnOfS30B147 = OpaqueTLCBlockFcn("Outputs", 30, 147, 6, 43)
+%assign tlcOutputsFcnOfS30B148 = OpaqueTLCBlockFcn("Outputs", 30, 148, 6, 43)
+%assign tlcOutputsFcnOfS30B149 = OpaqueTLCBlockFcn("Outputs", 30, 149, 6, 43)
+%assign tlcOutputsFcnOfS30B156 = OpaqueTLCBlockFcn("Outputs", 30, 156, 6, 43)
+%assign tlcOutputsFcnOfS30B163 = OpaqueTLCBlockFcn("Outputs", 30, 163, 6, 43)
+%assign tlcOutputsFcnOfS30B170 = OpaqueTLCBlockFcn("Outputs", 30, 170, 6, 43)
+%assign tlcOutputsFcnOfS30B177 = OpaqueTLCBlockFcn("Outputs", 30, 177, 6, 43)
+%assign tlcOutputsFcnOfS30B187 = OpaqueTLCBlockFcn("Outputs", 30, 187, 6, 43)
+%assign tlcOutputsFcnOfS30B197 = OpaqueTLCBlockFcn("Outputs", 30, 197, 6, 43)
+%assign tlcOutputsFcnOfS30B207 = OpaqueTLCBlockFcn("Outputs", 30, 207, 6, 43)
+%assign tlcOutputsFcnOfS30B217 = OpaqueTLCBlockFcn("Outputs", 30, 217, 6, 43)
+%assign tlcOutputsFcnOfS30B222 = OpaqueTLCBlockFcn("Outputs", 30, 222, 6, 43)
+%assign tlcOutputsFcnOfS30B223 = OpaqueTLCBlockFcn("Outputs", 30, 223, 6, 43)
+%assign tlcOutputsFcnOfS30B224 = OpaqueTLCBlockFcn("Outputs", 30, 224, 6, 43)
+%assign tlcOutputsFcnOfS30B225 = OpaqueTLCBlockFcn("Outputs", 30, 225, 6, 43)
+%assign tlcOutputsFcnOfS30B226 = OpaqueTLCBlockFcn("Outputs", 30, 226, 6, 43)
+%assign tlcOutputsFcnOfS30B227 = OpaqueTLCBlockFcn("Outputs", 30, 227, 6, 43)
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+%<tlcOutputsFcnOfS30B0>\
+%<tlcOutputsFcnOfS30B1>\
+}
+%<tlcOutputsFcnOfS30B2>\
+%<tlcOutputsFcnOfS30B3>\
+%<tlcOutputsFcnOfS30B4>\
+%<tlcOutputsFcnOfS30B5>\
+%<tlcOutputsFcnOfS30B6>\
+%<tlcOutputsFcnOfS30B7>\
+%<tlcOutputsFcnOfS30B8>\
+%<tlcOutputsFcnOfS30B9>\
+%<tlcOutputsFcnOfS30B10>\
+%<tlcOutputsFcnOfS30B11>\
+/* S-Function (sdspdiag2): '<S14>/Create Diagonal Matrix' incorporates:
+ *  SignalConversion: '<S14>/TmpSignal ConversionAtCreate Diagonal MatrixInport1'
+ */
+memset(&rtb_CreateDiagonalMatrix5[0], 0, 9U * sizeof(real_T));
+rtb_CreateDiagonalMatrix5[0] = ctrl_custom_B.K_p_x;
+rtb_CreateDiagonalMatrix5[4] = ctrl_custom_B.K_p_y;
+rtb_CreateDiagonalMatrix5[8] = ctrl_custom_B.K_p_psi;
+%<tlcOutputsFcnOfS30B12>\
+/* Gain: '<S7>/Gain' */
+ctrl_custom_B.Gain = ctrl_custom_P.Gain_Gain * ctrl_custom_B.x_m;
+%<tlcOutputsFcnOfS30B13>\
+/* Gain: '<S7>/Gain1' */
+ctrl_custom_B.Gain1 = ctrl_custom_P.Gain1_Gain * ctrl_custom_B.y_m;
+%<tlcOutputsFcnOfS30B14>\
+/* Gain: '<S7>/Gain5' */
+rtb_Row2 = ctrl_custom_P.Gain5_Gain * ctrl_custom_B.psi_m;
+/* Saturate: '<S7>/Saturation' */
+if (rtb_Row2 > ctrl_custom_P.Saturation_UpperSat) {
+    rtb_Row2 = ctrl_custom_P.Saturation_UpperSat;
+} else {
+    if (rtb_Row2 < ctrl_custom_P.Saturation_LowerSat) {
+        rtb_Row2 = ctrl_custom_P.Saturation_LowerSat;
+    }
+}
+/* End of Saturate: '<S7>/Saturation' */
+
+/* Signum: '<S7>/Sign' */
+if (rtb_Row2 < 0.0) {
+    rtb_psi_dot = -1.0;
+} else if (rtb_Row2 > 0.0) {
+    rtb_psi_dot = 1.0;
+} else if (rtb_Row2 == 0.0) {
+    rtb_psi_dot = 0.0;
+} else {
+    rtb_psi_dot = rtb_Row2;
+}
+/* End of Signum: '<S7>/Sign' */
+
+/* Gain: '<S7>/Gain6' */
+rtb_Row1_d = ctrl_custom_P.Gain6_Gain * rtb_psi_dot;
+/* Sum: '<S7>/Sum1' */
+rtb_Row2 += rtb_Row1_d;
+/* Math: '<S7>/Math Function' incorporates:
+ *  Constant: '<S7>/Constant1'
+ */
+rtb_Row2 = %<(SLibCGCallSubFcn("rt_remd_snf", ["rtb_Row2", "ctrl_custom_P.Constant1_Value"], 6, 43, 0))>;
+/* Sum: '<S7>/Sum' */
+ctrl_custom_B.Sum = rtb_Row2 - rtb_Row1_d;
+/* Integrator: '<S4>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE", "ctrl_custom_B.start", 0)))>;
+    /* evaluate zero-crossings */
+    if ((zcEvent != NO_ZCEVENT) || (ctrl_custom_DW.Integrator_IWORK != 0)) {
+        ctrl_custom_X.Integrator_CSTATE[0] = ctrl_custom_B.Gain;
+        ctrl_custom_X.Integrator_CSTATE[1] = ctrl_custom_B.Gain1;
+        ctrl_custom_X.Integrator_CSTATE[2] = ctrl_custom_B.Sum;
+    }
+}
+ctrl_custom_B.Integrator[0] = ctrl_custom_X.Integrator_CSTATE[0];
+ctrl_custom_B.Integrator[1] = ctrl_custom_X.Integrator_CSTATE[1];
+ctrl_custom_B.Integrator[2] = ctrl_custom_X.Integrator_CSTATE[2];
+/* End of Integrator: '<S4>/Integrator' */
+
+/* Saturate: '<S25>/Saturation' */
+if (ctrl_custom_B.Integrator[2] > ctrl_custom_P.Saturation_UpperSat_p) {
+    rtb_Row1_d = ctrl_custom_P.Saturation_UpperSat_p;
+} else if (ctrl_custom_B.Integrator[2] < ctrl_custom_P.Saturation_LowerSat_k) {
+    rtb_Row1_d = ctrl_custom_P.Saturation_LowerSat_k;
+} else {
+    rtb_Row1_d = ctrl_custom_B.Integrator[2];
+}
+/* End of Saturate: '<S25>/Saturation' */
+
+/* Signum: '<S25>/Sign' */
+if (rtb_Row1_d < 0.0) {
+    rtb_Row1 = -1.0;
+} else if (rtb_Row1_d > 0.0) {
+    rtb_Row1 = 1.0;
+} else if (rtb_Row1_d == 0.0) {
+    rtb_Row1 = 0.0;
+} else {
+    rtb_Row1 = rtb_Row1_d;
+}
+/* End of Signum: '<S25>/Sign' */
+
+/* Gain: '<S25>/Gain' */
+rtb_Row2 = ctrl_custom_P.Gain_Gain_p * rtb_Row1;
+/* Sum: '<S25>/Sum1' */
+rtb_Row1_d += rtb_Row2;
+/* Math: '<S25>/Math Function' incorporates:
+ *  Constant: '<S25>/Constant'
+ */
+rtb_Row1_d = %<(SLibCGCallSubFcn("rt_remd_snf", ["rtb_Row1_d", "ctrl_custom_P.Constant_Value"], 6, 43, 1))>;
+/* Sum: '<S25>/Sum' */
+ctrl_custom_B.Sum_h = rtb_Row1_d - rtb_Row2;
+/* Saturate: '<S34>/Saturation' incorporates:
+ *  Fcn: '<S6>/yaw angle'
+ */
+if (ctrl_custom_B.Sum_h > ctrl_custom_P.Saturation_UpperSat_i) {
+    rtb_Row1_d = ctrl_custom_P.Saturation_UpperSat_i;
+} else if (ctrl_custom_B.Sum_h < ctrl_custom_P.Saturation_LowerSat_p) {
+    rtb_Row1_d = ctrl_custom_P.Saturation_LowerSat_p;
+} else {
+    rtb_Row1_d = ctrl_custom_B.Sum_h;
+}
+/* End of Saturate: '<S34>/Saturation' */
+
+/* Signum: '<S34>/Sign' */
+if (rtb_Row1_d < 0.0) {
+    rtb_Row1 = -1.0;
+} else if (rtb_Row1_d > 0.0) {
+    rtb_Row1 = 1.0;
+} else if (rtb_Row1_d == 0.0) {
+    rtb_Row1 = 0.0;
+} else {
+    rtb_Row1 = rtb_Row1_d;
+}
+/* End of Signum: '<S34>/Sign' */
+
+/* Gain: '<S34>/Gain' */
+rtb_Row2 = ctrl_custom_P.Gain_Gain_o * rtb_Row1;
+/* Sum: '<S34>/Sum1' */
+rtb_Row1_d += rtb_Row2;
+/* Math: '<S34>/Math Function' incorporates:
+ *  Constant: '<S34>/Constant'
+ */
+rtb_Row1_d = %<(SLibCGCallSubFcn("rt_remd_snf", ["rtb_Row1_d", "ctrl_custom_P.Constant_Value_p"], 6, 43, 2))>;
+/* Sum: '<S34>/Sum' */
+rtb_Row1_d -= rtb_Row2;
+/* Saturate: '<S38>/Saturation' incorporates:
+ *  Integrator: '<S8>/Integrator2'
+ */
+if (ctrl_custom_X.Integrator2_CSTATE[2] > ctrl_custom_P.Saturation_UpperSat_p4) {
+    rtb_Row2 = ctrl_custom_P.Saturation_UpperSat_p4;
+} else if (ctrl_custom_X.Integrator2_CSTATE[2] < ctrl_custom_P.Saturation_LowerSat_c) {
+    rtb_Row2 = ctrl_custom_P.Saturation_LowerSat_c;
+} else {
+    rtb_Row2 = ctrl_custom_X.Integrator2_CSTATE[2];
+}
+/* End of Saturate: '<S38>/Saturation' */
+
+/* Signum: '<S38>/Sign' */
+if (rtb_Row2 < 0.0) {
+    rtb_psi_dot = -1.0;
+} else if (rtb_Row2 > 0.0) {
+    rtb_psi_dot = 1.0;
+} else if (rtb_Row2 == 0.0) {
+    rtb_psi_dot = 0.0;
+} else {
+    rtb_psi_dot = rtb_Row2;
+}
+/* End of Signum: '<S38>/Sign' */
+
+/* Gain: '<S38>/Gain' */
+rtb_psi_dot *= ctrl_custom_P.Gain_Gain_e;
+/* Sum: '<S38>/Sum1' */
+rtb_Row2 += rtb_psi_dot;
+/* Math: '<S38>/Math Function' incorporates:
+ *  Constant: '<S38>/Constant'
+ */
+rtb_Row2 = %<(SLibCGCallSubFcn("rt_remd_snf", ["rtb_Row2", "ctrl_custom_P.Constant_Value_e"], 6, 43, 3))>;
+/* Sum: '<S38>/Sum' */
+rtb_Row2 -= rtb_psi_dot;
+/* SignalConversion: '<S8>/TmpSignal ConversionAtMatrix Multiply3Inport2' */
+rtb_MatrixMultiply4[2] = rtb_Row2;
+/* Sum: '<S6>/Sum4' incorporates:
+ *  Integrator: '<S8>/Integrator2'
+ */
+ctrl_custom_B.regulationerror[0] = ctrl_custom_B.Integrator[0] - ctrl_custom_X.Integrator2_CSTATE[0];
+/* SignalConversion: '<S8>/TmpSignal ConversionAtMatrix Multiply3Inport2' incorporates:
+ *  Integrator: '<S8>/Integrator2'
+ */
+rtb_MatrixMultiply4[0] = ctrl_custom_X.Integrator2_CSTATE[0];
+/* Sum: '<S6>/Sum4' incorporates:
+ *  Integrator: '<S8>/Integrator2'
+ */
+ctrl_custom_B.regulationerror[1] = ctrl_custom_B.Integrator[1] - ctrl_custom_X.Integrator2_CSTATE[1];
+/* SignalConversion: '<S8>/TmpSignal ConversionAtMatrix Multiply3Inport2' incorporates:
+ *  Integrator: '<S8>/Integrator2'
+ */
+rtb_MatrixMultiply4[1] = ctrl_custom_X.Integrator2_CSTATE[1];
+/* Sum: '<S6>/Sum4' incorporates:
+ *  SignalConversion: '<S8>/TmpSignal ConversionAtMatrix Multiply3Inport2'
+ */
+ctrl_custom_B.regulationerror[2] = ctrl_custom_B.Sum_h - rtb_Row2;
+/* Saturate: '<S33>/Saturation' */
+if (ctrl_custom_B.regulationerror[2] > ctrl_custom_P.Saturation_UpperSat_ir) {
+    rtb_psi_dot = ctrl_custom_P.Saturation_UpperSat_ir;
+} else if (ctrl_custom_B.regulationerror[2] < ctrl_custom_P.Saturation_LowerSat_l) {
+    rtb_psi_dot = ctrl_custom_P.Saturation_LowerSat_l;
+} else {
+    rtb_psi_dot = ctrl_custom_B.regulationerror[2];
+}
+/* End of Saturate: '<S33>/Saturation' */
+
+/* Signum: '<S33>/Sign' */
+if (rtb_psi_dot < 0.0) {
+    rtb_Row1 = -1.0;
+} else if (rtb_psi_dot > 0.0) {
+    rtb_Row1 = 1.0;
+} else if (rtb_psi_dot == 0.0) {
+    rtb_Row1 = 0.0;
+} else {
+    rtb_Row1 = rtb_psi_dot;
+}
+/* End of Signum: '<S33>/Sign' */
+
+/* Gain: '<S33>/Gain' */
+rtb_Row2 = ctrl_custom_P.Gain_Gain_d * rtb_Row1;
+/* Sum: '<S33>/Sum1' */
+rtb_psi_dot += rtb_Row2;
+/* Math: '<S33>/Math Function' incorporates:
+ *  Constant: '<S33>/Constant'
+ */
+rtb_psi_dot = %<(SLibCGCallSubFcn("rt_remd_snf", ["rtb_psi_dot", "ctrl_custom_P.Constant_Value_a"], 6, 43, 4))>;
+/* Sum: '<S33>/Sum' */
+rtb_psi_dot -= rtb_Row2;
+/* SignalConversion: '<S6>/TmpSignal ConversionAtMatrix MultiplyInport2' incorporates:
+ *  Fcn: '<S31>/Row1'
+ *  Fcn: '<S31>/Row2'
+ *  Fcn: '<S31>/Row3'
+ */
+ctrl_custom_B.TmpSignalConversionAtMatrixMult[0] = cos(rtb_Row1_d) * ctrl_custom_B.regulationerror[0] + sin(rtb_Row1_d) * ctrl_custom_B.regulationerror[1];
+ctrl_custom_B.TmpSignalConversionAtMatrixMult[1] = -sin(rtb_Row1_d) * ctrl_custom_B.regulationerror[0] + cos(rtb_Row1_d) * ctrl_custom_B.regulationerror[1];
+ctrl_custom_B.TmpSignalConversionAtMatrixMult[2] = rtb_psi_dot;
+/* Product: '<S6>/Matrix Multiply' */
+for (i = 0; i < 3; i++) {
+    rtb_MatrixMultiply2[i] = rtb_CreateDiagonalMatrix5[i + 6] * ctrl_custom_B.TmpSignalConversionAtMatrixMult[2] + (rtb_CreateDiagonalMatrix5[i + 3] * ctrl_custom_B.TmpSignalConversionAtMatrixMult[1] + rtb_CreateDiagonalMatrix5[i] * ctrl_custom_B.TmpSignalConversionAtMatrixMult[0]);
+}
+/* End of Product: '<S6>/Matrix Multiply' */
+
+/* S-Function (sdspdiag2): '<S14>/Create Diagonal Matrix1' incorporates:
+ *  SignalConversion: '<S14>/TmpSignal ConversionAtCreate Diagonal Matrix1Inport1'
+ */
+memset(&rtb_CreateDiagonalMatrix5[0], 0, 9U * sizeof(real_T));
+rtb_CreateDiagonalMatrix5[0] = ctrl_custom_B.K_i_x;
+rtb_CreateDiagonalMatrix5[4] = ctrl_custom_B.K_i_y;
+rtb_CreateDiagonalMatrix5[8] = ctrl_custom_B.K_i_psi;
+/* Product: '<S6>/Matrix Multiply1' incorporates:
+ *  Integrator: '<S6>/Integrator1'
+ */
+for (i = 0; i < 3; i++) {
+    rtb_MatrixMultiply1[i] = rtb_CreateDiagonalMatrix5[i + 6] * ctrl_custom_X.Integrator1_CSTATE[2] + (rtb_CreateDiagonalMatrix5[i + 3] * ctrl_custom_X.Integrator1_CSTATE[1] + rtb_CreateDiagonalMatrix5[i] * ctrl_custom_X.Integrator1_CSTATE[0]);
+}
+/* End of Product: '<S6>/Matrix Multiply1' */
+
+/* S-Function (sdspdiag2): '<S14>/Create Diagonal Matrix2' incorporates:
+ *  SignalConversion: '<S14>/TmpSignal ConversionAtCreate Diagonal Matrix2Inport1'
+ */
+memset(&rtb_CreateDiagonalMatrix5[0], 0, 9U * sizeof(real_T));
+rtb_CreateDiagonalMatrix5[0] = ctrl_custom_B.K_d_x;
+/* Integrator: '<S8>/Integrator1' */
+ctrl_custom_B.Integrator1[0] = ctrl_custom_X.Integrator1_CSTATE_d[0];
+/* S-Function (sdspdiag2): '<S14>/Create Diagonal Matrix2' incorporates:
+ *  SignalConversion: '<S14>/TmpSignal ConversionAtCreate Diagonal Matrix2Inport1'
+ */
+rtb_CreateDiagonalMatrix5[4] = ctrl_custom_B.K_d_y;
+/* Integrator: '<S8>/Integrator1' */
+ctrl_custom_B.Integrator1[1] = ctrl_custom_X.Integrator1_CSTATE_d[1];
+/* S-Function (sdspdiag2): '<S14>/Create Diagonal Matrix2' incorporates:
+ *  SignalConversion: '<S14>/TmpSignal ConversionAtCreate Diagonal Matrix2Inport1'
+ */
+rtb_CreateDiagonalMatrix5[8] = ctrl_custom_B.K_d_psi;
+/* Integrator: '<S8>/Integrator1' */
+ctrl_custom_B.Integrator1[2] = ctrl_custom_X.Integrator1_CSTATE_d[2];
+/* Integrator: '<S4>/Integrator1' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator1_Reset_ZCE", "ctrl_custom_B.start", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator1_CSTATE_n[0] = ctrl_custom_P.Integrator1_IC_g[0];
+        ctrl_custom_X.Integrator1_CSTATE_n[1] = ctrl_custom_P.Integrator1_IC_g[1];
+        ctrl_custom_X.Integrator1_CSTATE_n[2] = ctrl_custom_P.Integrator1_IC_g[2];
+    }
+}
+ctrl_custom_B.Integrator1_a[0] = ctrl_custom_X.Integrator1_CSTATE_n[0];
+ctrl_custom_B.Integrator1_a[1] = ctrl_custom_X.Integrator1_CSTATE_n[1];
+ctrl_custom_B.Integrator1_a[2] = ctrl_custom_X.Integrator1_CSTATE_n[2];
+/* End of Integrator: '<S4>/Integrator1' */
+
+/* Sum: '<S6>/Sum' incorporates:
+ *  Fcn: '<S32>/Row1'
+ *  Fcn: '<S32>/Row2'
+ *  Fcn: '<S32>/Row3'
+ *  Fcn: '<S6>/yaw angle1'
+ *  Product: '<S6>/Matrix Multiply2'
+ */
+rtb_Row1 = ctrl_custom_B.Integrator1_a[0] - (cos(rtb_MatrixMultiply4[2]) * ctrl_custom_B.Integrator1[0] + sin(rtb_MatrixMultiply4[2]) * ctrl_custom_B.Integrator1[1]);
+rtb_Row2 = ctrl_custom_B.Integrator1_a[1] - (-sin(rtb_MatrixMultiply4[2]) * ctrl_custom_B.Integrator1[0] + cos(rtb_MatrixMultiply4[2]) * ctrl_custom_B.Integrator1[1]);
+rtb_Row1_d = ctrl_custom_B.Integrator1_a[2] - ctrl_custom_B.Integrator1[2];
+/* Sum: '<S6>/Sum1' incorporates:
+ *  Product: '<S6>/Matrix Multiply2'
+ */
+for (i = 0; i < 3; i++) {
+    ctrl_custom_B.Sum1[i] = ((0.0 - rtb_MatrixMultiply2[i]) - rtb_MatrixMultiply1[i]) - ((rtb_CreateDiagonalMatrix5[i + 3] * rtb_Row2 + rtb_CreateDiagonalMatrix5[i] * rtb_Row1) + rtb_CreateDiagonalMatrix5[i + 6] * rtb_Row1_d);
+}
+/* End of Sum: '<S6>/Sum1' */
+%<tlcOutputsFcnOfS30B20>\
+%<tlcOutputsFcnOfS30B21>\
+%<tlcOutputsFcnOfS30B22>\
+/* Gain: '<Root>/Gain5' */
+ctrl_custom_B.Gain5 = ctrl_custom_P.Gain5_Gain_e * ctrl_custom_B.Sum_h;
+%<tlcOutputsFcnOfS30B23>\
+/* Gain: '<Root>/Gain' */
+ctrl_custom_B.Gain_h = ctrl_custom_P.Gain_Gain_g * ctrl_custom_B.Integrator[0];
+%<tlcOutputsFcnOfS30B24>\
+%<tlcOutputsFcnOfS30B25>\
+%<tlcOutputsFcnOfS30B26>\
+%<tlcOutputsFcnOfS30B27>\
+%<tlcOutputsFcnOfS30B28>\
+%<tlcOutputsFcnOfS30B29>\
+%<tlcOutputsFcnOfS30B30>\
+/* Saturate: '<S26>/Saturation' */
+if (ctrl_custom_B.Sum > ctrl_custom_P.Saturation_UpperSat_j) {
+    rtb_Row1 = ctrl_custom_P.Saturation_UpperSat_j;
+} else if (ctrl_custom_B.Sum < ctrl_custom_P.Saturation_LowerSat_f) {
+    rtb_Row1 = ctrl_custom_P.Saturation_LowerSat_f;
+} else {
+    rtb_Row1 = ctrl_custom_B.Sum;
+}
+/* End of Saturate: '<S26>/Saturation' */
+
+/* Signum: '<S26>/Sign' */
+if (rtb_Row1 < 0.0) {
+    rtb_Row2 = -1.0;
+} else if (rtb_Row1 > 0.0) {
+    rtb_Row2 = 1.0;
+} else if (rtb_Row1 == 0.0) {
+    rtb_Row2 = 0.0;
+} else {
+    rtb_Row2 = rtb_Row1;
+}
+/* End of Signum: '<S26>/Sign' */
+
+/* Gain: '<S26>/Gain' */
+rtb_psi_dot = ctrl_custom_P.Gain_Gain_gg * rtb_Row2;
+/* Sum: '<S26>/Sum1' */
+rtb_Row1 += rtb_psi_dot;
+/* Math: '<S26>/Math Function' incorporates:
+ *  Constant: '<S26>/Constant'
+ */
+rtb_Row1 = %<(SLibCGCallSubFcn("rt_remd_snf", ["rtb_Row1", "ctrl_custom_P.Constant_Value_i"], 6, 43, 5))>;
+/* Sum: '<S26>/Sum' */
+rtb_Row1 -= rtb_psi_dot;
+/* Integrator: '<S4>/Integrator2' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator2_Reset_ZCE", "ctrl_custom_B.start", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator2_CSTATE_j[0] = ctrl_custom_P.Integrator2_IC_i[0];
+        ctrl_custom_X.Integrator2_CSTATE_j[1] = ctrl_custom_P.Integrator2_IC_i[1];
+        ctrl_custom_X.Integrator2_CSTATE_j[2] = ctrl_custom_P.Integrator2_IC_i[2];
+    }
+}
+ctrl_custom_B.Integrator2[0] = ctrl_custom_X.Integrator2_CSTATE_j[0];
+ctrl_custom_B.Integrator2[1] = ctrl_custom_X.Integrator2_CSTATE_j[1];
+ctrl_custom_B.Integrator2[2] = ctrl_custom_X.Integrator2_CSTATE_j[2];
+/* End of Integrator: '<S4>/Integrator2' */
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* S-Function (sdspdiag2): '<S16>/Create Diagonal Matrix2' incorporates:
+ *  Constant: '<S16>/Constant6'
+ *  Constant: '<S16>/Constant7'
+ *  Constant: '<S16>/Constant8'
+ */
+    memset(&ctrl_custom_B.CreateDiagonalMatrix2[0], 0, 9U * sizeof(real_T));
+    ctrl_custom_B.CreateDiagonalMatrix2[0] = ctrl_custom_P.Constant6_Value;
+    ctrl_custom_B.CreateDiagonalMatrix2[4] = ctrl_custom_P.Constant7_Value;
+    ctrl_custom_B.CreateDiagonalMatrix2[8] = ctrl_custom_P.Constant8_Value;
+}
+/* Sum: '<S4>/Sum' */
+rtb_MatrixMultiply2[0] = ctrl_custom_B.Gain - ctrl_custom_B.Integrator[0];
+rtb_MatrixMultiply2[1] = ctrl_custom_B.Gain1 - ctrl_custom_B.Integrator[1];
+rtb_MatrixMultiply2[2] = rtb_Row1 - ctrl_custom_B.Sum_h;
+/* MATLAB Function: '<S4>/C(nu)*nu' */
+/* MATLAB Function 'Nonlinear Passisve Observer/D(nu)*nu': '<S21>:1' */
+/* '<S21>:1:3' */
+/* '<S21>:1:4' */
+/* '<S21>:1:5' */
+/*  DAMPING  */
+/*  Surge: */
+/*  Based on fitting of towing data from -0.8 < u < 0.8 m/s */
+/* '<S21>:1:11' */
+/* '<S21>:1:12' */
+/* '<S21>:1:13' */
+/*  Sway: */
+/*  Based on fitting of towing data from -0.45 < u < 0.45 m/s */
+/* '<S21>:1:17' */
+/* '<S21>:1:18' */
+/* '<S21>:1:19' */
+/*  Yaw: */
+/*  Based on fitting of towing data from -8 < u < 8 deg/s */
+/*  The fitting range is limited. Towing should be performed for higher */
+/*  velocities. */
+/* '<S21>:1:25' */
+/* '<S21>:1:26' */
+/* '<S21>:1:27' */
+/*  Y_vvv og N_rrr er fra curvefitting uten minus, men ser ut til å fungere */
+/*  med minus.  */
+/*  Assembly of the damping matrix */
+/* '<S21>:1:40' */
+/* '<S21>:1:41' */
+/* '<S21>:1:42' */
+/*  Y_r + Y_rr*abs(r) + Y_rrr*r^2 + Y_vr*abs(v); Not verified, temporarily disabled */
+/*  N_v + N_vv*abs(v) + N_vvv*v^2 + N_rv*abs(r); Not verified, temporarily disabled */
+/* '<S21>:1:47' */
+/* '<S21>:1:54' */
+/* MATLAB Function 'Nonlinear Passisve Observer/C(nu)*nu': '<S20>:1' */
+/* '<S20>:1:3' */
+/* '<S20>:1:4' */
+/* '<S20>:1:5' */
+/*  MATRICES */
+/* '<S20>:1:8' */
+/* 0.0432; */
+/*  Added mass */
+/* '<S20>:1:11' */
+/*  Correolis matrix */
+/* '<S20>:1:14' */
+rtb_Row2 = -99.03 * ctrl_custom_B.Integrator1_a[1] - -0.525 * ctrl_custom_B.Integrator1_a[2];
+/* '<S20>:1:15' */
+rtb_Row1_d = 124.658 * ctrl_custom_B.Integrator1_a[0];
+/* Fcn: '<S24>/Row1' incorporates:
+ *  Fcn: '<S4>/Fcn'
+ */
+/* '<S20>:1:17' */
+/* '<S20>:1:24' */
+rtb_psi_dot_0[0] = rtb_Row1;
+rtb_psi_dot_2[0] = rtb_Row1;
+/* Fcn: '<S24>/Row2' incorporates:
+ *  Fcn: '<S4>/Fcn'
+ */
+rtb_psi_dot_4[0] = rtb_Row1;
+rtb_psi_dot_6[0] = rtb_Row1;
+/* Fcn: '<S23>/Row1' incorporates:
+ *  Fcn: '<S4>/Fcn'
+ */
+rtb_psi_dot_9[0] = rtb_Row1;
+rtb_psi_dot_b[0] = rtb_Row1;
+/* Fcn: '<S23>/Row2' incorporates:
+ *  Fcn: '<S4>/Fcn'
+ */
+rtb_psi_dot_d[0] = rtb_Row1;
+rtb_psi_dot_f[0] = rtb_Row1;
+for (i = 0; i < 3; i++) {
+    /* Product: '<S4>/Matrix Multiply2' */
+    rtb_psi_dot = ctrl_custom_B.CreateDiagonalMatrix2[i + 6] * rtb_MatrixMultiply2[2] + (ctrl_custom_B.CreateDiagonalMatrix2[i + 3] * rtb_MatrixMultiply2[1] + ctrl_custom_B.CreateDiagonalMatrix2[i] * rtb_MatrixMultiply2[0]);
+    /* Fcn: '<S24>/Row1' */
+    rtb_psi_dot_0[i + 1] = ctrl_custom_B.Integrator2[i];
+    rtb_psi_dot_1[i + 1] = ctrl_custom_B.Integrator2[i];
+    rtb_psi_dot_2[i + 1] = ctrl_custom_B.Integrator2[i];
+    rtb_psi_dot_3[i + 1] = ctrl_custom_B.Integrator2[i];
+    /* Fcn: '<S24>/Row2' */
+    rtb_psi_dot_4[i + 1] = ctrl_custom_B.Integrator2[i];
+    rtb_psi_dot_5[i + 1] = ctrl_custom_B.Integrator2[i];
+    rtb_psi_dot_6[i + 1] = ctrl_custom_B.Integrator2[i];
+    rtb_psi_dot_7[i + 1] = ctrl_custom_B.Integrator2[i];
+    /* Fcn: '<S24>/Row3' */
+    rtb_psi_dot_8[i + 1] = ctrl_custom_B.Integrator2[i];
+    /* Fcn: '<S23>/Row1' */
+    rtb_psi_dot_9[i + 1] = rtb_psi_dot;
+    rtb_psi_dot_a[i + 1] = rtb_psi_dot;
+    rtb_psi_dot_b[i + 1] = rtb_psi_dot;
+    rtb_psi_dot_c[i + 1] = rtb_psi_dot;
+    /* Fcn: '<S23>/Row2' */
+    rtb_psi_dot_d[i + 1] = rtb_psi_dot;
+    rtb_psi_dot_e[i + 1] = rtb_psi_dot;
+    rtb_psi_dot_f[i + 1] = rtb_psi_dot;
+    rtb_psi_dot_g[i + 1] = rtb_psi_dot;
+    /* Fcn: '<S23>/Row3' */
+    rtb_psi_dot_h[i + 1] = rtb_psi_dot;
+}
+/* Sum: '<S4>/Sum2' incorporates:
+ *  Fcn: '<S23>/Row1'
+ *  Fcn: '<S23>/Row2'
+ *  Fcn: '<S23>/Row3'
+ */
+tmp_0[0] = cos(rtb_psi_dot_9[0]) * rtb_psi_dot_a[1] + sin(rtb_psi_dot_b[0]) * rtb_psi_dot_c[2];
+tmp_0[1] = -sin(rtb_psi_dot_d[0]) * rtb_psi_dot_e[1] + cos(rtb_psi_dot_f[0]) * rtb_psi_dot_g[2];
+tmp_0[2] = rtb_psi_dot_h[3];
+/* Sum: '<S4>/Sum3' incorporates:
+ *  Fcn: '<S24>/Row1'
+ *  Fcn: '<S24>/Row2'
+ *  Fcn: '<S24>/Row3'
+ */
+tmp_1[0] = cos(rtb_psi_dot_0[0]) * rtb_psi_dot_1[1] + sin(rtb_psi_dot_2[0]) * rtb_psi_dot_3[2];
+tmp_1[1] = -sin(rtb_psi_dot_4[0]) * rtb_psi_dot_5[1] + cos(rtb_psi_dot_6[0]) * rtb_psi_dot_7[2];
+tmp_1[2] = rtb_psi_dot_8[3];
+/* MATLAB Function: '<S4>/D(nu)*nu' */
+U_singular[0] = (0.0 * fabs(ctrl_custom_B.Integrator1_a[0]) + -2.332) + ctrl_custom_B.Integrator1_a[0] * ctrl_custom_B.Integrator1_a[0] * -8.557;
+U_singular[3] = 0.0;
+U_singular[6] = 0.0;
+U_singular[1] = 0.0;
+U_singular[4] = (0.3976 * fabs(ctrl_custom_B.Integrator1_a[1]) + -4.673) + ctrl_custom_B.Integrator1_a[1] * ctrl_custom_B.Integrator1_a[1] * -313.3;
+U_singular[7] = 0.0;
+U_singular[2] = 0.0;
+U_singular[5] = 0.0;
+U_singular[8] = (-0.01148 * fabs(ctrl_custom_B.Integrator1_a[2]) + -0.01675) + ctrl_custom_B.Integrator1_a[2] * ctrl_custom_B.Integrator1_a[2] * -0.0003578;
+for (i = 0; i < 3; i++) {
+    rtb_CreateDiagonalMatrix5[3 * i] = -U_singular[3 * i];
+    rtb_CreateDiagonalMatrix5[1 + 3 * i] = -U_singular[3 * i + 1];
+    rtb_CreateDiagonalMatrix5[2 + 3 * i] = -U_singular[3 * i + 2];
+}
+/* MATLAB Function: '<S4>/C(nu)*nu' */
+S_singular_cross[0] = 0.0;
+S_singular_cross[3] = 0.0;
+S_singular_cross[6] = rtb_Row2;
+S_singular_cross[1] = 0.0;
+S_singular_cross[4] = 0.0;
+S_singular_cross[7] = rtb_Row1_d;
+S_singular_cross[2] = -rtb_Row2;
+S_singular_cross[5] = -rtb_Row1_d;
+S_singular_cross[8] = 0.0;
+for (i = 0; i < 3; i++) {
+    /* Sum: '<S4>/Sum3' incorporates:
+ *  Gain: '<S4>/M^-1'
+ *  MATLAB Function: '<S4>/C(nu)*nu'
+ *  MATLAB Function: '<S4>/D(nu)*nu'
+ *  Sum: '<S4>/Sum2'
+ */
+    tmp_2[i] = (((tmp_0[i] + ctrl_custom_B.Sum1[i]) + tmp_1[i]) - ((rtb_CreateDiagonalMatrix5[i + 3] * ctrl_custom_B.Integrator1_a[1] + rtb_CreateDiagonalMatrix5[i] * ctrl_custom_B.Integrator1_a[0]) + rtb_CreateDiagonalMatrix5[i + 6] * ctrl_custom_B.Integrator1_a[2])) - (S_singular_cross[i + 6] * ctrl_custom_B.Integrator1_a[2] + (S_singular_cross[i + 3] * ctrl_custom_B.Integrator1_a[1] + S_singular_cross[i] * ctrl_custom_B.Integrator1_a[0]));
+}
+/* Gain: '<S4>/M^-1' */
+for (i = 0; i < 3; i++) {
+    ctrl_custom_B.M1[i] = 0.0;
+    ctrl_custom_B.M1[i] += ctrl_custom_P.M1_Gain[i] * tmp_2[0];
+    ctrl_custom_B.M1[i] += ctrl_custom_P.M1_Gain[i + 3] * tmp_2[1];
+    ctrl_custom_B.M1[i] += ctrl_custom_P.M1_Gain[i + 6] * tmp_2[2];
+}
+%<tlcOutputsFcnOfS30B37>\
+%<tlcOutputsFcnOfS30B38>\
+%<tlcOutputsFcnOfS30B39>\
+%<tlcOutputsFcnOfS30B40>\
+%<tlcOutputsFcnOfS30B41>\
+%<tlcOutputsFcnOfS30B42>\
+%<tlcOutputsFcnOfS30B43>\
+%<tlcOutputsFcnOfS30B44>\
+%<tlcOutputsFcnOfS30B45>\
+%<tlcOutputsFcnOfS30B46>\
+%<tlcOutputsFcnOfS30B47>\
+%<tlcOutputsFcnOfS30B48>\
+/* SignalConversion: '<S42>/TmpSignal ConversionAt SFunction Inport1' incorporates:
+ *  MATLAB Function: '<S9>/angle between  [-180 180]'
+ */
+rtb_TmpSignalConversionAtSFun_i[0] = ctrl_custom_B.thr_angle_1;
+rtb_TmpSignalConversionAtSFun_i[1] = ctrl_custom_B.thr_angle_2;
+rtb_TmpSignalConversionAtSFun_i[2] = ctrl_custom_B.thr_angle_3;
+rtb_TmpSignalConversionAtSFun_i[3] = ctrl_custom_B.thr_angle_4;
+rtb_TmpSignalConversionAtSFun_i[4] = ctrl_custom_B.thr_angle_5;
+rtb_TmpSignalConversionAtSFun_i[5] = ctrl_custom_B.thr_angle_6;
+/* MATLAB Function: '<S9>/angle between  [-180 180]' */
+/* MATLAB Function 'Thrust allocation/angle between  [-180 180]': '<S42>:1' */
+/*  RAD2PIPI Converts an angle in rad to the interval (-pi pi] */
+/*           Should be applied to all heading errors in a feedback control system */
+/*           in order to avoid discontinuities. */
+/*  */
+/*  Author:     Roger Skjetne */
+/*  Date:       2003-09-05 */
+/*  Revisions:  2004-09-02 Thor I. Fossen - replaced input argument x with angle */
+/*              2005-01-05 Thor I. Fossen - ouput argument is set to y and not angle */
+/*              2005-04-13 Roger Skjetne  - changed the function s in order */
+/*                                          to account for correct mapping to */
+/*                                          (-pi pi]. */
+/*  */
+/*  ________________________________________________________________ */
+/*  */
+/*  MSS GNC is a Matlab toolbox for guidance, navigation and control. */
+/*  The toolbox is part of the Marine Systems Simulator (MSS). */
+/*  */
+/*  Copyright (C) 2008 Thor I. Fossen and Tristan Perez */
+/*   */
+/*  This program is free software: you can redistribute it and/or modify */
+/*  it under the terms of the GNU General Public License as published by */
+/*  the Free Software Foundation, either version 3 of the License, or */
+/*  (at your option) any later version. */
+/*   */
+/*  This program is distributed in the hope that it will be useful, but */
+/*  WITHOUT ANY WARRANTY; without even the implied warranty of */
+/*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  */
+/*  GNU General Public License for more details. */
+/*   */
+/*  You should have received a copy of the GNU General Public License */
+/*  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+/*   */
+/*  E-mail: contact@marinecontrol.org */
+/*  URL:    <http://www.marinecontrol.org> */
+/*  convert angle in rad to the interval <-pi pi>  */
+/* '<S42>:1:39' */
+/* '<S42>:1:40' */
+for (i = 0; i < 6; i++) {
+    if (rtb_TmpSignalConversionAtSFun_i[i] < 0.0) {
+        rtb_Row2 = -1.0;
+    } else if (rtb_TmpSignalConversionAtSFun_i[i] > 0.0) {
+        rtb_Row2 = 1.0;
+    } else if (rtb_TmpSignalConversionAtSFun_i[i] == 0.0) {
+        rtb_Row2 = 0.0;
+    } else {
+        rtb_Row2 = rtb_TmpSignalConversionAtSFun_i[i];
+    }
+    rtb_y[i] = %<(SLibCGCallSubFcn("rt_remd_snf", ["rtb_Row2 * 3.1415926535897931 + rtb_TmpSignalConversionAtSFun_i[i]", "6.2831853071795862"], 6, 43, 6))>;
+    alpha[i] = rtb_TmpSignalConversionAtSFun_i[i] + 3.1415926535897931;
+    if (rtb_TmpSignalConversionAtSFun_i[i] < 0.0) {
+        s[i] = -1.0;
+    } else if (rtb_TmpSignalConversionAtSFun_i[i] > 0.0) {
+        s[i] = 1.0;
+    } else if (rtb_TmpSignalConversionAtSFun_i[i] == 0.0) {
+        s[i] = 0.0;
+    } else {
+        s[i] = rtb_TmpSignalConversionAtSFun_i[i];
+    }
+}
+/* SignalConversion: '<S39>/TmpSignal ConversionAt SFunction Inport1' incorporates:
+ *  MATLAB Function: '<S9>/MATLAB Function'
+ */
+/*  s = sign(angle); */
+/* '<S42>:1:43' */
+rtb_TmpSignalConversionAtSFun_n[0] = ctrl_custom_B.Sum1[0];
+rtb_TmpSignalConversionAtSFun_n[1] = ctrl_custom_B.Sum1[1];
+rtb_TmpSignalConversionAtSFun_n[2] = ctrl_custom_B.Sum1[2];
+for (i = 0; i < 6; i++) {
+    /* MATLAB Function: '<S9>/angle between  [-180 180]' */
+    rtb_Row2 = fabs(%<(SLibCGCallSubFcn("rt_remd_snf", ["alpha[i]", "6.2831853071795862"], 6, 43, 7))> / 6.2831853071795862);
+    if (rtb_Row2 > 0.0) {
+        rtb_Row2 = 1.0;
+    } else {
+        if (rtb_Row2 == 0.0) {
+            rtb_Row2 = 0.0;
+        }
+    }
+    rtb_Row2 = (rtb_Row2 - 1.0) * 2.0 + s[i];
+    if (rtb_Row2 < 0.0) {
+        rtb_Row2 = -1.0;
+    } else if (rtb_Row2 > 0.0) {
+        rtb_Row2 = 1.0;
+    } else {
+        if (rtb_Row2 == 0.0) {
+            rtb_Row2 = 0.0;
+        }
+    }
+    /* SignalConversion: '<S39>/TmpSignal ConversionAt SFunction Inport1' incorporates:
+ *  Gain: '<S41>/Gain'
+ *  MATLAB Function: '<S9>/MATLAB Function'
+ *  MATLAB Function: '<S9>/angle between  [-180 180]'
+ */
+    rtb_TmpSignalConversionAtSFun_n[i + 3] = ctrl_custom_P.Gain_Gain_i * (rtb_y[i] - rtb_Row2 * 3.1415926535897931);
+}
+/* MATLAB Function: '<S9>/MATLAB Function' incorporates:
+ *  Constant: '<S9>/C'
+ *  Constant: '<S9>/X-position Thruster'
+ *  Constant: '<S9>/Y-position Thruster'
+ */
+/* MATLAB Function 'Thrust allocation/MATLAB Function': '<S39>:1' */
+/* '<S39>:1:87' */
+/* '<S39>:1:86' */
+/*  Complete system goes here! */
+/*  Allocating dimensions for faster computing */
+/*  Parameters thrusters */
+/* '<S39>:1:5' */
+rtb_MatrixMultiply1[0] = rtb_TmpSignalConversionAtSFun_n[0];
+rtb_MatrixMultiply1[1] = rtb_TmpSignalConversionAtSFun_n[1];
+rtb_MatrixMultiply1[2] = rtb_TmpSignalConversionAtSFun_n[2];
+/* '<S39>:1:6' */
+alpha[0] = rtb_TmpSignalConversionAtSFun_n[3];
+alpha[1] = rtb_TmpSignalConversionAtSFun_n[4];
+alpha[2] = rtb_TmpSignalConversionAtSFun_n[5];
+alpha[3] = rtb_TmpSignalConversionAtSFun_n[6];
+alpha[4] = rtb_TmpSignalConversionAtSFun_n[7];
+alpha[5] = rtb_TmpSignalConversionAtSFun_n[8];
+/*  Constraints for Thruster-Thruster interaction. Can be seen in "Initfile" */
+/*  how they are found */
+/* '<S39>:1:10' */
+/* '<S39>:1:11' */
+/* '<S39>:1:12' */
+/* '<S39>:1:13' */
+/* '<S39>:1:14' */
+/* '<S39>:1:15' */
+if (((rtb_TmpSignalConversionAtSFun_n[3] < ctrl_custom_P.C[0] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[3] > ctrl_custom_P.C[6] + 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[3] > ctrl_custom_P.C[12] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[3] < ctrl_custom_P.C[18] - 0.1))) {
+    /* '<S39>:1:21' */
+    /* '<S39>:1:22' */
+    K[0] = 0.0;
+} else {
+    /* '<S39>:1:24' */
+    K[0] = 1.0;
+}
+if (((rtb_TmpSignalConversionAtSFun_n[4] > ctrl_custom_P.C[1] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[4] < ctrl_custom_P.C[7] + 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[4] > ctrl_custom_P.C[13] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[4] < ctrl_custom_P.C[19] + 0.1))) {
+    /* '<S39>:1:27' */
+    /* '<S39>:1:28' */
+    K[1] = 0.0;
+} else {
+    /* '<S39>:1:30' */
+    K[1] = 1.0;
+}
+if (((rtb_TmpSignalConversionAtSFun_n[5] < ctrl_custom_P.C[2] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[5] > ctrl_custom_P.C[8] - 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[5] < ctrl_custom_P.C[14] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[5] > ctrl_custom_P.C[20] - 0.1))) {
+    /* '<S39>:1:33' */
+    /* '<S39>:1:34' */
+    K[2] = 0.0;
+} else {
+    /* '<S39>:1:36' */
+    K[2] = 1.0;
+}
+if (((rtb_TmpSignalConversionAtSFun_n[6] > ctrl_custom_P.C[3] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[6] < ctrl_custom_P.C[9] - 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[6] < ctrl_custom_P.C[15] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[6] > ctrl_custom_P.C[21] + 0.1))) {
+    /* '<S39>:1:39' */
+    /* '<S39>:1:40' */
+    K[3] = 0.0;
+} else {
+    /* '<S39>:1:42' */
+    K[3] = 1.0;
+}
+if (((rtb_TmpSignalConversionAtSFun_n[7] < ctrl_custom_P.C[4] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[7] > ctrl_custom_P.C[10] + 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[7] < ctrl_custom_P.C[16] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[7] > ctrl_custom_P.C[22] + 0.1))) {
+    /* '<S39>:1:45' */
+    /* '<S39>:1:46' */
+    K[4] = 0.0;
+} else {
+    /* '<S39>:1:48' */
+    K[4] = 1.0;
+}
+if (((rtb_TmpSignalConversionAtSFun_n[8] > ctrl_custom_P.C[5] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[8] < ctrl_custom_P.C[11] - 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[8] > ctrl_custom_P.C[17] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[8] < ctrl_custom_P.C[23] - 0.1))) {
+    /* '<S39>:1:51' */
+    /* '<S39>:1:52' */
+    K[5] = 0.0;
+} else {
+    /* '<S39>:1:54' */
+    K[5] = 1.0;
+}
+/*  number of thrusters */
+/*  Shells for faster computing */
+/* '<S39>:1:60' */
+/* '<S39>:1:61' */
+/* '<S39>:1:62' */
+/* '<S39>:1:64' */
+for (i = 0; i < 6; i++) {
+    /* '<S39>:1:64' */
+    /* '<S39>:1:65' */
+    rtb_y[i] = alpha[i];
+    %<(SLibCGCallSubFcn("ctrl_custom_cosd", ["&rtb_y[i]"], 6, 43, 8))>;
+    /* Thrust in x-direction for cartesian */
+    /* '<S39>:1:66' */
+    s[i] = alpha[i];
+    %<(SLibCGCallSubFcn("ctrl_custom_sind", ["&s[i]"], 6, 43, 9))>;
+    /* Thrust in y-direction for cartesian */
+    /* '<S39>:1:67' */
+    rtb_Row2 = alpha[i];
+    %<(SLibCGCallSubFcn("ctrl_custom_sind", ["&rtb_Row2"], 6, 43, 10))>;
+    rtb_Row1_d = alpha[i];
+    %<(SLibCGCallSubFcn("ctrl_custom_cosd", ["&rtb_Row1_d"], 6, 43, 11))>;
+    rtb_TmpSignalConversionAtSFun_i[i] = rtb_Row2 * ctrl_custom_P.XpositionThruster_Value[i] - rtb_Row1_d * ctrl_custom_P.YpositionThruster_Value[i];
+}
+/* '<S39>:1:71' */
+/* '<S39>:1:72' */
+/* '<S39>:1:73' */
+%<(SLibCGCallSubFcn("ctrl_custom_diag", ["K", "b_V_singular"], 6, 43, 12))>;
+for (i = 0; i < 6; i++) {
+    rtb_y_1[3 * i] = rtb_y[i];
+    rtb_y_1[1 + 3 * i] = s[i];
+    rtb_y_1[2 + 3 * i] = rtb_TmpSignalConversionAtSFun_i[i];
+}
+for (i = 0; i < 6; i++) {
+    for (b_i = 0; b_i < 3; b_i++) {
+        rtb_y_0[b_i + 3 * i] = 0.0;
+        for (b_sizes = 0; b_sizes < 6; b_sizes++) {
+            rtb_y_0[b_i + 3 * i] += rtb_y_1[3 * b_sizes + b_i] * b_V_singular[6 * i + b_sizes];
+        }
+    }
+}
+%<(SLibCGCallSubFcn("ctrl_custom_svd", ["rtb_y_0", "U_singular", "S_singular_cross", "rtb_y_1"], 6, 43, 13))>;
+/* '<S39>:1:74' */
+for (i = 0; i < 9; i++) {
+    S_singular_cross[i] = 1.0 / S_singular_cross[i];
+}
+/* '<S39>:1:75' */
+%<(SLibCGCallSubFcn("ctrl_custom_isfinite", ["S_singular_cross", "tmp"], 6, 43, 14))>;
+i = 0;
+for (b_i = 0; b_i < 9; b_i++) {
+    f_0 = !tmp[b_i];
+    if (f_0) {
+        i++;
+    }
+    f[b_i] = f_0;
+}
+b_sizes = i;
+i = 0;
+for (b_i = 0; b_i < 9; b_i++) {
+    if (f[b_i]) {
+        b_data[i] = b_i + 1;
+        i++;
+    }
+}
+/* '<S39>:1:75' */
+for (i = 0; i < b_sizes; i++) {
+    S_singular_cross[b_data[i] - 1] = 0.0;
+}
+if (S_singular_cross[8] > 10.0 * S_singular_cross[4]) {
+    /* '<S39>:1:76' */
+    /* '<S39>:1:77' */
+    S_singular_cross[8] = 0.0;
+}
+/* '<S39>:1:80' */
+/* '<S39>:1:82' */
+for (i = 0; i < 6; i++) {
+    for (b_i = 0; b_i < 3; b_i++) {
+        rtb_y_0[i + 6 * b_i] = 0.0;
+        rtb_y_0[i + 6 * b_i] += S_singular_cross[3 * b_i] * rtb_y_1[i];
+        rtb_y_0[i + 6 * b_i] += S_singular_cross[3 * b_i + 1] * rtb_y_1[i + 6];
+        rtb_y_0[i + 6 * b_i] += S_singular_cross[3 * b_i + 2] * rtb_y_1[i + 12];
+    }
+    rtb_y[i] = 0.0;
+    for (b_i = 0; b_i < 3; b_i++) {
+        V_singular[i + 6 * b_i] = 0.0;
+        V_singular[i + 6 * b_i] += rtb_y_0[i] * U_singular[b_i];
+        V_singular[i + 6 * b_i] += rtb_y_0[i + 6] * U_singular[b_i + 3];
+        V_singular[i + 6 * b_i] += rtb_y_0[i + 12] * U_singular[b_i + 6];
+        rtb_y[i] += V_singular[6 * b_i + i] * rtb_MatrixMultiply1[b_i];
+    }
+}
+/*  Optimized Thrust */
+/* '<S39>:1:86' */
+/* '<S39>:1:91' */
+for (i = 0; i < 12; i++) {
+    d_0[3 * i] = d[i];
+    d_0[1 + 3 * i] = e[i];
+}
+d_0[2] = ctrl_custom_P.YpositionThruster_Value[0];
+d_0[5] = ctrl_custom_P.XpositionThruster_Value[0];
+d_0[8] = ctrl_custom_P.YpositionThruster_Value[1];
+d_0[11] = ctrl_custom_P.XpositionThruster_Value[1];
+d_0[14] = ctrl_custom_P.YpositionThruster_Value[2];
+d_0[17] = ctrl_custom_P.XpositionThruster_Value[2];
+d_0[20] = ctrl_custom_P.YpositionThruster_Value[3];
+d_0[23] = ctrl_custom_P.XpositionThruster_Value[3];
+d_0[26] = ctrl_custom_P.YpositionThruster_Value[4];
+d_0[29] = ctrl_custom_P.XpositionThruster_Value[4];
+d_0[32] = ctrl_custom_P.YpositionThruster_Value[5];
+d_0[35] = ctrl_custom_P.XpositionThruster_Value[5];
+%<(SLibCGCallSubFcn("ctrl_custom_svd_hb", ["d_0", "U_singular", "S_singular_cross", "b_V_singular"], 6, 43, 15))>;
+/* '<S39>:1:92' */
+for (i = 0; i < 9; i++) {
+    S_singular_cross[i] = 1.0 / S_singular_cross[i];
+}
+/* '<S39>:1:93' */
+%<(SLibCGCallSubFcn("ctrl_custom_isfinite", ["S_singular_cross", "tmp"], 6, 43, 16))>;
+i = 0;
+for (b_i = 0; b_i < 9; b_i++) {
+    f_0 = !tmp[b_i];
+    if (f_0) {
+        i++;
+    }
+    f[b_i] = f_0;
+}
+b_sizes = i;
+i = 0;
+for (b_i = 0; b_i < 9; b_i++) {
+    if (f[b_i]) {
+        c_data[i] = b_i + 1;
+        i++;
+    }
+}
+/* '<S39>:1:93' */
+for (i = 0; i < b_sizes; i++) {
+    S_singular_cross[c_data[i] - 1] = 0.0;
+}
+if (S_singular_cross[8] > 2.0 * S_singular_cross[4]) {
+    /* '<S39>:1:94' */
+    /* '<S39>:1:95' */
+    S_singular_cross[8] = 0.0;
+}
+/* '<S39>:1:97' */
+for (i = 0; i < 12; i++) {
+    for (b_i = 0; b_i < 3; b_i++) {
+        d_0[i + 12 * b_i] = 0.0;
+        d_0[i + 12 * b_i] += S_singular_cross[3 * b_i] * b_V_singular[i];
+        d_0[i + 12 * b_i] += S_singular_cross[3 * b_i + 1] * b_V_singular[i + 12];
+        d_0[i + 12 * b_i] += S_singular_cross[3 * b_i + 2] * b_V_singular[i + 24];
+    }
+    T0[i] = 0.0;
+    for (b_i = 0; b_i < 3; b_i++) {
+        b_V_singular_0[i + 12 * b_i] = 0.0;
+        b_V_singular_0[i + 12 * b_i] += d_0[i] * U_singular[b_i];
+        b_V_singular_0[i + 12 * b_i] += d_0[i + 12] * U_singular[b_i + 3];
+        b_V_singular_0[i + 12 * b_i] += d_0[i + 24] * U_singular[b_i + 6];
+        T0[i] += b_V_singular_0[12 * b_i + i] * rtb_MatrixMultiply1[b_i];
+    }
+}
+/* '<S39>:1:99' */
+K[0] = 57.295779513082323 * %<(SLibCGCallSubFcn("rt_atan2d_snf", ["T0[1]", "T0[0]"], 6, 43, 17))>;
+K[1] = 57.295779513082323 * %<(SLibCGCallSubFcn("rt_atan2d_snf", ["T0[3]", "T0[2]"], 6, 43, 18))>;
+K[2] = 57.295779513082323 * %<(SLibCGCallSubFcn("rt_atan2d_snf", ["T0[5]", "T0[4]"], 6, 43, 19))>;
+K[3] = 57.295779513082323 * %<(SLibCGCallSubFcn("rt_atan2d_snf", ["T0[7]", "T0[6]"], 6, 43, 20))>;
+K[4] = 57.295779513082323 * %<(SLibCGCallSubFcn("rt_atan2d_snf", ["T0[9]", "T0[8]"], 6, 43, 21))>;
+K[5] = 57.295779513082323 * %<(SLibCGCallSubFcn("rt_atan2d_snf", ["T0[11]", "T0[10]"], 6, 43, 22))>;
+/*  Constraints */
+/*  Thruster 1 OK */
+/* C1 = [151 130 -151 -130 ]; */
+if (((K[0] < ctrl_custom_P.C[0]) && (K[0] > ctrl_custom_P.C[6]) && (rtb_y[0] > 0.0)) || ((K[0] < ctrl_custom_P.C[0]) && (K[0] > ctrl_custom_P.C[6]) && (rtb_y[0] < 0.0))) {
+    /* '<S39>:1:105' */
+    /* '<S39>:1:106' */
+    c1[0] = ctrl_custom_P.C[0];
+    c1[1] = ctrl_custom_P.C[6];
+    /* '<S39>:1:107' */
+    c1_5[0] = ctrl_custom_P.C[0] - K[0];
+    c1_5[1] = ctrl_custom_P.C[6] - K[0];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_5", "varargin_1"], 6, 43, 23))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg12 = false;
+        while ((!exitg12) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg12 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:108' */
+    rtb_Row1_d = c1[b_i];
+} else if (((K[0] > ctrl_custom_P.C[12]) && (K[0] < ctrl_custom_P.C[18]) && (rtb_y[0] > 0.0)) || ((K[0] > ctrl_custom_P.C[12]) && (K[0] < ctrl_custom_P.C[18]) && (rtb_y[0] < 0.0))) {
+    /* '<S39>:1:109' */
+    /* '<S39>:1:110' */
+    c1[0] = ctrl_custom_P.C[12];
+    c1[1] = ctrl_custom_P.C[18];
+    /* '<S39>:1:111' */
+    c1_5[0] = ctrl_custom_P.C[12] - K[0];
+    c1_5[1] = ctrl_custom_P.C[18] - K[0];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_5", "varargin_1"], 6, 43, 24))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg11 = false;
+        while ((!exitg11) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg11 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:112' */
+    rtb_Row1_d = c1[b_i];
+} else {
+    /* '<S39>:1:114' */
+    rtb_Row1_d = K[0];
+}
+if (((rtb_TmpSignalConversionAtSFun_n[3] < ctrl_custom_P.C[0] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[3] > ctrl_custom_P.C[6] + 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[3] > ctrl_custom_P.C[12] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[3] < ctrl_custom_P.C[18] - 0.1))) {
+    /* '<S39>:1:116' */
+    /* '<S39>:1:117' */
+    rtb_y[0] = 0.0;
+} else {
+    /* '<S39>:1:119' */
+}
+/*  Thruster 2  */
+/* C2 = [-99.85 -80.15 -50 -29]; */
+if (((K[1] < ctrl_custom_P.C[1]) && (K[1] > ctrl_custom_P.C[7]) && (rtb_y[1] > 0.0)) || ((K[1] < ctrl_custom_P.C[1]) && (K[1] > ctrl_custom_P.C[7]) && (rtb_y[1] < 0.0))) {
+    /* '<S39>:1:124' */
+    /* '<S39>:1:125' */
+    c1[0] = ctrl_custom_P.C[1];
+    c1[1] = ctrl_custom_P.C[7];
+    /* '<S39>:1:126' */
+    c1_4[0] = ctrl_custom_P.C[1] - K[1];
+    c1_4[1] = ctrl_custom_P.C[7] - K[1];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_4", "varargin_1"], 6, 43, 25))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg10 = false;
+        while ((!exitg10) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg10 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:127' */
+    rtb_psi_dot = c1[b_i];
+} else if (((K[1] < ctrl_custom_P.C[13]) && (K[1] > ctrl_custom_P.C[19]) && (rtb_y[1] > 0.0)) || ((K[1] < ctrl_custom_P.C[13]) && (K[1] > ctrl_custom_P.C[19]) && (rtb_y[1] < 0.0))) {
+    /* '<S39>:1:128' */
+    /* '<S39>:1:129' */
+    c1[0] = ctrl_custom_P.C[13];
+    c1[1] = ctrl_custom_P.C[19];
+    /* '<S39>:1:130' */
+    c1_4[0] = ctrl_custom_P.C[13] - K[1];
+    c1_4[1] = ctrl_custom_P.C[19] - K[1];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_4", "varargin_1"], 6, 43, 26))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg9 = false;
+        while ((!exitg9) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg9 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:131' */
+    rtb_psi_dot = c1[b_i];
+} else {
+    /* '<S39>:1:133' */
+    rtb_psi_dot = K[1];
+}
+if (((rtb_TmpSignalConversionAtSFun_n[4] < ctrl_custom_P.C[1] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[4] > ctrl_custom_P.C[7] + 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[4] < ctrl_custom_P.C[13] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[4] > ctrl_custom_P.C[19] + 0.1))) {
+    /* '<S39>:1:135' */
+    /* '<S39>:1:136' */
+    rtb_y[1] = 0.0;
+} else {
+    /* '<S39>:1:138' */
+}
+/*  Thruster 3  */
+/*  C3 = [99.85 80.15 50 29];  */
+if (((K[2] > ctrl_custom_P.C[2]) && (K[2] < ctrl_custom_P.C[8]) && (rtb_y[2] > 0.0)) || ((K[2] > ctrl_custom_P.C[2]) && (K[2] < ctrl_custom_P.C[8]) && (rtb_y[2] < 0.0))) {
+    /* '<S39>:1:144' */
+    /* '<S39>:1:145' */
+    c1[0] = ctrl_custom_P.C[2];
+    c1[1] = ctrl_custom_P.C[8];
+    /* '<S39>:1:146' */
+    c1_3[0] = ctrl_custom_P.C[2] - K[2];
+    c1_3[1] = ctrl_custom_P.C[8] - K[2];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_3", "varargin_1"], 6, 43, 27))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg8 = false;
+        while ((!exitg8) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg8 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:147' */
+    Alpha1_idx_2 = c1[b_i];
+} else if (((K[2] > ctrl_custom_P.C[14]) && (K[2] < ctrl_custom_P.C[20]) && (rtb_y[2] > 0.0)) || ((K[2] > ctrl_custom_P.C[14]) && (K[2] < ctrl_custom_P.C[20]) && (rtb_y[2] < 0.0))) {
+    /* '<S39>:1:148' */
+    /* '<S39>:1:149' */
+    c1[0] = ctrl_custom_P.C[14];
+    c1[1] = ctrl_custom_P.C[20];
+    /* '<S39>:1:150' */
+    c1_3[0] = ctrl_custom_P.C[14] - K[2];
+    c1_3[1] = ctrl_custom_P.C[20] - K[2];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_3", "varargin_1"], 6, 43, 28))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg7 = false;
+        while ((!exitg7) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg7 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:151' */
+    Alpha1_idx_2 = c1[b_i];
+} else {
+    /* '<S39>:1:153' */
+    Alpha1_idx_2 = K[2];
+}
+if (((rtb_TmpSignalConversionAtSFun_n[5] > ctrl_custom_P.C[2] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[5] < ctrl_custom_P.C[8] - 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[5] > ctrl_custom_P.C[14] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[5] < ctrl_custom_P.C[20] - 0.1))) {
+    /* '<S39>:1:155' */
+    /* '<S39>:1:156' */
+    rtb_y[2] = 0.0;
+} else {
+    /* '<S39>:1:158' */
+}
+/*  Thruster 4 OK */
+/* C4 = [-52.8 -34.2 52.8 34.2];  */
+if (((K[3] > ctrl_custom_P.C[3]) && (K[3] < ctrl_custom_P.C[9]) && (rtb_y[3] > 0.0)) || ((K[3] > ctrl_custom_P.C[3]) && (K[3] < ctrl_custom_P.C[9]) && (rtb_y[3] < 0.0))) {
+    /* '<S39>:1:163' */
+    /* '<S39>:1:164' */
+    c1[0] = ctrl_custom_P.C[3];
+    c1[1] = ctrl_custom_P.C[9];
+    /* '<S39>:1:165' */
+    c1_2[0] = ctrl_custom_P.C[3] - K[3];
+    c1_2[1] = ctrl_custom_P.C[9] - K[3];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_2", "varargin_1"], 6, 43, 29))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg6 = false;
+        while ((!exitg6) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg6 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:166' */
+    Alpha1_idx_3 = c1[b_i];
+} else if (((K[3] < ctrl_custom_P.C[15]) && (K[3] > ctrl_custom_P.C[21]) && (rtb_y[3] > 0.0)) || ((K[3] < ctrl_custom_P.C[15]) && (K[3] > ctrl_custom_P.C[21]) && (rtb_y[3] < 0.0))) {
+    /* '<S39>:1:167' */
+    /* '<S39>:1:168' */
+    c1[0] = ctrl_custom_P.C[15];
+    c1[1] = ctrl_custom_P.C[21];
+    /* '<S39>:1:169' */
+    c1_2[0] = ctrl_custom_P.C[15] - K[3];
+    c1_2[1] = ctrl_custom_P.C[21] - K[3];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_2", "varargin_1"], 6, 43, 30))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg5 = false;
+        while ((!exitg5) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg5 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:170' */
+    Alpha1_idx_3 = c1[b_i];
+} else {
+    /* '<S39>:1:172' */
+    Alpha1_idx_3 = K[3];
+}
+if (((rtb_TmpSignalConversionAtSFun_n[6] > ctrl_custom_P.C[3] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[6] < ctrl_custom_P.C[9] - 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[6] < ctrl_custom_P.C[15] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[6] > ctrl_custom_P.C[21] + 0.1))) {
+    /* '<S39>:1:174' */
+    /* '<S39>:1:175' */
+    rtb_y[3] = 0.0;
+} else {
+    /* '<S39>:1:177' */
+}
+/*  Thruster 5 */
+/* C5 = [-98.25 -81.75 -145.8 -127.2]; */
+if (((K[4] < ctrl_custom_P.C[4]) && (K[4] > ctrl_custom_P.C[10]) && (rtb_y[4] > 0.0)) || ((K[4] < ctrl_custom_P.C[4]) && (K[4] > ctrl_custom_P.C[10]) && (rtb_y[4] < 0.0))) {
+    /* '<S39>:1:182' */
+    /* '<S39>:1:183' */
+    c1[0] = ctrl_custom_P.C[4];
+    c1[1] = ctrl_custom_P.C[10];
+    /* '<S39>:1:184' */
+    c1_1[0] = ctrl_custom_P.C[4] - K[4];
+    c1_1[1] = ctrl_custom_P.C[10] - K[4];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_1", "varargin_1"], 6, 43, 31))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg4 = false;
+        while ((!exitg4) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg4 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:185' */
+    Alpha1_idx_4 = c1[b_i];
+} else if (((K[4] < ctrl_custom_P.C[16]) && (K[4] > ctrl_custom_P.C[22]) && (rtb_y[4] > 0.0)) || ((K[4] < ctrl_custom_P.C[16]) && (K[4] > ctrl_custom_P.C[22]) && (rtb_y[4] < 0.0))) {
+    /* '<S39>:1:186' */
+    /* '<S39>:1:187' */
+    c1[0] = ctrl_custom_P.C[16];
+    c1[1] = ctrl_custom_P.C[22];
+    /* '<S39>:1:188' */
+    c1_1[0] = ctrl_custom_P.C[16] - K[4];
+    c1_1[1] = ctrl_custom_P.C[22] - K[4];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_1", "varargin_1"], 6, 43, 32))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg3 = false;
+        while ((!exitg3) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg3 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:189' */
+    Alpha1_idx_4 = c1[b_i];
+} else {
+    /* '<S39>:1:191' */
+    Alpha1_idx_4 = K[4];
+}
+if (((rtb_TmpSignalConversionAtSFun_n[7] < ctrl_custom_P.C[4] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[7] > ctrl_custom_P.C[10] + 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[7] < ctrl_custom_P.C[16] - 0.1) && (rtb_TmpSignalConversionAtSFun_n[7] > ctrl_custom_P.C[22] + 0.1))) {
+    /* '<S39>:1:193' */
+    /* '<S39>:1:194' */
+    rtb_y[4] = 0.0;
+} else {
+    /* '<S39>:1:196' */
+}
+/*  Thruster 6 */
+/* C6 = [98.75 81.75 145.8 127.2]; */
+if (((K[5] > ctrl_custom_P.C[5]) && (K[5] < ctrl_custom_P.C[11]) && (rtb_y[5] > 0.0)) || ((K[5] > ctrl_custom_P.C[5]) && (K[5] < ctrl_custom_P.C[11]) && (rtb_y[5] < 0.0))) {
+    /* '<S39>:1:201' */
+    /* '<S39>:1:202' */
+    c1[0] = ctrl_custom_P.C[5];
+    c1[1] = ctrl_custom_P.C[11];
+    /* '<S39>:1:203' */
+    c1_0[0] = ctrl_custom_P.C[5] - K[5];
+    c1_0[1] = ctrl_custom_P.C[11] - K[5];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_0", "varargin_1"], 6, 43, 33))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg2 = false;
+        while ((!exitg2) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg2 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:204' */
+    rtb_Row2 = c1[b_i];
+} else if (((K[5] > ctrl_custom_P.C[17]) && (K[5] < ctrl_custom_P.C[23]) && (rtb_y[5] > 0.0)) || ((K[5] > ctrl_custom_P.C[17]) && (K[5] < ctrl_custom_P.C[23]) && (rtb_y[5] < 0.0))) {
+    /* '<S39>:1:205' */
+    /* '<S39>:1:206' */
+    c1[0] = ctrl_custom_P.C[17];
+    c1[1] = ctrl_custom_P.C[23];
+    /* '<S39>:1:207' */
+    c1_0[0] = ctrl_custom_P.C[17] - K[5];
+    c1_0[1] = ctrl_custom_P.C[23] - K[5];
+    %<(SLibCGCallSubFcn("ctrl_custom_abs", ["c1_0", "varargin_1"], 6, 43, 34))>;
+    i = 1;
+    rtb_Row2 = varargin_1[0];
+    b_i = 0;
+    if (rtIsNaN(varargin_1[0])) {
+        b_sizes = 2;
+        exitg1 = false;
+        while ((!exitg1) && (b_sizes < 3)) {
+            i = 2;
+            if (!rtIsNaN(varargin_1[1])) {
+                rtb_Row2 = varargin_1[1];
+                b_i = 1;
+                exitg1 = true;
+            } else {
+                b_sizes = 3;
+            }
+        }
+    }
+    if ((i < 2) && (varargin_1[1] < rtb_Row2)) {
+        b_i = 1;
+    }
+    /* '<S39>:1:208' */
+    rtb_Row2 = c1[b_i];
+} else {
+    /* '<S39>:1:210' */
+    rtb_Row2 = K[5];
+}
+if (((rtb_TmpSignalConversionAtSFun_n[8] > ctrl_custom_P.C[5] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[8] < ctrl_custom_P.C[11] - 0.1)) || ((rtb_TmpSignalConversionAtSFun_n[8] > ctrl_custom_P.C[17] + 0.1) && (rtb_TmpSignalConversionAtSFun_n[8] < ctrl_custom_P.C[23] - 0.1))) {
+    /* '<S39>:1:212' */
+    /* '<S39>:1:213' */
+    rtb_y[5] = 0.0;
+} else {
+    /* '<S39>:1:215' */
+}
+/*  Thruster 2&3  */
+if (rtb_psi_dot == ctrl_custom_P.C[7]) {
+    /* '<S39>:1:219' */
+    /* '<S39>:1:220' */
+    Alpha1_idx_2 = K[1] - (ctrl_custom_P.C[7] - K[1]);
+} else if (rtb_psi_dot == ctrl_custom_P.C[1]) {
+    /* '<S39>:1:221' */
+    /* '<S39>:1:222' */
+    Alpha1_idx_2 = K[1] - (ctrl_custom_P.C[1] - K[1]);
+} else if (rtb_psi_dot == ctrl_custom_P.C[13]) {
+    /* '<S39>:1:223' */
+    /* '<S39>:1:224' */
+    Alpha1_idx_2 = K[1] - (ctrl_custom_P.C[13] - K[1]);
+} else if (rtb_psi_dot == ctrl_custom_P.C[19]) {
+    /* '<S39>:1:225' */
+    /* '<S39>:1:226' */
+    Alpha1_idx_2 = K[1] - (ctrl_custom_P.C[19] - K[1]);
+} else if (Alpha1_idx_2 == ctrl_custom_P.C[8]) {
+    /* '<S39>:1:228' */
+    /* '<S39>:1:229' */
+    rtb_psi_dot = K[2] - (ctrl_custom_P.C[8] - K[2]);
+} else if (Alpha1_idx_2 == ctrl_custom_P.C[2]) {
+    /* '<S39>:1:230' */
+    /* '<S39>:1:231' */
+    rtb_psi_dot = K[2] - (ctrl_custom_P.C[2] - K[2]);
+} else if (Alpha1_idx_2 == ctrl_custom_P.C[14]) {
+    /* '<S39>:1:232' */
+    /* '<S39>:1:233' */
+    rtb_psi_dot = K[2] - (ctrl_custom_P.C[14] - K[2]);
+} else {
+    if (Alpha1_idx_2 == ctrl_custom_P.C[20]) {
+        /* '<S39>:1:234' */
+        /* '<S39>:1:235' */
+        rtb_psi_dot = K[2] - (ctrl_custom_P.C[20] - K[2]);
+    }
+}
+/*  Thruster 5&6 */
+if (Alpha1_idx_4 == ctrl_custom_P.C[10]) {
+    /* '<S39>:1:239' */
+    /* '<S39>:1:240' */
+    rtb_Row2 = K[4] - (ctrl_custom_P.C[10] - K[4]);
+} else if (Alpha1_idx_4 == ctrl_custom_P.C[4]) {
+    /* '<S39>:1:241' */
+    /* '<S39>:1:242' */
+    rtb_Row2 = K[4] - (ctrl_custom_P.C[4] - K[4]);
+} else if (Alpha1_idx_4 == ctrl_custom_P.C[16]) {
+    /* '<S39>:1:243' */
+    /* '<S39>:1:244' */
+    rtb_Row2 = K[4] - (ctrl_custom_P.C[16] - K[4]);
+} else if (Alpha1_idx_4 == ctrl_custom_P.C[22]) {
+    /* '<S39>:1:245' */
+    /* '<S39>:1:246' */
+    rtb_Row2 = K[4] - (ctrl_custom_P.C[22] - K[4]);
+} else if (rtb_Row2 == ctrl_custom_P.C[11]) {
+    /* '<S39>:1:248' */
+    /* '<S39>:1:249' */
+    Alpha1_idx_4 = K[5] - (ctrl_custom_P.C[11] - K[5]);
+} else if (rtb_Row2 == ctrl_custom_P.C[5]) {
+    /* '<S39>:1:250' */
+    /* '<S39>:1:251' */
+    Alpha1_idx_4 = K[5] - (ctrl_custom_P.C[5] - K[5]);
+} else if (rtb_Row2 == ctrl_custom_P.C[17]) {
+    /* '<S39>:1:252' */
+    /* '<S39>:1:253' */
+    Alpha1_idx_4 = K[5] - (ctrl_custom_P.C[17] - K[5]);
+} else {
+    if (rtb_Row2 == ctrl_custom_P.C[23]) {
+        /* '<S39>:1:254' */
+        /* '<S39>:1:255' */
+        Alpha1_idx_4 = K[5] - (ctrl_custom_P.C[23] - K[5]);
+    }
+}
+/*  Thruster 4 & 1 */
+if (Alpha1_idx_3 == ctrl_custom_P.C[9]) {
+    /* '<S39>:1:258' */
+    /* '<S39>:1:259' */
+    rtb_Row1_d = K[3] - (ctrl_custom_P.C[9] - K[3]);
+} else if (Alpha1_idx_3 == ctrl_custom_P.C[3]) {
+    /* '<S39>:1:260' */
+    /* '<S39>:1:261' */
+    rtb_Row1_d = K[3] - (ctrl_custom_P.C[3] - K[3]);
+} else if (Alpha1_idx_3 == ctrl_custom_P.C[15]) {
+    /* '<S39>:1:262' */
+    /* '<S39>:1:263' */
+    rtb_Row1_d = K[3] - (ctrl_custom_P.C[15] - K[3]);
+} else {
+    if (Alpha1_idx_3 == ctrl_custom_P.C[21]) {
+        /* '<S39>:1:264' */
+        /* '<S39>:1:265' */
+        rtb_Row1_d = K[3] - (ctrl_custom_P.C[21] - K[3]);
+    }
+}
+if (rtb_Row1_d == ctrl_custom_P.C[6]) {
+    /* '<S39>:1:268' */
+    /* '<S39>:1:269' */
+    Alpha1_idx_3 = K[0] - (ctrl_custom_P.C[6] - K[0]);
+} else if (rtb_Row1_d == ctrl_custom_P.C[0]) {
+    /* '<S39>:1:270' */
+    /* '<S39>:1:271' */
+    Alpha1_idx_3 = K[0] - (ctrl_custom_P.C[0] - K[0]);
+} else if (rtb_Row1_d == ctrl_custom_P.C[12]) {
+    /* '<S39>:1:272' */
+    /* '<S39>:1:273' */
+    Alpha1_idx_3 = K[0] - (ctrl_custom_P.C[12] - K[0]);
+} else {
+    if (rtb_Row1_d == ctrl_custom_P.C[18]) {
+        /* '<S39>:1:274' */
+        /* '<S39>:1:275' */
+        Alpha1_idx_3 = K[0] - (ctrl_custom_P.C[18] - K[0]);
+    }
+}
+/* '<S39>:1:278' */
+/*  u_d = -Desired_thrust; */
+/*  Update outputs */
+/* '<S39>:1:285' */
+rtb_sys[0] = rtb_Row1_d;
+rtb_sys[1] = rtb_psi_dot;
+rtb_sys[2] = Alpha1_idx_2;
+rtb_sys[3] = Alpha1_idx_3;
+rtb_sys[4] = Alpha1_idx_4;
+rtb_sys[5] = rtb_Row2;
+for (i = 0; i < 6; i++) {
+    rtb_sys[i + 6] = rtb_y[i];
+}
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+%<tlcOutputsFcnOfS30B55>\
+}
+%<tlcOutputsFcnOfS30B56>\
+/* Switch: '<S9>/Choosing Fixed // Azimuth angle' incorporates:
+ *  Constant: '<S9>/constant angle'
+ */
+for (i = 0; i < 6; i++) {
+    if (ctrl_custom_B.Angle_controller >= ctrl_custom_P.ChoosingFixedAzimuthangle_Thres) {
+        ctrl_custom_B.ChoosingFixedAzimuthangle[i] = rtb_sys[i];
+    } else {
+        ctrl_custom_B.ChoosingFixedAzimuthangle[i] = ctrl_custom_P.constantangle_Value[i];
+    }
+}
+/* End of Switch: '<S9>/Choosing Fixed // Azimuth angle' */
+
+/* Outputs for Iterator SubSystem: '<S9>/Optimal angle path and  constraints on rotation speed' incorporates:
+ *  ForEach: '<S40>/For Each'
+ */
+for (ForEach_itr = 0; ForEach_itr < 6; ForEach_itr++) {
+    /* ForEachSliceSelector: '<S40>/ImpSel_InsertedFor_reset_at_outport_0' */
+    rtb_ImpSel_InsertedFor_reset_at = ctrl_custom_B.reset[ForEach_itr];
+    if (%<(SLibCGIRIsSampleHit(1, 10))>) {
+        /* DiscreteIntegrator: '<S40>/Discrete-Time Integrator' incorporates:
+ *  Constant: '<S9>/constant angle'
+ *  ForEachSliceSelector: '<S40>/ImpSel_InsertedFor_initial angle _at_outport_0'
+ */
+        if (ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_IC_LOADI != 0) {
+            ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_DSTATE = ctrl_custom_P.constantangle_Value[ForEach_itr];
+        }
+        if (((rtb_ImpSel_InsertedFor_reset_at > 0.0) && (ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_PrevRese <= 0)) || ((rtb_ImpSel_InsertedFor_reset_at <= 0.0) && (ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_PrevRese == 1))) {
+            ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_DSTATE = ctrl_custom_P.constantangle_Value[ForEach_itr];
+        }
+        ctrl_custom_B.CoreSubsys[ForEach_itr].angle = ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_DSTATE;
+        /* End of DiscreteIntegrator: '<S40>/Discrete-Time Integrator' */
+
+        /* Gain: '<S43>/Gain1' */
+        lambda_c = ctrl_custom_P.CoreSubsys.Gain1_Gain * ctrl_custom_B.CoreSubsys[ForEach_itr].angle;
+        /* Delay: '<S40>/Delay' */
+        ctrl_custom_B.CoreSubsys[ForEach_itr].Delay = ctrl_custom_DW.CoreSubsys[ForEach_itr].Delay_DSTATE;
+        /* MATLAB Function: '<S40>/Ensuring angle is  [-pi pi]' */
+        /* MATLAB Function 'Thrust allocation/Optimal angle path and  constraints on rotation speed/Ensuring angle is  [-pi pi]': '<S44>:1' */
+        /*  RAD2PIPI Converts an angle in rad to the interval (-pi pi] */
+        /*           Should be applied to all heading errors in a feedback control system */
+        /*           in order to avoid discontinuities. */
+        /*  */
+        /*  Author:     Roger Skjetne */
+        /*  Date:       2003-09-05 */
+        /*  Revisions:  2004-09-02 Thor I. Fossen - replaced input argument x with angle */
+        /*              2005-01-05 Thor I. Fossen - ouput argument is set to y and not angle */
+        /*              2005-04-13 Roger Skjetne  - changed the function s in order */
+        /*                                          to account for correct mapping to */
+        /*                                          (-pi pi]. */
+        /*  */
+        /*  ________________________________________________________________ */
+        /*  */
+        /*  MSS GNC is a Matlab toolbox for guidance, navigation and control. */
+        /*  The toolbox is part of the Marine Systems Simulator (MSS). */
+        /*  */
+        /*  Copyright (C) 2008 Thor I. Fossen and Tristan Perez */
+        /*   */
+        /*  This program is free software: you can redistribute it and/or modify */
+        /*  it under the terms of the GNU General Public License as published by */
+        /*  the Free Software Foundation, either version 3 of the License, or */
+        /*  (at your option) any later version. */
+        /*   */
+        /*  This program is distributed in the hope that it will be useful, but */
+        /*  WITHOUT ANY WARRANTY; without even the implied warranty of */
+        /*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  */
+        /*  GNU General Public License for more details. */
+        /*   */
+        /*  You should have received a copy of the GNU General Public License */
+        /*  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+        /*   */
+        /*  E-mail: contact@marinecontrol.org */
+        /*  URL:    <http://www.marinecontrol.org> */
+        /*  convert angle in rad to the interval <-pi pi>  */
+        /* '<S44>:1:39' */
+        /* '<S44>:1:40' */
+        /*  s = sign(angle); */
+        /* '<S44>:1:43' */
+        rtb_Row2 = fabs(%<(SLibCGCallSubFcn("rt_remd_snf", ["lambda_c + 3.1415926535897931", "6.2831853071795862"], 6, 43, 35))> / 6.2831853071795862);
+        if (lambda_c < 0.0) {
+            rtb_Row1_d = -1.0;
+        } else if (lambda_c > 0.0) {
+            rtb_Row1_d = 1.0;
+        } else if (lambda_c == 0.0) {
+            rtb_Row1_d = 0.0;
+        } else {
+            rtb_Row1_d = lambda_c;
+        }
+        if (rtb_Row2 > 0.0) {
+            rtb_Row2 = 1.0;
+        } else {
+            if (rtb_Row2 == 0.0) {
+                rtb_Row2 = 0.0;
+            }
+        }
+        rtb_Row2 = (rtb_Row2 - 1.0) * 2.0 + rtb_Row1_d;
+        if (lambda_c < 0.0) {
+            rtb_Row1_d = -1.0;
+        } else if (lambda_c > 0.0) {
+            rtb_Row1_d = 1.0;
+        } else if (lambda_c == 0.0) {
+            rtb_Row1_d = 0.0;
+        } else {
+            rtb_Row1_d = lambda_c;
+        }
+        if (rtb_Row2 < 0.0) {
+            rtb_Row2 = -1.0;
+        } else if (rtb_Row2 > 0.0) {
+            rtb_Row2 = 1.0;
+        } else {
+            if (rtb_Row2 == 0.0) {
+                rtb_Row2 = 0.0;
+            }
+        }
+        lambda_c = %<(SLibCGCallSubFcn("rt_remd_snf", ["rtb_Row1_d * 3.1415926535897931 + lambda_c", "6.2831853071795862"], 6, 43, 36))> - rtb_Row2 * 3.1415926535897931;
+        /* End of MATLAB Function: '<S40>/Ensuring angle is  [-pi pi]' */
+    }
+    /* MATLAB Function: '<S40>/MATLAB Function1' incorporates:
+ *  ForEachSliceSelector: '<S40>/ImpSel_InsertedFor_Desired Angle_at_outport_0'
+ */
+    /* MATLAB Function 'Thrust allocation/Optimal angle path and  constraints on rotation speed/MATLAB Function1': '<S45>:1' */
+    /* '<S45>:1:3' */
+    rtb_Row2 = ctrl_custom_B.ChoosingFixedAzimuthangle[ForEach_itr] - ctrl_custom_B.CoreSubsys[ForEach_itr].Delay;
+    if (fabs(rtb_Row2) >= 360.0) {
+        /* '<S45>:1:4' */
+        /* '<S45>:1:5' */
+        rtb_Row2 = %<(SLibCGCallSubFcn("rt_remd_snf", ["rtb_Row2", "360.0"], 6, 43, 37))>;
+    }
+    if (fabs(rtb_Row2) >= 180.0) {
+        /* '<S45>:1:8' */
+        /* '<S45>:1:9' */
+        if (rtb_Row2 < 0.0) {
+            rtb_psi_dot = -1.0;
+        } else if (rtb_Row2 > 0.0) {
+            rtb_psi_dot = 1.0;
+        } else if (rtb_Row2 == 0.0) {
+            rtb_psi_dot = 0.0;
+        } else {
+            rtb_psi_dot = rtb_Row2;
+        }
+        rtb_Row2 -= rtb_psi_dot * 360.0;
+    }
+    /* End of MATLAB Function: '<S40>/MATLAB Function1' */
+
+    /* Saturate: '<S40>/Max Rotation Rate' */
+    /*  if desired < 0 %<"\%&& abs(desired+actual) > 180"> */
+    /*      y = actual+360; */
+    /*  else */
+    /*      y = abs(actual); */
+    /*  end */
+    /* if desired-actual > 180 */
+    /*     u = desired - 360; */
+    /* elseif desired-actual <= -180 */
+    /*     u=actual + 360 ; */
+    /* else */
+    /*     u=desired;         */
+    /* end */
+    /* rotation = change-actual;%<"\% - actual; \% If positive with clock, Negative against clock"> */
+    /* if rotation >= 180 || rotation <= -180 */
+    /*  u = desired; */
+    /* else  */
+    /*      u = actual; */
+    /* end */
+    /* change = abs(actual); */
+    /*  if actual-desired > 180 && desired > 0 && rotation > 0 */
+    /*      u = -180; */
+    /*  elseif  actual-desired > 180 && desired > 0 && rotation < 0 */
+    /*      u = 180; */
+    /*  else  */
+    /*      u = actual; */
+    /*  end */
+    /*  if change > abs(desired-actual) */
+    /*      u = -actual; */
+    /*  else */
+    /*      u = actual; */
+    /*  end */
+    /*  if desired >= 0.98*actual || desired <= -0.98*actual  */
+    /*      u = desired; */
+    /*  else  */
+    /*      u = actual;  */
+    /*  end */
+    /*  paths = [abs(actual-desired),abs(-1*actual-desired)]; */
+    /*  fastest = min(paths); */
+    /*  if paths(1) > paths(2) */
+    /*      fastest = paths(2); */
+    /*  elseif paths(1) < paths(2) */
+    /*      fastest = paths(1); */
+    /*  end */
+    /*  %<"\% if desired > 0 && actual < 0 || desired < 0 && actual < 0"> */
+    /*  %<"\% u = fastest;"> */
+    /*  %<"\% elseif desired > 0 && actual > 0 || desired < 0 && actual < 0"> */
+    /*  %<"\%     u = fastest;"> */
+    /*  if desired-actual > 180 || desired-actual < -180 */
+    /*      u = -actual; */
+    /*  else  */
+    /*      u = actual; */
+    /*  end */
+    if (rtb_Row2 > ctrl_custom_P.Max_rotation) {
+        ctrl_custom_B.CoreSubsys[ForEach_itr].MaxRotationRate = ctrl_custom_P.Max_rotation;
+    } else if (rtb_Row2 < -ctrl_custom_P.Max_rotation) {
+        ctrl_custom_B.CoreSubsys[ForEach_itr].MaxRotationRate = -ctrl_custom_P.Max_rotation;
+    } else {
+        ctrl_custom_B.CoreSubsys[ForEach_itr].MaxRotationRate = rtb_Row2;
+    }
+    /* End of Saturate: '<S40>/Max Rotation Rate' */
+    if (%<(SLibCGIRIsSampleHit(1, 11))>) {
+        /* ForEachSliceAssignment: '<S40>/ImpAsg_InsertedFor_commanded Angle_at_inport_0' */
+        rtb_ImpAsg_InsertedFor_commande[ForEach_itr] = lambda_c;
+    }
+}
+/* End of Outputs for SubSystem: '<S9>/Optimal angle path and  constraints on rotation speed' */
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* Saturate: '<S46>/Saturation 1' */
+    if (rtb_ImpAsg_InsertedFor_commande[0] > ctrl_custom_P.Saturation1_UpperSat) {
+        ctrl_custom_B.Saturation1 = ctrl_custom_P.Saturation1_UpperSat;
+    } else if (rtb_ImpAsg_InsertedFor_commande[0] < ctrl_custom_P.Saturation1_LowerSat) {
+        ctrl_custom_B.Saturation1 = ctrl_custom_P.Saturation1_LowerSat;
+    } else {
+        ctrl_custom_B.Saturation1 = rtb_ImpAsg_InsertedFor_commande[0];
+    }
+    /* End of Saturate: '<S46>/Saturation 1' */
+%<tlcOutputsFcnOfS30B59>\
+    /* Saturate: '<S46>/Saturation 2' */
+    if (rtb_ImpAsg_InsertedFor_commande[1] > ctrl_custom_P.Saturation2_UpperSat) {
+        ctrl_custom_B.Saturation2 = ctrl_custom_P.Saturation2_UpperSat;
+    } else if (rtb_ImpAsg_InsertedFor_commande[1] < ctrl_custom_P.Saturation2_LowerSat) {
+        ctrl_custom_B.Saturation2 = ctrl_custom_P.Saturation2_LowerSat;
+    } else {
+        ctrl_custom_B.Saturation2 = rtb_ImpAsg_InsertedFor_commande[1];
+    }
+    /* End of Saturate: '<S46>/Saturation 2' */
+%<tlcOutputsFcnOfS30B60>\
+    /* Saturate: '<S46>/Saturation 3' */
+    if (rtb_ImpAsg_InsertedFor_commande[2] > ctrl_custom_P.Saturation3_UpperSat) {
+        ctrl_custom_B.Saturation3 = ctrl_custom_P.Saturation3_UpperSat;
+    } else if (rtb_ImpAsg_InsertedFor_commande[2] < ctrl_custom_P.Saturation3_LowerSat) {
+        ctrl_custom_B.Saturation3 = ctrl_custom_P.Saturation3_LowerSat;
+    } else {
+        ctrl_custom_B.Saturation3 = rtb_ImpAsg_InsertedFor_commande[2];
+    }
+    /* End of Saturate: '<S46>/Saturation 3' */
+%<tlcOutputsFcnOfS30B61>\
+    /* Saturate: '<S46>/Saturation 4' */
+    if (rtb_ImpAsg_InsertedFor_commande[3] > ctrl_custom_P.Saturation4_UpperSat) {
+        ctrl_custom_B.Saturation4 = ctrl_custom_P.Saturation4_UpperSat;
+    } else if (rtb_ImpAsg_InsertedFor_commande[3] < ctrl_custom_P.Saturation4_LowerSat) {
+        ctrl_custom_B.Saturation4 = ctrl_custom_P.Saturation4_LowerSat;
+    } else {
+        ctrl_custom_B.Saturation4 = rtb_ImpAsg_InsertedFor_commande[3];
+    }
+    /* End of Saturate: '<S46>/Saturation 4' */
+%<tlcOutputsFcnOfS30B62>\
+    /* Saturate: '<S46>/Saturation 5' */
+    if (rtb_ImpAsg_InsertedFor_commande[4] > ctrl_custom_P.Saturation5_UpperSat) {
+        ctrl_custom_B.Saturation5 = ctrl_custom_P.Saturation5_UpperSat;
+    } else if (rtb_ImpAsg_InsertedFor_commande[4] < ctrl_custom_P.Saturation5_LowerSat) {
+        ctrl_custom_B.Saturation5 = ctrl_custom_P.Saturation5_LowerSat;
+    } else {
+        ctrl_custom_B.Saturation5 = rtb_ImpAsg_InsertedFor_commande[4];
+    }
+    /* End of Saturate: '<S46>/Saturation 5' */
+%<tlcOutputsFcnOfS30B63>\
+    /* Saturate: '<S46>/Saturation 6' */
+    if (rtb_ImpAsg_InsertedFor_commande[5] > ctrl_custom_P.Saturation6_UpperSat) {
+        ctrl_custom_B.Saturation6 = ctrl_custom_P.Saturation6_UpperSat;
+    } else if (rtb_ImpAsg_InsertedFor_commande[5] < ctrl_custom_P.Saturation6_LowerSat) {
+        ctrl_custom_B.Saturation6 = ctrl_custom_P.Saturation6_LowerSat;
+    } else {
+        ctrl_custom_B.Saturation6 = rtb_ImpAsg_InsertedFor_commande[5];
+    }
+    /* End of Saturate: '<S46>/Saturation 6' */
+%<tlcOutputsFcnOfS30B64>\
+}
+%<tlcOutputsFcnOfS30B65>\
+/* Integrator: '<S62>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_g", "ctrl_custom_B.reset_c", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_a = ctrl_custom_P.Integrator_IC;
+    }
+}
+/* MATLAB Function: '<S61>/Actual Force and Torque' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr1'
+ *  Constant: '<S10>/K_Qr7'
+ *  Constant: '<S10>/Rho'
+ *  Constant: '<S48>/Losses (placeholder)'
+ *  Integrator: '<S62>/Integrator'
+ */
+/* MATLAB Function 'Thruster control /Thruster 1/Propeller Hydrodynamics/Actual Force and Torque': '<S64>:1' */
+/* '<S64>:1:3' */
+lambda_c = tanh(ctrl_custom_P.eps_c * ctrl_custom_X.Integrator_CSTATE_a / 5.0) * 0.5 + 0.5;
+/*  Smooth switching between positive and negative thrust. 5 makes switch happen between -5 and 5 */
+/* '<S64>:1:4' */
+/* '<S64>:1:5' */
+/* '<S64>:1:7' */
+/* '<S64>:1:8' */
+if (ctrl_custom_X.Integrator_CSTATE_a < 0.0) {
+    rtb_Row2 = -1.0;
+} else if (ctrl_custom_X.Integrator_CSTATE_a > 0.0) {
+    rtb_Row2 = 1.0;
+} else if (ctrl_custom_X.Integrator_CSTATE_a == 0.0) {
+    rtb_Row2 = 0.0;
+} else {
+    rtb_Row2 = ctrl_custom_X.Integrator_CSTATE_a;
+}
+rtb_Row2 = ((1.0 - lambda_c) * ctrl_custom_P.K_q1r + ctrl_custom_P.K_q1f * lambda_c) * rtb_Row2 * ctrl_custom_P.Rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["ctrl_custom_P.D", "5.0"], 6, 43, 38))> * (ctrl_custom_X.Integrator_CSTATE_a * ctrl_custom_X.Integrator_CSTATE_a) - ctrl_custom_P.Lossesplaceholder_Value;
+/* '<S64>:1:9' */
+ctrl_custom_B.Pa = 6.2831853071795862 * ctrl_custom_X.Integrator_CSTATE_a * rtb_Row2;
+ctrl_custom_B.Qa = rtb_Row2;
+%<tlcOutputsFcnOfS30B75>\
+/* Integrator: '<S71>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_n", "ctrl_custom_B.reset_e", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_f = ctrl_custom_P.Integrator_IC_h;
+    }
+}
+rtb_Integrator_n = ctrl_custom_X.Integrator_CSTATE_f;
+/* End of Integrator: '<S71>/Integrator' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[21], "Output",0)
+
+/* MATLAB Function: '<S70>/Actual Force and Torque' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr2'
+ *  Constant: '<S10>/K_Qr8'
+ *  Constant: '<S10>/K_Tf2'
+ *  Constant: '<S10>/K_Tr2'
+ *  Constant: '<S10>/Rho'
+ *  Constant: '<S49>/Losses (placeholder)'
+ */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,1)
+%<SLibCGIRAccessLocalVar(8, 0)> %% rtb_Integrator_n
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custo_ActualForceandTorque", ["%<_modelSS>", "rtb_Integrator_n", "ctrl_custom_P.K_q2f", "ctrl_custom_P.K_T2f", "ctrl_custom_P.K_T2r", "ctrl_custom_P.K_q2r", "ctrl_custom_P.Rho", "ctrl_custom_P.D", "ctrl_custom_P.eps_c", "ctrl_custom_P.Lossesplaceholder_Value_e", "&ctrl_custom_B.sf_ActualForceandTorque_m"], 21, 0, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B82>\
+/* Integrator: '<S80>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_e", "ctrl_custom_B.reset_n", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_ao = ctrl_custom_P.Integrator_IC_o;
+    }
+}
+rtb_Integrator_g = ctrl_custom_X.Integrator_CSTATE_ao;
+/* End of Integrator: '<S80>/Integrator' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[21], "Output",0)
+
+/* MATLAB Function: '<S79>/Actual Force and Torque' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr3'
+ *  Constant: '<S10>/K_Qr9'
+ *  Constant: '<S10>/K_Tf3'
+ *  Constant: '<S10>/K_Tr3'
+ *  Constant: '<S10>/Rho'
+ *  Constant: '<S50>/Losses (placeholder)'
+ */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,1)
+%<SLibCGIRAccessLocalVar(9, 0)> %% rtb_Integrator_g
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custo_ActualForceandTorque", ["%<_modelSS>", "rtb_Integrator_g", "ctrl_custom_P.K_q3f", "ctrl_custom_P.K_T3f", "ctrl_custom_P.K_T3r", "ctrl_custom_P.K_q3r", "ctrl_custom_P.Rho", "ctrl_custom_P.D", "ctrl_custom_P.eps_c", "ctrl_custom_P.Lossesplaceholder_Value_d", "&ctrl_custom_B.sf_ActualForceandTorque_f"], 21, 1, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B89>\
+/* Integrator: '<S89>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_l", "ctrl_custom_B.reset_i", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_k = ctrl_custom_P.Integrator_IC_hz;
+    }
+}
+rtb_Integrator_l = ctrl_custom_X.Integrator_CSTATE_k;
+/* End of Integrator: '<S89>/Integrator' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[21], "Output",0)
+
+/* MATLAB Function: '<S88>/Actual Force and Torque' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr10'
+ *  Constant: '<S10>/K_Qr4'
+ *  Constant: '<S10>/K_Tf4'
+ *  Constant: '<S10>/K_Tr4'
+ *  Constant: '<S10>/Rho'
+ *  Constant: '<S51>/Losses (placeholder)'
+ */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,1)
+%<SLibCGIRAccessLocalVar(10, 0)> %% rtb_Integrator_l
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custo_ActualForceandTorque", ["%<_modelSS>", "rtb_Integrator_l", "ctrl_custom_P.K_q4f", "ctrl_custom_P.K_T4f", "ctrl_custom_P.K_T4r", "ctrl_custom_P.K_q4r", "ctrl_custom_P.Rho", "ctrl_custom_P.D", "ctrl_custom_P.eps_c", "ctrl_custom_P.Lossesplaceholder_Value_n", "&ctrl_custom_B.sf_ActualForceandTorque_a"], 21, 2, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B96>\
+/* Integrator: '<S98>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_j", "ctrl_custom_B.reset_nr", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_k2 = ctrl_custom_P.Integrator_IC_d;
+    }
+}
+rtb_Integrator_k = ctrl_custom_X.Integrator_CSTATE_k2;
+/* End of Integrator: '<S98>/Integrator' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[21], "Output",0)
+
+/* MATLAB Function: '<S97>/Actual Force and Torque' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr11'
+ *  Constant: '<S10>/K_Qr5'
+ *  Constant: '<S10>/K_Tf5'
+ *  Constant: '<S10>/K_Tr5'
+ *  Constant: '<S10>/Rho'
+ *  Constant: '<S52>/Losses (placeholder)'
+ */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,1)
+%<SLibCGIRAccessLocalVar(11, 0)> %% rtb_Integrator_k
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custo_ActualForceandTorque", ["%<_modelSS>", "rtb_Integrator_k", "ctrl_custom_P.K_q5f", "ctrl_custom_P.K_T5f", "ctrl_custom_P.K_T5r", "ctrl_custom_P.K_q5r", "ctrl_custom_P.Rho", "ctrl_custom_P.D", "ctrl_custom_P.eps_c", "ctrl_custom_P.Lossesplaceholder_Value_k", "&ctrl_custom_B.sf_ActualForceandTorque_k"], 21, 3, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B103>\
+/* Integrator: '<S107>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_m", "ctrl_custom_B.reset_l", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_i = ctrl_custom_P.Integrator_IC_b;
+    }
+}
+rtb_Integrator_c = ctrl_custom_X.Integrator_CSTATE_i;
+/* End of Integrator: '<S107>/Integrator' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[21], "Output",0)
+
+/* MATLAB Function: '<S106>/Actual Force and Torque' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr12'
+ *  Constant: '<S10>/K_Qr6'
+ *  Constant: '<S10>/K_Tf6'
+ *  Constant: '<S10>/K_Tr6'
+ *  Constant: '<S10>/Rho'
+ *  Constant: '<S53>/Losses (placeholder)'
+ */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custo_ActualForceandTorque",21,1)
+%<SLibCGIRAccessLocalVar(12, 0)> %% rtb_Integrator_c
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custo_ActualForceandTorque", ["%<_modelSS>", "rtb_Integrator_c", "ctrl_custom_P.K_q6f", "ctrl_custom_P.K_T6f", "ctrl_custom_P.K_T6r", "ctrl_custom_P.K_q6r", "ctrl_custom_P.Rho", "ctrl_custom_P.D", "ctrl_custom_P.eps_c", "ctrl_custom_P.Lossesplaceholder_Value_nh", "&ctrl_custom_B.sf_ActualForceandTorque_c"], 21, 4, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B110>\
+%<tlcOutputsFcnOfS30B111>\
+%<tlcOutputsFcnOfS30B112>\
+%<tlcOutputsFcnOfS30B113>\
+%<tlcOutputsFcnOfS30B114>\
+%<tlcOutputsFcnOfS30B115>\
+/* MATLAB Function: '<S61>/Actual Force and Torque' incorporates:
+ *  Integrator: '<S62>/Integrator'
+ */
+/* MATLAB Function 'Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function': '<S54>:1' */
+/* '<S54>:1:8' */
+if (ctrl_custom_X.Integrator_CSTATE_a < 0.0) {
+    rtb_Row2 = -1.0;
+} else if (ctrl_custom_X.Integrator_CSTATE_a > 0.0) {
+    rtb_Row2 = 1.0;
+} else if (ctrl_custom_X.Integrator_CSTATE_a == 0.0) {
+    rtb_Row2 = 0.0;
+} else {
+    rtb_Row2 = ctrl_custom_X.Integrator_CSTATE_a;
+}
+/* MATLAB Function: '<S47>/MATLAB Function' incorporates:
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Tf1'
+ *  Constant: '<S10>/K_Tr1'
+ *  Constant: '<S10>/Rho'
+ *  Constant: '<S48>/Losses (placeholder)'
+ *  Integrator: '<S62>/Integrator'
+ *  MATLAB Function: '<S61>/Actual Force and Torque'
+ *  SignalConversion: '<S54>/TmpSignal ConversionAt SFunction Inport1'
+ */
+ctrl_custom_B.output[0] = ((1.0 - lambda_c) * ctrl_custom_P.K_T1r + ctrl_custom_P.K_T1f * lambda_c) * rtb_Row2 * ctrl_custom_P.Rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["ctrl_custom_P.D", "4.0"], 6, 43, 39))> * (ctrl_custom_X.Integrator_CSTATE_a * ctrl_custom_X.Integrator_CSTATE_a) - ctrl_custom_P.Lossesplaceholder_Value;
+ctrl_custom_B.output[1] = ctrl_custom_X.Integrator_CSTATE_a;
+ctrl_custom_B.output[2] = ctrl_custom_B.sf_ActualForceandTorque_m.Ta;
+ctrl_custom_B.output[3] = rtb_Integrator_n;
+ctrl_custom_B.output[4] = ctrl_custom_B.sf_ActualForceandTorque_f.Ta;
+ctrl_custom_B.output[5] = rtb_Integrator_g;
+ctrl_custom_B.output[6] = ctrl_custom_B.sf_ActualForceandTorque_a.Ta;
+ctrl_custom_B.output[7] = rtb_Integrator_l;
+ctrl_custom_B.output[8] = ctrl_custom_B.sf_ActualForceandTorque_k.Ta;
+ctrl_custom_B.output[9] = rtb_Integrator_k;
+ctrl_custom_B.output[10] = ctrl_custom_B.sf_ActualForceandTorque_c.Ta;
+ctrl_custom_B.output[11] = rtb_Integrator_c;
+/* Saturate: '<S47>/Saturation 1' */
+if (ctrl_custom_B.output[0] > ctrl_custom_P.Max_thrust) {
+    rtb_Row2 = ctrl_custom_P.Max_thrust;
+} else if (ctrl_custom_B.output[0] < ctrl_custom_P.Saturation1_LowerSat_p) {
+    rtb_Row2 = ctrl_custom_P.Saturation1_LowerSat_p;
+} else {
+    rtb_Row2 = ctrl_custom_B.output[0];
+}
+/* End of Saturate: '<S47>/Saturation 1' */
+
+/* Polyval: '<S47>/positive thrust 1' */
+lambda_c = ctrl_custom_P.pwm_thr1_forward[0];
+for (i = 0; i < 5; i++) {
+    lambda_c = lambda_c * rtb_Row2 + ctrl_custom_P.pwm_thr1_forward[i + 1];
+}
+/* End of Polyval: '<S47>/positive thrust 1' */
+
+/* Saturate: '<S47>/Saturation 2' */
+if (ctrl_custom_B.output[0] > ctrl_custom_P.Saturation2_UpperSat_j) {
+    rtb_Row2 = ctrl_custom_P.Saturation2_UpperSat_j;
+} else if (ctrl_custom_B.output[0] < ctrl_custom_P.Min_thrust) {
+    rtb_Row2 = ctrl_custom_P.Min_thrust;
+} else {
+    rtb_Row2 = ctrl_custom_B.output[0];
+}
+/* End of Saturate: '<S47>/Saturation 2' */
+
+/* Polyval: '<S47>/negative thrust 1' */
+rtb_Row1_d = ctrl_custom_P.pwm_thr1_backward[0];
+for (i = 0; i < 5; i++) {
+    rtb_Row1_d = rtb_Row1_d * rtb_Row2 + ctrl_custom_P.pwm_thr1_backward[i + 1];
+}
+/* End of Polyval: '<S47>/negative thrust 1' */
+
+/* MATLAB Function: '<S47>/MATLAB Function1' */
+/* MATLAB Function 'Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function1': '<S55>:1' */
+if (ctrl_custom_B.output[0] >= 0.0) {
+    /* '<S55>:1:4' */
+    /* '<S55>:1:5' */
+    ctrl_custom_B.Tc_out = lambda_c;
+} else {
+    /* signal < 0 */
+    /* '<S55>:1:7' */
+    ctrl_custom_B.Tc_out = rtb_Row1_d;
+}
+/* End of MATLAB Function: '<S47>/MATLAB Function1' */
+%<tlcOutputsFcnOfS30B118>\
+/* Saturate: '<S47>/Saturation 8' */
+if (ctrl_custom_B.output[2] > ctrl_custom_P.Max_thrust) {
+    lambda_c = ctrl_custom_P.Max_thrust;
+} else if (ctrl_custom_B.output[2] < ctrl_custom_P.Saturation8_LowerSat) {
+    lambda_c = ctrl_custom_P.Saturation8_LowerSat;
+} else {
+    lambda_c = ctrl_custom_B.output[2];
+}
+/* End of Saturate: '<S47>/Saturation 8' */
+
+/* Polyval: '<S47>/positive thrust 2' */
+rtb_positivethrust2 = ctrl_custom_P.pwm_thr2_forward[0];
+for (i = 0; i < 5; i++) {
+    rtb_positivethrust2 = rtb_positivethrust2 * lambda_c + ctrl_custom_P.pwm_thr2_forward[i + 1];
+}
+/* End of Polyval: '<S47>/positive thrust 2' */
+
+/* Saturate: '<S47>/Saturation 9' */
+if (ctrl_custom_B.output[2] > ctrl_custom_P.Saturation9_UpperSat) {
+    lambda_c = ctrl_custom_P.Saturation9_UpperSat;
+} else if (ctrl_custom_B.output[2] < ctrl_custom_P.Min_thrust) {
+    lambda_c = ctrl_custom_P.Min_thrust;
+} else {
+    lambda_c = ctrl_custom_B.output[2];
+}
+/* End of Saturate: '<S47>/Saturation 9' */
+
+/* Polyval: '<S47>/negative thrust 2' */
+rtb_negativethrust2 = ctrl_custom_P.pwm_thr2_backward[0];
+for (i = 0; i < 5; i++) {
+    rtb_negativethrust2 = rtb_negativethrust2 * lambda_c + ctrl_custom_P.pwm_thr2_backward[i + 1];
+}
+/* End of Polyval: '<S47>/negative thrust 2' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[15], "Output",0)
+
+/* MATLAB Function: '<S47>/MATLAB Function2' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,1)
+%<SLibCGIRAccessLocalVar(24, 0)> %% rtb_positivethrust2
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,3)
+%<SLibCGIRAccessLocalVar(26, 0)> %% rtb_negativethrust2
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction2", ["%<_modelSS>", "rtb_positivethrust2", "ctrl_custom_B.output[2]", "rtb_negativethrust2", "&ctrl_custom_B.sf_MATLABFunction2"], 15, 0, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B120>\
+/* Saturate: '<S47>/Saturation 10' */
+if (ctrl_custom_B.output[4] > ctrl_custom_P.Max_thrust) {
+    lambda_c = ctrl_custom_P.Max_thrust;
+} else if (ctrl_custom_B.output[4] < ctrl_custom_P.Saturation10_LowerSat) {
+    lambda_c = ctrl_custom_P.Saturation10_LowerSat;
+} else {
+    lambda_c = ctrl_custom_B.output[4];
+}
+/* End of Saturate: '<S47>/Saturation 10' */
+
+/* Polyval: '<S47>/positive thrust 3' */
+rtb_positivethrust3 = ctrl_custom_P.pwm_thr3_forward[0];
+for (i = 0; i < 5; i++) {
+    rtb_positivethrust3 = rtb_positivethrust3 * lambda_c + ctrl_custom_P.pwm_thr3_forward[i + 1];
+}
+/* End of Polyval: '<S47>/positive thrust 3' */
+
+/* Saturate: '<S47>/Saturation 11' */
+if (ctrl_custom_B.output[4] > ctrl_custom_P.Saturation11_UpperSat) {
+    lambda_c = ctrl_custom_P.Saturation11_UpperSat;
+} else if (ctrl_custom_B.output[4] < ctrl_custom_P.Min_thrust) {
+    lambda_c = ctrl_custom_P.Min_thrust;
+} else {
+    lambda_c = ctrl_custom_B.output[4];
+}
+/* End of Saturate: '<S47>/Saturation 11' */
+
+/* Polyval: '<S47>/negative thrust 3' */
+rtb_negativethrust3 = ctrl_custom_P.pwm_thr3_backward[0];
+for (i = 0; i < 5; i++) {
+    rtb_negativethrust3 = rtb_negativethrust3 * lambda_c + ctrl_custom_P.pwm_thr3_backward[i + 1];
+}
+/* End of Polyval: '<S47>/negative thrust 3' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[15], "Output",0)
+
+/* MATLAB Function: '<S47>/MATLAB Function3' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,1)
+%<SLibCGIRAccessLocalVar(28, 0)> %% rtb_positivethrust3
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,3)
+%<SLibCGIRAccessLocalVar(30, 0)> %% rtb_negativethrust3
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction2", ["%<_modelSS>", "rtb_positivethrust3", "ctrl_custom_B.output[4]", "rtb_negativethrust3", "&ctrl_custom_B.sf_MATLABFunction3"], 15, 1, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B122>\
+/* Saturate: '<S47>/Saturation 3' */
+if (ctrl_custom_B.output[6] > ctrl_custom_P.Max_thrust) {
+    lambda_c = ctrl_custom_P.Max_thrust;
+} else if (ctrl_custom_B.output[6] < ctrl_custom_P.Saturation3_LowerSat_m) {
+    lambda_c = ctrl_custom_P.Saturation3_LowerSat_m;
+} else {
+    lambda_c = ctrl_custom_B.output[6];
+}
+/* End of Saturate: '<S47>/Saturation 3' */
+
+/* Polyval: '<S47>/positive thrust 4' */
+rtb_positivethrust4 = ctrl_custom_P.pwm_thr4_forward[0];
+for (i = 0; i < 5; i++) {
+    rtb_positivethrust4 = rtb_positivethrust4 * lambda_c + ctrl_custom_P.pwm_thr4_forward[i + 1];
+}
+/* End of Polyval: '<S47>/positive thrust 4' */
+
+/* Saturate: '<S47>/Saturation 4' */
+if (ctrl_custom_B.output[6] > ctrl_custom_P.Saturation4_UpperSat_l) {
+    lambda_c = ctrl_custom_P.Saturation4_UpperSat_l;
+} else if (ctrl_custom_B.output[6] < ctrl_custom_P.Min_thrust) {
+    lambda_c = ctrl_custom_P.Min_thrust;
+} else {
+    lambda_c = ctrl_custom_B.output[6];
+}
+/* End of Saturate: '<S47>/Saturation 4' */
+
+/* Polyval: '<S47>/negative thrust 4' */
+rtb_negativethrust4 = ctrl_custom_P.pwm_thr4_backward[0];
+for (i = 0; i < 5; i++) {
+    rtb_negativethrust4 = rtb_negativethrust4 * lambda_c + ctrl_custom_P.pwm_thr4_backward[i + 1];
+}
+/* End of Polyval: '<S47>/negative thrust 4' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[15], "Output",0)
+
+/* MATLAB Function: '<S47>/MATLAB Function4' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,1)
+%<SLibCGIRAccessLocalVar(32, 0)> %% rtb_positivethrust4
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,3)
+%<SLibCGIRAccessLocalVar(34, 0)> %% rtb_negativethrust4
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction2", ["%<_modelSS>", "rtb_positivethrust4", "ctrl_custom_B.output[6]", "rtb_negativethrust4", "&ctrl_custom_B.sf_MATLABFunction4"], 15, 2, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B124>\
+/* Saturate: '<S47>/Saturation 5' */
+if (ctrl_custom_B.output[8] > ctrl_custom_P.Max_thrust) {
+    lambda_c = ctrl_custom_P.Max_thrust;
+} else if (ctrl_custom_B.output[8] < ctrl_custom_P.Saturation5_LowerSat_j) {
+    lambda_c = ctrl_custom_P.Saturation5_LowerSat_j;
+} else {
+    lambda_c = ctrl_custom_B.output[8];
+}
+/* End of Saturate: '<S47>/Saturation 5' */
+
+/* Polyval: '<S47>/positive thrust 5' */
+rtb_positivethrust5 = ctrl_custom_P.pwm_thr5_forward[0];
+for (i = 0; i < 5; i++) {
+    rtb_positivethrust5 = rtb_positivethrust5 * lambda_c + ctrl_custom_P.pwm_thr5_forward[i + 1];
+}
+/* End of Polyval: '<S47>/positive thrust 5' */
+
+/* Saturate: '<S47>/Saturation 6' */
+if (ctrl_custom_B.output[8] > ctrl_custom_P.Saturation6_UpperSat_c) {
+    lambda_c = ctrl_custom_P.Saturation6_UpperSat_c;
+} else if (ctrl_custom_B.output[8] < ctrl_custom_P.Min_thrust) {
+    lambda_c = ctrl_custom_P.Min_thrust;
+} else {
+    lambda_c = ctrl_custom_B.output[8];
+}
+/* End of Saturate: '<S47>/Saturation 6' */
+
+/* Polyval: '<S47>/negative thrust 5' */
+rtb_negativethrust5 = ctrl_custom_P.pwm_thr5_backward[0];
+for (i = 0; i < 5; i++) {
+    rtb_negativethrust5 = rtb_negativethrust5 * lambda_c + ctrl_custom_P.pwm_thr5_backward[i + 1];
+}
+/* End of Polyval: '<S47>/negative thrust 5' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[15], "Output",0)
+
+/* MATLAB Function: '<S47>/MATLAB Function5' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,1)
+%<SLibCGIRAccessLocalVar(36, 0)> %% rtb_positivethrust5
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,3)
+%<SLibCGIRAccessLocalVar(38, 0)> %% rtb_negativethrust5
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction2", ["%<_modelSS>", "rtb_positivethrust5", "ctrl_custom_B.output[8]", "rtb_negativethrust5", "&ctrl_custom_B.sf_MATLABFunction5"], 15, 3, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B126>\
+/* Saturate: '<S47>/Saturation 12' */
+if (ctrl_custom_B.output[10] > ctrl_custom_P.Max_thrust) {
+    lambda_c = ctrl_custom_P.Max_thrust;
+} else if (ctrl_custom_B.output[10] < ctrl_custom_P.Saturation12_LowerSat) {
+    lambda_c = ctrl_custom_P.Saturation12_LowerSat;
+} else {
+    lambda_c = ctrl_custom_B.output[10];
+}
+/* End of Saturate: '<S47>/Saturation 12' */
+
+/* Polyval: '<S47>/positive thrust 6' */
+rtb_positivethrust6 = ctrl_custom_P.pwm_thr6_forward[0];
+for (i = 0; i < 5; i++) {
+    rtb_positivethrust6 = rtb_positivethrust6 * lambda_c + ctrl_custom_P.pwm_thr6_forward[i + 1];
+}
+/* End of Polyval: '<S47>/positive thrust 6' */
+
+/* Saturate: '<S47>/Saturation 13' */
+if (ctrl_custom_B.output[10] > ctrl_custom_P.Saturation13_UpperSat) {
+    lambda_c = ctrl_custom_P.Saturation13_UpperSat;
+} else if (ctrl_custom_B.output[10] < ctrl_custom_P.Min_thrust) {
+    lambda_c = ctrl_custom_P.Min_thrust;
+} else {
+    lambda_c = ctrl_custom_B.output[10];
+}
+/* End of Saturate: '<S47>/Saturation 13' */
+
+/* Polyval: '<S47>/negative thrust 6' */
+rtb_negativethrust6 = ctrl_custom_P.pwm_thr6_backward[0];
+for (i = 0; i < 5; i++) {
+    rtb_negativethrust6 = rtb_negativethrust6 * lambda_c + ctrl_custom_P.pwm_thr6_backward[i + 1];
+}
+/* End of Polyval: '<S47>/negative thrust 6' */
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[15], "Output",0)
+
+/* MATLAB Function: '<S47>/MATLAB Function6' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,1)
+%<SLibCGIRAccessLocalVar(40, 0)> %% rtb_positivethrust6
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction2",15,3)
+%<SLibCGIRAccessLocalVar(42, 0)> %% rtb_negativethrust6
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction2", ["%<_modelSS>", "rtb_positivethrust6", "ctrl_custom_B.output[10]", "rtb_negativethrust6", "&ctrl_custom_B.sf_MATLABFunction6"], 15, 4, 7, 0, 7, 30)>\
+%endif
+%<tlcOutputsFcnOfS30B128>\
+/* Gain: '<Root>/Gain1' */
+ctrl_custom_B.Gain1_n = ctrl_custom_P.Gain1_Gain_l * ctrl_custom_B.Integrator[1];
+%<tlcOutputsFcnOfS30B129>\
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* S-Function (sdspdiag2): '<S16>/Create Diagonal Matrix' */
+    memset(&ctrl_custom_B.CreateDiagonalMatrix[0], 0, 9U * sizeof(real_T));
+    /* S-Function (sdspdiag2): '<S16>/Create Diagonal Matrix1' */
+    memset(&ctrl_custom_B.CreateDiagonalMatrix1[0], 0, 9U * sizeof(real_T));
+    /* S-Function (sdspdiag2): '<S16>/Create Diagonal Matrix' incorporates:
+ *  Constant: '<S16>/Constant'
+ *  Constant: '<S16>/Constant1'
+ *  Constant: '<S16>/Constant2'
+ */
+    ctrl_custom_B.CreateDiagonalMatrix[0] = ctrl_custom_P.Constant_Value_g;
+    ctrl_custom_B.CreateDiagonalMatrix[4] = ctrl_custom_P.Constant1_Value_o;
+    ctrl_custom_B.CreateDiagonalMatrix[8] = ctrl_custom_P.Constant2_Value;
+    /* S-Function (sdspdiag2): '<S16>/Create Diagonal Matrix1' incorporates:
+ *  Constant: '<S16>/Constant3'
+ *  Constant: '<S16>/Constant4'
+ *  Constant: '<S16>/Constant5'
+ */
+    ctrl_custom_B.CreateDiagonalMatrix1[0] = ctrl_custom_P.Constant3_Value;
+    ctrl_custom_B.CreateDiagonalMatrix1[4] = ctrl_custom_P.Constant4_Value;
+    ctrl_custom_B.CreateDiagonalMatrix1[8] = ctrl_custom_P.Constant5_Value;
+}
+/* Sum: '<S4>/Sum1' incorporates:
+ *  Fcn: '<S22>/Fcn'
+ *  Fcn: '<S22>/Fcn1'
+ *  Fcn: '<S22>/Fcn2'
+ *  Fcn: '<S4>/Fcn'
+ */
+lambda_c_0[0] = cos(rtb_Row1) * ctrl_custom_B.Integrator1_a[0] - sin(rtb_Row1) * ctrl_custom_B.Integrator1_a[1];
+lambda_c_0[1] = sin(rtb_Row1) * ctrl_custom_B.Integrator1_a[0] + cos(rtb_Row1) * ctrl_custom_B.Integrator1_a[1];
+lambda_c_0[2] = ctrl_custom_B.Integrator1_a[2];
+for (i = 0; i < 3; i++) {
+    /* Product: '<S4>/Matrix Multiply1' */
+    ctrl_custom_B.MatrixMultiply1[i] = 0.0;
+    ctrl_custom_B.MatrixMultiply1[i] += ctrl_custom_B.CreateDiagonalMatrix1[i] * rtb_MatrixMultiply2[0];
+    ctrl_custom_B.MatrixMultiply1[i] += ctrl_custom_B.CreateDiagonalMatrix1[i + 3] * rtb_MatrixMultiply2[1];
+    ctrl_custom_B.MatrixMultiply1[i] += ctrl_custom_B.CreateDiagonalMatrix1[i + 6] * rtb_MatrixMultiply2[2];
+    /* Sum: '<S4>/Sum1' incorporates:
+ *  Product: '<S4>/Matrix Multiply'
+ */
+    ctrl_custom_B.Sum1_g[i] = (ctrl_custom_B.CreateDiagonalMatrix[i + 6] * rtb_MatrixMultiply2[2] + (ctrl_custom_B.CreateDiagonalMatrix[i + 3] * rtb_MatrixMultiply2[1] + ctrl_custom_B.CreateDiagonalMatrix[i] * rtb_MatrixMultiply2[0])) + lambda_c_0[i];
+}
+%<tlcOutputsFcnOfS30B136>\
+%<tlcOutputsFcnOfS30B137>\
+%<tlcOutputsFcnOfS30B138>\
+%<tlcOutputsFcnOfS30B139>\
+%<tlcOutputsFcnOfS30B140>\
+%<tlcOutputsFcnOfS30B141>\
+%<tlcOutputsFcnOfS30B142>\
+%<tlcOutputsFcnOfS30B143>\
+%<tlcOutputsFcnOfS30B144>\
+%<tlcOutputsFcnOfS30B145>\
+%<tlcOutputsFcnOfS30B146>\
+%<tlcOutputsFcnOfS30B147>\
+%<tlcOutputsFcnOfS30B148>\
+%<tlcOutputsFcnOfS30B149>\
+/* S-Function (sdspdiag2): '<S15>/Create Diagonal Matrix3' */
+memset(&rtb_CreateDiagonalMatrix3[0], 0, 9U * sizeof(real_T));
+/* S-Function (sdspdiag2): '<S15>/Create Diagonal Matrix4' */
+memset(&rtb_CreateDiagonalMatrix4[0], 0, 9U * sizeof(real_T));
+/* S-Function (sdspdiag2): '<S15>/Create Diagonal Matrix3' incorporates:
+ *  SignalConversion: '<S15>/TmpSignal ConversionAtCreate Diagonal Matrix3Inport1'
+ */
+rtb_CreateDiagonalMatrix3[0] = ctrl_custom_B.w_x;
+rtb_CreateDiagonalMatrix3[4] = ctrl_custom_B.w_y;
+rtb_CreateDiagonalMatrix3[8] = ctrl_custom_B.w_psi;
+/* S-Function (sdspdiag2): '<S15>/Create Diagonal Matrix4' incorporates:
+ *  SignalConversion: '<S15>/TmpSignal ConversionAtCreate Diagonal Matrix4Inport1'
+ */
+rtb_CreateDiagonalMatrix4[0] = ctrl_custom_B.zeta_x;
+rtb_CreateDiagonalMatrix4[4] = ctrl_custom_B.zeta_y;
+rtb_CreateDiagonalMatrix4[8] = ctrl_custom_B.zeta_psi;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[5], "Output",0)
+/* MATLAB Function: '<S8>/MATLAB Function' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction",5,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction",5,1)
+%<SLibCGIRAccessLocalVar(43, 0)> %% rtb_CreateDiagonalMatrix3
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction",5,2)
+%<SLibCGIRAccessLocalVar(44, 0)> %% rtb_CreateDiagonalMatrix4
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction", ["%<_modelSS>", "rtb_CreateDiagonalMatrix3", "rtb_CreateDiagonalMatrix4", "&ctrl_custom_B.sf_MATLABFunction_b"], 5, 0, 7, 0, 7, 30)>\
+%endif
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[5], "Output",0)
+
+/* MATLAB Function: '<S8>/MATLAB Function1' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction",5,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction",5,1)
+%<SLibCGIRAccessLocalVar(43, 0)> %% rtb_CreateDiagonalMatrix3
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction",5,2)
+%<SLibCGIRAccessLocalVar(44, 0)> %% rtb_CreateDiagonalMatrix4
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction", ["%<_modelSS>", "rtb_CreateDiagonalMatrix3", "rtb_CreateDiagonalMatrix4", "&ctrl_custom_B.sf_MATLABFunction1_k"], 5, 1, 7, 0, 7, 30)>\
+
+%endif
+/* S-Function (sdspdiag2): '<S15>/Create Diagonal Matrix5' incorporates:
+ *  MATLAB Function: '<S15>/MATLAB Function'
+ *  MATLAB Function: '<S15>/MATLAB Function1'
+ *  MATLAB Function: '<S15>/MATLAB Function2'
+ */
+/* MATLAB Function 'Referance1/MATLAB Function2': '<S37>:1' */
+/* '<S37>:1:3' */
+/* MATLAB Function 'Initialization of parameters/Guidance Gains/MATLAB Function': '<S17>:1' */
+/* '<S17>:1:3' */
+/* MATLAB Function 'Initialization of parameters/Guidance Gains/MATLAB Function1': '<S18>:1' */
+/* '<S18>:1:3' */
+/* MATLAB Function 'Initialization of parameters/Guidance Gains/MATLAB Function2': '<S19>:1' */
+/* '<S19>:1:3' */
+memset(&rtb_CreateDiagonalMatrix5[0], 0, 9U * sizeof(real_T));
+rtb_CreateDiagonalMatrix5[0] = 1.0 / ctrl_custom_B.T_x;
+rtb_CreateDiagonalMatrix5[4] = 1.0 / ctrl_custom_B.T_y;
+rtb_CreateDiagonalMatrix5[8] = 1.0 / ctrl_custom_B.T_psi;
+%<tlcOutputsFcnOfS30B156>\
+for (i = 0; i < 3; i++) {
+    /* Sum: '<S8>/Sum' incorporates:
+ *  Integrator: '<S8>/Integrator'
+ *  Product: '<S8>/Matrix Multiply'
+ *  Product: '<S8>/Matrix Multiply1'
+ *  SignalConversion: '<S8>/TmpSignal ConversionAtMatrix MultiplyInport2'
+ */
+    ctrl_custom_B.Sum_m[i] = (rtb_CreateDiagonalMatrix5[i + 6] * ctrl_custom_B.psi_ref + (rtb_CreateDiagonalMatrix5[i + 3] * ctrl_custom_B.y_ref + rtb_CreateDiagonalMatrix5[i] * ctrl_custom_B.x_ref)) - (rtb_CreateDiagonalMatrix5[i + 6] * ctrl_custom_X.Integrator_CSTATE_f5[2] + (rtb_CreateDiagonalMatrix5[i + 3] * ctrl_custom_X.Integrator_CSTATE_f5[1] + rtb_CreateDiagonalMatrix5[i] * ctrl_custom_X.Integrator_CSTATE_f5[0]));
+    /* Product: '<S8>/Matrix Multiply2' incorporates:
+ *  Sum: '<S8>/Sum1'
+ */
+    tmp_0[i] = 0.0;
+    /* Product: '<S8>/Matrix Multiply3' incorporates:
+ *  Sum: '<S8>/Sum1'
+ */
+    tmp_1[i] = 0.0;
+    /* Sum: '<S8>/Sum2' */
+    rtb_Row2 = 0.0;
+    for (b_i = 0; b_i < 3; b_i++) {
+        /* MATLAB Function: '<S8>/MATLAB Function2' incorporates:
+ *  Product: '<S8>/Matrix Multiply4'
+ */
+        U_singular[i + 3 * b_i] = 0.0;
+        U_singular[i + 3 * b_i] += rtb_CreateDiagonalMatrix3[3 * b_i] * rtb_CreateDiagonalMatrix3[i];
+        U_singular[i + 3 * b_i] += rtb_CreateDiagonalMatrix3[3 * b_i + 1] * rtb_CreateDiagonalMatrix3[i + 3];
+        U_singular[i + 3 * b_i] += rtb_CreateDiagonalMatrix3[3 * b_i + 2] * rtb_CreateDiagonalMatrix3[i + 6];
+        /* Sum: '<S8>/Sum2' incorporates:
+ *  Product: '<S8>/Matrix Multiply4'
+ */
+        rtb_Row2 += U_singular[3 * b_i + i] * ctrl_custom_B.Integrator1[b_i];
+        /* Product: '<S8>/Matrix Multiply2' incorporates:
+ *  Integrator: '<S8>/Integrator'
+ *  Sum: '<S8>/Sum1'
+ */
+        tmp_0[i] += ctrl_custom_B.sf_MATLABFunction_b.y[3 * b_i + i] * ctrl_custom_X.Integrator_CSTATE_f5[b_i];
+        /* Product: '<S8>/Matrix Multiply3' incorporates:
+ *  Sum: '<S8>/Sum1'
+ */
+        tmp_1[i] += ctrl_custom_B.sf_MATLABFunction1_k.y[3 * b_i + i] * rtb_MatrixMultiply4[b_i];
+    }
+    /* Sum: '<S8>/Sum2' incorporates:
+ *  Product: '<S8>/Matrix Multiply4'
+ *  Sum: '<S8>/Sum1'
+ */
+    ctrl_custom_B.Sum2[i] = (tmp_0[i] - tmp_1[i]) - rtb_Row2;
+}
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* Delay: '<S11>/Delay' */
+    for (i = 0; i < 6; i++) {
+        ctrl_custom_B.Delay[i] = ctrl_custom_DW.Delay_DSTATE[i];
+    }
+    /* End of Delay: '<S11>/Delay' */
+
+    /* Delay: '<S48>/Delay' */
+    ctrl_custom_B.Delay_d = ctrl_custom_DW.Delay_DSTATE_f;
+    /* Delay: '<S63>/Delay' */
+    ctrl_custom_B.Delay_j = ctrl_custom_DW.Delay_DSTATE_k;
+}
+/* MATLAB Function 'Thruster control /Thruster 1/Thruster control/MATLAB Function': '<S67>:1' */
+/* '<S67>:1:5' */
+if (rtb_sys[6] < 0.0) {
+    rtb_Row2 = -1.0;
+} else if (rtb_sys[6] > 0.0) {
+    rtb_Row2 = 1.0;
+} else if (rtb_sys[6] == 0.0) {
+    rtb_Row2 = 0.0;
+} else {
+    rtb_Row2 = rtb_sys[6];
+}
+rtb_psi_dot = sqrt(fabs(rtb_sys[6]) / (ctrl_custom_P.Rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["ctrl_custom_P.D", "4.0"], 6, 43, 40))> * ctrl_custom_P.K_T1f)) * rtb_Row2;
+/* '<S67>:1:7' */
+lambda_c = tanh(ctrl_custom_P.eps_c * rtb_psi_dot / 5.0) * 0.5 + 0.5;
+/*  Smooth switching between positive and negative thrust. 5 makes switch happen between -5 and 5 */
+/* '<S67>:1:8' */
+/* '<S67>:1:10' */
+if (ctrl_custom_B.Delay_j < 0.0) {
+    rtb_Row2 = -1.0;
+} else if (ctrl_custom_B.Delay_j > 0.0) {
+    rtb_Row2 = 1.0;
+} else if (ctrl_custom_B.Delay_j == 0.0) {
+    rtb_Row2 = 0.0;
+} else {
+    rtb_Row2 = ctrl_custom_B.Delay_j;
+}
+rtb_T_r_p = ((1.0 - lambda_c) * ctrl_custom_P.K_T1r + ctrl_custom_P.K_T1f * lambda_c) * rtb_Row2 * ctrl_custom_P.Rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["ctrl_custom_P.D", "4.0"], 6, 43, 41))> * (ctrl_custom_B.Delay_j * ctrl_custom_B.Delay_j);
+ctrl_custom_B.n_d_k = rtb_psi_dot;
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S63>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S63>/Constant1'
+ *  Constant: '<S63>/Constant2'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp = (ctrl_custom_B.n_d_k - ctrl_custom_P.Constant2_Value_b[1] * ctrl_custom_DW.DiscreteTransferFcn_states[0]) - ctrl_custom_P.Constant2_Value_b[2] * ctrl_custom_DW.DiscreteTransferFcn_states[1];
+    ctrl_custom_B.DiscreteTransferFcn = (ctrl_custom_P.Constant1_Value_p[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp + ctrl_custom_P.Constant1_Value_p[1] * ctrl_custom_DW.DiscreteTransferFcn_states[0]) + ctrl_custom_P.Constant1_Value_p[2] * ctrl_custom_DW.DiscreteTransferFcn_states[1];
+    /* SampleTimeMath: '<S66>/TSamp'
+ *
+ * About '<S66>/TSamp':
+ *  y = u * K where K = 1 / ( w * Ts )
+ */
+    ctrl_custom_B.TSamp = ctrl_custom_B.DiscreteTransferFcn * ctrl_custom_P.TSamp_WtEt;
+    /* Sum: '<S66>/Diff' incorporates:
+ *  UnitDelay: '<S66>/UD'
+ */
+    rtb_Sum_m = ctrl_custom_B.TSamp - ctrl_custom_DW.UD_DSTATE;
+    /* RateLimiter: '<S63>/Acceleration Limit' */
+    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY;
+    if (rtb_psi_dot > ctrl_custom_P.AccelerationLimit_RisingLim) {
+        rtb_Sum_m = ctrl_custom_DW.PrevY + ctrl_custom_P.AccelerationLimit_RisingLim;
+    } else {
+        if (rtb_psi_dot < ctrl_custom_P.AccelerationLimit_FallingLim) {
+            rtb_Sum_m = ctrl_custom_DW.PrevY + ctrl_custom_P.AccelerationLimit_FallingLim;
+        }
+    }
+    ctrl_custom_DW.PrevY = rtb_Sum_m;
+    /* End of RateLimiter: '<S63>/Acceleration Limit' */
+
+    /* Gain: '<S63>/Inertia compensation' */
+    ctrl_custom_B.Inertiacompensation = ctrl_custom_P.I_s * 2.0 * 3.1415926535897931 * rtb_Sum_m;
+    /* Sum: '<S63>/Sum1' incorporates:
+ *  Gain: '<S63>/Qf_0'
+ *  Gain: '<S63>/Qff_0(nr)'
+ *  Gain: '<S63>/Qff_1(nr)'
+ *  Trigonometry: '<S63>/Trigonometric Function'
+ */
+    ctrl_custom_B.Sum1_b = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max * ctrl_custom_B.DiscreteTransferFcn) * ctrl_custom_P.Q_f0 + ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * ctrl_custom_B.DiscreteTransferFcn;
+    /* Memory: '<S63>/Memory' */
+    ctrl_custom_B.Memory = ctrl_custom_DW.Memory_PreviousInput;
+    /* Sum: '<S65>/Sum' */
+    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn - ctrl_custom_B.Delay[0];
+    /* Gain: '<S65>/Kp' */
+    ctrl_custom_B.Kp = ctrl_custom_P.Kp * rtb_Sum_m;
+}
+%<tlcOutputsFcnOfS30B163>\
+/* Integrator: '<S65>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_lk", "ctrl_custom_B.reset_p", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_m = ctrl_custom_P.Integrator_IC_j;
+    }
+}
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[18], "Output",0)
+/* MATLAB Function: '<S65>/Core controller: Torque,Power and Combined Torque//Power' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/Constant1'
+ *  Constant: '<S10>/Constant2'
+ *  Constant: '<S10>/Constant3'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr1'
+ *  Constant: '<S10>/K_Qr7'
+ *  Constant: '<S10>/K_Tf1'
+ *  Constant: '<S10>/K_Tr1'
+ *  Constant: '<S10>/Rho'
+ */
+%if SLibCG_SystemFcnArgAccessed("CorecontrollerTorquePowerandCom",18,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("CorecontrollerTorquePowerandCom",18,8)
+%<SLibCGIRAccessLocalVar(101, 0)> %% rtb_T_r_p
+%endif
+
+%<SLibCGIRGenReusableSysCall("CorecontrollerTorquePowerandCom", ["%<_modelSS>", "ctrl_custom_P.k_cc", "ctrl_custom_P.p_cc", "ctrl_custom_P.r_cc", "ctrl_custom_B.Delay[0]", "ctrl_custom_P.K_T1f", "ctrl_custom_P.K_q1f", "ctrl_custom_P.D", "rtb_T_r_p", "ctrl_custom_P.Rho", "ctrl_custom_P.eps_c", "ctrl_custom_P.K_T1r", "ctrl_custom_P.K_q1r", "&ctrl_custom_B.sf_CorecontrollerTorquePowerand"], 18, 0, 7, 0, 7, 30)>\
+
+%endif
+/* MultiPortSwitch: '<S63>/Controller chosen' incorporates:
+ *  Constant: '<S63>/NaN'
+ *  Integrator: '<S65>/Integrator'
+ *  Sum: '<S65>/Sum1'
+ */
+switch ((int32_T)ctrl_custom_B.Memory) {
+  case 1:
+    lambda_c = ctrl_custom_B.Kp + ctrl_custom_X.Integrator_CSTATE_m;
+    break;
+  case 2:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowerand.Qcq;
+    break;
+  case 3:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowerand.Qcp;
+    break;
+  case 4:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowerand.Qcc;
+    break;
+  default:
+    lambda_c = ctrl_custom_P.NaN_Value;
+    break;
+}
+/* End of MultiPortSwitch: '<S63>/Controller chosen' */
+
+/* Sum: '<S63>/Sum' */
+ctrl_custom_B.Sum_hk = (ctrl_custom_B.Inertiacompensation + ctrl_custom_B.Sum1_b) + lambda_c;
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S48>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S48>/Constant'
+ *  Constant: '<S48>/Constant1'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_n = ctrl_custom_B.Sum_hk - ctrl_custom_P.Constant_Value_j[1] * ctrl_custom_DW.DiscreteTransferFcn_states_k;
+    ctrl_custom_B.DiscreteTransferFcn_b = ctrl_custom_P.Constant1_Value_i[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_n + ctrl_custom_P.Constant1_Value_i[1] * ctrl_custom_DW.DiscreteTransferFcn_states_k;
+}
+%<tlcOutputsFcnOfS30B170>\
+/* Gain: '<S62>/Finding rotation speed' incorporates:
+ *  Gain: '<S62>/K_omega'
+ *  Integrator: '<S62>/Integrator'
+ *  Sum: '<S62>/Sum'
+ */
+ctrl_custom_B.Findingrotationspeed = ((ctrl_custom_B.DiscreteTransferFcn_b - ctrl_custom_B.Delay_d) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * ctrl_custom_X.Integrator_CSTATE_a) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* Gain: '<S65>/Ki' */
+    ctrl_custom_B.Ki = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[20], "Output",0)
+    /* MATLAB Function: '<S63>/Supervisor' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_Supervisor",20,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_Supervisor", ["%<_modelSS>", "ctrl_custom_B.Memory", "%<(SLibCG_Grnd(0, 0, 1, "", -1, "", 0))>", "ctrl_custom_B.Delay[0]", "&ctrl_custom_B.sf_Supervisor"], 20, 0, 7, 0, 7, 30)>\
+
+%endif
+    /* Delay: '<S49>/Delay' */
+    ctrl_custom_B.Delay_c = ctrl_custom_DW.Delay_DSTATE_c;
+    /* Delay: '<S72>/Delay' */
+    ctrl_custom_B.Delay_b = ctrl_custom_DW.Delay_DSTATE_j;
+}
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[23], "Output",0)
+/* MATLAB Function: '<S72>/MATLAB Function' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Tf2'
+ *  Constant: '<S10>/K_Tr2'
+ *  Constant: '<S10>/Rho'
+ */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction_a",23,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction_a",23,1)
+%<SLibCGIRAccessLocalVar(112, 0)> %% rtb_sys
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction_a", ["%<_modelSS>", "rtb_sys[7]", "ctrl_custom_P.K_T2f", "ctrl_custom_P.K_T2r", "ctrl_custom_P.Rho", "ctrl_custom_P.D", "ctrl_custom_P.eps_c", "ctrl_custom_B.Delay_b", "&ctrl_custom_B.sf_MATLABFunction_a"], 23, 0, 7, 0, 7, 30)>\
+%endif
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S72>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S72>/Constant1'
+ *  Constant: '<S72>/Constant2'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_f = (ctrl_custom_B.sf_MATLABFunction_a.n_d - ctrl_custom_P.Constant2_Value_k[1] * ctrl_custom_DW.DiscreteTransferFcn_states_j[0]) - ctrl_custom_P.Constant2_Value_k[2] * ctrl_custom_DW.DiscreteTransferFcn_states_j[1];
+    ctrl_custom_B.DiscreteTransferFcn_l = (ctrl_custom_P.Constant1_Value_m[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_f + ctrl_custom_P.Constant1_Value_m[1] * ctrl_custom_DW.DiscreteTransferFcn_states_j[0]) + ctrl_custom_P.Constant1_Value_m[2] * ctrl_custom_DW.DiscreteTransferFcn_states_j[1];
+    /* SampleTimeMath: '<S75>/TSamp'
+ *
+ * About '<S75>/TSamp':
+ *  y = u * K where K = 1 / ( w * Ts )
+ */
+    ctrl_custom_B.TSamp_m = ctrl_custom_B.DiscreteTransferFcn_l * ctrl_custom_P.TSamp_WtEt_g;
+    /* Sum: '<S75>/Diff' incorporates:
+ *  UnitDelay: '<S75>/UD'
+ */
+    rtb_Sum_m = ctrl_custom_B.TSamp_m - ctrl_custom_DW.UD_DSTATE_f;
+    /* RateLimiter: '<S72>/Acceleration Limit' */
+    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_p;
+    if (rtb_psi_dot > ctrl_custom_P.AccelerationLimit_RisingLim_p) {
+        rtb_Sum_m = ctrl_custom_DW.PrevY_p + ctrl_custom_P.AccelerationLimit_RisingLim_p;
+    } else {
+        if (rtb_psi_dot < ctrl_custom_P.AccelerationLimit_FallingLim_n) {
+            rtb_Sum_m = ctrl_custom_DW.PrevY_p + ctrl_custom_P.AccelerationLimit_FallingLim_n;
+        }
+    }
+    ctrl_custom_DW.PrevY_p = rtb_Sum_m;
+    /* End of RateLimiter: '<S72>/Acceleration Limit' */
+
+    /* Gain: '<S72>/Inertia compensation' */
+    ctrl_custom_B.Inertiacompensation_b = ctrl_custom_P.I_s * 2.0 * 3.1415926535897931 * rtb_Sum_m;
+    /* Sum: '<S72>/Sum1' incorporates:
+ *  Gain: '<S72>/Qf_0'
+ *  Gain: '<S72>/Qff_0(nr)'
+ *  Gain: '<S72>/Qff_1(nr)'
+ *  Trigonometry: '<S72>/Trigonometric Function'
+ */
+    ctrl_custom_B.Sum1_l = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max * ctrl_custom_B.DiscreteTransferFcn_l) * ctrl_custom_P.Q_f0 + ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * ctrl_custom_B.DiscreteTransferFcn_l;
+    /* Memory: '<S72>/Memory' */
+    ctrl_custom_B.Memory_l = ctrl_custom_DW.Memory_PreviousInput_g;
+    /* Sum: '<S74>/Sum' */
+    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_l - ctrl_custom_B.Delay[1];
+    /* Gain: '<S74>/Kp' */
+    ctrl_custom_B.Kp_c = ctrl_custom_P.Kp * rtb_Sum_m;
+}
+%<tlcOutputsFcnOfS30B177>\
+/* Integrator: '<S74>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_p", "ctrl_custom_B.reset_l2", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_ko = ctrl_custom_P.Integrator_IC_p;
+    }
+}
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[18], "Output",0)
+/* MATLAB Function: '<S74>/Core controller: Torque,Power and Combined Torque//Power' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/Constant1'
+ *  Constant: '<S10>/Constant2'
+ *  Constant: '<S10>/Constant3'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr2'
+ *  Constant: '<S10>/K_Qr8'
+ *  Constant: '<S10>/K_Tf2'
+ *  Constant: '<S10>/K_Tr2'
+ *  Constant: '<S10>/Rho'
+ */
+%if SLibCG_SystemFcnArgAccessed("CorecontrollerTorquePowerandCom",18,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+
+%<SLibCGIRGenReusableSysCall("CorecontrollerTorquePowerandCom", ["%<_modelSS>", "ctrl_custom_P.k_cc", "ctrl_custom_P.p_cc", "ctrl_custom_P.r_cc", "ctrl_custom_B.Delay[1]", "ctrl_custom_P.K_T2f", "ctrl_custom_P.K_q2f", "ctrl_custom_P.D", "ctrl_custom_B.sf_MATLABFunction_a.T_r", "ctrl_custom_P.Rho", "ctrl_custom_P.eps_c", "ctrl_custom_P.K_T2r", "ctrl_custom_P.K_q2r", "&ctrl_custom_B.sf_CorecontrollerTorquePowera_a"], 18, 1, 7, 0, 7, 30)>\
+
+%endif
+/* MultiPortSwitch: '<S72>/Controller chosen' incorporates:
+ *  Constant: '<S72>/NaN'
+ *  Integrator: '<S74>/Integrator'
+ *  Sum: '<S74>/Sum1'
+ */
+switch ((int32_T)ctrl_custom_B.Memory_l) {
+  case 1:
+    lambda_c = ctrl_custom_B.Kp_c + ctrl_custom_X.Integrator_CSTATE_ko;
+    break;
+  case 2:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_a.Qcq;
+    break;
+  case 3:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_a.Qcp;
+    break;
+  case 4:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_a.Qcc;
+    break;
+  default:
+    lambda_c = ctrl_custom_P.NaN_Value_n;
+    break;
+}
+/* End of MultiPortSwitch: '<S72>/Controller chosen' */
+
+/* Sum: '<S72>/Sum' */
+ctrl_custom_B.Sum_d = (ctrl_custom_B.Inertiacompensation_b + ctrl_custom_B.Sum1_l) + lambda_c;
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S49>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S49>/Constant'
+ *  Constant: '<S49>/Constant1'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_fg = ctrl_custom_B.Sum_d - ctrl_custom_P.Constant_Value_d[1] * ctrl_custom_DW.DiscreteTransferFcn_states_j0;
+    ctrl_custom_B.DiscreteTransferFcn_c = ctrl_custom_P.Constant1_Value_b[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_fg + ctrl_custom_P.Constant1_Value_b[1] * ctrl_custom_DW.DiscreteTransferFcn_states_j0;
+}
+/* Gain: '<S71>/Finding rotation speed' incorporates:
+ *  Gain: '<S71>/K_omega'
+ *  Sum: '<S71>/Sum'
+ */
+ctrl_custom_B.Findingrotationspeed_h = ((ctrl_custom_B.DiscreteTransferFcn_c - ctrl_custom_B.Delay_c) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * rtb_Integrator_n) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* Gain: '<S74>/Ki' */
+    ctrl_custom_B.Ki_c = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[20], "Output",0)
+    /* MATLAB Function: '<S72>/Supervisor' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_Supervisor",20,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_Supervisor", ["%<_modelSS>", "ctrl_custom_B.Memory_l", "%<(SLibCG_Grnd(0, 0, 1, "", -1, "", 0))>", "ctrl_custom_B.Delay[1]", "&ctrl_custom_B.sf_Supervisor_c"], 20, 1, 7, 0, 7, 30)>\
+
+%endif
+    /* Delay: '<S50>/Delay' */
+    ctrl_custom_B.Delay_h = ctrl_custom_DW.Delay_DSTATE_m;
+    /* Delay: '<S81>/Delay' */
+    ctrl_custom_B.Delay_i = ctrl_custom_DW.Delay_DSTATE_e;
+}
+/* MATLAB Function: '<S81>/MATLAB Function' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Tf3'
+ *  Constant: '<S10>/Rho'
+ */
+/* MATLAB Function 'Thruster control /Thruster 3/Thruster control/MATLAB Function': '<S85>:1' */
+/* '<S85>:1:5' */
+if (rtb_sys[8] < 0.0) {
+    rtb_Row2 = -1.0;
+} else if (rtb_sys[8] > 0.0) {
+    rtb_Row2 = 1.0;
+} else if (rtb_sys[8] == 0.0) {
+    rtb_Row2 = 0.0;
+} else {
+    rtb_Row2 = rtb_sys[8];
+}
+rtb_psi_dot = sqrt(fabs(rtb_sys[8]) / (ctrl_custom_P.Rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["ctrl_custom_P.D", "4.0"], 6, 43, 42))> * ctrl_custom_P.K_T3f)) * rtb_Row2;
+/* '<S85>:1:7' */
+lambda_c = tanh(ctrl_custom_P.eps_c * rtb_psi_dot / 5.0) * 0.5 + 0.5;
+/*  Smooth switching between positive and negative thrust */
+/* '<S85>:1:8' */
+/* '<S85>:1:10' */
+if (ctrl_custom_B.Delay_i < 0.0) {
+    rtb_Row2 = -1.0;
+} else if (ctrl_custom_B.Delay_i > 0.0) {
+    rtb_Row2 = 1.0;
+} else if (ctrl_custom_B.Delay_i == 0.0) {
+    rtb_Row2 = 0.0;
+} else {
+    rtb_Row2 = ctrl_custom_B.Delay_i;
+}
+rtb_T_r_e = ((1.0 - lambda_c) * ctrl_custom_P.K_T3f + ctrl_custom_P.K_T3f * lambda_c) * rtb_Row2 * ctrl_custom_P.Rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["ctrl_custom_P.D", "4.0"], 6, 43, 43))> * (ctrl_custom_B.Delay_i * ctrl_custom_B.Delay_i);
+ctrl_custom_B.n_d_m = rtb_psi_dot;
+/* End of MATLAB Function: '<S81>/MATLAB Function' */
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S81>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S81>/Constant1'
+ *  Constant: '<S81>/Constant2'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_k = (ctrl_custom_B.n_d_m - ctrl_custom_P.Constant2_Value_k5[1] * ctrl_custom_DW.DiscreteTransferFcn_states_f[0]) - ctrl_custom_P.Constant2_Value_k5[2] * ctrl_custom_DW.DiscreteTransferFcn_states_f[1];
+    ctrl_custom_B.DiscreteTransferFcn_d = (ctrl_custom_P.Constant1_Value_c[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_k + ctrl_custom_P.Constant1_Value_c[1] * ctrl_custom_DW.DiscreteTransferFcn_states_f[0]) + ctrl_custom_P.Constant1_Value_c[2] * ctrl_custom_DW.DiscreteTransferFcn_states_f[1];
+    /* SampleTimeMath: '<S84>/TSamp'
+ *
+ * About '<S84>/TSamp':
+ *  y = u * K where K = 1 / ( w * Ts )
+ */
+    ctrl_custom_B.TSamp_k = ctrl_custom_B.DiscreteTransferFcn_d * ctrl_custom_P.TSamp_WtEt_i;
+    /* Sum: '<S84>/Diff' incorporates:
+ *  UnitDelay: '<S84>/UD'
+ */
+    rtb_Sum_m = ctrl_custom_B.TSamp_k - ctrl_custom_DW.UD_DSTATE_p;
+    /* RateLimiter: '<S81>/Acceleration limiter' */
+    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_k;
+    if (rtb_psi_dot > ctrl_custom_P.Accelerationlimiter_RisingLim) {
+        rtb_Sum_m = ctrl_custom_DW.PrevY_k + ctrl_custom_P.Accelerationlimiter_RisingLim;
+    } else {
+        if (rtb_psi_dot < ctrl_custom_P.Accelerationlimiter_FallingLim) {
+            rtb_Sum_m = ctrl_custom_DW.PrevY_k + ctrl_custom_P.Accelerationlimiter_FallingLim;
+        }
+    }
+    ctrl_custom_DW.PrevY_k = rtb_Sum_m;
+    /* End of RateLimiter: '<S81>/Acceleration limiter' */
+
+    /* Gain: '<S81>/Inertia compensation' */
+    ctrl_custom_B.Inertiacompensation_m = ctrl_custom_P.I_s * 2.0 * 3.1415926535897931 * rtb_Sum_m;
+    /* Sum: '<S81>/Sum1' incorporates:
+ *  Gain: '<S81>/Qf_0'
+ *  Gain: '<S81>/Qff_0(nr)'
+ *  Gain: '<S81>/Qff_1(nr)'
+ *  Trigonometry: '<S81>/Trigonometric Function'
+ */
+    ctrl_custom_B.Sum1_c = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max * ctrl_custom_B.DiscreteTransferFcn_d) * ctrl_custom_P.Q_f0 + ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * ctrl_custom_B.DiscreteTransferFcn_d;
+    /* Memory: '<S81>/Memory' */
+    ctrl_custom_B.Memory_ln = ctrl_custom_DW.Memory_PreviousInput_f;
+    /* Sum: '<S83>/Sum' */
+    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_d - ctrl_custom_B.Delay[2];
+    /* Gain: '<S83>/Kp' */
+    ctrl_custom_B.Kp_i = ctrl_custom_P.Kp * rtb_Sum_m;
+}
+%<tlcOutputsFcnOfS30B187>\
+/* Integrator: '<S83>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_gm", "ctrl_custom_B.reset_i0", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_c = ctrl_custom_P.Integrator_IC_k;
+    }
+}
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[18], "Output",0)
+/* MATLAB Function: '<S83>/Core controller: Torque,Power and Combined Torque//Power' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/Constant1'
+ *  Constant: '<S10>/Constant2'
+ *  Constant: '<S10>/Constant3'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr3'
+ *  Constant: '<S10>/K_Qr9'
+ *  Constant: '<S10>/K_Tf3'
+ *  Constant: '<S10>/K_Tr3'
+ *  Constant: '<S10>/Rho'
+ */
+%if SLibCG_SystemFcnArgAccessed("CorecontrollerTorquePowerandCom",18,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("CorecontrollerTorquePowerandCom",18,8)
+%<SLibCGIRAccessLocalVar(98, 0)> %% rtb_T_r_e
+%endif
+
+%<SLibCGIRGenReusableSysCall("CorecontrollerTorquePowerandCom", ["%<_modelSS>", "ctrl_custom_P.k_cc", "ctrl_custom_P.p_cc", "ctrl_custom_P.r_cc", "ctrl_custom_B.Delay[2]", "ctrl_custom_P.K_T3f", "ctrl_custom_P.K_q3f", "ctrl_custom_P.D", "rtb_T_r_e", "ctrl_custom_P.Rho", "ctrl_custom_P.eps_c", "ctrl_custom_P.K_T3r", "ctrl_custom_P.K_q3r", "&ctrl_custom_B.sf_CorecontrollerTorquePower_ao"], 18, 2, 7, 0, 7, 30)>\
+
+%endif
+/* MultiPortSwitch: '<S81>/Controller chosen' incorporates:
+ *  Constant: '<S81>/NaN'
+ *  Integrator: '<S83>/Integrator'
+ *  Sum: '<S83>/Sum1'
+ */
+switch ((int32_T)ctrl_custom_B.Memory_ln) {
+  case 1:
+    lambda_c = ctrl_custom_B.Kp_i + ctrl_custom_X.Integrator_CSTATE_c;
+    break;
+  case 2:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePower_ao.Qcq;
+    break;
+  case 3:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePower_ao.Qcp;
+    break;
+  case 4:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePower_ao.Qcc;
+    break;
+  default:
+    lambda_c = ctrl_custom_P.NaN_Value_k;
+    break;
+}
+/* End of MultiPortSwitch: '<S81>/Controller chosen' */
+
+/* Sum: '<S81>/Sum' */
+ctrl_custom_B.Sum_n = (ctrl_custom_B.Inertiacompensation_m + ctrl_custom_B.Sum1_c) + lambda_c;
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S50>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S50>/Constant'
+ *  Constant: '<S50>/Constant1'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_b = ctrl_custom_B.Sum_n - ctrl_custom_P.Constant_Value_gq[1] * ctrl_custom_DW.DiscreteTransferFcn_states_m;
+    ctrl_custom_B.DiscreteTransferFcn_o = ctrl_custom_P.Constant1_Value_l[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_b + ctrl_custom_P.Constant1_Value_l[1] * ctrl_custom_DW.DiscreteTransferFcn_states_m;
+}
+/* Gain: '<S80>/Finding rotation speed' incorporates:
+ *  Gain: '<S80>/K_omega'
+ *  Sum: '<S80>/Sum'
+ */
+ctrl_custom_B.Findingrotationspeed_m = ((ctrl_custom_B.DiscreteTransferFcn_o - ctrl_custom_B.Delay_h) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * rtb_Integrator_g) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* Gain: '<S83>/Ki' */
+    ctrl_custom_B.Ki_o = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[20], "Output",0)
+    /* MATLAB Function: '<S81>/Supervisor' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_Supervisor",20,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_Supervisor", ["%<_modelSS>", "ctrl_custom_B.Memory_ln", "%<(SLibCG_Grnd(0, 0, 1, "", -1, "", 0))>", "ctrl_custom_B.Delay[2]", "&ctrl_custom_B.sf_Supervisor_j"], 20, 2, 7, 0, 7, 30)>\
+
+%endif
+    /* Delay: '<S51>/Delay' */
+    ctrl_custom_B.Delay_e = ctrl_custom_DW.Delay_DSTATE_kg;
+    /* Delay: '<S90>/Delay' */
+    ctrl_custom_B.Delay_m = ctrl_custom_DW.Delay_DSTATE_ki;
+}
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[23], "Output",0)
+/* MATLAB Function: '<S90>/MATLAB Function' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Tf4'
+ *  Constant: '<S10>/K_Tr4'
+ *  Constant: '<S10>/Rho'
+ */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction_a",23,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction_a",23,1)
+%<SLibCGIRAccessLocalVar(112, 0)> %% rtb_sys
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction_a", ["%<_modelSS>", "rtb_sys[9]", "ctrl_custom_P.K_T4f", "ctrl_custom_P.K_T4r", "ctrl_custom_P.Rho", "ctrl_custom_P.D", "ctrl_custom_P.eps_c", "ctrl_custom_B.Delay_m", "&ctrl_custom_B.sf_MATLABFunction_dv"], 23, 1, 7, 0, 7, 30)>\
+%endif
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S90>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S90>/Constant1'
+ *  Constant: '<S90>/Constant2'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_l = (ctrl_custom_B.sf_MATLABFunction_dv.n_d - ctrl_custom_P.Constant2_Value_h[1] * ctrl_custom_DW.DiscreteTransferFcn_states_e[0]) - ctrl_custom_P.Constant2_Value_h[2] * ctrl_custom_DW.DiscreteTransferFcn_states_e[1];
+    ctrl_custom_B.DiscreteTransferFcn_p = (ctrl_custom_P.Constant1_Value_d[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_l + ctrl_custom_P.Constant1_Value_d[1] * ctrl_custom_DW.DiscreteTransferFcn_states_e[0]) + ctrl_custom_P.Constant1_Value_d[2] * ctrl_custom_DW.DiscreteTransferFcn_states_e[1];
+    /* SampleTimeMath: '<S93>/TSamp'
+ *
+ * About '<S93>/TSamp':
+ *  y = u * K where K = 1 / ( w * Ts )
+ */
+    ctrl_custom_B.TSamp_d = ctrl_custom_B.DiscreteTransferFcn_p * ctrl_custom_P.TSamp_WtEt_n;
+    /* Sum: '<S93>/Diff' incorporates:
+ *  UnitDelay: '<S93>/UD'
+ */
+    rtb_Sum_m = ctrl_custom_B.TSamp_d - ctrl_custom_DW.UD_DSTATE_a;
+    /* RateLimiter: '<S90>/Acceleration limiter' */
+    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_m;
+    if (rtb_psi_dot > ctrl_custom_P.Accelerationlimiter_RisingLim_i) {
+        rtb_Sum_m = ctrl_custom_DW.PrevY_m + ctrl_custom_P.Accelerationlimiter_RisingLim_i;
+    } else {
+        if (rtb_psi_dot < ctrl_custom_P.Accelerationlimiter_FallingLi_i) {
+            rtb_Sum_m = ctrl_custom_DW.PrevY_m + ctrl_custom_P.Accelerationlimiter_FallingLi_i;
+        }
+    }
+    ctrl_custom_DW.PrevY_m = rtb_Sum_m;
+    /* End of RateLimiter: '<S90>/Acceleration limiter' */
+
+    /* Gain: '<S90>/Inertia compensation' */
+    ctrl_custom_B.Inertiacompensation_bn = ctrl_custom_P.I_s * 2.0 * 3.1415926535897931 * rtb_Sum_m;
+    /* Sum: '<S90>/Sum1' incorporates:
+ *  Gain: '<S90>/Qf_0'
+ *  Gain: '<S90>/Qff_0(nr)'
+ *  Gain: '<S90>/Qff_1(nr)'
+ *  Trigonometry: '<S90>/Trigonometric Function'
+ */
+    ctrl_custom_B.Sum1_cp = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max * ctrl_custom_B.DiscreteTransferFcn_p) * ctrl_custom_P.Q_f0 + ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * ctrl_custom_B.DiscreteTransferFcn_p;
+    /* Memory: '<S90>/Memory' */
+    ctrl_custom_B.Memory_j = ctrl_custom_DW.Memory_PreviousInput_d;
+    /* Sum: '<S92>/Sum' */
+    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_p - ctrl_custom_B.Delay[3];
+    /* Gain: '<S92>/Kp' */
+    ctrl_custom_B.Kp_o = ctrl_custom_P.Kp * rtb_Sum_m;
+}
+%<tlcOutputsFcnOfS30B197>\
+/* Integrator: '<S92>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_ja", "ctrl_custom_B.reset_h", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_p = ctrl_custom_P.Integrator_IC_l;
+    }
+}
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[18], "Output",0)
+/* MATLAB Function: '<S92>/Core controller: Torque,Power and Combined Torque//Power' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/Constant1'
+ *  Constant: '<S10>/Constant2'
+ *  Constant: '<S10>/Constant3'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr10'
+ *  Constant: '<S10>/K_Qr4'
+ *  Constant: '<S10>/K_Tf4'
+ *  Constant: '<S10>/K_Tr4'
+ *  Constant: '<S10>/Rho'
+ */
+%if SLibCG_SystemFcnArgAccessed("CorecontrollerTorquePowerandCom",18,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+
+%<SLibCGIRGenReusableSysCall("CorecontrollerTorquePowerandCom", ["%<_modelSS>", "ctrl_custom_P.k_cc", "ctrl_custom_P.p_cc", "ctrl_custom_P.r_cc", "ctrl_custom_B.Delay[3]", "ctrl_custom_P.K_T4f", "ctrl_custom_P.K_q4f", "ctrl_custom_P.D", "ctrl_custom_B.sf_MATLABFunction_dv.T_r", "ctrl_custom_P.Rho", "ctrl_custom_P.eps_c", "ctrl_custom_P.K_T4r", "ctrl_custom_P.K_q4r", "&ctrl_custom_B.sf_CorecontrollerTorquePowera_p"], 18, 3, 7, 0, 7, 30)>\
+
+%endif
+/* MultiPortSwitch: '<S90>/Controller chosen' incorporates:
+ *  Constant: '<S90>/NaN'
+ *  Integrator: '<S92>/Integrator'
+ *  Sum: '<S92>/Sum1'
+ */
+switch ((int32_T)ctrl_custom_B.Memory_j) {
+  case 1:
+    lambda_c = ctrl_custom_B.Kp_o + ctrl_custom_X.Integrator_CSTATE_p;
+    break;
+  case 2:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_p.Qcq;
+    break;
+  case 3:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_p.Qcp;
+    break;
+  case 4:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_p.Qcc;
+    break;
+  default:
+    lambda_c = ctrl_custom_P.NaN_Value_ks;
+    break;
+}
+/* End of MultiPortSwitch: '<S90>/Controller chosen' */
+
+/* Sum: '<S90>/Sum' */
+ctrl_custom_B.Sum_a = (ctrl_custom_B.Inertiacompensation_bn + ctrl_custom_B.Sum1_cp) + lambda_c;
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S51>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S51>/Constant'
+ *  Constant: '<S51>/Constant1'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_fg5 = ctrl_custom_B.Sum_a - ctrl_custom_P.Constant_Value_m[1] * ctrl_custom_DW.DiscreteTransferFcn_states_p;
+    ctrl_custom_B.DiscreteTransferFcn_oy = ctrl_custom_P.Constant1_Value_h[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_fg5 + ctrl_custom_P.Constant1_Value_h[1] * ctrl_custom_DW.DiscreteTransferFcn_states_p;
+}
+/* Gain: '<S89>/Finding rotation speed' incorporates:
+ *  Gain: '<S89>/K_omega'
+ *  Sum: '<S89>/Sum'
+ */
+ctrl_custom_B.Findingrotationspeed_p = ((ctrl_custom_B.DiscreteTransferFcn_oy - ctrl_custom_B.Delay_e) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * rtb_Integrator_l) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* Gain: '<S92>/Ki' */
+    ctrl_custom_B.Ki_g = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[20], "Output",0)
+    /* MATLAB Function: '<S90>/Supervisor' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_Supervisor",20,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_Supervisor", ["%<_modelSS>", "ctrl_custom_B.Memory_j", "%<(SLibCG_Grnd(0, 0, 1, "", -1, "", 0))>", "ctrl_custom_B.Delay[3]", "&ctrl_custom_B.sf_Supervisor_g"], 20, 3, 7, 0, 7, 30)>\
+
+%endif
+    /* Delay: '<S52>/Delay' */
+    ctrl_custom_B.Delay_jj = ctrl_custom_DW.Delay_DSTATE_p;
+    /* Delay: '<S99>/Delay' */
+    ctrl_custom_B.Delay_n = ctrl_custom_DW.Delay_DSTATE_kf;
+}
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[23], "Output",0)
+/* MATLAB Function: '<S99>/MATLAB Function' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Tf5'
+ *  Constant: '<S10>/K_Tr5'
+ *  Constant: '<S10>/Rho'
+ */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction_a",23,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_MATLABFunction_a",23,1)
+%<SLibCGIRAccessLocalVar(112, 0)> %% rtb_sys
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_MATLABFunction_a", ["%<_modelSS>", "rtb_sys[10]", "ctrl_custom_P.K_T5f", "ctrl_custom_P.K_T5r", "ctrl_custom_P.Rho", "ctrl_custom_P.D", "ctrl_custom_P.eps_c", "ctrl_custom_B.Delay_n", "&ctrl_custom_B.sf_MATLABFunction_o"], 23, 2, 7, 0, 7, 30)>\
+%endif
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S99>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S99>/Constant1'
+ *  Constant: '<S99>/Constant2'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_i = (ctrl_custom_B.sf_MATLABFunction_o.n_d - ctrl_custom_P.Constant2_Value_b0[1] * ctrl_custom_DW.DiscreteTransferFcn_states_jn[0]) - ctrl_custom_P.Constant2_Value_b0[2] * ctrl_custom_DW.DiscreteTransferFcn_states_jn[1];
+    ctrl_custom_B.DiscreteTransferFcn_br = (ctrl_custom_P.Constant1_Value_k[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_i + ctrl_custom_P.Constant1_Value_k[1] * ctrl_custom_DW.DiscreteTransferFcn_states_jn[0]) + ctrl_custom_P.Constant1_Value_k[2] * ctrl_custom_DW.DiscreteTransferFcn_states_jn[1];
+    /* SampleTimeMath: '<S102>/TSamp'
+ *
+ * About '<S102>/TSamp':
+ *  y = u * K where K = 1 / ( w * Ts )
+ */
+    ctrl_custom_B.TSamp_k4 = ctrl_custom_B.DiscreteTransferFcn_br * ctrl_custom_P.TSamp_WtEt_ih;
+    /* Sum: '<S102>/Diff' incorporates:
+ *  UnitDelay: '<S102>/UD'
+ */
+    rtb_Sum_m = ctrl_custom_B.TSamp_k4 - ctrl_custom_DW.UD_DSTATE_l;
+    /* RateLimiter: '<S99>/Acceleration limiter' */
+    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_mo;
+    if (rtb_psi_dot > ctrl_custom_P.Accelerationlimiter_RisingLim_k) {
+        rtb_Sum_m = ctrl_custom_DW.PrevY_mo + ctrl_custom_P.Accelerationlimiter_RisingLim_k;
+    } else {
+        if (rtb_psi_dot < ctrl_custom_P.Accelerationlimiter_FallingLi_c) {
+            rtb_Sum_m = ctrl_custom_DW.PrevY_mo + ctrl_custom_P.Accelerationlimiter_FallingLi_c;
+        }
+    }
+    ctrl_custom_DW.PrevY_mo = rtb_Sum_m;
+    /* End of RateLimiter: '<S99>/Acceleration limiter' */
+
+    /* Gain: '<S99>/Inertia compensation' */
+    ctrl_custom_B.Inertiacompensation_a = ctrl_custom_P.I_s * 2.0 * 3.1415926535897931 * rtb_Sum_m;
+    /* Sum: '<S99>/Sum1' incorporates:
+ *  Gain: '<S99>/Qf_0'
+ *  Gain: '<S99>/Qff_0(nr)'
+ *  Gain: '<S99>/Qff_1(nr)'
+ *  Trigonometry: '<S99>/Trigonometric Function'
+ */
+    ctrl_custom_B.Sum1_e = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max * ctrl_custom_B.DiscreteTransferFcn_br) * ctrl_custom_P.Q_f0 + ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * ctrl_custom_B.DiscreteTransferFcn_br;
+    /* Memory: '<S99>/Memory' */
+    ctrl_custom_B.Memory_d = ctrl_custom_DW.Memory_PreviousInput_l;
+    /* Sum: '<S101>/Sum' */
+    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_br - ctrl_custom_B.Delay[4];
+    /* Gain: '<S101>/Kp' */
+    ctrl_custom_B.Kp_d = ctrl_custom_P.Kp * rtb_Sum_m;
+}
+%<tlcOutputsFcnOfS30B207>\
+/* Integrator: '<S101>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_i", "ctrl_custom_B.reset_ep", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_n = ctrl_custom_P.Integrator_IC_hh;
+    }
+}
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[18], "Output",0)
+/* MATLAB Function: '<S101>/Core controller: Torque,Power and Combined Torque//Power' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/Constant1'
+ *  Constant: '<S10>/Constant2'
+ *  Constant: '<S10>/Constant3'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr11'
+ *  Constant: '<S10>/K_Qr5'
+ *  Constant: '<S10>/K_Tf5'
+ *  Constant: '<S10>/K_Tr5'
+ *  Constant: '<S10>/Rho'
+ */
+%if SLibCG_SystemFcnArgAccessed("CorecontrollerTorquePowerandCom",18,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+
+%<SLibCGIRGenReusableSysCall("CorecontrollerTorquePowerandCom", ["%<_modelSS>", "ctrl_custom_P.k_cc", "ctrl_custom_P.p_cc", "ctrl_custom_P.r_cc", "ctrl_custom_B.Delay[4]", "ctrl_custom_P.K_T5f", "ctrl_custom_P.K_q5f", "ctrl_custom_P.D", "ctrl_custom_B.sf_MATLABFunction_o.T_r", "ctrl_custom_P.Rho", "ctrl_custom_P.eps_c", "ctrl_custom_P.K_T5r", "ctrl_custom_P.K_q5r", "&ctrl_custom_B.sf_CorecontrollerTorquePowera_o"], 18, 4, 7, 0, 7, 30)>\
+
+%endif
+/* MultiPortSwitch: '<S99>/Controller chosen' incorporates:
+ *  Constant: '<S99>/NaN'
+ *  Integrator: '<S101>/Integrator'
+ *  Sum: '<S101>/Sum1'
+ */
+switch ((int32_T)ctrl_custom_B.Memory_d) {
+  case 1:
+    lambda_c = ctrl_custom_B.Kp_d + ctrl_custom_X.Integrator_CSTATE_n;
+    break;
+  case 2:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_o.Qcq;
+    break;
+  case 3:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_o.Qcp;
+    break;
+  case 4:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_o.Qcc;
+    break;
+  default:
+    lambda_c = ctrl_custom_P.NaN_Value_ny;
+    break;
+}
+/* End of MultiPortSwitch: '<S99>/Controller chosen' */
+
+/* Sum: '<S99>/Sum' */
+ctrl_custom_B.Sum_f = (ctrl_custom_B.Inertiacompensation_a + ctrl_custom_B.Sum1_e) + lambda_c;
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S52>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S52>/Constant'
+ *  Constant: '<S52>/Constant1'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_m = ctrl_custom_B.Sum_f - ctrl_custom_P.Constant_Value_gh[1] * ctrl_custom_DW.DiscreteTransferFcn_states_g;
+    ctrl_custom_B.DiscreteTransferFcn_m = ctrl_custom_P.Constant1_Value_e[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_m + ctrl_custom_P.Constant1_Value_e[1] * ctrl_custom_DW.DiscreteTransferFcn_states_g;
+}
+/* Gain: '<S98>/Finding rotation speed' incorporates:
+ *  Gain: '<S98>/K_omega'
+ *  Sum: '<S98>/Sum'
+ */
+ctrl_custom_B.Findingrotationspeed_j = ((ctrl_custom_B.DiscreteTransferFcn_m - ctrl_custom_B.Delay_jj) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * rtb_Integrator_k) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* Gain: '<S101>/Ki' */
+    ctrl_custom_B.Ki_m = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[20], "Output",0)
+    /* MATLAB Function: '<S99>/Supervisor' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_Supervisor",20,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_Supervisor", ["%<_modelSS>", "ctrl_custom_B.Memory_d", "%<(SLibCG_Grnd(0, 0, 1, "", -1, "", 0))>", "ctrl_custom_B.Delay[4]", "&ctrl_custom_B.sf_Supervisor_p"], 20, 4, 7, 0, 7, 30)>\
+
+%endif
+    /* Delay: '<S53>/Delay' */
+    ctrl_custom_B.Delay_mu = ctrl_custom_DW.Delay_DSTATE_o;
+    /* Delay: '<S108>/Delay' */
+    ctrl_custom_B.Delay_e5 = ctrl_custom_DW.Delay_DSTATE_h;
+}
+/* MATLAB Function: '<S108>/MATLAB Function' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Tf6'
+ *  Constant: '<S10>/K_Tr6'
+ *  Constant: '<S10>/Rho'
+ */
+/* MATLAB Function 'Thruster control /Thruster 6/Thruster control/MATLAB Function': '<S112>:1' */
+/* '<S112>:1:5' */
+if (rtb_sys[11] < 0.0) {
+    rtb_Row2 = -1.0;
+} else if (rtb_sys[11] > 0.0) {
+    rtb_Row2 = 1.0;
+} else if (rtb_sys[11] == 0.0) {
+    rtb_Row2 = 0.0;
+} else {
+    rtb_Row2 = rtb_sys[11];
+}
+rtb_psi_dot = sqrt(fabs(rtb_sys[11]) / (ctrl_custom_P.Rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["ctrl_custom_P.D", "4.0"], 6, 43, 44))> * ctrl_custom_P.K_T6f)) * rtb_Row2;
+/* '<S112>:1:7' */
+lambda_c = tanh(ctrl_custom_P.eps_c * rtb_psi_dot / 27.0) * 0.5 + 0.5;
+/*  Smooth switching between positive and negative thrust */
+/* '<S112>:1:8' */
+/* '<S112>:1:10' */
+if (ctrl_custom_B.Delay_e5 < 0.0) {
+    rtb_Row2 = -1.0;
+} else if (ctrl_custom_B.Delay_e5 > 0.0) {
+    rtb_Row2 = 1.0;
+} else if (ctrl_custom_B.Delay_e5 == 0.0) {
+    rtb_Row2 = 0.0;
+} else {
+    rtb_Row2 = ctrl_custom_B.Delay_e5;
+}
+rtb_T_r = ((1.0 - lambda_c) * ctrl_custom_P.K_T6r + ctrl_custom_P.K_T6f * lambda_c) * rtb_Row2 * ctrl_custom_P.Rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["ctrl_custom_P.D", "4.0"], 6, 43, 45))> * (ctrl_custom_B.Delay_e5 * ctrl_custom_B.Delay_e5);
+ctrl_custom_B.n_d = rtb_psi_dot;
+/* End of MATLAB Function: '<S108>/MATLAB Function' */
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S108>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S108>/Constant1'
+ *  Constant: '<S108>/Constant2'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_o = (ctrl_custom_B.n_d - ctrl_custom_P.Constant2_Value_p[1] * ctrl_custom_DW.DiscreteTransferFcn_states_k0[0]) - ctrl_custom_P.Constant2_Value_p[2] * ctrl_custom_DW.DiscreteTransferFcn_states_k0[1];
+    ctrl_custom_B.DiscreteTransferFcn_lk = (ctrl_custom_P.Constant1_Value_pu[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_o + ctrl_custom_P.Constant1_Value_pu[1] * ctrl_custom_DW.DiscreteTransferFcn_states_k0[0]) + ctrl_custom_P.Constant1_Value_pu[2] * ctrl_custom_DW.DiscreteTransferFcn_states_k0[1];
+    /* SampleTimeMath: '<S111>/TSamp'
+ *
+ * About '<S111>/TSamp':
+ *  y = u * K where K = 1 / ( w * Ts )
+ */
+    ctrl_custom_B.TSamp_mr = ctrl_custom_B.DiscreteTransferFcn_lk * ctrl_custom_P.TSamp_WtEt_l;
+    /* Sum: '<S111>/Diff' incorporates:
+ *  UnitDelay: '<S111>/UD'
+ */
+    rtb_Sum_m = ctrl_custom_B.TSamp_mr - ctrl_custom_DW.UD_DSTATE_e;
+    /* RateLimiter: '<S108>/Acceleration limiter' */
+    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_k4;
+    if (rtb_psi_dot > ctrl_custom_P.Accelerationlimiter_RisingLim_b) {
+        rtb_Sum_m = ctrl_custom_DW.PrevY_k4 + ctrl_custom_P.Accelerationlimiter_RisingLim_b;
+    } else {
+        if (rtb_psi_dot < ctrl_custom_P.Accelerationlimiter_FallingLi_j) {
+            rtb_Sum_m = ctrl_custom_DW.PrevY_k4 + ctrl_custom_P.Accelerationlimiter_FallingLi_j;
+        }
+    }
+    ctrl_custom_DW.PrevY_k4 = rtb_Sum_m;
+    /* End of RateLimiter: '<S108>/Acceleration limiter' */
+
+    /* Gain: '<S108>/Inertia compensation' */
+    ctrl_custom_B.Inertiacompensation_b3 = ctrl_custom_P.I_s * 2.0 * 3.1415926535897931 * rtb_Sum_m;
+    /* Sum: '<S108>/Sum1' incorporates:
+ *  Gain: '<S108>/Qf_0'
+ *  Gain: '<S108>/Qff_0(nr)'
+ *  Gain: '<S108>/Qff_1(nr)'
+ *  Trigonometry: '<S108>/Trigonometric Function'
+ */
+    ctrl_custom_B.Sum1_p = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max * ctrl_custom_B.DiscreteTransferFcn_lk) * ctrl_custom_P.Q_f0 + ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * ctrl_custom_B.DiscreteTransferFcn_lk;
+    /* Memory: '<S108>/Memory' */
+    ctrl_custom_B.Memory_o = ctrl_custom_DW.Memory_PreviousInput_f2;
+    /* Sum: '<S110>/Sum' */
+    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_lk - ctrl_custom_B.Delay[5];
+    /* Gain: '<S110>/Kp' */
+    ctrl_custom_B.Kp_k = ctrl_custom_P.Kp * rtb_Sum_m;
+}
+%<tlcOutputsFcnOfS30B217>\
+/* Integrator: '<S110>/Integrator' */
+if (%<(LibIsMajorTimeStep())>) {
+    zcEvent = %<(SLibCG_SE(SLibCGIRZCFcn("ANY_ZERO_CROSSING", "ctrl_custom_PrevZCX.Integrator_Reset_ZCE_b", "ctrl_custom_B.reset_iu", 0)))>;
+    /* evaluate zero-crossings */
+    if (zcEvent != NO_ZCEVENT) {
+        ctrl_custom_X.Integrator_CSTATE_ci = ctrl_custom_P.Integrator_IC_pr;
+    }
+}
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[18], "Output",0)
+/* MATLAB Function: '<S110>/Core controller: Torque,Power and Combined Torque//Power' incorporates:
+ *  Constant: '<S10>/Constant'
+ *  Constant: '<S10>/Constant1'
+ *  Constant: '<S10>/Constant2'
+ *  Constant: '<S10>/Constant3'
+ *  Constant: '<S10>/D'
+ *  Constant: '<S10>/K_Qr12'
+ *  Constant: '<S10>/K_Qr6'
+ *  Constant: '<S10>/K_Tf6'
+ *  Constant: '<S10>/K_Tr6'
+ *  Constant: '<S10>/Rho'
+ */
+%if SLibCG_SystemFcnArgAccessed("CorecontrollerTorquePowerandCom",18,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+%if SLibCG_SystemFcnArgAccessed("CorecontrollerTorquePowerandCom",18,8)
+%<SLibCGIRAccessLocalVar(94, 0)> %% rtb_T_r
+%endif
+
+%<SLibCGIRGenReusableSysCall("CorecontrollerTorquePowerandCom", ["%<_modelSS>", "ctrl_custom_P.k_cc", "ctrl_custom_P.p_cc", "ctrl_custom_P.r_cc", "ctrl_custom_B.Delay[5]", "ctrl_custom_P.K_T6f", "ctrl_custom_P.K_q6f", "ctrl_custom_P.D", "rtb_T_r", "ctrl_custom_P.Rho", "ctrl_custom_P.eps_c", "ctrl_custom_P.K_T6r", "ctrl_custom_P.K_q6r", "&ctrl_custom_B.sf_CorecontrollerTorquePowera_g"], 18, 5, 7, 0, 7, 30)>\
+
+%endif
+/* MultiPortSwitch: '<S108>/Controller chosen' incorporates:
+ *  Constant: '<S108>/NaN'
+ *  Integrator: '<S110>/Integrator'
+ *  Sum: '<S110>/Sum1'
+ */
+switch ((int32_T)ctrl_custom_B.Memory_o) {
+  case 1:
+    lambda_c = ctrl_custom_B.Kp_k + ctrl_custom_X.Integrator_CSTATE_ci;
+    break;
+  case 2:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_g.Qcq;
+    break;
+  case 3:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_g.Qcp;
+    break;
+  case 4:
+    lambda_c = ctrl_custom_B.sf_CorecontrollerTorquePowera_g.Qcc;
+    break;
+  default:
+    lambda_c = ctrl_custom_P.NaN_Value_m;
+    break;
+}
+/* End of MultiPortSwitch: '<S108>/Controller chosen' */
+
+/* Sum: '<S108>/Sum' */
+ctrl_custom_B.Sum_g = (ctrl_custom_B.Inertiacompensation_b3 + ctrl_custom_B.Sum1_p) + lambda_c;
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* DiscreteTransferFcn: '<S53>/Discrete Transfer Fcn' incorporates:
+ *  Constant: '<S53>/Constant'
+ *  Constant: '<S53>/Constant1'
+ */
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_ir = ctrl_custom_B.Sum_g - ctrl_custom_P.Constant_Value_b[1] * ctrl_custom_DW.DiscreteTransferFcn_states_pv;
+    ctrl_custom_B.DiscreteTransferFcn_f = ctrl_custom_P.Constant1_Value_oi[0] * ctrl_custom_DW.DiscreteTransferFcn_tmp_ir + ctrl_custom_P.Constant1_Value_oi[1] * ctrl_custom_DW.DiscreteTransferFcn_states_pv;
+}
+/* Gain: '<S107>/Finding rotation speed' incorporates:
+ *  Gain: '<S107>/K_omega'
+ *  Sum: '<S107>/Sum'
+ */
+ctrl_custom_B.Findingrotationspeed_c = ((ctrl_custom_B.DiscreteTransferFcn_f - ctrl_custom_B.Delay_mu) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 * rtb_Integrator_c) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* Gain: '<S110>/Ki' */
+    ctrl_custom_B.Ki_l = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[20], "Output",0)
+    /* MATLAB Function: '<S108>/Supervisor' */
+%if SLibCG_SystemFcnArgAccessed("ctrl_custom_Supervisor",20,0)
+%assign _modelSS = RTMGetModelSSFromIR()
+%endif
+
+%<SLibCGIRGenReusableSysCall("ctrl_custom_Supervisor", ["%<_modelSS>", "ctrl_custom_B.Memory_o", "%<(SLibCG_Grnd(0, 0, 1, "", -1, "", 0))>", "ctrl_custom_B.Delay[5]", "&ctrl_custom_B.sf_Supervisor_gj"], 20, 5, 7, 0, 7, 30)>\
+
+%endif
+    /* SignalConversion: '<S11>/TmpSignal ConversionAtDelayInport1' */
+    ctrl_custom_B.TmpSignalConversionAtDelayInpor[0] = ctrl_custom_B.output[1];
+    ctrl_custom_B.TmpSignalConversionAtDelayInpor[1] = ctrl_custom_B.output[3];
+    ctrl_custom_B.TmpSignalConversionAtDelayInpor[2] = ctrl_custom_B.output[5];
+    ctrl_custom_B.TmpSignalConversionAtDelayInpor[3] = ctrl_custom_B.output[7];
+    ctrl_custom_B.TmpSignalConversionAtDelayInpor[4] = ctrl_custom_B.output[9];
+    ctrl_custom_B.TmpSignalConversionAtDelayInpor[5] = ctrl_custom_B.output[11];
+%<tlcOutputsFcnOfS30B222>\
+%<tlcOutputsFcnOfS30B223>\
+%<tlcOutputsFcnOfS30B224>\
+%<tlcOutputsFcnOfS30B225>\
+%<tlcOutputsFcnOfS30B226>\
+%<tlcOutputsFcnOfS30B227>\
+}
+%<SLibInsertSolverResetCode()>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(6, 43, fcnProtoType)>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction

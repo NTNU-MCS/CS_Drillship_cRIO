@@ -1,0 +1,97 @@
+%implements s51_b0_c1dgk_5_Outputs "C"
+
+%function Outputs(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+real_T lambda_c;
+real_T rtu_Td_0;
+real_T rtu_n_r_0;
+%closefile localVarDecl
+%assign _modelSS = ""
+
+/* MATLAB Function 'Thruster control /Thruster 2/Thruster control/MATLAB Function': '<S76>:1' */
+/* '<S76>:1:5' */
+if (rtu_Td < 0.0) {
+    rtu_Td_0 = -1.0;
+} else if (rtu_Td > 0.0) {
+    rtu_Td_0 = 1.0;
+} else if (rtu_Td == 0.0) {
+    rtu_Td_0 = 0.0;
+} else {
+    rtu_Td_0 = rtu_Td;
+}
+%if SLibCG_FcnCallArgAccessed(5,1,0,0)
+%<SLibCG_AccessArg(5 ,1, 5)>
+%endif
+%if SLibCG_FcnCallArgAccessed(5,1,0,2)
+%<SLibCG_AccessArg(5 ,1, 0)>
+%endif
+
+rtu_Td_0 *= sqrt(fabs(rtu_Td) / (rtu_rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["rtu_D", "4.0", "%<tSimStruct>"], 5, 1, 0))> * rtu_K_t0));
+/* '<S76>:1:7' */
+lambda_c = tanh(rtu_eps_c * rtu_Td_0 / 5.0) * 0.5 + 0.5;
+/*  Smooth switching between positive and negative thrust */
+/* '<S76>:1:8' */
+/* '<S76>:1:10' */
+if (rtu_n_r < 0.0) {
+    rtu_n_r_0 = -1.0;
+} else if (rtu_n_r > 0.0) {
+    rtu_n_r_0 = 1.0;
+} else if (rtu_n_r == 0.0) {
+    rtu_n_r_0 = 0.0;
+} else {
+    rtu_n_r_0 = rtu_n_r;
+}
+%if SLibCG_FcnCallArgAccessed(5,1,1,0)
+%<SLibCG_AccessArg(5 ,1, 5)>
+%endif
+%if SLibCG_FcnCallArgAccessed(5,1,1,2)
+%<SLibCG_AccessArg(5 ,1, 0)>
+%endif
+
+localB->T_r = ((1.0 - lambda_c) * rtu_K_t0r + rtu_K_t0 * lambda_c) * rtu_n_r_0 * rtu_rho * %<(SLibCGCallSubFcn("rt_powd_snf", ["rtu_D", "4.0", "%<tSimStruct>"], 5, 1, 1))> * (rtu_n_r * rtu_n_r);
+localB->n_d = rtu_Td_0;
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[5].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Output", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Output"))
+%<SLibCG_AccessArg(5, 1, 0)>
+%endif
+%if SLibCG_ArgAccessed(5, 1, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Output", rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Output"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface))
+%<SLibCG_UndoAccessArg(5, 1, 0)>
+%endif
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void ctrl_custom_MATLABFunction_a(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(5, 1, 0)
+%<comma>%<tSimStructType> * const %<tSimStruct>\
+%assign comma = ", "
+%endif
+%<comma>real_T rtu_Td\
+%assign comma = ", "
+%<comma>real_T rtu_K_t0\
+%assign comma = ", "
+%<comma>real_T rtu_K_t0r\
+%assign comma = ", "
+%<comma>real_T rtu_rho\
+%assign comma = ", "
+%if SLibCG_ArgAccessed(5, 1, 5)
+%<comma>real_T rtu_D\
+%assign comma = ", "
+%endif
+%<comma>real_T rtu_eps_c\
+%assign comma = ", "
+%<comma>real_T rtu_n_r\
+%assign comma = ", "
+%<comma>B_MATLABFunction_ctrl_custo_a_T *localB\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(5, 1, fcnProtoType)>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction

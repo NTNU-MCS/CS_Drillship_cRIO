@@ -1,0 +1,122 @@
+%implements s51_b0_c1dgk_2_Outputs "C"
+
+%function Outputs(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+real_T lambda_c;
+real_T K_TC;
+real_T K_QC;
+real_T rtu_Tr_0;
+%closefile localVarDecl
+%assign _modelSS = ""
+
+/* MATLAB Function 'Thruster control /Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power': '<S69>:1' */
+/* '<S69>:1:4' */
+lambda_c = tanh(rtu_eps_c * rtu_n / 5.0) * 0.5 + 0.5;
+/* '<S69>:1:5' */
+K_TC = (1.0 - lambda_c) * rtu_K_t0r + rtu_K_t0 * lambda_c;
+/* '<S69>:1:6' */
+K_QC = (1.0 - lambda_c) * rtu_K_q0r + rtu_K_q0 * lambda_c;
+/* '<S69>:1:7' */
+lambda_c = K_QC / K_TC * rtu_D * rtu_Tr;
+if (rtu_n == 0.0) {
+    /* '<S69>:1:8' */
+    /* '<S69>:1:9' */
+    K_TC = 0.0;
+} else {
+    /* '<S69>:1:11' */
+    if (rtu_Tr < 0.0) {
+        rtu_Tr_0 = -1.0;
+    } else if (rtu_Tr > 0.0) {
+        rtu_Tr_0 = 1.0;
+    } else if (rtu_Tr == 0.0) {
+        rtu_Tr_0 = 0.0;
+    } else {
+        rtu_Tr_0 = rtu_Tr;
+    }
+%if SLibCG_FcnCallArgAccessed(2,1,0,0)
+%<SLibCG_AccessArg(2 ,1, 8)>
+%endif
+%if SLibCG_FcnCallArgAccessed(2,1,0,2)
+%<SLibCG_AccessArg(2 ,1, 0)>
+%endif
+
+%if SLibCG_FcnCallArgAccessed(2,1,1,2)
+%<SLibCG_AccessArg(2 ,1, 0)>
+%endif
+
+    K_TC = rtu_Tr_0 * K_QC * %<(SLibCGCallSubFcn("rt_powd_snf", ["fabs(rtu_Tr)", "1.5", "%<tSimStruct>"], 2, 1, 0))> / (sqrt(rtu_rho) * rtu_D * %<(SLibCGCallSubFcn("rt_powd_snf", ["K_TC", "1.5", "%<tSimStruct>"], 2, 1, 1))> * fabs(rtu_n));
+}
+/* '<S69>:1:13' */
+%if SLibCG_FcnCallArgAccessed(2,1,2,0)
+%<SLibCG_AccessArg(2 ,1, 2)>
+%<SLibCG_AccessArg(2 ,1, 4)>
+%endif
+%if SLibCG_FcnCallArgAccessed(2,1,2,1)
+%<SLibCG_AccessArg(2 ,1, 3)>
+%endif
+%if SLibCG_FcnCallArgAccessed(2,1,2,2)
+%<SLibCG_AccessArg(2 ,1, 0)>
+%endif
+
+K_QC = exp(%<(SLibCGCallSubFcn("rt_powd_snf", ["fabs(rtu_p_cc * rtu_n)", "rtu_r_cc", "%<tSimStruct>"], 2, 1, 2))> * -rtu_k_cc);
+/* '<S69>:1:15' */
+localB->Qcc = (1.0 - K_QC) * K_TC + K_QC * lambda_c;
+localB->Qcq = lambda_c;
+localB->Qcp = K_TC;
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[2].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Output", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Output"))
+%<SLibCG_AccessArg(2, 1, 0)>
+%endif
+%if SLibCG_ArgAccessed(2, 1, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Output", rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Output"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface))
+%<SLibCG_UndoAccessArg(2, 1, 0)>
+%endif
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void CorecontrollerTorquePowerandCom(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(2, 1, 0)
+%<comma>%<tSimStructType> * const %<tSimStruct>\
+%assign comma = ", "
+%endif
+%<comma>real_T rtu_k_cc\
+%assign comma = ", "
+%if SLibCG_ArgAccessed(2, 1, 2)
+%<comma>real_T rtu_p_cc\
+%assign comma = ", "
+%endif
+%if SLibCG_ArgAccessed(2, 1, 3)
+%<comma>real_T rtu_r_cc\
+%assign comma = ", "
+%endif
+%<comma>real_T rtu_n\
+%assign comma = ", "
+%<comma>real_T rtu_K_t0\
+%assign comma = ", "
+%<comma>real_T rtu_K_q0\
+%assign comma = ", "
+%<comma>real_T rtu_D\
+%assign comma = ", "
+%<comma>real_T rtu_Tr\
+%assign comma = ", "
+%<comma>real_T rtu_rho\
+%assign comma = ", "
+%<comma>real_T rtu_eps_c\
+%assign comma = ", "
+%<comma>real_T rtu_K_t0r\
+%assign comma = ", "
+%<comma>real_T rtu_K_q0r\
+%assign comma = ", "
+%<comma>B_CorecontrollerTorquePoweran_T *localB\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(2, 1, fcnProtoType)>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction

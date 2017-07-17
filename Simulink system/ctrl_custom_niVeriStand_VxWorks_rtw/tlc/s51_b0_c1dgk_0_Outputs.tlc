@@ -1,0 +1,50 @@
+%implements s51_b0_c1dgk_0_Outputs "C"
+
+%function Outputs(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+int32_T i;
+int32_T i_0;
+%closefile localVarDecl
+/* MATLAB Function 'Referance1/MATLAB Function': '<S35>:1' */
+/* '<S35>:1:3' */
+for (i_0 = 0; i_0 < 3; i_0++) {
+    for (i = 0; i < 3; i++) {
+        localB->y[i + 3 * i_0] = 0.0;
+        localB->y[i + 3 * i_0] += 2.0 * rtu_zeta[i] * rtu_omega[3 * i_0];
+        localB->y[i + 3 * i_0] += rtu_zeta[i + 3] * 2.0 * rtu_omega[3 * i_0 + 1];
+        localB->y[i + 3 * i_0] += rtu_zeta[i + 6] * 2.0 * rtu_omega[3 * i_0 + 2];
+    }
+}
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[0].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Output", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Output"))
+%<SLibCG_AccessArg(0, 0, 0)>
+%endif
+%if SLibCG_ArgAccessed(0, 0, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Output", rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Output"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface))
+%<SLibCG_UndoAccessArg(0, 0, 0)>
+%endif
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void ctrl_custom_MATLABFunction(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(0, 0, 0)
+%<comma>%<tSimStructType> * const %<tSimStruct>\
+%assign comma = ", "
+%endif
+%<comma>const real_T rtu_omega[9]\
+%assign comma = ", "
+%<comma>const real_T rtu_zeta[9]\
+%assign comma = ", "
+%<comma>B_MATLABFunction_ctrl_custom_T *localB\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 0, fcnProtoType)>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction

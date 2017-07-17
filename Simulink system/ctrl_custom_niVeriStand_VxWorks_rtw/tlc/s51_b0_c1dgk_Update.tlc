@@ -1,0 +1,133 @@
+%implements s51_b0_c1dgk_Update "C"
+
+%function Update(block, system) Output
+%<SLibCGIRAccessLocalDWork(246, 0)> %% ForEach_itr
+%<SLibCGIRAccessLocalVar(105, 0)> %% rtb_ImpSel_InsertedFor_reset_at
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+int32_T i;
+%closefile localVarDecl
+/* Update for Integrator: '<S4>/Integrator' */
+ctrl_custom_DW.Integrator_IWORK = 0;
+/* Update for Iterator SubSystem: '<S9>/Optimal angle path and  constraints on rotation speed' */
+for (ForEach_itr = 0; ForEach_itr < 6; ForEach_itr++) {
+    /* Update for ForEachSliceSelector: '<S40>/ImpSel_InsertedFor_reset_at_outport_0' */
+    rtb_ImpSel_InsertedFor_reset_at = ctrl_custom_B.reset[ForEach_itr];
+    if (%<(SLibCGIRIsSampleHit(1, 10))>) {
+        /* Update for DiscreteIntegrator: '<S40>/Discrete-Time Integrator' */
+        ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_IC_LOADI = 0U;
+        ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_DSTATE += ctrl_custom_P.CoreSubsys.DiscreteTimeIntegrator_gainval * ctrl_custom_B.CoreSubsys[ForEach_itr].MaxRotationRate;
+        if (rtb_ImpSel_InsertedFor_reset_at > 0.0) {
+            ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_PrevRese = 1;
+        } else if (rtb_ImpSel_InsertedFor_reset_at < 0.0) {
+            ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_PrevRese = -1;
+        } else if (rtb_ImpSel_InsertedFor_reset_at == 0.0) {
+            ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_PrevRese = 0;
+        } else {
+            ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_PrevRese = 2;
+        }
+        /* End of Update for DiscreteIntegrator: '<S40>/Discrete-Time Integrator' */
+
+        /* Update for Delay: '<S40>/Delay' */
+        ctrl_custom_DW.CoreSubsys[ForEach_itr].Delay_DSTATE = ctrl_custom_B.CoreSubsys[ForEach_itr].angle;
+    }
+}
+/* End of Update for SubSystem: '<S9>/Optimal angle path and  constraints on rotation speed' */
+if (%<(SLibCGIRIsSampleHit(1, 30))>) {
+    /* Update for Delay: '<S11>/Delay' */
+    for (i = 0; i < 6; i++) {
+        ctrl_custom_DW.Delay_DSTATE[i] = ctrl_custom_B.TmpSignalConversionAtDelayInpor[i];
+    }
+    /* End of Update for Delay: '<S11>/Delay' */
+
+    /* Update for Delay: '<S48>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_f = ctrl_custom_B.Qa;
+    /* Update for Delay: '<S63>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_k = ctrl_custom_B.DiscreteTransferFcn;
+    /* Update for DiscreteTransferFcn: '<S63>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states[1] = ctrl_custom_DW.DiscreteTransferFcn_states[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states[0] = ctrl_custom_DW.DiscreteTransferFcn_tmp;
+    /* Update for UnitDelay: '<S66>/UD' */
+    ctrl_custom_DW.UD_DSTATE = ctrl_custom_B.TSamp;
+    /* Update for Memory: '<S63>/Memory' */
+    ctrl_custom_DW.Memory_PreviousInput = ctrl_custom_B.sf_Supervisor.u;
+    /* Update for DiscreteTransferFcn: '<S48>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_k = ctrl_custom_DW.DiscreteTransferFcn_tmp_n;
+    /* Update for Delay: '<S49>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_c = ctrl_custom_B.sf_ActualForceandTorque_m.Qa;
+    /* Update for Delay: '<S72>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_j = ctrl_custom_B.DiscreteTransferFcn_l;
+    /* Update for DiscreteTransferFcn: '<S72>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_j[1] = ctrl_custom_DW.DiscreteTransferFcn_states_j[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_j[0] = ctrl_custom_DW.DiscreteTransferFcn_tmp_f;
+    /* Update for UnitDelay: '<S75>/UD' */
+    ctrl_custom_DW.UD_DSTATE_f = ctrl_custom_B.TSamp_m;
+    /* Update for Memory: '<S72>/Memory' */
+    ctrl_custom_DW.Memory_PreviousInput_g = ctrl_custom_B.sf_Supervisor_c.u;
+    /* Update for DiscreteTransferFcn: '<S49>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_j0 = ctrl_custom_DW.DiscreteTransferFcn_tmp_fg;
+    /* Update for Delay: '<S50>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_m = ctrl_custom_B.sf_ActualForceandTorque_f.Qa;
+    /* Update for Delay: '<S81>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_e = ctrl_custom_B.DiscreteTransferFcn_d;
+    /* Update for DiscreteTransferFcn: '<S81>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_f[1] = ctrl_custom_DW.DiscreteTransferFcn_states_f[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_f[0] = ctrl_custom_DW.DiscreteTransferFcn_tmp_k;
+    /* Update for UnitDelay: '<S84>/UD' */
+    ctrl_custom_DW.UD_DSTATE_p = ctrl_custom_B.TSamp_k;
+    /* Update for Memory: '<S81>/Memory' */
+    ctrl_custom_DW.Memory_PreviousInput_f = ctrl_custom_B.sf_Supervisor_j.u;
+    /* Update for DiscreteTransferFcn: '<S50>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_m = ctrl_custom_DW.DiscreteTransferFcn_tmp_b;
+    /* Update for Delay: '<S51>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_kg = ctrl_custom_B.sf_ActualForceandTorque_a.Qa;
+    /* Update for Delay: '<S90>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_ki = ctrl_custom_B.DiscreteTransferFcn_p;
+    /* Update for DiscreteTransferFcn: '<S90>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_e[1] = ctrl_custom_DW.DiscreteTransferFcn_states_e[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_e[0] = ctrl_custom_DW.DiscreteTransferFcn_tmp_l;
+    /* Update for UnitDelay: '<S93>/UD' */
+    ctrl_custom_DW.UD_DSTATE_a = ctrl_custom_B.TSamp_d;
+    /* Update for Memory: '<S90>/Memory' */
+    ctrl_custom_DW.Memory_PreviousInput_d = ctrl_custom_B.sf_Supervisor_g.u;
+    /* Update for DiscreteTransferFcn: '<S51>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_p = ctrl_custom_DW.DiscreteTransferFcn_tmp_fg5;
+    /* Update for Delay: '<S52>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_p = ctrl_custom_B.sf_ActualForceandTorque_k.Qa;
+    /* Update for Delay: '<S99>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_kf = ctrl_custom_B.DiscreteTransferFcn_br;
+    /* Update for DiscreteTransferFcn: '<S99>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_jn[1] = ctrl_custom_DW.DiscreteTransferFcn_states_jn[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_jn[0] = ctrl_custom_DW.DiscreteTransferFcn_tmp_i;
+    /* Update for UnitDelay: '<S102>/UD' */
+    ctrl_custom_DW.UD_DSTATE_l = ctrl_custom_B.TSamp_k4;
+    /* Update for Memory: '<S99>/Memory' */
+    ctrl_custom_DW.Memory_PreviousInput_l = ctrl_custom_B.sf_Supervisor_p.u;
+    /* Update for DiscreteTransferFcn: '<S52>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_g = ctrl_custom_DW.DiscreteTransferFcn_tmp_m;
+    /* Update for Delay: '<S53>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_o = ctrl_custom_B.sf_ActualForceandTorque_c.Qa;
+    /* Update for Delay: '<S108>/Delay' */
+    ctrl_custom_DW.Delay_DSTATE_h = ctrl_custom_B.DiscreteTransferFcn_lk;
+    /* Update for DiscreteTransferFcn: '<S108>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_k0[1] = ctrl_custom_DW.DiscreteTransferFcn_states_k0[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_k0[0] = ctrl_custom_DW.DiscreteTransferFcn_tmp_o;
+    /* Update for UnitDelay: '<S111>/UD' */
+    ctrl_custom_DW.UD_DSTATE_e = ctrl_custom_B.TSamp_mr;
+    /* Update for Memory: '<S108>/Memory' */
+    ctrl_custom_DW.Memory_PreviousInput_f2 = ctrl_custom_B.sf_Supervisor_gj.u;
+    /* Update for DiscreteTransferFcn: '<S53>/Discrete Transfer Fcn' */
+    ctrl_custom_DW.DiscreteTransferFcn_states_pv = ctrl_custom_DW.DiscreteTransferFcn_tmp_ir;
+}
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Update(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(6, 44, fcnProtoType)>
+%<LibSetSystemField(system, "CachedUpdateLocalVars", localVarDecl)>
+%endfunction

@@ -1,0 +1,86 @@
+%implements s51_b0_c1dgk_Derivatives "C"
+
+%function Derivatives(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+XDot_ctrl_custom_T *_rtXdot;
+%closefile localVarDecl
+_rtXdot = %<(SLibCG_SE(SLibGetContStatesDerivativeStructPtr()))>;
+/* Derivatives for Integrator: '<S62>/Integrator' */
+_rtXdot->Integrator_CSTATE_a = ctrl_custom_B.Findingrotationspeed;
+/* Derivatives for Integrator: '<S71>/Integrator' */
+_rtXdot->Integrator_CSTATE_f = ctrl_custom_B.Findingrotationspeed_h;
+/* Derivatives for Integrator: '<S80>/Integrator' */
+_rtXdot->Integrator_CSTATE_ao = ctrl_custom_B.Findingrotationspeed_m;
+/* Derivatives for Integrator: '<S89>/Integrator' */
+_rtXdot->Integrator_CSTATE_k = ctrl_custom_B.Findingrotationspeed_p;
+/* Derivatives for Integrator: '<S98>/Integrator' */
+_rtXdot->Integrator_CSTATE_k2 = ctrl_custom_B.Findingrotationspeed_j;
+/* Derivatives for Integrator: '<S107>/Integrator' */
+_rtXdot->Integrator_CSTATE_i = ctrl_custom_B.Findingrotationspeed_c;
+/* Derivatives for Integrator: '<S4>/Integrator' */
+_rtXdot->Integrator_CSTATE[0] = ctrl_custom_B.Sum1_g[0];
+/* Derivatives for Integrator: '<S8>/Integrator2' */
+_rtXdot->Integrator2_CSTATE[0] = ctrl_custom_B.Integrator1[0];
+/* Derivatives for Integrator: '<S6>/Integrator1' */
+_rtXdot->Integrator1_CSTATE[0] = ctrl_custom_B.TmpSignalConversionAtMatrixMult[0];
+/* Derivatives for Integrator: '<S8>/Integrator1' */
+_rtXdot->Integrator1_CSTATE_d[0] = ctrl_custom_B.Sum2[0];
+/* Derivatives for Integrator: '<S4>/Integrator1' */
+_rtXdot->Integrator1_CSTATE_n[0] = ctrl_custom_B.M1[0];
+/* Derivatives for Integrator: '<S4>/Integrator2' */
+_rtXdot->Integrator2_CSTATE_j[0] = ctrl_custom_B.MatrixMultiply1[0];
+/* Derivatives for Integrator: '<S8>/Integrator' */
+_rtXdot->Integrator_CSTATE_f5[0] = ctrl_custom_B.Sum_m[0];
+/* Derivatives for Integrator: '<S4>/Integrator' */
+_rtXdot->Integrator_CSTATE[1] = ctrl_custom_B.Sum1_g[1];
+/* Derivatives for Integrator: '<S8>/Integrator2' */
+_rtXdot->Integrator2_CSTATE[1] = ctrl_custom_B.Integrator1[1];
+/* Derivatives for Integrator: '<S6>/Integrator1' */
+_rtXdot->Integrator1_CSTATE[1] = ctrl_custom_B.TmpSignalConversionAtMatrixMult[1];
+/* Derivatives for Integrator: '<S8>/Integrator1' */
+_rtXdot->Integrator1_CSTATE_d[1] = ctrl_custom_B.Sum2[1];
+/* Derivatives for Integrator: '<S4>/Integrator1' */
+_rtXdot->Integrator1_CSTATE_n[1] = ctrl_custom_B.M1[1];
+/* Derivatives for Integrator: '<S4>/Integrator2' */
+_rtXdot->Integrator2_CSTATE_j[1] = ctrl_custom_B.MatrixMultiply1[1];
+/* Derivatives for Integrator: '<S8>/Integrator' */
+_rtXdot->Integrator_CSTATE_f5[1] = ctrl_custom_B.Sum_m[1];
+/* Derivatives for Integrator: '<S4>/Integrator' */
+_rtXdot->Integrator_CSTATE[2] = ctrl_custom_B.Sum1_g[2];
+/* Derivatives for Integrator: '<S8>/Integrator2' */
+_rtXdot->Integrator2_CSTATE[2] = ctrl_custom_B.Integrator1[2];
+/* Derivatives for Integrator: '<S6>/Integrator1' */
+_rtXdot->Integrator1_CSTATE[2] = ctrl_custom_B.TmpSignalConversionAtMatrixMult[2];
+/* Derivatives for Integrator: '<S8>/Integrator1' */
+_rtXdot->Integrator1_CSTATE_d[2] = ctrl_custom_B.Sum2[2];
+/* Derivatives for Integrator: '<S4>/Integrator1' */
+_rtXdot->Integrator1_CSTATE_n[2] = ctrl_custom_B.M1[2];
+/* Derivatives for Integrator: '<S4>/Integrator2' */
+_rtXdot->Integrator2_CSTATE_j[2] = ctrl_custom_B.MatrixMultiply1[2];
+/* Derivatives for Integrator: '<S8>/Integrator' */
+_rtXdot->Integrator_CSTATE_f5[2] = ctrl_custom_B.Sum_m[2];
+/* Derivatives for Integrator: '<S65>/Integrator' */
+_rtXdot->Integrator_CSTATE_m = ctrl_custom_B.Ki;
+/* Derivatives for Integrator: '<S74>/Integrator' */
+_rtXdot->Integrator_CSTATE_ko = ctrl_custom_B.Ki_c;
+/* Derivatives for Integrator: '<S83>/Integrator' */
+_rtXdot->Integrator_CSTATE_c = ctrl_custom_B.Ki_o;
+/* Derivatives for Integrator: '<S92>/Integrator' */
+_rtXdot->Integrator_CSTATE_p = ctrl_custom_B.Ki_g;
+/* Derivatives for Integrator: '<S101>/Integrator' */
+_rtXdot->Integrator_CSTATE_n = ctrl_custom_B.Ki_m;
+/* Derivatives for Integrator: '<S110>/Integrator' */
+_rtXdot->Integrator_CSTATE_ci = ctrl_custom_B.Ki_l;
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Derivatives(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(6, 45, fcnProtoType)>
+%<LibSetSystemField(system, "CachedDerivativeLocalVars", localVarDecl)>
+%endfunction
