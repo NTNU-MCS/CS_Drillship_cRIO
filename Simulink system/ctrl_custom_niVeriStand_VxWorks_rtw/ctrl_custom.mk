@@ -78,20 +78,20 @@ MAKEFILE_FILESEP = /
 CC           			= ccppc.exe
 
 MODEL           		= ctrl_custom
-MODULES         		= ctrl_custom_data.c ni_modelframework.c rtGetInf.c rtGetNaN.c rt_logging.c rt_nonfinite.c 
+MODULES         		= ctrl_custom_data.c ni_modelframework.c rtGetInf.c rtGetNaN.c rt_logging.c rt_nonfinite.c rt_zcfcn.c 
 MAKEFILE        		= ctrl_custom.mk
 MATLAB_ROOT     		= C:/Program Files/MATLAB/R2016b
 ALT_MATLAB_ROOT 		= C:/PROGRA~1/MATLAB/R2016b
 MATLAB_BIN      		= C:/Program Files/MATLAB/R2016b/bin
 ALT_MATLAB_BIN  		= C:/PROGRA~1/MATLAB/R2016b/bin
 MASTER_ANCHOR_DIR    	= 
-START_DIR          		= C:/Users/MCLab/Desktop/CSAD/SIMULI~1
+START_DIR          		= C:/Users/MCLab/DOCUME~1/GitHub/CS_DRI~1/SIMULI~1
 S_FUNCTIONS     		= 
 S_FUNCTIONS_LIB 		= 
 SOLVER          		= 
-NUMST           		= 1
-TID01EQ         		= 0
-NCSTATES        		= 0
+NUMST           		= 2
+TID01EQ         		= 1
+NCSTATES        		= 33
 BUILDARGS       		=  NIDEBUG=0 NIOPT="Default" OPTS="" ISPROTECTINGMODEL=NOTPROTECTING
 MULTITASKING    		= 0
 EXT_MODE        		= 0
@@ -159,6 +159,10 @@ ADD_INCLUDES = \
 	-I$(MATLAB_ROOT)/simulink/include/sf_runtime \
 	-I$(START_DIR)/ctrl_custom_niVeriStand_VxWorks_rtw \
 	-I$(START_DIR) \
+	-I$(MATLAB_ROOT)/toolbox/dsp/include \
+	-I$(MATLAB_ROOT)/toolbox/dsp/extern/src/export/include/src \
+	-I$(MATLAB_ROOT)/toolbox/dsp/extern/src/export/include \
+	-I$(MATLAB_ROOT)/toolbox/shared/dsp/vision/matlab/include \
 
 
 SHARED_INCLUDES =
