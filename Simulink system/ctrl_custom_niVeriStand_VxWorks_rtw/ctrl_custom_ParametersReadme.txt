@@ -210,113 +210,114 @@
 <parameter> Id = "208" Inline = "0" Name = "ctrl_custom/Initialization of parameters/Observer Gains/Constant3/Value" Width = "1" DataType = "real_T" </parameter>
 <parameter> Id = "209" Inline = "0" Name = "ctrl_custom/Initialization of parameters/Observer Gains/Constant4/Value" Width = "1" DataType = "real_T" </parameter>
 <parameter> Id = "210" Inline = "0" Name = "ctrl_custom/Initialization of parameters/Observer Gains/Constant5/Value" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "211" Inline = "0" Name = "ctrl_custom/Referance/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "212" Inline = "0" Name = "ctrl_custom/Thruster control /Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "213" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Constant/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "214" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "215" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "216" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "217" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "218" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "219" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "220" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "221" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "222" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "223" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "224" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "225" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "226" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "227" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "228" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Constant/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "229" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "230" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "231" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "232" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "233" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "234" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "235" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "236" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "237" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "238" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "239" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "240" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "241" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "242" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "243" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Constant/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "244" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "245" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "246" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "247" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "248" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "249" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "250" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "251" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "252" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "253" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "254" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "255" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "256" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "257" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "258" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Constant/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "259" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "260" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "261" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "262" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "263" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "264" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "265" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "266" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "267" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "268" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "269" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "270" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "271" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "272" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "273" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Constant/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "274" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "275" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "276" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "277" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "278" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "279" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "280" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "281" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "282" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "283" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "284" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "285" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "286" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "287" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "288" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Constant/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "289" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
-<parameter> Id = "290" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "291" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "292" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "293" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
-<parameter> Id = "294" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "295" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "296" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "297" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "298" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "299" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "300" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "301" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "302" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "303" Inline = "0" Name = "ctrl_custom/Thruster control /Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "304" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "305" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "306" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "307" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "308" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "309" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "310" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "311" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "312" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "313" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "314" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "315" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
-<parameter> Id = "316" Inline = "0" Name = "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Discrete-Time Integrator/gainval" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "317" Inline = "0" Name = "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Degrees to Radians/Gain1/Gain" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "318" Inline = "0" Name = "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "319" Inline = "0" Name = "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "211" Inline = "0" Name = "ctrl_custom/PID controller/Gain5/Gain" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "212" Inline = "0" Name = "ctrl_custom/Referance/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "213" Inline = "0" Name = "ctrl_custom/Thruster control /Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "214" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Constant/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "215" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "216" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "217" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "218" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "219" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "220" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "221" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "222" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "223" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "224" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "225" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "226" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "227" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "228" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "229" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Constant/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "230" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "231" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "232" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "233" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "234" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "235" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "236" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "237" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "238" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "239" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "240" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "241" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "242" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "243" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "244" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Constant/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "245" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "246" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "247" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "248" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "249" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "250" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "251" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "252" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "253" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "254" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "255" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "256" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "257" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "258" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "259" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Constant/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "260" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "261" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "262" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "263" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "264" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "265" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "266" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "267" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "268" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "269" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "270" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "271" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "272" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "273" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "274" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Constant/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "275" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "276" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "277" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "278" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "279" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "280" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "281" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "282" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "283" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "284" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "285" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "286" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "287" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "288" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "289" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Constant/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "290" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Constant1/Value" Width = "2" DataType = "real_T" </parameter>
+<parameter> Id = "291" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "292" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "293" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant1/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "294" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant2/Value" Width = "3" DataType = "real_T" </parameter>
+<parameter> Id = "295" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "296" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Derivative/TSamp/WtEt" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "297" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/RisingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "298" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/FallingSlewLimit" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "299" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "300" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Memory/X0" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "301" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "302" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/NaN/Value" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "303" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Discrete Transfer Fcn/Numerator" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "304" Inline = "0" Name = "ctrl_custom/Thruster control /Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "305" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "306" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "307" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "308" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "309" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "310" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "311" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "312" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "313" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "314" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "315" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "316" Inline = "0" Name = "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
+<parameter> Id = "317" Inline = "0" Name = "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Discrete-Time Integrator/gainval" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "318" Inline = "0" Name = "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Degrees to Radians/Gain1/Gain" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "319" Inline = "0" Name = "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "320" Inline = "0" Name = "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/DelayLength" Width = "1" DataType = "uint32_T" </parameter>
 </parameterlist>

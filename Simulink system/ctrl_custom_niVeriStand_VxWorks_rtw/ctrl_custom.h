@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.92
+ * Model version              : 1.102
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Thu Jul 20 16:07:22 2017
+ * C source code generated on : Fri Jul 21 14:06:28 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -903,15 +903,10 @@ typedef struct {
   real_T Integrator1[3];               /* '<S10>/Integrator1' */
   real_T Integrator1_a[3];             /* '<S5>/Integrator1' */
   real_T Sum1[3];                      /* '<S7>/Sum1' */
+  real_T start2[6];                    /* '<Root>/start2' */
   real_T Gain5;                        /* '<Root>/Gain5' */
   real_T Gain_h;                       /* '<Root>/Gain' */
   real_T Gain1_n;                      /* '<Root>/Gain1' */
-  real_T reset;                        /* '<S64>/reset' */
-  real_T reset_e;                      /* '<S73>/reset' */
-  real_T reset_n;                      /* '<S82>/reset' */
-  real_T reset_i;                      /* '<S91>/reset' */
-  real_T reset_nr;                     /* '<S100>/reset' */
-  real_T reset_l;                      /* '<S109>/reset' */
   real_T rpm1;                         /* '<S49>/rpm1 ' */
   real_T rpm2;                         /* '<S49>/rpm2' */
   real_T rpm3;                         /* '<S49>/rpm3' */
@@ -924,7 +919,6 @@ typedef struct {
   real_T thr_angle_4;                  /* '<S14>/thr_angle_4' */
   real_T thr_angle_5;                  /* '<S14>/thr_angle_5' */
   real_T thr_angle_6;                  /* '<S14>/thr_angle_6' */
-  real_T reset_g[6];                   /* '<S11>/reset' */
   real_T Angle_controller;             /* '<S11>/Angle_controller' */
   real_T ChoosingFixedAzimuthangle[6]; /* '<S11>/Choosing Fixed // Azimuth angle' */
   real_T Saturation1;                  /* '<S48>/Saturation 1' */
@@ -941,6 +935,7 @@ typedef struct {
   real_T CreateDiagonalMatrix1[9];     /* '<S18>/Create Diagonal Matrix1' */
   real_T MatrixMultiply1[3];           /* '<S5>/Matrix Multiply1' */
   real_T Sum1_g[3];                    /* '<S5>/Sum1' */
+  real_T Gain5_a;                      /* '<S7>/Gain5' */
   real_T x_ref;                        /* '<S10>/x_ref' */
   real_T y_ref;                        /* '<S10>/y_ref' */
   real_T w_x;                          /* '<S17>/w_x' */
@@ -964,7 +959,7 @@ typedef struct {
   real_T Sum1_b;                       /* '<S65>/Sum1' */
   real_T Memory;                       /* '<S65>/Memory' */
   real_T Kp;                           /* '<S67>/Kp' */
-  real_T reset_p;                      /* '<S67>/reset' */
+  real_T reset;                        /* '<S67>/reset' */
   real_T Sum_hk;                       /* '<S65>/Sum' */
   real_T DiscreteTransferFcn_b;        /* '<S50>/Discrete Transfer Fcn' */
   real_T Findingrotationspeed;         /* '<S64>/Finding rotation speed' */
@@ -977,7 +972,7 @@ typedef struct {
   real_T Sum1_l;                       /* '<S74>/Sum1' */
   real_T Memory_l;                     /* '<S74>/Memory' */
   real_T Kp_c;                         /* '<S76>/Kp' */
-  real_T reset_l2;                     /* '<S76>/reset' */
+  real_T reset_l;                      /* '<S76>/reset' */
   real_T Sum_d;                        /* '<S74>/Sum' */
   real_T DiscreteTransferFcn_c;        /* '<S51>/Discrete Transfer Fcn' */
   real_T Findingrotationspeed_h;       /* '<S73>/Finding rotation speed' */
@@ -990,7 +985,7 @@ typedef struct {
   real_T Sum1_c;                       /* '<S83>/Sum1' */
   real_T Memory_ln;                    /* '<S83>/Memory' */
   real_T Kp_i;                         /* '<S85>/Kp' */
-  real_T reset_i0;                     /* '<S85>/reset' */
+  real_T reset_i;                      /* '<S85>/reset' */
   real_T Sum_n;                        /* '<S83>/Sum' */
   real_T DiscreteTransferFcn_o;        /* '<S52>/Discrete Transfer Fcn' */
   real_T Findingrotationspeed_m;       /* '<S82>/Finding rotation speed' */
@@ -1016,7 +1011,7 @@ typedef struct {
   real_T Sum1_e;                       /* '<S101>/Sum1' */
   real_T Memory_d;                     /* '<S101>/Memory' */
   real_T Kp_d;                         /* '<S103>/Kp' */
-  real_T reset_ep;                     /* '<S103>/reset' */
+  real_T reset_e;                      /* '<S103>/reset' */
   real_T Sum_f;                        /* '<S101>/Sum' */
   real_T DiscreteTransferFcn_m;        /* '<S54>/Discrete Transfer Fcn' */
   real_T Findingrotationspeed_j;       /* '<S100>/Finding rotation speed' */
@@ -1129,16 +1124,11 @@ typedef struct {
   real_T psi_m_DWORK1;                 /* '<S8>/psi_m' */
   real_T tau_surge_DWORK1;             /* '<Root>/tau_surge' */
   real_T tau_sway_DWORK1;              /* '<Root>/tau_sway' */
+  real_T start2_DWORK1[6];             /* '<Root>/start2' */
   real_T tau_psi_DWORK1;               /* '<Root>/tau_psi' */
   real_T psi_hat_DWORK1;               /* '<Root>/psi_hat' */
   real_T x_hat_DWORK1;                 /* '<Root>/x_hat' */
   real_T y_hat_DWORK1;                 /* '<Root>/y_hat' */
-  real_T reset_DWORK1;                 /* '<S64>/reset' */
-  real_T reset_DWORK1_l;               /* '<S73>/reset' */
-  real_T reset_DWORK1_f;               /* '<S82>/reset' */
-  real_T reset_DWORK1_n;               /* '<S91>/reset' */
-  real_T reset_DWORK1_d;               /* '<S100>/reset' */
-  real_T reset_DWORK1_p;               /* '<S109>/reset' */
   real_T rpm1_DWORK1;                  /* '<S49>/rpm1 ' */
   real_T rpm2_DWORK1;                  /* '<S49>/rpm2' */
   real_T rpm3_DWORK1;                  /* '<S49>/rpm3' */
@@ -1151,7 +1141,6 @@ typedef struct {
   real_T thr_angle_4_DWORK1;           /* '<S14>/thr_angle_4' */
   real_T thr_angle_5_DWORK1;           /* '<S14>/thr_angle_5' */
   real_T thr_angle_6_DWORK1;           /* '<S14>/thr_angle_6' */
-  real_T reset_DWORK1_e[6];            /* '<S11>/reset' */
   real_T Angle_controller_DWORK1;      /* '<S11>/Angle_controller' */
   real_T tau_commanded_psi_DWORK1;     /* '<Root>/tau_commanded_psi' */
   real_T tau_commanded_x_DWORK1;       /* '<Root>/tau_commanded_x' */
@@ -1198,13 +1187,13 @@ typedef struct {
   real_T DiscreteTransferFcn_tmp;      /* '<S65>/Discrete Transfer Fcn' */
   real_T PrevY;                        /* '<S65>/Acceleration Limit' */
   real_T Memory_PreviousInput;         /* '<S65>/Memory' */
-  real_T reset_DWORK1_b;               /* '<S67>/reset' */
+  real_T reset_DWORK1;                 /* '<S67>/reset' */
   real_T DiscreteTransferFcn_tmp_n;    /* '<S50>/Discrete Transfer Fcn' */
   real_T Control_test_Pa_DWORK1;       /* '<S63>/Control_test_Pa' */
   real_T DiscreteTransferFcn_tmp_f;    /* '<S74>/Discrete Transfer Fcn' */
   real_T PrevY_p;                      /* '<S74>/Acceleration Limit' */
   real_T Memory_PreviousInput_g;       /* '<S74>/Memory' */
-  real_T reset_DWORK1_dy;              /* '<S76>/reset' */
+  real_T reset_DWORK1_d;               /* '<S76>/reset' */
   real_T DiscreteTransferFcn_tmp_fg;   /* '<S51>/Discrete Transfer Fcn' */
   real_T DiscreteTransferFcn_tmp_k;    /* '<S83>/Discrete Transfer Fcn' */
   real_T PrevY_k;                      /* '<S83>/Acceleration limiter' */
@@ -1214,7 +1203,7 @@ typedef struct {
   real_T DiscreteTransferFcn_tmp_l;    /* '<S92>/Discrete Transfer Fcn' */
   real_T PrevY_m;                      /* '<S92>/Acceleration limiter' */
   real_T Memory_PreviousInput_d;       /* '<S92>/Memory' */
-  real_T reset_DWORK1_ls;              /* '<S94>/reset' */
+  real_T reset_DWORK1_l;               /* '<S94>/reset' */
   real_T DiscreteTransferFcn_tmp_fg5;  /* '<S53>/Discrete Transfer Fcn' */
   real_T DiscreteTransferFcn_tmp_i;    /* '<S101>/Discrete Transfer Fcn' */
   real_T PrevY_mo;                     /* '<S101>/Acceleration limiter' */
@@ -1224,7 +1213,7 @@ typedef struct {
   real_T DiscreteTransferFcn_tmp_o;    /* '<S110>/Discrete Transfer Fcn' */
   real_T PrevY_k4;                     /* '<S110>/Acceleration limiter' */
   real_T Memory_PreviousInput_f2;      /* '<S110>/Memory' */
-  real_T reset_DWORK1_dy0;             /* '<S112>/reset' */
+  real_T reset_DWORK1_dy;              /* '<S112>/reset' */
   real_T DiscreteTransferFcn_tmp_ir;   /* '<S55>/Discrete Transfer Fcn' */
   real_T Acc_x_DWORK1;                 /* '<S1>/Acc_x' */
   real_T Acc_y_DWORK1;                 /* '<S1>/Acc_y' */
@@ -1250,16 +1239,11 @@ typedef struct {
   uint8_T psi_m_DWORK2[12];            /* '<S8>/psi_m' */
   uint8_T tau_surge_DWORK2[12];        /* '<Root>/tau_surge' */
   uint8_T tau_sway_DWORK2[12];         /* '<Root>/tau_sway' */
+  uint8_T start2_DWORK2[12];           /* '<Root>/start2' */
   uint8_T tau_psi_DWORK2[12];          /* '<Root>/tau_psi' */
   uint8_T psi_hat_DWORK2[12];          /* '<Root>/psi_hat' */
   uint8_T x_hat_DWORK2[12];            /* '<Root>/x_hat' */
   uint8_T y_hat_DWORK2[12];            /* '<Root>/y_hat' */
-  uint8_T reset_DWORK2[12];            /* '<S64>/reset' */
-  uint8_T reset_DWORK2_a[12];          /* '<S73>/reset' */
-  uint8_T reset_DWORK2_o[12];          /* '<S82>/reset' */
-  uint8_T reset_DWORK2_g[12];          /* '<S91>/reset' */
-  uint8_T reset_DWORK2_m[12];          /* '<S100>/reset' */
-  uint8_T reset_DWORK2_i[12];          /* '<S109>/reset' */
   uint8_T rpm1_DWORK2[12];             /* '<S49>/rpm1 ' */
   uint8_T rpm2_DWORK2[12];             /* '<S49>/rpm2' */
   uint8_T rpm3_DWORK2[12];             /* '<S49>/rpm3' */
@@ -1272,7 +1256,6 @@ typedef struct {
   uint8_T thr_angle_4_DWORK2[12];      /* '<S14>/thr_angle_4' */
   uint8_T thr_angle_5_DWORK2[12];      /* '<S14>/thr_angle_5' */
   uint8_T thr_angle_6_DWORK2[12];      /* '<S14>/thr_angle_6' */
-  uint8_T reset_DWORK2_ol[12];         /* '<S11>/reset' */
   uint8_T Angle_controller_DWORK2[12]; /* '<S11>/Angle_controller' */
   uint8_T tau_commanded_psi_DWORK2[12];/* '<Root>/tau_commanded_psi' */
   uint8_T tau_commanded_x_DWORK2[12];  /* '<Root>/tau_commanded_x' */
@@ -1316,12 +1299,12 @@ typedef struct {
   uint8_T T_x_DWORK2[12];              /* '<S17>/T_x' */
   uint8_T T_y_DWORK2[12];              /* '<S17>/T_y' */
   uint8_T psi_ref_DWORK2[12];          /* '<S10>/psi_ref' */
-  uint8_T reset_DWORK2_my[12];         /* '<S67>/reset' */
+  uint8_T reset_DWORK2[12];            /* '<S67>/reset' */
   uint8_T Control_test_Pa_DWORK2[12];  /* '<S63>/Control_test_Pa' */
   uint8_T reset_DWORK2_k[12];          /* '<S76>/reset' */
   uint8_T reset_DWORK2_p[12];          /* '<S85>/reset' */
-  uint8_T reset_DWORK2_mn[12];         /* '<S94>/reset' */
-  uint8_T reset_DWORK2_i4[12];         /* '<S103>/reset' */
+  uint8_T reset_DWORK2_m[12];          /* '<S94>/reset' */
+  uint8_T reset_DWORK2_i[12];          /* '<S103>/reset' */
   uint8_T reset_DWORK2_j[12];          /* '<S112>/reset' */
   uint8_T Acc_x_DWORK2[12];            /* '<S1>/Acc_x' */
   uint8_T Acc_y_DWORK2[12];            /* '<S1>/Acc_y' */
@@ -2100,6 +2083,24 @@ struct P_ctrl_custom_T_ {
   real_T tau_sway_P6;                  /* Expression: btype
                                         * Referenced by: '<Root>/tau_sway'
                                         */
+  real_T start2_P1;                    /* Expression: width
+                                        * Referenced by: '<Root>/start2'
+                                        */
+  real_T start2_P2;                    /* Expression: dtype
+                                        * Referenced by: '<Root>/start2'
+                                        */
+  real_T start2_P3;                    /* Expression: portnum
+                                        * Referenced by: '<Root>/start2'
+                                        */
+  real_T start2_P4;                    /* Expression: stime
+                                        * Referenced by: '<Root>/start2'
+                                        */
+  real_T start2_P5;                    /* Expression: stype
+                                        * Referenced by: '<Root>/start2'
+                                        */
+  real_T start2_P6;                    /* Expression: btype
+                                        * Referenced by: '<Root>/start2'
+                                        */
   real_T tau_psi_P1;                   /* Expression: width
                                         * Referenced by: '<Root>/tau_psi'
                                         */
@@ -2181,47 +2182,11 @@ struct P_ctrl_custom_T_ {
   real_T y_hat_P6;                     /* Expression: btype
                                         * Referenced by: '<Root>/y_hat'
                                         */
-  real_T reset_P1;                     /* Expression: width
-                                        * Referenced by: '<S64>/reset'
-                                        */
-  real_T reset_P2;                     /* Expression: dtype
-                                        * Referenced by: '<S64>/reset'
-                                        */
-  real_T reset_P3;                     /* Expression: portnum
-                                        * Referenced by: '<S64>/reset'
-                                        */
-  real_T reset_P4;                     /* Expression: stime
-                                        * Referenced by: '<S64>/reset'
-                                        */
-  real_T reset_P5;                     /* Expression: stype
-                                        * Referenced by: '<S64>/reset'
-                                        */
-  real_T reset_P6;                     /* Expression: btype
-                                        * Referenced by: '<S64>/reset'
-                                        */
   real_T Integrator_IC;                /* Expression: 0
                                         * Referenced by: '<S64>/Integrator'
                                         */
   real_T Lossesplaceholder_Value;      /* Expression: 0
                                         * Referenced by: '<S50>/Losses (placeholder)'
-                                        */
-  real_T reset_P1_n;                   /* Expression: width
-                                        * Referenced by: '<S73>/reset'
-                                        */
-  real_T reset_P2_a;                   /* Expression: dtype
-                                        * Referenced by: '<S73>/reset'
-                                        */
-  real_T reset_P3_e;                   /* Expression: portnum
-                                        * Referenced by: '<S73>/reset'
-                                        */
-  real_T reset_P4_b;                   /* Expression: stime
-                                        * Referenced by: '<S73>/reset'
-                                        */
-  real_T reset_P5_c;                   /* Expression: stype
-                                        * Referenced by: '<S73>/reset'
-                                        */
-  real_T reset_P6_f;                   /* Expression: btype
-                                        * Referenced by: '<S73>/reset'
                                         */
   real_T Integrator_IC_h;              /* Expression: 0
                                         * Referenced by: '<S73>/Integrator'
@@ -2229,47 +2194,11 @@ struct P_ctrl_custom_T_ {
   real_T Lossesplaceholder_Value_e;    /* Expression: 0
                                         * Referenced by: '<S51>/Losses (placeholder)'
                                         */
-  real_T reset_P1_p;                   /* Expression: width
-                                        * Referenced by: '<S82>/reset'
-                                        */
-  real_T reset_P2_l;                   /* Expression: dtype
-                                        * Referenced by: '<S82>/reset'
-                                        */
-  real_T reset_P3_h;                   /* Expression: portnum
-                                        * Referenced by: '<S82>/reset'
-                                        */
-  real_T reset_P4_i;                   /* Expression: stime
-                                        * Referenced by: '<S82>/reset'
-                                        */
-  real_T reset_P5_l;                   /* Expression: stype
-                                        * Referenced by: '<S82>/reset'
-                                        */
-  real_T reset_P6_a;                   /* Expression: btype
-                                        * Referenced by: '<S82>/reset'
-                                        */
   real_T Integrator_IC_o;              /* Expression: 0
                                         * Referenced by: '<S82>/Integrator'
                                         */
   real_T Lossesplaceholder_Value_d;    /* Expression: 0
                                         * Referenced by: '<S52>/Losses (placeholder)'
-                                        */
-  real_T reset_P1_k;                   /* Expression: width
-                                        * Referenced by: '<S91>/reset'
-                                        */
-  real_T reset_P2_b;                   /* Expression: dtype
-                                        * Referenced by: '<S91>/reset'
-                                        */
-  real_T reset_P3_d;                   /* Expression: portnum
-                                        * Referenced by: '<S91>/reset'
-                                        */
-  real_T reset_P4_g;                   /* Expression: stime
-                                        * Referenced by: '<S91>/reset'
-                                        */
-  real_T reset_P5_p;                   /* Expression: stype
-                                        * Referenced by: '<S91>/reset'
-                                        */
-  real_T reset_P6_p;                   /* Expression: btype
-                                        * Referenced by: '<S91>/reset'
                                         */
   real_T Integrator_IC_hz;             /* Expression: 0
                                         * Referenced by: '<S91>/Integrator'
@@ -2277,47 +2206,11 @@ struct P_ctrl_custom_T_ {
   real_T Lossesplaceholder_Value_n;    /* Expression: 0
                                         * Referenced by: '<S53>/Losses (placeholder)'
                                         */
-  real_T reset_P1_pl;                  /* Expression: width
-                                        * Referenced by: '<S100>/reset'
-                                        */
-  real_T reset_P2_p;                   /* Expression: dtype
-                                        * Referenced by: '<S100>/reset'
-                                        */
-  real_T reset_P3_i;                   /* Expression: portnum
-                                        * Referenced by: '<S100>/reset'
-                                        */
-  real_T reset_P4_l;                   /* Expression: stime
-                                        * Referenced by: '<S100>/reset'
-                                        */
-  real_T reset_P5_f;                   /* Expression: stype
-                                        * Referenced by: '<S100>/reset'
-                                        */
-  real_T reset_P6_fu;                  /* Expression: btype
-                                        * Referenced by: '<S100>/reset'
-                                        */
   real_T Integrator_IC_d;              /* Expression: 0
                                         * Referenced by: '<S100>/Integrator'
                                         */
   real_T Lossesplaceholder_Value_k;    /* Expression: 0
                                         * Referenced by: '<S54>/Losses (placeholder)'
-                                        */
-  real_T reset_P1_f;                   /* Expression: width
-                                        * Referenced by: '<S109>/reset'
-                                        */
-  real_T reset_P2_ly;                  /* Expression: dtype
-                                        * Referenced by: '<S109>/reset'
-                                        */
-  real_T reset_P3_l;                   /* Expression: portnum
-                                        * Referenced by: '<S109>/reset'
-                                        */
-  real_T reset_P4_d;                   /* Expression: stime
-                                        * Referenced by: '<S109>/reset'
-                                        */
-  real_T reset_P5_g;                   /* Expression: stype
-                                        * Referenced by: '<S109>/reset'
-                                        */
-  real_T reset_P6_e;                   /* Expression: btype
-                                        * Referenced by: '<S109>/reset'
                                         */
   real_T Integrator_IC_b;              /* Expression: 0
                                         * Referenced by: '<S109>/Integrator'
@@ -2570,24 +2463,6 @@ struct P_ctrl_custom_T_ {
                                         */
   real_T YpositionThruster_Value[6];   /* Expression: [Thruster.T1(2) Thruster.T2(2) Thruster.T3(2) Thruster.T4(2) Thruster.T5(2) Thruster.T6(2)]
                                         * Referenced by: '<S11>/Y-position Thruster'
-                                        */
-  real_T reset_P1_a;                   /* Expression: width
-                                        * Referenced by: '<S11>/reset'
-                                        */
-  real_T reset_P2_bp;                  /* Expression: dtype
-                                        * Referenced by: '<S11>/reset'
-                                        */
-  real_T reset_P3_lq;                  /* Expression: portnum
-                                        * Referenced by: '<S11>/reset'
-                                        */
-  real_T reset_P4_gx;                  /* Expression: stime
-                                        * Referenced by: '<S11>/reset'
-                                        */
-  real_T reset_P5_po;                  /* Expression: stype
-                                        * Referenced by: '<S11>/reset'
-                                        */
-  real_T reset_P6_i;                   /* Expression: btype
-                                        * Referenced by: '<S11>/reset'
                                         */
   real_T Angle_controller_P1;          /* Expression: width
                                         * Referenced by: '<S11>/Angle_controller'
@@ -3243,6 +3118,9 @@ struct P_ctrl_custom_T_ {
   real_T y_error_P6;                   /* Expression: btype
                                         * Referenced by: '<S7>/y_error'
                                         */
+  real_T Gain5_Gain_a;                 /* Expression: 180/pi
+                                        * Referenced by: '<S7>/Gain5'
+                                        */
   real_T psi_error_P1;                 /* Expression: width
                                         * Referenced by: '<S7>/psi_error'
                                         */
@@ -3537,22 +3415,22 @@ struct P_ctrl_custom_T_ {
   real_T Memory_X0;                    /* Expression: 1
                                         * Referenced by: '<S65>/Memory'
                                         */
-  real_T reset_P1_d;                   /* Expression: width
+  real_T reset_P1;                     /* Expression: width
                                         * Referenced by: '<S67>/reset'
                                         */
-  real_T reset_P2_m;                   /* Expression: dtype
+  real_T reset_P2;                     /* Expression: dtype
                                         * Referenced by: '<S67>/reset'
                                         */
-  real_T reset_P3_l0;                  /* Expression: portnum
+  real_T reset_P3;                     /* Expression: portnum
                                         * Referenced by: '<S67>/reset'
                                         */
-  real_T reset_P4_la;                  /* Expression: stime
+  real_T reset_P4;                     /* Expression: stime
                                         * Referenced by: '<S67>/reset'
                                         */
-  real_T reset_P5_b;                   /* Expression: stype
+  real_T reset_P5;                     /* Expression: stype
                                         * Referenced by: '<S67>/reset'
                                         */
-  real_T reset_P6_l;                   /* Expression: btype
+  real_T reset_P6;                     /* Expression: btype
                                         * Referenced by: '<S67>/reset'
                                         */
   real_T Integrator_IC_j;              /* Expression: 0
@@ -3627,7 +3505,7 @@ struct P_ctrl_custom_T_ {
   real_T reset_P3_m;                   /* Expression: portnum
                                         * Referenced by: '<S76>/reset'
                                         */
-  real_T reset_P4_gp;                  /* Expression: stime
+  real_T reset_P4_g;                   /* Expression: stime
                                         * Referenced by: '<S76>/reset'
                                         */
   real_T reset_P5_d;                   /* Expression: stype
@@ -3687,16 +3565,16 @@ struct P_ctrl_custom_T_ {
   real_T reset_P2_h;                   /* Expression: dtype
                                         * Referenced by: '<S85>/reset'
                                         */
-  real_T reset_P3_ea;                  /* Expression: portnum
+  real_T reset_P3_e;                   /* Expression: portnum
                                         * Referenced by: '<S85>/reset'
                                         */
   real_T reset_P4_g2;                  /* Expression: stime
                                         * Referenced by: '<S85>/reset'
                                         */
-  real_T reset_P5_fq;                  /* Expression: stype
+  real_T reset_P5_f;                   /* Expression: stype
                                         * Referenced by: '<S85>/reset'
                                         */
-  real_T reset_P6_a4;                  /* Expression: btype
+  real_T reset_P6_a;                   /* Expression: btype
                                         * Referenced by: '<S85>/reset'
                                         */
   real_T Integrator_IC_k;              /* Expression: 0
@@ -3744,7 +3622,7 @@ struct P_ctrl_custom_T_ {
   real_T Memory_X0_b;                  /* Expression: 1
                                         * Referenced by: '<S92>/Memory'
                                         */
-  real_T reset_P1_pb;                  /* Expression: width
+  real_T reset_P1_p;                   /* Expression: width
                                         * Referenced by: '<S94>/reset'
                                         */
   real_T reset_P2_f;                   /* Expression: dtype
@@ -3807,10 +3685,10 @@ struct P_ctrl_custom_T_ {
   real_T Memory_X0_n;                  /* Expression: 1
                                         * Referenced by: '<S101>/Memory'
                                         */
-  real_T reset_P1_kj;                  /* Expression: width
+  real_T reset_P1_k;                   /* Expression: width
                                         * Referenced by: '<S103>/reset'
                                         */
-  real_T reset_P2_ae;                  /* Expression: dtype
+  real_T reset_P2_a;                   /* Expression: dtype
                                         * Referenced by: '<S103>/reset'
                                         */
   real_T reset_P3_mr;                  /* Expression: portnum
@@ -3822,7 +3700,7 @@ struct P_ctrl_custom_T_ {
   real_T reset_P5_fh;                  /* Expression: stype
                                         * Referenced by: '<S103>/reset'
                                         */
-  real_T reset_P6_fg;                  /* Expression: btype
+  real_T reset_P6_f;                   /* Expression: btype
                                         * Referenced by: '<S103>/reset'
                                         */
   real_T Integrator_IC_hh;             /* Expression: 0
@@ -3870,16 +3748,16 @@ struct P_ctrl_custom_T_ {
   real_T Memory_X0_m;                  /* Expression: 1
                                         * Referenced by: '<S110>/Memory'
                                         */
-  real_T reset_P1_fv;                  /* Expression: width
+  real_T reset_P1_f;                   /* Expression: width
                                         * Referenced by: '<S112>/reset'
                                         */
   real_T reset_P2_i;                   /* Expression: dtype
                                         * Referenced by: '<S112>/reset'
                                         */
-  real_T reset_P3_dc;                  /* Expression: portnum
+  real_T reset_P3_d;                   /* Expression: portnum
                                         * Referenced by: '<S112>/reset'
                                         */
-  real_T reset_P4_lv;                  /* Expression: stime
+  real_T reset_P4_l;                   /* Expression: stime
                                         * Referenced by: '<S112>/reset'
                                         */
   real_T reset_P5_j;                   /* Expression: stype
@@ -4326,9 +4204,9 @@ extern RT_MODEL_ctrl_custom_T *const ctrl_custom_M;
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.92
+ * Model version : 1.102
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Thu Jul 20 16:07:22 2017
+ * Source generated on : Fri Jul 21 14:06:28 2017
  *========================================================================*/
 #if !defined(NI_HEADER_ctrl_custom_h_)
 #define NI_HEADER_ctrl_custom_h_
