@@ -12,9 +12,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.102
+ * Model version              : 1.113
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Fri Jul 21 14:06:28 2017
+ * C source code generated on : Tue Jul 25 18:27:11 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -228,6 +228,8 @@ P_ctrl_custom_T ctrl_custom_P = {
   3.1415926535897931,
   6.2831853071795862,
   0.0,
+  10.0,
+  -10.0,
   0.0,
 
   { 0.0, 0.0, 0.0 },
@@ -613,6 +615,24 @@ P_ctrl_custom_T ctrl_custom_P = {
   0.0,
   -1.0,
   1.0,
+  4.0,
+  -1.0,
+  1.0,
+  0.0,
+  -1.0,
+  1.0,
+  5.0,
+  -1.0,
+  1.0,
+  0.0,
+  -1.0,
+  1.0,
+  6.0,
+  -1.0,
+  1.0,
+  0.0,
+  -1.0,
+  1.0,
   1.0,
   -1.0,
   1.0,
@@ -623,6 +643,13 @@ P_ctrl_custom_T ctrl_custom_P = {
   -1.0,
   1.0,
   1.0,
+  -1.0,
+  1.0,
+  3.0,
+  -1.0,
+  1.0,
+  1.0,
+  0.017453292519943295,
   0.0,
   -1.0,
   1.0,
@@ -675,12 +702,6 @@ P_ctrl_custom_T ctrl_custom_P = {
   -1.0,
   1.0,
   9.0,
-  -1.0,
-  1.0,
-  1.0,
-  -1.0,
-  1.0,
-  3.0,
   -1.0,
   1.0,
   1.0,
@@ -905,9 +926,9 @@ P_ctrl_custom_T ctrl_custom_P = {
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.102
+ * Model version : 1.113
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Fri Jul 21 14:06:28 2017
+ * Source generated on : Tue Jul 25 18:27:10 2017
  *========================================================================*/
 #if defined VXWORKS || defined kNIOSLinux
 
@@ -1026,6 +1047,10 @@ NI_ParamSizeWidth P_ctrl_custom_T_sizes[] DataSection(".NIVS.defaultparamsizes")
   { sizeof(real_T), 6, 0 },
 
   { sizeof(real_T), 6, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 1, 0 },
 
@@ -1712,6 +1737,44 @@ NI_ParamSizeWidth P_ctrl_custom_T_sizes[] DataSection(".NIVS.defaultparamsizes")
   { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 9, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 1, 0 },
 

@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.102
+ * Model version              : 1.113
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Fri Jul 21 14:06:28 2017
+ * C source code generated on : Tue Jul 25 18:27:11 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -2774,6 +2774,7 @@ void ctrl_custom_output(void)
   real_T rtb_Row1_d;
   real_T rtb_psi_dot;
   real_T rtb_MatrixMultiply2[3];
+  real_T rtb_MatrixMultiply[3];
   real_T rtb_MatrixMultiply1[3];
   real_T rtb_y[6];
   real_T rtb_ImpAsg_InsertedFor_commande[6];
@@ -3160,6 +3161,7 @@ void ctrl_custom_output(void)
   rtb_CreateDiagonalMatrix5[8] = ctrl_custom_B.K_i_psi;
 
   /* Integrator: '<S7>/Integrator1' */
+  /* Limited  Integrator  */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
                        &ctrl_custom_PrevZCX.Integrator1_Reset_ZCE,
@@ -3173,14 +3175,48 @@ void ctrl_custom_output(void)
     }
   }
 
-  /* Product: '<S7>/Matrix Multiply1' incorporates:
-   *  Integrator: '<S7>/Integrator1'
-   */
+  if (ctrl_custom_X.Integrator1_CSTATE[0] >= ctrl_custom_P.Integrator1_UpperSat)
+  {
+    ctrl_custom_X.Integrator1_CSTATE[0] = ctrl_custom_P.Integrator1_UpperSat;
+  } else {
+    if (ctrl_custom_X.Integrator1_CSTATE[0] <=
+        ctrl_custom_P.Integrator1_LowerSat) {
+      ctrl_custom_X.Integrator1_CSTATE[0] = ctrl_custom_P.Integrator1_LowerSat;
+    }
+  }
+
+  ctrl_custom_B.Integrator1[0] = ctrl_custom_X.Integrator1_CSTATE[0];
+  if (ctrl_custom_X.Integrator1_CSTATE[1] >= ctrl_custom_P.Integrator1_UpperSat)
+  {
+    ctrl_custom_X.Integrator1_CSTATE[1] = ctrl_custom_P.Integrator1_UpperSat;
+  } else {
+    if (ctrl_custom_X.Integrator1_CSTATE[1] <=
+        ctrl_custom_P.Integrator1_LowerSat) {
+      ctrl_custom_X.Integrator1_CSTATE[1] = ctrl_custom_P.Integrator1_LowerSat;
+    }
+  }
+
+  ctrl_custom_B.Integrator1[1] = ctrl_custom_X.Integrator1_CSTATE[1];
+  if (ctrl_custom_X.Integrator1_CSTATE[2] >= ctrl_custom_P.Integrator1_UpperSat)
+  {
+    ctrl_custom_X.Integrator1_CSTATE[2] = ctrl_custom_P.Integrator1_UpperSat;
+  } else {
+    if (ctrl_custom_X.Integrator1_CSTATE[2] <=
+        ctrl_custom_P.Integrator1_LowerSat) {
+      ctrl_custom_X.Integrator1_CSTATE[2] = ctrl_custom_P.Integrator1_LowerSat;
+    }
+  }
+
+  ctrl_custom_B.Integrator1[2] = ctrl_custom_X.Integrator1_CSTATE[2];
+
+  /* End of Integrator: '<S7>/Integrator1' */
+
+  /* Product: '<S7>/Matrix Multiply1' */
   for (i_0 = 0; i_0 < 3; i_0++) {
-    rtb_MatrixMultiply1[i_0] = rtb_CreateDiagonalMatrix5[i_0 + 6] *
-      ctrl_custom_X.Integrator1_CSTATE[2] + (rtb_CreateDiagonalMatrix5[i_0 + 3] *
-      ctrl_custom_X.Integrator1_CSTATE[1] + rtb_CreateDiagonalMatrix5[i_0] *
-      ctrl_custom_X.Integrator1_CSTATE[0]);
+    rtb_MatrixMultiply[i_0] = rtb_CreateDiagonalMatrix5[i_0 + 6] *
+      ctrl_custom_B.Integrator1[2] + (rtb_CreateDiagonalMatrix5[i_0 + 3] *
+      ctrl_custom_B.Integrator1[1] + rtb_CreateDiagonalMatrix5[i_0] *
+      ctrl_custom_B.Integrator1[0]);
   }
 
   /* End of Product: '<S7>/Matrix Multiply1' */
@@ -3192,7 +3228,7 @@ void ctrl_custom_output(void)
   rtb_CreateDiagonalMatrix5[0] = ctrl_custom_B.K_d_x;
 
   /* Integrator: '<S10>/Integrator1' */
-  ctrl_custom_B.Integrator1[0] = ctrl_custom_X.Integrator1_CSTATE_d[0];
+  ctrl_custom_B.Integrator1_i[0] = ctrl_custom_X.Integrator1_CSTATE_d[0];
 
   /* S-Function (sdspdiag2): '<S16>/Create Diagonal Matrix2' incorporates:
    *  SignalConversion: '<S16>/TmpSignal ConversionAtCreate Diagonal Matrix2Inport1'
@@ -3200,7 +3236,7 @@ void ctrl_custom_output(void)
   rtb_CreateDiagonalMatrix5[4] = ctrl_custom_B.K_d_y;
 
   /* Integrator: '<S10>/Integrator1' */
-  ctrl_custom_B.Integrator1[1] = ctrl_custom_X.Integrator1_CSTATE_d[1];
+  ctrl_custom_B.Integrator1_i[1] = ctrl_custom_X.Integrator1_CSTATE_d[1];
 
   /* S-Function (sdspdiag2): '<S16>/Create Diagonal Matrix2' incorporates:
    *  SignalConversion: '<S16>/TmpSignal ConversionAtCreate Diagonal Matrix2Inport1'
@@ -3208,7 +3244,7 @@ void ctrl_custom_output(void)
   rtb_CreateDiagonalMatrix5[8] = ctrl_custom_B.K_d_psi;
 
   /* Integrator: '<S10>/Integrator1' */
-  ctrl_custom_B.Integrator1[2] = ctrl_custom_X.Integrator1_CSTATE_d[2];
+  ctrl_custom_B.Integrator1_i[2] = ctrl_custom_X.Integrator1_CSTATE_d[2];
 
   /* Integrator: '<S5>/Integrator1' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
@@ -3237,22 +3273,22 @@ void ctrl_custom_output(void)
    *  Fcn: '<S7>/yaw angle1'
    *  Product: '<S7>/Matrix Multiply2'
    */
-  rtb_psi_dot = ctrl_custom_B.Integrator1_a[0] - (cos(rtb_MatrixMultiply4[2]) *
-    ctrl_custom_B.Integrator1[0] + sin(rtb_MatrixMultiply4[2]) *
-    ctrl_custom_B.Integrator1[1]);
-  rtb_Row2 = ctrl_custom_B.Integrator1_a[1] - (-sin(rtb_MatrixMultiply4[2]) *
-    ctrl_custom_B.Integrator1[0] + cos(rtb_MatrixMultiply4[2]) *
-    ctrl_custom_B.Integrator1[1]);
-  rtb_Row1_d = ctrl_custom_B.Integrator1_a[2] - ctrl_custom_B.Integrator1[2];
+  rtb_Row2 = ctrl_custom_B.Integrator1_a[0] - (cos(rtb_MatrixMultiply4[2]) *
+    ctrl_custom_B.Integrator1_i[0] + sin(rtb_MatrixMultiply4[2]) *
+    ctrl_custom_B.Integrator1_i[1]);
+  rtb_Row1_d = ctrl_custom_B.Integrator1_a[1] - (-sin(rtb_MatrixMultiply4[2]) *
+    ctrl_custom_B.Integrator1_i[0] + cos(rtb_MatrixMultiply4[2]) *
+    ctrl_custom_B.Integrator1_i[1]);
+  rtb_psi_dot = ctrl_custom_B.Integrator1_a[2] - ctrl_custom_B.Integrator1_i[2];
 
   /* Sum: '<S7>/Sum1' incorporates:
    *  Product: '<S7>/Matrix Multiply2'
    */
   for (i_0 = 0; i_0 < 3; i_0++) {
     ctrl_custom_B.Sum1[i_0] = ((0.0 - rtb_MatrixMultiply2[i_0]) -
-      rtb_MatrixMultiply1[i_0]) - ((rtb_CreateDiagonalMatrix5[i_0 + 3] *
-      rtb_Row2 + rtb_CreateDiagonalMatrix5[i_0] * rtb_psi_dot) +
-      rtb_CreateDiagonalMatrix5[i_0 + 6] * rtb_Row1_d);
+      rtb_MatrixMultiply[i_0]) - ((rtb_CreateDiagonalMatrix5[i_0 + 3] *
+      rtb_Row1_d + rtb_CreateDiagonalMatrix5[i_0] * rtb_Row2) +
+      rtb_CreateDiagonalMatrix5[i_0 + 6] * rtb_psi_dot);
   }
 
   /* End of Sum: '<S7>/Sum1' */
@@ -5364,7 +5400,7 @@ void ctrl_custom_output(void)
      *  MATLAB Function: '<S5>/D(nu)*nu'
      *  Sum: '<S5>/Sum2'
      */
-    rtb_MatrixMultiply1[i_0] = (((tmp_1[i_0] + ctrl_custom_B.Sum1[i_0]) +
+    rtb_MatrixMultiply[i_0] = (((tmp_1[i_0] + ctrl_custom_B.Sum1[i_0]) +
       tmp_2[i_0]) - ((rtb_CreateDiagonalMatrix5[i_0 + 3] *
                       ctrl_custom_B.Integrator1_a[1] +
                       rtb_CreateDiagonalMatrix5[i_0] *
@@ -5379,11 +5415,11 @@ void ctrl_custom_output(void)
   /* Gain: '<S5>/M^-1' */
   for (i_0 = 0; i_0 < 3; i_0++) {
     ctrl_custom_B.M1[i_0] = 0.0;
-    ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0] * rtb_MatrixMultiply1[0];
+    ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0] * rtb_MatrixMultiply[0];
     ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0 + 3] *
-      rtb_MatrixMultiply1[1];
+      rtb_MatrixMultiply[1];
     ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0 + 6] *
-      rtb_MatrixMultiply1[2];
+      rtb_MatrixMultiply[2];
   }
 
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
@@ -5765,6 +5801,11 @@ void ctrl_custom_output(void)
   rtb_CreateDiagonalMatrix5[0] = 1.0 / ctrl_custom_B.T_x;
   rtb_CreateDiagonalMatrix5[4] = 1.0 / ctrl_custom_B.T_y;
   rtb_CreateDiagonalMatrix5[8] = 1.0 / ctrl_custom_B.T_psi;
+
+  /* SignalConversion: '<S10>/TmpSignal ConversionAtMatrix MultiplyInport2' incorporates:
+   *  Gain: '<S10>/Gain5'
+   */
+  rtb_psi_dot = ctrl_custom_P.Gain5_Gain_n * ctrl_custom_B.psi_ref;
   for (i_0 = 0; i_0 < 3; i_0++) {
     /* Sum: '<S10>/Sum' incorporates:
      *  Integrator: '<S10>/Integrator'
@@ -5772,13 +5813,13 @@ void ctrl_custom_output(void)
      *  Product: '<S10>/Matrix Multiply1'
      *  SignalConversion: '<S10>/TmpSignal ConversionAtMatrix MultiplyInport2'
      */
-    ctrl_custom_B.Sum_m[i_0] = (rtb_CreateDiagonalMatrix5[i_0 + 6] *
-      ctrl_custom_B.psi_ref + (rtb_CreateDiagonalMatrix5[i_0 + 3] *
-      ctrl_custom_B.y_ref + rtb_CreateDiagonalMatrix5[i_0] * ctrl_custom_B.x_ref))
-      - (rtb_CreateDiagonalMatrix5[i_0 + 6] *
-         ctrl_custom_X.Integrator_CSTATE_f5[2] + (rtb_CreateDiagonalMatrix5[i_0
-          + 3] * ctrl_custom_X.Integrator_CSTATE_f5[1] +
-          rtb_CreateDiagonalMatrix5[i_0] * ctrl_custom_X.Integrator_CSTATE_f5[0]));
+    ctrl_custom_B.Sum_m[i_0] = (rtb_CreateDiagonalMatrix5[i_0 + 6] * rtb_psi_dot
+      + (rtb_CreateDiagonalMatrix5[i_0 + 3] * ctrl_custom_B.y_ref +
+         rtb_CreateDiagonalMatrix5[i_0] * ctrl_custom_B.x_ref)) -
+      (rtb_CreateDiagonalMatrix5[i_0 + 6] * ctrl_custom_X.Integrator_CSTATE_f5[2]
+       + (rtb_CreateDiagonalMatrix5[i_0 + 3] *
+          ctrl_custom_X.Integrator_CSTATE_f5[1] + rtb_CreateDiagonalMatrix5[i_0]
+          * ctrl_custom_X.Integrator_CSTATE_f5[0]));
 
     /* Product: '<S10>/Matrix Multiply2' incorporates:
      *  Sum: '<S10>/Sum1'
@@ -5807,7 +5848,7 @@ void ctrl_custom_output(void)
       /* Sum: '<S10>/Sum2' incorporates:
        *  Product: '<S10>/Matrix Multiply4'
        */
-      rtb_Row1_d += tmp_3[3 * b_i + i_0] * ctrl_custom_B.Integrator1[b_i];
+      rtb_Row1_d += tmp_3[3 * b_i + i_0] * ctrl_custom_B.Integrator1_i[b_i];
 
       /* Product: '<S10>/Matrix Multiply2' incorporates:
        *  Integrator: '<S10>/Integrator'
@@ -5845,6 +5886,13 @@ void ctrl_custom_output(void)
     ctrl_custom_B.Delay_j = ctrl_custom_DW.Delay_DSTATE_k;
   }
 
+  /* MATLAB Function: '<S65>/MATLAB Function' incorporates:
+   *  Constant: '<S12>/Constant'
+   *  Constant: '<S12>/D'
+   *  Constant: '<S12>/K_Tf1'
+   *  Constant: '<S12>/K_Tr1'
+   *  Constant: '<S12>/Rho'
+   */
   /* MATLAB Function 'Thruster control /Thruster 1/Thruster control/MATLAB Function': '<S69>:1' */
   /* '<S69>:1:5' */
   if (rtb_sys[6] < 0.0) {
@@ -5880,6 +5928,8 @@ void ctrl_custom_output(void)
                rtb_psi_dot) * rtb_Row1_d * ctrl_custom_P.Rho * rt_powd_snf
     (ctrl_custom_P.D, 4.0) * (ctrl_custom_B.Delay_j * ctrl_custom_B.Delay_j);
   ctrl_custom_B.n_d_k = rtb_Row2;
+
+  /* End of MATLAB Function: '<S65>/MATLAB Function' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S65>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S65>/Constant1'
@@ -7263,6 +7313,8 @@ void ctrl_custom_update(void)
 /* Derivatives for root system: '<Root>' */
 void ctrl_custom_derivatives(void)
 {
+  boolean_T lsat;
+  boolean_T usat;
   XDot_ctrl_custom_T *_rtXdot;
   _rtXdot = ((XDot_ctrl_custom_T *) ctrl_custom_M->derivs);
 
@@ -7288,11 +7340,22 @@ void ctrl_custom_derivatives(void)
   _rtXdot->Integrator_CSTATE[0] = ctrl_custom_B.Sum1_g[0];
 
   /* Derivatives for Integrator: '<S10>/Integrator2' */
-  _rtXdot->Integrator2_CSTATE[0] = ctrl_custom_B.Integrator1[0];
+  _rtXdot->Integrator2_CSTATE[0] = ctrl_custom_B.Integrator1_i[0];
 
   /* Derivatives for Integrator: '<S7>/Integrator1' */
-  _rtXdot->Integrator1_CSTATE[0] =
-    ctrl_custom_B.TmpSignalConversionAtMatrixMult[0];
+  lsat = (ctrl_custom_X.Integrator1_CSTATE[0] <=
+          ctrl_custom_P.Integrator1_LowerSat);
+  usat = (ctrl_custom_X.Integrator1_CSTATE[0] >=
+          ctrl_custom_P.Integrator1_UpperSat);
+  if (((!lsat) && (!usat)) || (lsat &&
+       (ctrl_custom_B.TmpSignalConversionAtMatrixMult[0] > 0.0)) || (usat &&
+       (ctrl_custom_B.TmpSignalConversionAtMatrixMult[0] < 0.0))) {
+    _rtXdot->Integrator1_CSTATE[0] =
+      ctrl_custom_B.TmpSignalConversionAtMatrixMult[0];
+  } else {
+    /* in saturation */
+    _rtXdot->Integrator1_CSTATE[0] = 0.0;
+  }
 
   /* Derivatives for Integrator: '<S10>/Integrator1' */
   _rtXdot->Integrator1_CSTATE_d[0] = ctrl_custom_B.Sum2[0];
@@ -7310,11 +7373,22 @@ void ctrl_custom_derivatives(void)
   _rtXdot->Integrator_CSTATE[1] = ctrl_custom_B.Sum1_g[1];
 
   /* Derivatives for Integrator: '<S10>/Integrator2' */
-  _rtXdot->Integrator2_CSTATE[1] = ctrl_custom_B.Integrator1[1];
+  _rtXdot->Integrator2_CSTATE[1] = ctrl_custom_B.Integrator1_i[1];
 
   /* Derivatives for Integrator: '<S7>/Integrator1' */
-  _rtXdot->Integrator1_CSTATE[1] =
-    ctrl_custom_B.TmpSignalConversionAtMatrixMult[1];
+  lsat = (ctrl_custom_X.Integrator1_CSTATE[1] <=
+          ctrl_custom_P.Integrator1_LowerSat);
+  usat = (ctrl_custom_X.Integrator1_CSTATE[1] >=
+          ctrl_custom_P.Integrator1_UpperSat);
+  if (((!lsat) && (!usat)) || (lsat &&
+       (ctrl_custom_B.TmpSignalConversionAtMatrixMult[1] > 0.0)) || (usat &&
+       (ctrl_custom_B.TmpSignalConversionAtMatrixMult[1] < 0.0))) {
+    _rtXdot->Integrator1_CSTATE[1] =
+      ctrl_custom_B.TmpSignalConversionAtMatrixMult[1];
+  } else {
+    /* in saturation */
+    _rtXdot->Integrator1_CSTATE[1] = 0.0;
+  }
 
   /* Derivatives for Integrator: '<S10>/Integrator1' */
   _rtXdot->Integrator1_CSTATE_d[1] = ctrl_custom_B.Sum2[1];
@@ -7332,11 +7406,22 @@ void ctrl_custom_derivatives(void)
   _rtXdot->Integrator_CSTATE[2] = ctrl_custom_B.Sum1_g[2];
 
   /* Derivatives for Integrator: '<S10>/Integrator2' */
-  _rtXdot->Integrator2_CSTATE[2] = ctrl_custom_B.Integrator1[2];
+  _rtXdot->Integrator2_CSTATE[2] = ctrl_custom_B.Integrator1_i[2];
 
   /* Derivatives for Integrator: '<S7>/Integrator1' */
-  _rtXdot->Integrator1_CSTATE[2] =
-    ctrl_custom_B.TmpSignalConversionAtMatrixMult[2];
+  lsat = (ctrl_custom_X.Integrator1_CSTATE[2] <=
+          ctrl_custom_P.Integrator1_LowerSat);
+  usat = (ctrl_custom_X.Integrator1_CSTATE[2] >=
+          ctrl_custom_P.Integrator1_UpperSat);
+  if (((!lsat) && (!usat)) || (lsat &&
+       (ctrl_custom_B.TmpSignalConversionAtMatrixMult[2] > 0.0)) || (usat &&
+       (ctrl_custom_B.TmpSignalConversionAtMatrixMult[2] < 0.0))) {
+    _rtXdot->Integrator1_CSTATE[2] =
+      ctrl_custom_B.TmpSignalConversionAtMatrixMult[2];
+  } else {
+    /* in saturation */
+    _rtXdot->Integrator1_CSTATE[2] = 0.0;
+  }
 
   /* Derivatives for Integrator: '<S10>/Integrator1' */
   _rtXdot->Integrator1_CSTATE_d[2] = ctrl_custom_B.Sum2[2];
@@ -7902,9 +7987,9 @@ RT_MODEL_ctrl_custom_T *ctrl_custom(void)
   ctrl_custom_M->Sizes.numU = (0);     /* Number of model inputs */
   ctrl_custom_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   ctrl_custom_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  ctrl_custom_M->Sizes.numBlocks = (578);/* Number of blocks */
-  ctrl_custom_M->Sizes.numBlockIO = (215);/* Number of block outputs */
-  ctrl_custom_M->Sizes.numBlockPrms = (962);/* Sum of parameter "widths" */
+  ctrl_custom_M->Sizes.numBlocks = (582);/* Number of blocks */
+  ctrl_custom_M->Sizes.numBlockIO = (216);/* Number of block outputs */
+  ctrl_custom_M->Sizes.numBlockPrms = (983);/* Sum of parameter "widths" */
   return ctrl_custom_M;
 }
 
@@ -7916,9 +8001,9 @@ RT_MODEL_ctrl_custom_T *ctrl_custom(void)
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.102
+ * Model version : 1.113
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Fri Jul 21 14:06:28 2017
+ * Source generated on : Tue Jul 25 18:27:10 2017
  *========================================================================*/
 
 /* This file contains automatically generated code for functions
@@ -8634,6 +8719,13 @@ void SetExternalInputs(double* data, int_T* TaskSampleHit)
     index += 1;
   }
 
+  // ctrl_custom/Referance/psi_ref
+  if (TaskSampleHit[0]) {
+    NIRT_SetValueByDataType(&ctrl_custom_B.psi_ref, 0, data[index++], 0, 0);
+  } else {
+    index += 1;
+  }
+
   // ctrl_custom/Initialization of parameters/Guidance Gains/w_x
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.w_x, 0, data[index++], 0, 0);
@@ -8693,13 +8785,6 @@ void SetExternalInputs(double* data, int_T* TaskSampleHit)
   // ctrl_custom/Initialization of parameters/Guidance Gains/T_y
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.T_y, 0, data[index++], 0, 0);
-  } else {
-    index += 1;
-  }
-
-  // ctrl_custom/Referance/psi_ref
-  if (TaskSampleHit[0]) {
-    NIRT_SetValueByDataType(&ctrl_custom_B.psi_ref, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
@@ -8796,10 +8881,10 @@ int32_t NumInputPorts(void)
 
 int32_t NumOutputPorts(void)
 {
-  return 38;
+  return 41;
 }
 
-double ni_extout[38];
+double ni_extout[41];
 
 /*========================================================================*
  * Function: SetExternalOutputs
@@ -9102,6 +9187,30 @@ void SetExternalOutputs(double* data, int_T* TaskSampleHit)
     index += 1;
   }
 
+  // ctrl_custom/PID controller/Integral_x: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Integrator1, 0,
+      22, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/PID controller/Integral_psi: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Integrator1, 2,
+      22, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/PID controller/Integral_y: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Integrator1, 1,
+      22, 0);
+  } else {
+    index += 1;
+  }
+
   // ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics/Control_test_Pa: Virtual Signal # 0
   if (TaskSampleHit[0]) {              // sample and hold
     ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Pa, 0, 0, 0);
@@ -9266,6 +9375,18 @@ int32_t NI_InitExternalOutputs()
   // ctrl_custom/PID controller/x_error: Virtual Signal # 0
   ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.regulationerror, 0,
     22, 0);
+
+  // ctrl_custom/PID controller/Integral_x: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Integrator1, 0, 22,
+    0);
+
+  // ctrl_custom/PID controller/Integral_psi: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Integrator1, 2, 22,
+    0);
+
+  // ctrl_custom/PID controller/Integral_y: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Integrator1, 1, 22,
+    0);
 
   // ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics/Control_test_Pa: Virtual Signal # 0
   ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Pa, 0, 0, 0);
@@ -9785,680 +9906,689 @@ static NI_Parameter NI_ParamList[] DataSection(".NIVS.paramlist") =
   { 139, "ctrl_custom/PID controller/Integrator1/InitialCondition", offsetof
     (P_ctrl_custom_T, Integrator1_IC), 62, 1, 2, 278, 0 },
 
-  { 140, "ctrl_custom/Referance/Integrator1/InitialCondition", offsetof
-    (P_ctrl_custom_T, Integrator1_IC_b), 62, 1, 2, 280, 0 },
+  { 140, "ctrl_custom/PID controller/Integrator1/UpperSaturationLimit", offsetof
+    (P_ctrl_custom_T, Integrator1_UpperSat), 62, 1, 2, 280, 0 },
 
-  { 141, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator1_IC_g), 36, 3, 2, 282, 0 },
+  { 141, "ctrl_custom/PID controller/Integrator1/LowerSaturationLimit", offsetof
+    (P_ctrl_custom_T, Integrator1_LowerSat), 62, 1, 2, 282, 0 },
 
-  { 142, "ctrl_custom/Gain5/Gain", offsetof(P_ctrl_custom_T, Gain5_Gain_e), 62,
-    1, 2, 284, 0 },
+  { 142, "ctrl_custom/Referance/Integrator1/InitialCondition", offsetof
+    (P_ctrl_custom_T, Integrator1_IC_b), 62, 1, 2, 284, 0 },
 
-  { 143, "ctrl_custom/Gain/Gain", offsetof(P_ctrl_custom_T, Gain_Gain_g), 62, 1,
-    2, 286, 0 },
+  { 143, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator1_IC_g), 36, 3, 2, 286, 0 },
 
-  { 144, "ctrl_custom/Gain1/Gain", offsetof(P_ctrl_custom_T, Gain1_Gain_l), 62,
+  { 144, "ctrl_custom/Gain5/Gain", offsetof(P_ctrl_custom_T, Gain5_Gain_e), 62,
     1, 2, 288, 0 },
 
-  { 145,
-    "ctrl_custom/Thruster control /Thruster 1/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC), 62, 1, 2, 290, 0 },
+  { 145, "ctrl_custom/Gain/Gain", offsetof(P_ctrl_custom_T, Gain_Gain_g), 62, 1,
+    2, 290, 0 },
 
-  { 146, "ctrl_custom/Thruster control /Thruster 1/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value), 62, 1, 2, 292, 0 },
+  { 146, "ctrl_custom/Gain1/Gain", offsetof(P_ctrl_custom_T, Gain1_Gain_l), 62,
+    1, 2, 292, 0 },
 
   { 147,
-    "ctrl_custom/Thruster control /Thruster 2/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_h), 62, 1, 2, 294, 0 },
+    "ctrl_custom/Thruster control /Thruster 1/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC), 62, 1, 2, 294, 0 },
 
-  { 148, "ctrl_custom/Thruster control /Thruster 2/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_e), 62, 1, 2, 296, 0 },
+  { 148, "ctrl_custom/Thruster control /Thruster 1/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value), 62, 1, 2, 296, 0 },
 
   { 149,
-    "ctrl_custom/Thruster control /Thruster 3/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_o), 62, 1, 2, 298, 0 },
+    "ctrl_custom/Thruster control /Thruster 2/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_h), 62, 1, 2, 298, 0 },
 
-  { 150, "ctrl_custom/Thruster control /Thruster 3/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_d), 62, 1, 2, 300, 0 },
+  { 150, "ctrl_custom/Thruster control /Thruster 2/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_e), 62, 1, 2, 300, 0 },
 
   { 151,
-    "ctrl_custom/Thruster control /Thruster 4/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_hz), 62, 1, 2, 302, 0 },
+    "ctrl_custom/Thruster control /Thruster 3/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_o), 62, 1, 2, 302, 0 },
 
-  { 152, "ctrl_custom/Thruster control /Thruster 4/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_n), 62, 1, 2, 304, 0 },
+  { 152, "ctrl_custom/Thruster control /Thruster 3/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_d), 62, 1, 2, 304, 0 },
 
   { 153,
-    "ctrl_custom/Thruster control /Thruster 5/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_d), 62, 1, 2, 306, 0 },
+    "ctrl_custom/Thruster control /Thruster 4/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_hz), 62, 1, 2, 306, 0 },
 
-  { 154, "ctrl_custom/Thruster control /Thruster 5/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_k), 62, 1, 2, 308, 0 },
+  { 154, "ctrl_custom/Thruster control /Thruster 4/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_n), 62, 1, 2, 308, 0 },
 
   { 155,
+    "ctrl_custom/Thruster control /Thruster 5/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_d), 62, 1, 2, 310, 0 },
+
+  { 156, "ctrl_custom/Thruster control /Thruster 5/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_k), 62, 1, 2, 312, 0 },
+
+  { 157,
     "ctrl_custom/Thruster control /Thruster 6/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_b), 62, 1, 2, 310, 0 },
+    offsetof(P_ctrl_custom_T, Integrator_IC_b), 62, 1, 2, 314, 0 },
 
-  { 156, "ctrl_custom/Thruster control /Thruster 6/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_nh), 62, 1, 2, 312, 0 },
+  { 158, "ctrl_custom/Thruster control /Thruster 6/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_nh), 62, 1, 2, 316, 0 },
 
-  { 157, "ctrl_custom/Thruster Parameters /controller/Value", offsetof
-    (P_ctrl_custom_T, controller_Value), 62, 1, 2, 314, 0 },
-
-  { 158,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain/Gain",
-    offsetof(P_ctrl_custom_T, Gain_Gain_a), 62, 1, 2, 316, 0 },
-
-  { 159,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain1/Gain",
-    offsetof(P_ctrl_custom_T, Gain1_Gain_i), 62, 1, 2, 318, 0 },
+  { 159, "ctrl_custom/Thruster Parameters /controller/Value", offsetof
+    (P_ctrl_custom_T, controller_Value), 62, 1, 2, 318, 0 },
 
   { 160,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain2/Gain",
-    offsetof(P_ctrl_custom_T, Gain2_Gain), 62, 1, 2, 320, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain/Gain",
+    offsetof(P_ctrl_custom_T, Gain_Gain_a), 62, 1, 2, 320, 0 },
 
   { 161,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain3/Gain",
-    offsetof(P_ctrl_custom_T, Gain3_Gain), 62, 1, 2, 322, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain1/Gain",
+    offsetof(P_ctrl_custom_T, Gain1_Gain_i), 62, 1, 2, 322, 0 },
 
   { 162,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain4/Gain",
-    offsetof(P_ctrl_custom_T, Gain4_Gain), 62, 1, 2, 324, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain2/Gain",
+    offsetof(P_ctrl_custom_T, Gain2_Gain), 62, 1, 2, 324, 0 },
 
   { 163,
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain3/Gain",
+    offsetof(P_ctrl_custom_T, Gain3_Gain), 62, 1, 2, 326, 0 },
+
+  { 164,
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain4/Gain",
+    offsetof(P_ctrl_custom_T, Gain4_Gain), 62, 1, 2, 328, 0 },
+
+  { 165,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain5/Gain",
-    offsetof(P_ctrl_custom_T, Gain5_Gain_f), 62, 1, 2, 326, 0 },
+    offsetof(P_ctrl_custom_T, Gain5_Gain_f), 62, 1, 2, 330, 0 },
 
-  { 164, "ctrl_custom/Thrust allocation/Radians to Degrees/Gain/Gain", offsetof
-    (P_ctrl_custom_T, Gain_Gain_i), 62, 1, 2, 328, 0 },
+  { 166, "ctrl_custom/Thrust allocation/Radians to Degrees/Gain/Gain", offsetof
+    (P_ctrl_custom_T, Gain_Gain_i), 62, 1, 2, 332, 0 },
 
-  { 165, "ctrl_custom/Thrust allocation/X-position Thruster/Value", offsetof
-    (P_ctrl_custom_T, XpositionThruster_Value[0]), 35, 6, 2, 330, 0 },
+  { 167, "ctrl_custom/Thrust allocation/X-position Thruster/Value", offsetof
+    (P_ctrl_custom_T, XpositionThruster_Value[0]), 35, 6, 2, 334, 0 },
 
-  { 166, "ctrl_custom/Thrust allocation/Y-position Thruster/Value", offsetof
-    (P_ctrl_custom_T, YpositionThruster_Value[0]), 35, 6, 2, 332, 0 },
+  { 168, "ctrl_custom/Thrust allocation/Y-position Thruster/Value", offsetof
+    (P_ctrl_custom_T, YpositionThruster_Value[0]), 35, 6, 2, 336, 0 },
 
-  { 167, "ctrl_custom/Thrust allocation/constant angle/Value", offsetof
-    (P_ctrl_custom_T, constantangle_Value[0]), 35, 6, 2, 334, 0 },
+  { 169, "ctrl_custom/Thrust allocation/constant angle/Value", offsetof
+    (P_ctrl_custom_T, constantangle_Value[0]), 35, 6, 2, 338, 0 },
 
-  { 168,
+  { 170,
     "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/Threshold",
-    offsetof(P_ctrl_custom_T, ChoosingFixedAzimuthangle_Thres), 62, 1, 2, 336, 0
+    offsetof(P_ctrl_custom_T, ChoosingFixedAzimuthangle_Thres), 62, 1, 2, 340, 0
   },
 
-  { 169, "ctrl_custom/Thruster control /Subsystem1/Saturation 1/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation1_UpperSat), 62, 1, 2, 338, 0 },
+  { 171, "ctrl_custom/Thruster control /Subsystem1/Saturation 1/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation1_UpperSat), 62, 1, 2, 342, 0 },
 
-  { 170, "ctrl_custom/Thruster control /Subsystem1/Saturation 1/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation1_LowerSat), 62, 1, 2, 340, 0 },
+  { 172, "ctrl_custom/Thruster control /Subsystem1/Saturation 1/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation1_LowerSat), 62, 1, 2, 344, 0 },
 
-  { 171, "ctrl_custom/Thruster control /Subsystem1/Saturation 2/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation2_UpperSat), 62, 1, 2, 342, 0 },
+  { 173, "ctrl_custom/Thruster control /Subsystem1/Saturation 2/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation2_UpperSat), 62, 1, 2, 346, 0 },
 
-  { 172, "ctrl_custom/Thruster control /Subsystem1/Saturation 2/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation2_LowerSat), 62, 1, 2, 344, 0 },
+  { 174, "ctrl_custom/Thruster control /Subsystem1/Saturation 2/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation2_LowerSat), 62, 1, 2, 348, 0 },
 
-  { 173, "ctrl_custom/Thruster control /Subsystem1/Saturation 3/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation3_UpperSat), 62, 1, 2, 346, 0 },
+  { 175, "ctrl_custom/Thruster control /Subsystem1/Saturation 3/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation3_UpperSat), 62, 1, 2, 350, 0 },
 
-  { 174, "ctrl_custom/Thruster control /Subsystem1/Saturation 3/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation3_LowerSat), 62, 1, 2, 348, 0 },
+  { 176, "ctrl_custom/Thruster control /Subsystem1/Saturation 3/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation3_LowerSat), 62, 1, 2, 352, 0 },
 
-  { 175, "ctrl_custom/Thruster control /Subsystem1/Saturation 4/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation4_UpperSat), 62, 1, 2, 350, 0 },
+  { 177, "ctrl_custom/Thruster control /Subsystem1/Saturation 4/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation4_UpperSat), 62, 1, 2, 354, 0 },
 
-  { 176, "ctrl_custom/Thruster control /Subsystem1/Saturation 4/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation4_LowerSat), 62, 1, 2, 352, 0 },
+  { 178, "ctrl_custom/Thruster control /Subsystem1/Saturation 4/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation4_LowerSat), 62, 1, 2, 356, 0 },
 
-  { 177, "ctrl_custom/Thruster control /Subsystem1/Saturation 5/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation5_UpperSat), 62, 1, 2, 354, 0 },
+  { 179, "ctrl_custom/Thruster control /Subsystem1/Saturation 5/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation5_UpperSat), 62, 1, 2, 358, 0 },
 
-  { 178, "ctrl_custom/Thruster control /Subsystem1/Saturation 5/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation5_LowerSat), 62, 1, 2, 356, 0 },
+  { 180, "ctrl_custom/Thruster control /Subsystem1/Saturation 5/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation5_LowerSat), 62, 1, 2, 360, 0 },
 
-  { 179, "ctrl_custom/Thruster control /Subsystem1/Saturation 6/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation6_UpperSat), 62, 1, 2, 358, 0 },
+  { 181, "ctrl_custom/Thruster control /Subsystem1/Saturation 6/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation6_UpperSat), 62, 1, 2, 362, 0 },
 
-  { 180, "ctrl_custom/Thruster control /Subsystem1/Saturation 6/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation6_LowerSat), 62, 1, 2, 360, 0 },
+  { 182, "ctrl_custom/Thruster control /Subsystem1/Saturation 6/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation6_LowerSat), 62, 1, 2, 364, 0 },
 
-  { 181, "ctrl_custom/Radians to Degrees/Gain/Gain", offsetof(P_ctrl_custom_T,
-    Gain_Gain_oe), 62, 1, 2, 362, 0 },
+  { 183, "ctrl_custom/Radians to Degrees/Gain/Gain", offsetof(P_ctrl_custom_T,
+    Gain_Gain_oe), 62, 1, 2, 366, 0 },
 
-  { 182, "ctrl_custom/X-position Thruster/Value", offsetof(P_ctrl_custom_T,
-    XpositionThruster_Value_k[0]), 35, 6, 2, 364, 0 },
+  { 184, "ctrl_custom/X-position Thruster/Value", offsetof(P_ctrl_custom_T,
+    XpositionThruster_Value_k[0]), 35, 6, 2, 368, 0 },
 
-  { 183, "ctrl_custom/Y-position Thruster/Value", offsetof(P_ctrl_custom_T,
-    YpositionThruster_Value_l[0]), 35, 6, 2, 366, 0 },
-
-  { 184,
-    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Saturation/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation_UpperSat_j), 62, 1, 2, 368, 0 },
-
-  { 185,
-    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Saturation/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation_LowerSat_f), 62, 1, 2, 370, 0 },
+  { 185, "ctrl_custom/Y-position Thruster/Value", offsetof(P_ctrl_custom_T,
+    YpositionThruster_Value_l[0]), 35, 6, 2, 370, 0 },
 
   { 186,
-    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Gain/Gain",
-    offsetof(P_ctrl_custom_T, Gain_Gain_gg), 62, 1, 2, 372, 0 },
+    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Saturation/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation_UpperSat_j), 62, 1, 2, 372, 0 },
 
   { 187,
-    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Constant/Value",
-    offsetof(P_ctrl_custom_T, Constant_Value_i), 62, 1, 2, 374, 0 },
+    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Saturation/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation_LowerSat_f), 62, 1, 2, 374, 0 },
 
-  { 188, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator2_IC_i), 36, 3, 2, 376, 0 },
+  { 188,
+    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Gain/Gain",
+    offsetof(P_ctrl_custom_T, Gain_Gain_gg), 62, 1, 2, 376, 0 },
 
   { 189,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant6/Value",
-    offsetof(P_ctrl_custom_T, Constant6_Value), 62, 1, 2, 378, 0 },
+    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Constant/Value",
+    offsetof(P_ctrl_custom_T, Constant_Value_i), 62, 1, 2, 378, 0 },
 
-  { 190,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant7/Value",
-    offsetof(P_ctrl_custom_T, Constant7_Value), 62, 1, 2, 380, 0 },
+  { 190, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator2_IC_i), 36, 3, 2, 380, 0 },
 
   { 191,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant8/Value",
-    offsetof(P_ctrl_custom_T, Constant8_Value), 62, 1, 2, 382, 0 },
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant6/Value",
+    offsetof(P_ctrl_custom_T, Constant6_Value), 62, 1, 2, 382, 0 },
 
-  { 192, "ctrl_custom/Nonlinear Passisve Observer/M^-1/Gain", offsetof
-    (P_ctrl_custom_T, M1_Gain), 25, 9, 2, 384, 0 },
+  { 192,
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant7/Value",
+    offsetof(P_ctrl_custom_T, Constant7_Value), 62, 1, 2, 384, 0 },
 
   { 193,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 1/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation1_LowerSat_p), 62, 1, 2, 386, 0 },
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant8/Value",
+    offsetof(P_ctrl_custom_T, Constant8_Value), 62, 1, 2, 386, 0 },
 
-  { 194,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 2/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation2_UpperSat_j), 62, 1, 2, 388, 0 },
+  { 194, "ctrl_custom/Nonlinear Passisve Observer/M^-1/Gain", offsetof
+    (P_ctrl_custom_T, M1_Gain), 25, 9, 2, 388, 0 },
 
   { 195,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 8/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation8_LowerSat), 62, 1, 2, 390, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 1/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation1_LowerSat_p), 62, 1, 2, 390, 0 },
 
   { 196,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 9/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation9_UpperSat), 62, 1, 2, 392, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 2/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation2_UpperSat_j), 62, 1, 2, 392, 0 },
 
   { 197,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 10/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation10_LowerSat), 62, 1, 2, 394, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 8/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation8_LowerSat), 62, 1, 2, 394, 0 },
 
   { 198,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 11/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation11_UpperSat), 62, 1, 2, 396, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 9/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation9_UpperSat), 62, 1, 2, 396, 0 },
 
   { 199,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 3/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation3_LowerSat_m), 62, 1, 2, 398, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 10/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation10_LowerSat), 62, 1, 2, 398, 0 },
 
   { 200,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 4/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation4_UpperSat_l), 62, 1, 2, 400, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 11/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation11_UpperSat), 62, 1, 2, 400, 0 },
 
   { 201,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 5/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation5_LowerSat_j), 62, 1, 2, 402, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 3/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation3_LowerSat_m), 62, 1, 2, 402, 0 },
 
   { 202,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 6/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation6_UpperSat_c), 62, 1, 2, 404, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 4/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation4_UpperSat_l), 62, 1, 2, 404, 0 },
 
   { 203,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 12/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation12_LowerSat), 62, 1, 2, 406, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 5/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation5_LowerSat_j), 62, 1, 2, 406, 0 },
 
   { 204,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 13/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation13_UpperSat), 62, 1, 2, 408, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 6/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation6_UpperSat_c), 62, 1, 2, 408, 0 },
 
   { 205,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant/Value",
-    offsetof(P_ctrl_custom_T, Constant_Value_g), 62, 1, 2, 410, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 12/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation12_LowerSat), 62, 1, 2, 410, 0 },
 
   { 206,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_o), 62, 1, 2, 412, 0 },
+    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 13/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation13_UpperSat), 62, 1, 2, 412, 0 },
 
   { 207,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value), 62, 1, 2, 414, 0 },
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant/Value",
+    offsetof(P_ctrl_custom_T, Constant_Value_g), 62, 1, 2, 414, 0 },
 
   { 208,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant3/Value",
-    offsetof(P_ctrl_custom_T, Constant3_Value), 62, 1, 2, 416, 0 },
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_o), 62, 1, 2, 416, 0 },
 
   { 209,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant4/Value",
-    offsetof(P_ctrl_custom_T, Constant4_Value), 62, 1, 2, 418, 0 },
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value), 62, 1, 2, 418, 0 },
 
   { 210,
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant3/Value",
+    offsetof(P_ctrl_custom_T, Constant3_Value), 62, 1, 2, 420, 0 },
+
+  { 211,
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant4/Value",
+    offsetof(P_ctrl_custom_T, Constant4_Value), 62, 1, 2, 422, 0 },
+
+  { 212,
     "ctrl_custom/Initialization of parameters/Observer Gains/Constant5/Value",
-    offsetof(P_ctrl_custom_T, Constant5_Value), 62, 1, 2, 420, 0 },
+    offsetof(P_ctrl_custom_T, Constant5_Value), 62, 1, 2, 424, 0 },
 
-  { 211, "ctrl_custom/PID controller/Gain5/Gain", offsetof(P_ctrl_custom_T,
-    Gain5_Gain_a), 62, 1, 2, 422, 0 },
+  { 213, "ctrl_custom/PID controller/Gain5/Gain", offsetof(P_ctrl_custom_T,
+    Gain5_Gain_a), 62, 1, 2, 426, 0 },
 
-  { 212, "ctrl_custom/Referance/Integrator/InitialCondition", offsetof
-    (P_ctrl_custom_T, Integrator_IC_m), 62, 1, 2, 424, 0 },
+  { 214, "ctrl_custom/Referance/Gain5/Gain", offsetof(P_ctrl_custom_T,
+    Gain5_Gain_n), 62, 1, 2, 428, 0 },
 
-  { 213, "ctrl_custom/Thruster control /Delay/InitialCondition", offsetof
-    (P_ctrl_custom_T, Delay_InitialCondition), 62, 1, 2, 426, 0 },
+  { 215, "ctrl_custom/Referance/Integrator/InitialCondition", offsetof
+    (P_ctrl_custom_T, Integrator_IC_m), 62, 1, 2, 430, 0 },
 
-  { 214, "ctrl_custom/Thruster control /Thruster 1/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_j[0]), 37, 2, 2, 428, 0 },
+  { 216, "ctrl_custom/Thruster control /Delay/InitialCondition", offsetof
+    (P_ctrl_custom_T, Delay_InitialCondition), 62, 1, 2, 432, 0 },
 
-  { 215, "ctrl_custom/Thruster control /Thruster 1/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_i[0]), 37, 2, 2, 430, 0 },
+  { 217, "ctrl_custom/Thruster control /Thruster 1/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_j[0]), 37, 2, 2, 434, 0 },
 
-  { 216, "ctrl_custom/Thruster control /Thruster 1/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_m), 62, 1, 2, 432, 0 },
+  { 218, "ctrl_custom/Thruster control /Thruster 1/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_i[0]), 37, 2, 2, 436, 0 },
 
-  { 217,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_a), 62, 1, 2, 434, 0 },
-
-  { 218,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_p[0]), 30, 3, 2, 436, 0 },
-
-  { 219,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_b[0]), 30, 3, 2, 438, 0 },
+  { 219, "ctrl_custom/Thruster control /Thruster 1/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_m), 62, 1, 2, 438, 0 },
 
   { 220,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialStat), 62, 1, 2, 440, 0
-  },
+    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_a), 62, 1, 2, 440, 0 },
 
   { 221,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt), 0, 1, 2, 442, 0 },
+    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_p[0]), 30, 3, 2, 442, 0 },
 
   { 222,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_RisingLim), 0, 1, 2, 444, 0 },
+    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_b[0]), 30, 3, 2, 444, 0 },
 
   { 223,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_FallingLim), 0, 1, 2, 446, 0 },
+    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialStat), 62, 1, 2, 446, 0
+  },
 
   { 224,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/InitialCondition",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_IC), 62, 1, 2, 448, 0 },
+    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt), 0, 1, 2, 448, 0 },
 
-  { 225, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0), 62, 1, 2, 450, 0 },
+  { 225,
+    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_RisingLim), 0, 1, 2, 450, 0 },
 
   { 226,
+    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_FallingLim), 0, 1, 2, 452, 0 },
+
+  { 227,
+    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/InitialCondition",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_IC), 62, 1, 2, 454, 0 },
+
+  { 228, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0), 62, 1, 2, 456, 0 },
+
+  { 229,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_j), 62, 1, 2, 452, 0 },
+    offsetof(P_ctrl_custom_T, Integrator_IC_j), 62, 1, 2, 458, 0 },
 
-  { 227, "ctrl_custom/Thruster control /Thruster 1/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value), 62, 1, 2, 454, 0 },
+  { 230, "ctrl_custom/Thruster control /Thruster 1/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value), 62, 1, 2, 460, 0 },
 
-  { 228,
+  { 231,
     "ctrl_custom/Thruster control /Thruster 1/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_i), 62, 1, 2, 456, 0
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_i), 62, 1, 2, 462, 0
   },
 
-  { 229, "ctrl_custom/Thruster control /Thruster 2/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_d[0]), 37, 2, 2, 458, 0 },
+  { 232, "ctrl_custom/Thruster control /Thruster 2/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_d[0]), 37, 2, 2, 464, 0 },
 
-  { 230, "ctrl_custom/Thruster control /Thruster 2/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_b[0]), 37, 2, 2, 460, 0 },
+  { 233, "ctrl_custom/Thruster control /Thruster 2/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_b[0]), 37, 2, 2, 466, 0 },
 
-  { 231, "ctrl_custom/Thruster control /Thruster 2/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_j), 62, 1, 2, 462, 0 },
-
-  { 232,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_n), 62, 1, 2, 464, 0 },
-
-  { 233,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_m[0]), 30, 3, 2, 466, 0 },
-
-  { 234,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_k[0]), 30, 3, 2, 468, 0 },
+  { 234, "ctrl_custom/Thruster control /Thruster 2/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_j), 62, 1, 2, 468, 0 },
 
   { 235,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_f), 62, 1, 2, 470, 0
-  },
+    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_n), 62, 1, 2, 470, 0 },
 
   { 236,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_g), 0, 1, 2, 472, 0 },
+    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_m[0]), 30, 3, 2, 472, 0 },
 
   { 237,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_RisingLim_p), 0, 1, 2, 474, 0 },
+    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_k[0]), 30, 3, 2, 474, 0 },
 
   { 238,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_FallingLim_n), 0, 1, 2, 476, 0 },
+    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_f), 62, 1, 2, 476, 0
+  },
 
   { 239,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/InitialCondition",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_IC_l), 62, 1, 2, 478, 0 },
+    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_g), 0, 1, 2, 478, 0 },
 
-  { 240, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_h), 62, 1, 2, 480, 0 },
+  { 240,
+    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_RisingLim_p), 0, 1, 2, 480, 0 },
 
   { 241,
+    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_FallingLim_n), 0, 1, 2, 482, 0 },
+
+  { 242,
+    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/InitialCondition",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_IC_l), 62, 1, 2, 484, 0 },
+
+  { 243, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_h), 62, 1, 2, 486, 0 },
+
+  { 244,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_p), 62, 1, 2, 482, 0 },
+    offsetof(P_ctrl_custom_T, Integrator_IC_p), 62, 1, 2, 488, 0 },
 
-  { 242, "ctrl_custom/Thruster control /Thruster 2/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_n), 62, 1, 2, 484, 0 },
+  { 245, "ctrl_custom/Thruster control /Thruster 2/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_n), 62, 1, 2, 490, 0 },
 
-  { 243,
+  { 246,
     "ctrl_custom/Thruster control /Thruster 2/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_p), 62, 1, 2, 486, 0
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_p), 62, 1, 2, 492, 0
   },
 
-  { 244, "ctrl_custom/Thruster control /Thruster 3/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_gq[0]), 37, 2, 2, 488, 0 },
+  { 247, "ctrl_custom/Thruster control /Thruster 3/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_gq[0]), 37, 2, 2, 494, 0 },
 
-  { 245, "ctrl_custom/Thruster control /Thruster 3/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_l[0]), 37, 2, 2, 490, 0 },
+  { 248, "ctrl_custom/Thruster control /Thruster 3/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_l[0]), 37, 2, 2, 496, 0 },
 
-  { 246, "ctrl_custom/Thruster control /Thruster 3/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_b), 62, 1, 2, 492, 0 },
-
-  { 247,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_o), 62, 1, 2, 494, 0 },
-
-  { 248,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_c[0]), 30, 3, 2, 496, 0 },
-
-  { 249,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_k5[0]), 30, 3, 2, 498, 0 },
+  { 249, "ctrl_custom/Thruster control /Thruster 3/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_b), 62, 1, 2, 498, 0 },
 
   { 250,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_h), 62, 1, 2, 500, 0
-  },
+    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_o), 62, 1, 2, 500, 0 },
 
   { 251,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_i), 0, 1, 2, 502, 0 },
+    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_c[0]), 30, 3, 2, 502, 0 },
 
   { 252,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim), 0, 1, 2, 504, 0 },
+    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_k5[0]), 30, 3, 2, 504, 0 },
 
   { 253,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLim), 0, 1, 2, 506, 0 },
+    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_h), 62, 1, 2, 506, 0
+  },
 
   { 254,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/InitialCondition",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC), 62, 1, 2, 508, 0 },
+    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_i), 0, 1, 2, 508, 0 },
 
-  { 255, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_d), 62, 1, 2, 510, 0 },
+  { 255,
+    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim), 0, 1, 2, 510, 0 },
 
   { 256,
+    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLim), 0, 1, 2, 512, 0 },
+
+  { 257,
+    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/InitialCondition",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC), 62, 1, 2, 514, 0 },
+
+  { 258, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_d), 62, 1, 2, 516, 0 },
+
+  { 259,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_k), 62, 1, 2, 512, 0 },
+    offsetof(P_ctrl_custom_T, Integrator_IC_k), 62, 1, 2, 518, 0 },
 
-  { 257, "ctrl_custom/Thruster control /Thruster 3/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_k), 62, 1, 2, 514, 0 },
+  { 260, "ctrl_custom/Thruster control /Thruster 3/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_k), 62, 1, 2, 520, 0 },
 
-  { 258,
+  { 261,
     "ctrl_custom/Thruster control /Thruster 3/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_n), 62, 1, 2, 516, 0
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_n), 62, 1, 2, 522, 0
   },
 
-  { 259, "ctrl_custom/Thruster control /Thruster 4/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_m[0]), 37, 2, 2, 518, 0 },
+  { 262, "ctrl_custom/Thruster control /Thruster 4/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_m[0]), 37, 2, 2, 524, 0 },
 
-  { 260, "ctrl_custom/Thruster control /Thruster 4/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_h[0]), 37, 2, 2, 520, 0 },
+  { 263, "ctrl_custom/Thruster control /Thruster 4/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_h[0]), 37, 2, 2, 526, 0 },
 
-  { 261, "ctrl_custom/Thruster control /Thruster 4/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_d), 62, 1, 2, 522, 0 },
-
-  { 262,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_b4), 62, 1, 2, 524, 0 },
-
-  { 263,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_d[0]), 30, 3, 2, 526, 0 },
-
-  { 264,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_h[0]), 30, 3, 2, 528, 0 },
+  { 264, "ctrl_custom/Thruster control /Thruster 4/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_d), 62, 1, 2, 528, 0 },
 
   { 265,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_nq), 62, 1, 2, 530, 0
-  },
+    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_b4), 62, 1, 2, 530, 0 },
 
   { 266,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_n), 0, 1, 2, 532, 0 },
+    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_d[0]), 30, 3, 2, 532, 0 },
 
   { 267,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_i), 0, 1, 2, 534, 0
-  },
+    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_h[0]), 30, 3, 2, 534, 0 },
 
   { 268,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_i), 0, 1, 2, 536, 0
+    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_nq), 62, 1, 2, 536, 0
   },
 
   { 269,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/InitialCondition",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_i), 62, 1, 2, 538, 0 },
+    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_n), 0, 1, 2, 538, 0 },
 
-  { 270, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_b), 62, 1, 2, 540, 0 },
+  { 270,
+    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_i), 0, 1, 2, 540, 0
+  },
 
   { 271,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_l), 62, 1, 2, 542, 0 },
-
-  { 272, "ctrl_custom/Thruster control /Thruster 4/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_ks), 62, 1, 2, 544, 0 },
-
-  { 273,
-    "ctrl_custom/Thruster control /Thruster 4/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_g), 62, 1, 2, 546, 0
+    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_i), 0, 1, 2, 542, 0
   },
 
-  { 274, "ctrl_custom/Thruster control /Thruster 5/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_gh[0]), 37, 2, 2, 548, 0 },
+  { 272,
+    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/InitialCondition",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_i), 62, 1, 2, 544, 0 },
 
-  { 275, "ctrl_custom/Thruster control /Thruster 5/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_e[0]), 37, 2, 2, 550, 0 },
+  { 273, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_b), 62, 1, 2, 546, 0 },
 
-  { 276, "ctrl_custom/Thruster control /Thruster 5/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_g), 62, 1, 2, 552, 0 },
+  { 274,
+    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_l), 62, 1, 2, 548, 0 },
 
-  { 277,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_p), 62, 1, 2, 554, 0 },
+  { 275, "ctrl_custom/Thruster control /Thruster 4/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_ks), 62, 1, 2, 550, 0 },
 
-  { 278,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_k[0]), 30, 3, 2, 556, 0 },
+  { 276,
+    "ctrl_custom/Thruster control /Thruster 4/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_g), 62, 1, 2, 552, 0
+  },
 
-  { 279,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_b0[0]), 30, 3, 2, 558, 0 },
+  { 277, "ctrl_custom/Thruster control /Thruster 5/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_gh[0]), 37, 2, 2, 554, 0 },
+
+  { 278, "ctrl_custom/Thruster control /Thruster 5/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_e[0]), 37, 2, 2, 556, 0 },
+
+  { 279, "ctrl_custom/Thruster control /Thruster 5/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_g), 62, 1, 2, 558, 0 },
 
   { 280,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_il), 62, 1, 2, 560, 0
-  },
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_p), 62, 1, 2, 560, 0 },
 
   { 281,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_ih), 0, 1, 2, 562, 0 },
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_k[0]), 30, 3, 2, 562, 0 },
 
   { 282,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_k), 0, 1, 2, 564, 0
-  },
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_b0[0]), 30, 3, 2, 564, 0 },
 
   { 283,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_c), 0, 1, 2, 566, 0
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_il), 62, 1, 2, 566, 0
   },
 
   { 284,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/InitialCondition",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_d), 62, 1, 2, 568, 0 },
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_ih), 0, 1, 2, 568, 0 },
 
-  { 285, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_n), 62, 1, 2, 570, 0 },
+  { 285,
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_k), 0, 1, 2, 570, 0
+  },
 
   { 286,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_hh), 62, 1, 2, 572, 0 },
-
-  { 287, "ctrl_custom/Thruster control /Thruster 5/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_ny), 62, 1, 2, 574, 0 },
-
-  { 288,
-    "ctrl_custom/Thruster control /Thruster 5/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_k), 62, 1, 2, 576, 0
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_c), 0, 1, 2, 572, 0
   },
 
-  { 289, "ctrl_custom/Thruster control /Thruster 6/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_b[0]), 37, 2, 2, 578, 0 },
+  { 287,
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/InitialCondition",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_d), 62, 1, 2, 574, 0 },
 
-  { 290, "ctrl_custom/Thruster control /Thruster 6/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_oi[0]), 37, 2, 2, 580, 0 },
+  { 288, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_n), 62, 1, 2, 576, 0 },
 
-  { 291, "ctrl_custom/Thruster control /Thruster 6/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_md), 62, 1, 2, 582, 0 },
+  { 289,
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_hh), 62, 1, 2, 578, 0 },
 
-  { 292,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_gp), 62, 1, 2, 584, 0 },
+  { 290, "ctrl_custom/Thruster control /Thruster 5/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_ny), 62, 1, 2, 580, 0 },
 
-  { 293,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_pu[0]), 30, 3, 2, 586, 0 },
+  { 291,
+    "ctrl_custom/Thruster control /Thruster 5/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_k), 62, 1, 2, 582, 0
+  },
 
-  { 294,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_p[0]), 30, 3, 2, 588, 0 },
+  { 292, "ctrl_custom/Thruster control /Thruster 6/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_b[0]), 37, 2, 2, 584, 0 },
+
+  { 293, "ctrl_custom/Thruster control /Thruster 6/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_oi[0]), 37, 2, 2, 586, 0 },
+
+  { 294, "ctrl_custom/Thruster control /Thruster 6/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_md), 62, 1, 2, 588, 0 },
 
   { 295,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_fz), 62, 1, 2, 590, 0
-  },
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_gp), 62, 1, 2, 590, 0 },
 
   { 296,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_l), 0, 1, 2, 592, 0 },
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_pu[0]), 30, 3, 2, 592, 0 },
 
   { 297,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_b), 0, 1, 2, 594, 0
-  },
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_p[0]), 30, 3, 2, 594, 0 },
 
   { 298,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_j), 0, 1, 2, 596, 0
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_fz), 62, 1, 2, 596, 0
   },
 
   { 299,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/InitialCondition",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_g), 62, 1, 2, 598, 0 },
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_l), 0, 1, 2, 598, 0 },
 
-  { 300, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_m), 62, 1, 2, 600, 0 },
-
-  { 301,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_pr), 62, 1, 2, 602, 0 },
-
-  { 302, "ctrl_custom/Thruster control /Thruster 6/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_m), 62, 1, 2, 604, 0 },
-
-  { 303,
-    "ctrl_custom/Thruster control /Thruster 6/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_j), 62, 1, 2, 606, 0
+  { 300,
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_b), 0, 1, 2, 600, 0
   },
 
-  { 304, "ctrl_custom/Thruster control /Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength), 63, 1, 2, 608, 0 },
+  { 301,
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_j), 0, 1, 2, 602, 0
+  },
 
-  { 305, "ctrl_custom/Thruster control /Thruster 1/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_a), 63, 1, 2, 610, 0 },
+  { 302,
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/InitialCondition",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_g), 62, 1, 2, 604, 0 },
+
+  { 303, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_m), 62, 1, 2, 606, 0 },
+
+  { 304,
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_pr), 62, 1, 2, 608, 0 },
+
+  { 305, "ctrl_custom/Thruster control /Thruster 6/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_m), 62, 1, 2, 610, 0 },
 
   { 306,
+    "ctrl_custom/Thruster control /Thruster 6/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_j), 62, 1, 2, 612, 0
+  },
+
+  { 307, "ctrl_custom/Thruster control /Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength), 63, 1, 2, 614, 0 },
+
+  { 308, "ctrl_custom/Thruster control /Thruster 1/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_a), 63, 1, 2, 616, 0 },
+
+  { 309,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_h), 63, 1, 2, 612, 0 },
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_h), 63, 1, 2, 618, 0 },
 
-  { 307, "ctrl_custom/Thruster control /Thruster 2/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_f), 63, 1, 2, 614, 0 },
+  { 310, "ctrl_custom/Thruster control /Thruster 2/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_f), 63, 1, 2, 620, 0 },
 
-  { 308,
+  { 311,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_o), 63, 1, 2, 616, 0 },
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_o), 63, 1, 2, 622, 0 },
 
-  { 309, "ctrl_custom/Thruster control /Thruster 3/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_e), 63, 1, 2, 618, 0 },
+  { 312, "ctrl_custom/Thruster control /Thruster 3/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_e), 63, 1, 2, 624, 0 },
 
-  { 310,
+  { 313,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_o2), 63, 1, 2, 620, 0 },
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_o2), 63, 1, 2, 626, 0 },
 
-  { 311, "ctrl_custom/Thruster control /Thruster 4/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_k), 63, 1, 2, 622, 0 },
+  { 314, "ctrl_custom/Thruster control /Thruster 4/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_k), 63, 1, 2, 628, 0 },
 
-  { 312,
+  { 315,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_kr), 63, 1, 2, 624, 0 },
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_kr), 63, 1, 2, 630, 0 },
 
-  { 313, "ctrl_custom/Thruster control /Thruster 5/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_n), 63, 1, 2, 626, 0 },
-
-  { 314,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_n4), 63, 1, 2, 628, 0 },
-
-  { 315, "ctrl_custom/Thruster control /Thruster 6/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_ho), 63, 1, 2, 630, 0 },
-
-  { 316,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_hw), 63, 1, 2, 632, 0 },
+  { 316, "ctrl_custom/Thruster control /Thruster 5/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_n), 63, 1, 2, 632, 0 },
 
   { 317,
-    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Discrete-Time Integrator/gainval",
-    offsetof(P_ctrl_custom_T, CoreSubsys.DiscreteTimeIntegrator_gainval), 0, 1,
-    2, 634, 0 },
+    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/DelayLength",
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_n4), 63, 1, 2, 634, 0 },
 
-  { 318,
-    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Degrees to Radians/Gain1/Gain",
-    offsetof(P_ctrl_custom_T, CoreSubsys.Gain1_Gain), 62, 1, 2, 636, 0 },
+  { 318, "ctrl_custom/Thruster control /Thruster 6/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_ho), 63, 1, 2, 636, 0 },
 
   { 319,
-    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, CoreSubsys.Delay_InitialCondition), 62, 1, 2, 638,
-    0 },
+    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/DelayLength",
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_hw), 63, 1, 2, 638, 0 },
 
   { 320,
+    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Discrete-Time Integrator/gainval",
+    offsetof(P_ctrl_custom_T, CoreSubsys.DiscreteTimeIntegrator_gainval), 0, 1,
+    2, 640, 0 },
+
+  { 321,
+    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Degrees to Radians/Gain1/Gain",
+    offsetof(P_ctrl_custom_T, CoreSubsys.Gain1_Gain), 62, 1, 2, 642, 0 },
+
+  { 322,
+    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, CoreSubsys.Delay_InitialCondition), 62, 1, 2, 644,
+    0 },
+
+  { 323,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, CoreSubsys.Delay_DelayLength), 63, 1, 2, 640, 0 },
+    offsetof(P_ctrl_custom_T, CoreSubsys.Delay_DelayLength), 63, 1, 2, 646, 0 },
 };
 
-static int32_t NI_ParamListSize DataSection(".NIVS.paramlistsize") = 321;
+static int32_t NI_ParamListSize DataSection(".NIVS.paramlistsize") = 324;
 static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
 {
   6, 4,                                /* Parameter at index 0 */
@@ -10602,9 +10732,9 @@ static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
   1, 1,                                /* Parameter at index 138 */
   1, 1,                                /* Parameter at index 139 */
   1, 1,                                /* Parameter at index 140 */
-  3, 1,                                /* Parameter at index 141 */
+  1, 1,                                /* Parameter at index 141 */
   1, 1,                                /* Parameter at index 142 */
-  1, 1,                                /* Parameter at index 143 */
+  3, 1,                                /* Parameter at index 143 */
   1, 1,                                /* Parameter at index 144 */
   1, 1,                                /* Parameter at index 145 */
   1, 1,                                /* Parameter at index 146 */
@@ -10626,11 +10756,11 @@ static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
   1, 1,                                /* Parameter at index 162 */
   1, 1,                                /* Parameter at index 163 */
   1, 1,                                /* Parameter at index 164 */
-  1, 6,                                /* Parameter at index 165 */
-  1, 6,                                /* Parameter at index 166 */
+  1, 1,                                /* Parameter at index 165 */
+  1, 1,                                /* Parameter at index 166 */
   1, 6,                                /* Parameter at index 167 */
-  1, 1,                                /* Parameter at index 168 */
-  1, 1,                                /* Parameter at index 169 */
+  1, 6,                                /* Parameter at index 168 */
+  1, 6,                                /* Parameter at index 169 */
   1, 1,                                /* Parameter at index 170 */
   1, 1,                                /* Parameter at index 171 */
   1, 1,                                /* Parameter at index 172 */
@@ -10643,19 +10773,19 @@ static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
   1, 1,                                /* Parameter at index 179 */
   1, 1,                                /* Parameter at index 180 */
   1, 1,                                /* Parameter at index 181 */
-  1, 6,                                /* Parameter at index 182 */
-  1, 6,                                /* Parameter at index 183 */
-  1, 1,                                /* Parameter at index 184 */
-  1, 1,                                /* Parameter at index 185 */
+  1, 1,                                /* Parameter at index 182 */
+  1, 1,                                /* Parameter at index 183 */
+  1, 6,                                /* Parameter at index 184 */
+  1, 6,                                /* Parameter at index 185 */
   1, 1,                                /* Parameter at index 186 */
   1, 1,                                /* Parameter at index 187 */
-  3, 1,                                /* Parameter at index 188 */
+  1, 1,                                /* Parameter at index 188 */
   1, 1,                                /* Parameter at index 189 */
-  1, 1,                                /* Parameter at index 190 */
+  3, 1,                                /* Parameter at index 190 */
   1, 1,                                /* Parameter at index 191 */
-  3, 3,                                /* Parameter at index 192 */
+  1, 1,                                /* Parameter at index 192 */
   1, 1,                                /* Parameter at index 193 */
-  1, 1,                                /* Parameter at index 194 */
+  3, 3,                                /* Parameter at index 194 */
   1, 1,                                /* Parameter at index 195 */
   1, 1,                                /* Parameter at index 196 */
   1, 1,                                /* Parameter at index 197 */
@@ -10675,90 +10805,90 @@ static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
   1, 1,                                /* Parameter at index 211 */
   1, 1,                                /* Parameter at index 212 */
   1, 1,                                /* Parameter at index 213 */
-  1, 2,                                /* Parameter at index 214 */
-  1, 2,                                /* Parameter at index 215 */
+  1, 1,                                /* Parameter at index 214 */
+  1, 1,                                /* Parameter at index 215 */
   1, 1,                                /* Parameter at index 216 */
-  1, 1,                                /* Parameter at index 217 */
-  1, 3,                                /* Parameter at index 218 */
-  1, 3,                                /* Parameter at index 219 */
+  1, 2,                                /* Parameter at index 217 */
+  1, 2,                                /* Parameter at index 218 */
+  1, 1,                                /* Parameter at index 219 */
   1, 1,                                /* Parameter at index 220 */
-  1, 1,                                /* Parameter at index 221 */
-  1, 1,                                /* Parameter at index 222 */
+  1, 3,                                /* Parameter at index 221 */
+  1, 3,                                /* Parameter at index 222 */
   1, 1,                                /* Parameter at index 223 */
   1, 1,                                /* Parameter at index 224 */
   1, 1,                                /* Parameter at index 225 */
   1, 1,                                /* Parameter at index 226 */
   1, 1,                                /* Parameter at index 227 */
   1, 1,                                /* Parameter at index 228 */
-  1, 2,                                /* Parameter at index 229 */
-  1, 2,                                /* Parameter at index 230 */
+  1, 1,                                /* Parameter at index 229 */
+  1, 1,                                /* Parameter at index 230 */
   1, 1,                                /* Parameter at index 231 */
-  1, 1,                                /* Parameter at index 232 */
-  1, 3,                                /* Parameter at index 233 */
-  1, 3,                                /* Parameter at index 234 */
+  1, 2,                                /* Parameter at index 232 */
+  1, 2,                                /* Parameter at index 233 */
+  1, 1,                                /* Parameter at index 234 */
   1, 1,                                /* Parameter at index 235 */
-  1, 1,                                /* Parameter at index 236 */
-  1, 1,                                /* Parameter at index 237 */
+  1, 3,                                /* Parameter at index 236 */
+  1, 3,                                /* Parameter at index 237 */
   1, 1,                                /* Parameter at index 238 */
   1, 1,                                /* Parameter at index 239 */
   1, 1,                                /* Parameter at index 240 */
   1, 1,                                /* Parameter at index 241 */
   1, 1,                                /* Parameter at index 242 */
   1, 1,                                /* Parameter at index 243 */
-  1, 2,                                /* Parameter at index 244 */
-  1, 2,                                /* Parameter at index 245 */
+  1, 1,                                /* Parameter at index 244 */
+  1, 1,                                /* Parameter at index 245 */
   1, 1,                                /* Parameter at index 246 */
-  1, 1,                                /* Parameter at index 247 */
-  1, 3,                                /* Parameter at index 248 */
-  1, 3,                                /* Parameter at index 249 */
+  1, 2,                                /* Parameter at index 247 */
+  1, 2,                                /* Parameter at index 248 */
+  1, 1,                                /* Parameter at index 249 */
   1, 1,                                /* Parameter at index 250 */
-  1, 1,                                /* Parameter at index 251 */
-  1, 1,                                /* Parameter at index 252 */
+  1, 3,                                /* Parameter at index 251 */
+  1, 3,                                /* Parameter at index 252 */
   1, 1,                                /* Parameter at index 253 */
   1, 1,                                /* Parameter at index 254 */
   1, 1,                                /* Parameter at index 255 */
   1, 1,                                /* Parameter at index 256 */
   1, 1,                                /* Parameter at index 257 */
   1, 1,                                /* Parameter at index 258 */
-  1, 2,                                /* Parameter at index 259 */
-  1, 2,                                /* Parameter at index 260 */
+  1, 1,                                /* Parameter at index 259 */
+  1, 1,                                /* Parameter at index 260 */
   1, 1,                                /* Parameter at index 261 */
-  1, 1,                                /* Parameter at index 262 */
-  1, 3,                                /* Parameter at index 263 */
-  1, 3,                                /* Parameter at index 264 */
+  1, 2,                                /* Parameter at index 262 */
+  1, 2,                                /* Parameter at index 263 */
+  1, 1,                                /* Parameter at index 264 */
   1, 1,                                /* Parameter at index 265 */
-  1, 1,                                /* Parameter at index 266 */
-  1, 1,                                /* Parameter at index 267 */
+  1, 3,                                /* Parameter at index 266 */
+  1, 3,                                /* Parameter at index 267 */
   1, 1,                                /* Parameter at index 268 */
   1, 1,                                /* Parameter at index 269 */
   1, 1,                                /* Parameter at index 270 */
   1, 1,                                /* Parameter at index 271 */
   1, 1,                                /* Parameter at index 272 */
   1, 1,                                /* Parameter at index 273 */
-  1, 2,                                /* Parameter at index 274 */
-  1, 2,                                /* Parameter at index 275 */
+  1, 1,                                /* Parameter at index 274 */
+  1, 1,                                /* Parameter at index 275 */
   1, 1,                                /* Parameter at index 276 */
-  1, 1,                                /* Parameter at index 277 */
-  1, 3,                                /* Parameter at index 278 */
-  1, 3,                                /* Parameter at index 279 */
+  1, 2,                                /* Parameter at index 277 */
+  1, 2,                                /* Parameter at index 278 */
+  1, 1,                                /* Parameter at index 279 */
   1, 1,                                /* Parameter at index 280 */
-  1, 1,                                /* Parameter at index 281 */
-  1, 1,                                /* Parameter at index 282 */
+  1, 3,                                /* Parameter at index 281 */
+  1, 3,                                /* Parameter at index 282 */
   1, 1,                                /* Parameter at index 283 */
   1, 1,                                /* Parameter at index 284 */
   1, 1,                                /* Parameter at index 285 */
   1, 1,                                /* Parameter at index 286 */
   1, 1,                                /* Parameter at index 287 */
   1, 1,                                /* Parameter at index 288 */
-  1, 2,                                /* Parameter at index 289 */
-  1, 2,                                /* Parameter at index 290 */
+  1, 1,                                /* Parameter at index 289 */
+  1, 1,                                /* Parameter at index 290 */
   1, 1,                                /* Parameter at index 291 */
-  1, 1,                                /* Parameter at index 292 */
-  1, 3,                                /* Parameter at index 293 */
-  1, 3,                                /* Parameter at index 294 */
+  1, 2,                                /* Parameter at index 292 */
+  1, 2,                                /* Parameter at index 293 */
+  1, 1,                                /* Parameter at index 294 */
   1, 1,                                /* Parameter at index 295 */
-  1, 1,                                /* Parameter at index 296 */
-  1, 1,                                /* Parameter at index 297 */
+  1, 3,                                /* Parameter at index 296 */
+  1, 3,                                /* Parameter at index 297 */
   1, 1,                                /* Parameter at index 298 */
   1, 1,                                /* Parameter at index 299 */
   1, 1,                                /* Parameter at index 300 */
@@ -10782,6 +10912,9 @@ static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
   1, 1,                                /* Parameter at index 318 */
   1, 1,                                /* Parameter at index 319 */
   1, 1,                                /* Parameter at index 320 */
+  1, 1,                                /* Parameter at index 321 */
+  1, 1,                                /* Parameter at index 322 */
+  1, 1,                                /* Parameter at index 323 */
 };
 
 static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
@@ -10874,1247 +11007,1259 @@ static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
     (B_ctrl_custom_T, regulationerror) + (2*sizeof(real_T)), BLOCKIO_SIG, 22, 1,
     2, 0, 0 },
 
-  { 24, "ctrl_custom/Referance/Integrator1/(1, 1)", 0, "", offsetof
+  { 24, "ctrl_custom/PID controller/Integrator1/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, Integrator1) + (0*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2,
     0, 0 },
 
-  { 25, "ctrl_custom/Referance/Integrator1/(1, 2)", 0, "", offsetof
+  { 25, "ctrl_custom/PID controller/Integrator1/(1, 2)", 0, "", offsetof
     (B_ctrl_custom_T, Integrator1) + (1*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2,
     0, 0 },
 
-  { 26, "ctrl_custom/Referance/Integrator1/(1, 3)", 0, "", offsetof
+  { 26, "ctrl_custom/PID controller/Integrator1/(1, 3)", 0, "", offsetof
     (B_ctrl_custom_T, Integrator1) + (2*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2,
     0, 0 },
 
-  { 27, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/(1, 1)", 0, "",
+  { 27, "ctrl_custom/Referance/Integrator1/(1, 1)", 0, "", offsetof
+    (B_ctrl_custom_T, Integrator1_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2,
+    0, 0 },
+
+  { 28, "ctrl_custom/Referance/Integrator1/(1, 2)", 0, "", offsetof
+    (B_ctrl_custom_T, Integrator1_i) + (1*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2,
+    0, 0 },
+
+  { 29, "ctrl_custom/Referance/Integrator1/(1, 3)", 0, "", offsetof
+    (B_ctrl_custom_T, Integrator1_i) + (2*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2,
+    0, 0 },
+
+  { 30, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/(1, 1)", 0, "",
     offsetof(B_ctrl_custom_T, Integrator1_a) + (0*sizeof(real_T)), BLOCKIO_SIG,
     22, 1, 2, 0, 0 },
 
-  { 28, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/(1, 2)", 0, "",
+  { 31, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/(1, 2)", 0, "",
     offsetof(B_ctrl_custom_T, Integrator1_a) + (1*sizeof(real_T)), BLOCKIO_SIG,
     22, 1, 2, 0, 0 },
 
-  { 29, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/(1, 3)", 0, "",
+  { 32, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/(1, 3)", 0, "",
     offsetof(B_ctrl_custom_T, Integrator1_a) + (2*sizeof(real_T)), BLOCKIO_SIG,
     22, 1, 2, 0, 0 },
 
-  { 30, "ctrl_custom/PID controller/Sum1/(1, 1)", 0, "", offsetof
+  { 33, "ctrl_custom/PID controller/Sum1/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, Sum1) + (0*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 31, "ctrl_custom/PID controller/Sum1/(1, 2)", 0, "", offsetof
+  { 34, "ctrl_custom/PID controller/Sum1/(1, 2)", 0, "", offsetof
     (B_ctrl_custom_T, Sum1) + (1*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 32, "ctrl_custom/PID controller/Sum1/(1, 3)", 0, "", offsetof
+  { 35, "ctrl_custom/PID controller/Sum1/(1, 3)", 0, "", offsetof
     (B_ctrl_custom_T, Sum1) + (2*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 33, "ctrl_custom/start2/(1, 1)", 0, "", offsetof(B_ctrl_custom_T, start2) +
+  { 36, "ctrl_custom/start2/(1, 1)", 0, "", offsetof(B_ctrl_custom_T, start2) +
     (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 34, "ctrl_custom/start2/(1, 2)", 0, "", offsetof(B_ctrl_custom_T, start2) +
+  { 37, "ctrl_custom/start2/(1, 2)", 0, "", offsetof(B_ctrl_custom_T, start2) +
     (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 35, "ctrl_custom/start2/(1, 3)", 0, "", offsetof(B_ctrl_custom_T, start2) +
+  { 38, "ctrl_custom/start2/(1, 3)", 0, "", offsetof(B_ctrl_custom_T, start2) +
     (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 36, "ctrl_custom/start2/(1, 4)", 0, "", offsetof(B_ctrl_custom_T, start2) +
+  { 39, "ctrl_custom/start2/(1, 4)", 0, "", offsetof(B_ctrl_custom_T, start2) +
     (3*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 37, "ctrl_custom/start2/(1, 5)", 0, "", offsetof(B_ctrl_custom_T, start2) +
+  { 40, "ctrl_custom/start2/(1, 5)", 0, "", offsetof(B_ctrl_custom_T, start2) +
     (4*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 38, "ctrl_custom/start2/(1, 6)", 0, "", offsetof(B_ctrl_custom_T, start2) +
+  { 41, "ctrl_custom/start2/(1, 6)", 0, "", offsetof(B_ctrl_custom_T, start2) +
     (5*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 39, "ctrl_custom/Gain5", 0, "", offsetof(B_ctrl_custom_T, Gain5) + (0*sizeof
+  { 42, "ctrl_custom/Gain5", 0, "", offsetof(B_ctrl_custom_T, Gain5) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 40, "ctrl_custom/Gain", 0, "", offsetof(B_ctrl_custom_T, Gain_h) + (0*sizeof
+  { 43, "ctrl_custom/Gain", 0, "", offsetof(B_ctrl_custom_T, Gain_h) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 41, "ctrl_custom/Gain1", 0, "", offsetof(B_ctrl_custom_T, Gain1_n) + (0*
+  { 44, "ctrl_custom/Gain1", 0, "", offsetof(B_ctrl_custom_T, Gain1_n) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 42,
+  { 45,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm1", 0,
     "", offsetof(B_ctrl_custom_T, rpm1) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 43,
+  { 46,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm2", 0,
     "", offsetof(B_ctrl_custom_T, rpm2) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 44,
+  { 47,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm3", 0,
     "", offsetof(B_ctrl_custom_T, rpm3) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 45,
+  { 48,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm4", 0,
     "", offsetof(B_ctrl_custom_T, rpm4) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 46,
+  { 49,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm5", 0,
     "", offsetof(B_ctrl_custom_T, rpm5) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 47,
+  { 50,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm6", 0,
     "", offsetof(B_ctrl_custom_T, rpm6) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 48, "ctrl_custom/Thruster measurment/thr_angle_1", 0, "", offsetof
+  { 51, "ctrl_custom/Thruster measurment/thr_angle_1", 0, "", offsetof
     (B_ctrl_custom_T, thr_angle_1) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 49, "ctrl_custom/Thruster measurment/thr_angle_2", 0, "", offsetof
+  { 52, "ctrl_custom/Thruster measurment/thr_angle_2", 0, "", offsetof
     (B_ctrl_custom_T, thr_angle_2) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 50, "ctrl_custom/Thruster measurment/thr_angle_3", 0, "", offsetof
+  { 53, "ctrl_custom/Thruster measurment/thr_angle_3", 0, "", offsetof
     (B_ctrl_custom_T, thr_angle_3) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 51, "ctrl_custom/Thruster measurment/thr_angle_4", 0, "", offsetof
+  { 54, "ctrl_custom/Thruster measurment/thr_angle_4", 0, "", offsetof
     (B_ctrl_custom_T, thr_angle_4) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 52, "ctrl_custom/Thruster measurment/thr_angle_5", 0, "", offsetof
+  { 55, "ctrl_custom/Thruster measurment/thr_angle_5", 0, "", offsetof
     (B_ctrl_custom_T, thr_angle_5) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 53, "ctrl_custom/Thruster measurment/thr_angle_6", 0, "", offsetof
+  { 56, "ctrl_custom/Thruster measurment/thr_angle_6", 0, "", offsetof
     (B_ctrl_custom_T, thr_angle_6) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 54, "ctrl_custom/Thrust allocation/Angle_controller", 0, "", offsetof
+  { 57, "ctrl_custom/Thrust allocation/Angle_controller", 0, "", offsetof
     (B_ctrl_custom_T, Angle_controller) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 55, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 1)",
+  { 58, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 1)",
     0, "", offsetof(B_ctrl_custom_T, ChoosingFixedAzimuthangle) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 56, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 2)",
+  { 59, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 2)",
     0, "", offsetof(B_ctrl_custom_T, ChoosingFixedAzimuthangle) + (1*sizeof
     (real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 57, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 3)",
+  { 60, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 3)",
     0, "", offsetof(B_ctrl_custom_T, ChoosingFixedAzimuthangle) + (2*sizeof
     (real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 58, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 4)",
+  { 61, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 4)",
     0, "", offsetof(B_ctrl_custom_T, ChoosingFixedAzimuthangle) + (3*sizeof
     (real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 59, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 5)",
+  { 62, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 5)",
     0, "", offsetof(B_ctrl_custom_T, ChoosingFixedAzimuthangle) + (4*sizeof
     (real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 60, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 6)",
+  { 63, "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/(1, 6)",
     0, "", offsetof(B_ctrl_custom_T, ChoosingFixedAzimuthangle) + (5*sizeof
     (real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 61, "ctrl_custom/Thruster control /Subsystem1/Saturation 1", 0, "", offsetof
+  { 64, "ctrl_custom/Thruster control /Subsystem1/Saturation 1", 0, "", offsetof
     (B_ctrl_custom_T, Saturation1) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 62, "ctrl_custom/Thruster control /Subsystem1/Saturation 2", 0, "", offsetof
+  { 65, "ctrl_custom/Thruster control /Subsystem1/Saturation 2", 0, "", offsetof
     (B_ctrl_custom_T, Saturation2) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 63, "ctrl_custom/Thruster control /Subsystem1/Saturation 3", 0, "", offsetof
+  { 66, "ctrl_custom/Thruster control /Subsystem1/Saturation 3", 0, "", offsetof
     (B_ctrl_custom_T, Saturation3) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 64, "ctrl_custom/Thruster control /Subsystem1/Saturation 4", 0, "", offsetof
+  { 67, "ctrl_custom/Thruster control /Subsystem1/Saturation 4", 0, "", offsetof
     (B_ctrl_custom_T, Saturation4) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 65, "ctrl_custom/Thruster control /Subsystem1/Saturation 5", 0, "", offsetof
+  { 68, "ctrl_custom/Thruster control /Subsystem1/Saturation 5", 0, "", offsetof
     (B_ctrl_custom_T, Saturation5) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 66, "ctrl_custom/Thruster control /Subsystem1/Saturation 6", 0, "", offsetof
+  { 69, "ctrl_custom/Thruster control /Subsystem1/Saturation 6", 0, "", offsetof
     (B_ctrl_custom_T, Saturation6) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 67, "ctrl_custom/Radians to Degrees/Gain/(1, 1)", 0, "", offsetof
+  { 70, "ctrl_custom/Radians to Degrees/Gain/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, Gain_h2) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0
   },
 
-  { 68, "ctrl_custom/Radians to Degrees/Gain/(1, 2)", 0, "", offsetof
+  { 71, "ctrl_custom/Radians to Degrees/Gain/(1, 2)", 0, "", offsetof
     (B_ctrl_custom_T, Gain_h2) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0
   },
 
-  { 69, "ctrl_custom/Radians to Degrees/Gain/(1, 3)", 0, "", offsetof
+  { 72, "ctrl_custom/Radians to Degrees/Gain/(1, 3)", 0, "", offsetof
     (B_ctrl_custom_T, Gain_h2) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0
   },
 
-  { 70, "ctrl_custom/Radians to Degrees/Gain/(1, 4)", 0, "", offsetof
+  { 73, "ctrl_custom/Radians to Degrees/Gain/(1, 4)", 0, "", offsetof
     (B_ctrl_custom_T, Gain_h2) + (3*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0
   },
 
-  { 71, "ctrl_custom/Radians to Degrees/Gain/(1, 5)", 0, "", offsetof
+  { 74, "ctrl_custom/Radians to Degrees/Gain/(1, 5)", 0, "", offsetof
     (B_ctrl_custom_T, Gain_h2) + (4*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0
   },
 
-  { 72, "ctrl_custom/Radians to Degrees/Gain/(1, 6)", 0, "", offsetof
+  { 75, "ctrl_custom/Radians to Degrees/Gain/(1, 6)", 0, "", offsetof
     (B_ctrl_custom_T, Gain_h2) + (5*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0
   },
 
-  { 73, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 1)", 0, "",
+  { 76, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 1)", 0, "",
     offsetof(B_ctrl_custom_T, Integrator2) + (0*sizeof(real_T)), BLOCKIO_SIG, 22,
     1, 2, 0, 0 },
 
-  { 74, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 2)", 0, "",
+  { 77, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 2)", 0, "",
     offsetof(B_ctrl_custom_T, Integrator2) + (1*sizeof(real_T)), BLOCKIO_SIG, 22,
     1, 2, 0, 0 },
 
-  { 75, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 3)", 0, "",
+  { 78, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 3)", 0, "",
     offsetof(B_ctrl_custom_T, Integrator2) + (2*sizeof(real_T)), BLOCKIO_SIG, 22,
     1, 2, 0, 0 },
 
-  { 76,
+  { 79,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(1, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 77,
+  { 80,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(2, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 78,
+  { 81,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(3, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 79,
+  { 82,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(1, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (3*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 80,
+  { 83,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(2, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (4*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 81,
+  { 84,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(3, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (5*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 82,
+  { 85,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(1, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (6*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 83,
+  { 86,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(2, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (7*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 84,
+  { 87,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(3, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (8*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 85, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 1)", 0, "", offsetof
+  { 88, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, M1) + (0*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 86, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 2)", 0, "", offsetof
+  { 89, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 2)", 0, "", offsetof
     (B_ctrl_custom_T, M1) + (1*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 87, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 3)", 0, "", offsetof
+  { 90, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 3)", 0, "", offsetof
     (B_ctrl_custom_T, M1) + (2*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 88,
+  { 91,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(1, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 89,
+  { 92,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(2, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 90,
+  { 93,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(3, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 91,
+  { 94,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(1, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (3*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 92,
+  { 95,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(2, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (4*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 93,
+  { 96,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(3, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (5*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 94,
+  { 97,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(1, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (6*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 95,
+  { 98,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(2, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (7*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 96,
+  { 99,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(3, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (8*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 97,
+  { 100,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(1, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 98,
+  { 101,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(2, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 99,
+  { 102,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(3, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 100,
+  { 103,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(1, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (3*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 101,
+  { 104,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(2, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (4*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 102,
+  { 105,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(3, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (5*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 103,
+  { 106,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(1, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (6*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 104,
+  { 107,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(2, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (7*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 105,
+  { 108,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(3, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (8*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 106, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 1)", 0,
+  { 109, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 1)", 0,
     "", offsetof(B_ctrl_custom_T, MatrixMultiply1) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 107, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 2)", 0,
+  { 110, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 2)", 0,
     "", offsetof(B_ctrl_custom_T, MatrixMultiply1) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 108, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 3)", 0,
+  { 111, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 3)", 0,
     "", offsetof(B_ctrl_custom_T, MatrixMultiply1) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 109, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 1)", 0, "", offsetof
+  { 112, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, Sum1_g) + (0*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0
   },
 
-  { 110, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 2)", 0, "", offsetof
+  { 113, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 2)", 0, "", offsetof
     (B_ctrl_custom_T, Sum1_g) + (1*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0
   },
 
-  { 111, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 3)", 0, "", offsetof
+  { 114, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 3)", 0, "", offsetof
     (B_ctrl_custom_T, Sum1_g) + (2*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0
   },
 
-  { 112, "ctrl_custom/PID controller/Gain5", 0, "", offsetof(B_ctrl_custom_T,
+  { 115, "ctrl_custom/PID controller/Gain5", 0, "", offsetof(B_ctrl_custom_T,
     Gain5_a) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 113, "ctrl_custom/Referance/x_ref", 0, "", offsetof(B_ctrl_custom_T, x_ref)
+  { 116, "ctrl_custom/Referance/x_ref", 0, "", offsetof(B_ctrl_custom_T, x_ref)
     + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 114, "ctrl_custom/Referance/y_ref", 0, "", offsetof(B_ctrl_custom_T, y_ref)
+  { 117, "ctrl_custom/Referance/y_ref", 0, "", offsetof(B_ctrl_custom_T, y_ref)
     + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 115, "ctrl_custom/Initialization of parameters/Guidance Gains/w_x", 0, "",
+  { 118, "ctrl_custom/Referance/psi_ref", 0, "", offsetof(B_ctrl_custom_T,
+    psi_ref) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 119, "ctrl_custom/Initialization of parameters/Guidance Gains/w_x", 0, "",
     offsetof(B_ctrl_custom_T, w_x) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 116, "ctrl_custom/Initialization of parameters/Guidance Gains/w_y", 0, "",
+  { 120, "ctrl_custom/Initialization of parameters/Guidance Gains/w_y", 0, "",
     offsetof(B_ctrl_custom_T, w_y) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 117, "ctrl_custom/Initialization of parameters/Guidance Gains/w_psi", 0, "",
+  { 121, "ctrl_custom/Initialization of parameters/Guidance Gains/w_psi", 0, "",
     offsetof(B_ctrl_custom_T, w_psi) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 118, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_psi", 0,
+  { 122, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_psi", 0,
     "", offsetof(B_ctrl_custom_T, zeta_psi) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 119, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_x", 0, "",
+  { 123, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_x", 0, "",
     offsetof(B_ctrl_custom_T, zeta_x) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 120, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_y", 0, "",
+  { 124, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_y", 0, "",
     offsetof(B_ctrl_custom_T, zeta_y) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 121, "ctrl_custom/Initialization of parameters/Guidance Gains/T_psi", 0, "",
+  { 125, "ctrl_custom/Initialization of parameters/Guidance Gains/T_psi", 0, "",
     offsetof(B_ctrl_custom_T, T_psi) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 122, "ctrl_custom/Initialization of parameters/Guidance Gains/T_x", 0, "",
+  { 126, "ctrl_custom/Initialization of parameters/Guidance Gains/T_x", 0, "",
     offsetof(B_ctrl_custom_T, T_x) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 123, "ctrl_custom/Initialization of parameters/Guidance Gains/T_y", 0, "",
+  { 127, "ctrl_custom/Initialization of parameters/Guidance Gains/T_y", 0, "",
     offsetof(B_ctrl_custom_T, T_y) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 124, "ctrl_custom/Referance/psi_ref", 0, "", offsetof(B_ctrl_custom_T,
-    psi_ref) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 125, "ctrl_custom/Referance/Sum/(1, 1)", 0, "", offsetof(B_ctrl_custom_T,
+  { 128, "ctrl_custom/Referance/Sum/(1, 1)", 0, "", offsetof(B_ctrl_custom_T,
     Sum_m) + (0*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 126, "ctrl_custom/Referance/Sum/(1, 2)", 0, "", offsetof(B_ctrl_custom_T,
+  { 129, "ctrl_custom/Referance/Sum/(1, 2)", 0, "", offsetof(B_ctrl_custom_T,
     Sum_m) + (1*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 127, "ctrl_custom/Referance/Sum/(1, 3)", 0, "", offsetof(B_ctrl_custom_T,
+  { 130, "ctrl_custom/Referance/Sum/(1, 3)", 0, "", offsetof(B_ctrl_custom_T,
     Sum_m) + (2*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 128, "ctrl_custom/Referance/Sum2/(1, 1)", 0, "", offsetof(B_ctrl_custom_T,
+  { 131, "ctrl_custom/Referance/Sum2/(1, 1)", 0, "", offsetof(B_ctrl_custom_T,
     Sum2) + (0*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 129, "ctrl_custom/Referance/Sum2/(1, 2)", 0, "", offsetof(B_ctrl_custom_T,
+  { 132, "ctrl_custom/Referance/Sum2/(1, 2)", 0, "", offsetof(B_ctrl_custom_T,
     Sum2) + (1*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 130, "ctrl_custom/Referance/Sum2/(1, 3)", 0, "", offsetof(B_ctrl_custom_T,
+  { 133, "ctrl_custom/Referance/Sum2/(1, 3)", 0, "", offsetof(B_ctrl_custom_T,
     Sum2) + (2*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 131, "ctrl_custom/Thruster control /Delay/(1, 1)", 0, "", offsetof
+  { 134, "ctrl_custom/Thruster control /Delay/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 132, "ctrl_custom/Thruster control /Delay/(1, 2)", 0, "", offsetof
+  { 135, "ctrl_custom/Thruster control /Delay/(1, 2)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 133, "ctrl_custom/Thruster control /Delay/(1, 3)", 0, "", offsetof
+  { 136, "ctrl_custom/Thruster control /Delay/(1, 3)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 134, "ctrl_custom/Thruster control /Delay/(1, 4)", 0, "", offsetof
+  { 137, "ctrl_custom/Thruster control /Delay/(1, 4)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (3*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 135, "ctrl_custom/Thruster control /Delay/(1, 5)", 0, "", offsetof
+  { 138, "ctrl_custom/Thruster control /Delay/(1, 5)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (4*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 136, "ctrl_custom/Thruster control /Delay/(1, 6)", 0, "", offsetof
+  { 139, "ctrl_custom/Thruster control /Delay/(1, 6)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (5*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 137, "ctrl_custom/Thruster control /Thruster 1/Delay", 0, "", offsetof
+  { 140, "ctrl_custom/Thruster control /Thruster 1/Delay", 0, "", offsetof
     (B_ctrl_custom_T, Delay_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 138, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay", 0,
+  { 141, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay", 0,
     "", offsetof(B_ctrl_custom_T, Delay_j) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 139,
+  { 142,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Transfer Fcn",
     0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 140,
+  { 143,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Derivative/TSamp",
     0, "", offsetof(B_ctrl_custom_T, TSamp) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 141,
+  { 144,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Inertia compensation",
     0, "", offsetof(B_ctrl_custom_T, Inertiacompensation) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 142, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Sum1", 0, "",
+  { 145, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Sum1", 0, "",
     offsetof(B_ctrl_custom_T, Sum1_b) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 143, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Memory", 0,
+  { 146, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Memory", 0,
     "", offsetof(B_ctrl_custom_T, Memory) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 144,
+  { 147,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Kp",
     0, "", offsetof(B_ctrl_custom_T, Kp) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 145,
+  { 148,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/reset",
     0, "", offsetof(B_ctrl_custom_T, reset) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 146, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Sum", 0, "",
+  { 149, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Sum", 0, "",
     offsetof(B_ctrl_custom_T, Sum_hk) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 147, "ctrl_custom/Thruster control /Thruster 1/Discrete Transfer Fcn", 0, "",
+  { 150, "ctrl_custom/Thruster control /Thruster 1/Discrete Transfer Fcn", 0, "",
     offsetof(B_ctrl_custom_T, DiscreteTransferFcn_b) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 148,
+  { 151,
     "ctrl_custom/Thruster control /Thruster 1/Shaft dynamics/Finding rotation speed",
     0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 149,
+  { 152,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Ki",
     0, "", offsetof(B_ctrl_custom_T, Ki) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 150, "ctrl_custom/Thruster control /Thruster 2/Delay", 0, "", offsetof
+  { 153, "ctrl_custom/Thruster control /Thruster 2/Delay", 0, "", offsetof
     (B_ctrl_custom_T, Delay_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 151, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay", 0,
+  { 154, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay", 0,
     "", offsetof(B_ctrl_custom_T, Delay_b) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 152,
+  { 155,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Transfer Fcn",
     0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_l) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 153,
+  { 156,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Derivative/TSamp",
     0, "", offsetof(B_ctrl_custom_T, TSamp_m) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 154,
+  { 157,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Inertia compensation",
     0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_b) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 155, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Sum1", 0, "",
+  { 158, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Sum1", 0, "",
     offsetof(B_ctrl_custom_T, Sum1_l) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 156, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Memory", 0,
+  { 159, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Memory", 0,
     "", offsetof(B_ctrl_custom_T, Memory_l) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 157,
+  { 160,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Kp",
     0, "", offsetof(B_ctrl_custom_T, Kp_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 158,
+  { 161,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/reset",
     0, "", offsetof(B_ctrl_custom_T, reset_l) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 159, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Sum", 0, "",
+  { 162, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Sum", 0, "",
     offsetof(B_ctrl_custom_T, Sum_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 160, "ctrl_custom/Thruster control /Thruster 2/Discrete Transfer Fcn", 0, "",
+  { 163, "ctrl_custom/Thruster control /Thruster 2/Discrete Transfer Fcn", 0, "",
     offsetof(B_ctrl_custom_T, DiscreteTransferFcn_c) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 161,
+  { 164,
     "ctrl_custom/Thruster control /Thruster 2/Shaft dynamics/Finding rotation speed",
     0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_h) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 162,
+  { 165,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Ki",
     0, "", offsetof(B_ctrl_custom_T, Ki_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 163, "ctrl_custom/Thruster control /Thruster 3/Delay", 0, "", offsetof
+  { 166, "ctrl_custom/Thruster control /Thruster 3/Delay", 0, "", offsetof
     (B_ctrl_custom_T, Delay_h) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 164, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay", 0,
+  { 167, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay", 0,
     "", offsetof(B_ctrl_custom_T, Delay_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 165,
+  { 168,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Transfer Fcn",
     0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_d) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 166,
+  { 169,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Derivative/TSamp",
     0, "", offsetof(B_ctrl_custom_T, TSamp_k) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 167,
+  { 170,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Inertia compensation",
     0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_m) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 168, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Sum1", 0, "",
+  { 171, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Sum1", 0, "",
     offsetof(B_ctrl_custom_T, Sum1_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 169, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Memory", 0,
+  { 172, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Memory", 0,
     "", offsetof(B_ctrl_custom_T, Memory_ln) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 170,
+  { 173,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Kp",
     0, "", offsetof(B_ctrl_custom_T, Kp_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 171,
+  { 174,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/reset",
     0, "", offsetof(B_ctrl_custom_T, reset_i) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 172, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Sum", 0, "",
+  { 175, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Sum", 0, "",
     offsetof(B_ctrl_custom_T, Sum_n) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 173, "ctrl_custom/Thruster control /Thruster 3/Discrete Transfer Fcn", 0, "",
+  { 176, "ctrl_custom/Thruster control /Thruster 3/Discrete Transfer Fcn", 0, "",
     offsetof(B_ctrl_custom_T, DiscreteTransferFcn_o) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 174,
+  { 177,
     "ctrl_custom/Thruster control /Thruster 3/Shaft dynamics/Finding rotation speed",
     0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_m) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 175,
+  { 178,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Ki",
     0, "", offsetof(B_ctrl_custom_T, Ki_o) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 176, "ctrl_custom/Thruster control /Thruster 4/Delay", 0, "", offsetof
+  { 179, "ctrl_custom/Thruster control /Thruster 4/Delay", 0, "", offsetof
     (B_ctrl_custom_T, Delay_e) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 177, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay", 0,
+  { 180, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay", 0,
     "", offsetof(B_ctrl_custom_T, Delay_m) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 178,
+  { 181,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Transfer Fcn",
     0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_p) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 179,
+  { 182,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Derivative/TSamp",
     0, "", offsetof(B_ctrl_custom_T, TSamp_d) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 180,
+  { 183,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Inertia compensation",
     0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_bn) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 181, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Sum1", 0, "",
+  { 184, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Sum1", 0, "",
     offsetof(B_ctrl_custom_T, Sum1_cp) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 182, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Memory", 0,
+  { 185, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Memory", 0,
     "", offsetof(B_ctrl_custom_T, Memory_j) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 183,
+  { 186,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Kp",
     0, "", offsetof(B_ctrl_custom_T, Kp_o) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 184,
+  { 187,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/reset",
     0, "", offsetof(B_ctrl_custom_T, reset_h) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 185, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Sum", 0, "",
+  { 188, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Sum", 0, "",
     offsetof(B_ctrl_custom_T, Sum_a) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 186, "ctrl_custom/Thruster control /Thruster 4/Discrete Transfer Fcn", 0, "",
+  { 189, "ctrl_custom/Thruster control /Thruster 4/Discrete Transfer Fcn", 0, "",
     offsetof(B_ctrl_custom_T, DiscreteTransferFcn_oy) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 187,
+  { 190,
     "ctrl_custom/Thruster control /Thruster 4/Shaft dynamics/Finding rotation speed",
     0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_p) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 188,
+  { 191,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Ki",
     0, "", offsetof(B_ctrl_custom_T, Ki_g) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 189, "ctrl_custom/Thruster control /Thruster 5/Delay", 0, "", offsetof
+  { 192, "ctrl_custom/Thruster control /Thruster 5/Delay", 0, "", offsetof
     (B_ctrl_custom_T, Delay_jj) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 190, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay", 0,
+  { 193, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay", 0,
     "", offsetof(B_ctrl_custom_T, Delay_n) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 191,
+  { 194,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Transfer Fcn",
     0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_br) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 192,
+  { 195,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Derivative/TSamp",
     0, "", offsetof(B_ctrl_custom_T, TSamp_k4) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 193,
+  { 196,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/Inertia compensation",
     0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_a) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 194, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Sum1", 0, "",
+  { 197, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Sum1", 0, "",
     offsetof(B_ctrl_custom_T, Sum1_e) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 195, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Memory", 0,
+  { 198, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Memory", 0,
     "", offsetof(B_ctrl_custom_T, Memory_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 196,
+  { 199,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Kp",
     0, "", offsetof(B_ctrl_custom_T, Kp_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 197,
+  { 200,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/reset",
     0, "", offsetof(B_ctrl_custom_T, reset_e) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 198, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Sum", 0, "",
+  { 201, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Sum", 0, "",
     offsetof(B_ctrl_custom_T, Sum_f) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 199, "ctrl_custom/Thruster control /Thruster 5/Discrete Transfer Fcn", 0, "",
+  { 202, "ctrl_custom/Thruster control /Thruster 5/Discrete Transfer Fcn", 0, "",
     offsetof(B_ctrl_custom_T, DiscreteTransferFcn_m) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 200,
+  { 203,
     "ctrl_custom/Thruster control /Thruster 5/Shaft dynamics/Finding rotation speed",
     0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_j) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 201,
+  { 204,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Ki",
     0, "", offsetof(B_ctrl_custom_T, Ki_m) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 202, "ctrl_custom/Thruster control /Thruster 6/Delay", 0, "", offsetof
+  { 205, "ctrl_custom/Thruster control /Thruster 6/Delay", 0, "", offsetof
     (B_ctrl_custom_T, Delay_mu) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 203, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay", 0,
+  { 206, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay", 0,
     "", offsetof(B_ctrl_custom_T, Delay_e5) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 204,
+  { 207,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Transfer Fcn",
     0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_lk) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 205,
+  { 208,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Derivative/TSamp",
     0, "", offsetof(B_ctrl_custom_T, TSamp_mr) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 206,
+  { 209,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/Inertia compensation",
     0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_b3) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 207, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Sum1", 0, "",
+  { 210, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Sum1", 0, "",
     offsetof(B_ctrl_custom_T, Sum1_p) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 208, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Memory", 0,
+  { 211, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Memory", 0,
     "", offsetof(B_ctrl_custom_T, Memory_o) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 209,
+  { 212,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Kp",
     0, "", offsetof(B_ctrl_custom_T, Kp_k) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 210,
+  { 213,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/reset",
     0, "", offsetof(B_ctrl_custom_T, reset_iu) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 211, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Sum", 0, "",
+  { 214, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Sum", 0, "",
     offsetof(B_ctrl_custom_T, Sum_g) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 212, "ctrl_custom/Thruster control /Thruster 6/Discrete Transfer Fcn", 0, "",
+  { 215, "ctrl_custom/Thruster control /Thruster 6/Discrete Transfer Fcn", 0, "",
     offsetof(B_ctrl_custom_T, DiscreteTransferFcn_f) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 213,
+  { 216,
     "ctrl_custom/Thruster control /Thruster 6/Shaft dynamics/Finding rotation speed",
     0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_c) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 214,
+  { 217,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Ki",
     0, "", offsetof(B_ctrl_custom_T, Ki_l) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 215, "ctrl_custom/IMU/Acc_x", 0, "", offsetof(B_ctrl_custom_T, Acc_x) + (0*
+  { 218, "ctrl_custom/IMU/Acc_x", 0, "", offsetof(B_ctrl_custom_T, Acc_x) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 216, "ctrl_custom/IMU/Acc_y", 0, "", offsetof(B_ctrl_custom_T, Acc_y) + (0*
+  { 219, "ctrl_custom/IMU/Acc_y", 0, "", offsetof(B_ctrl_custom_T, Acc_y) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 217, "ctrl_custom/IMU/Acc_z", 0, "", offsetof(B_ctrl_custom_T, Acc_z) + (0*
+  { 220, "ctrl_custom/IMU/Acc_z", 0, "", offsetof(B_ctrl_custom_T, Acc_z) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 218, "ctrl_custom/IMU/Gyro_x", 0, "", offsetof(B_ctrl_custom_T, Gyro_x) + (0*
+  { 221, "ctrl_custom/IMU/Gyro_x", 0, "", offsetof(B_ctrl_custom_T, Gyro_x) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 219, "ctrl_custom/IMU/Gyro_y", 0, "", offsetof(B_ctrl_custom_T, Gyro_y) + (0*
+  { 222, "ctrl_custom/IMU/Gyro_y", 0, "", offsetof(B_ctrl_custom_T, Gyro_y) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 220, "ctrl_custom/IMU/Gyro_z", 0, "", offsetof(B_ctrl_custom_T, Gyro_z) + (0*
+  { 223, "ctrl_custom/IMU/Gyro_z", 0, "", offsetof(B_ctrl_custom_T, Gyro_z) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 221,
+  { 224,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/MATLAB Function",
     0, "", offsetof(B_ctrl_custom_T, n_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 222,
+  { 225,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/MATLAB Function",
     0, "", offsetof(B_ctrl_custom_T, n_d_m) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 223,
+  { 226,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/MATLAB Function",
     0, "", offsetof(B_ctrl_custom_T, n_d_k) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 224,
+  { 227,
     "ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics/Actual Force and Torque",
     1, "", offsetof(B_ctrl_custom_T, Qa) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 225,
+  { 228,
     "ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics/Actual Force and Torque",
     2, "", offsetof(B_ctrl_custom_T, Pa) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 226,
+  { 229,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function1",
     0, "", offsetof(B_ctrl_custom_T, Tc_out) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 227,
+  { 230,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 1)", offsetof(B_ctrl_custom_T, output) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 228,
+  { 231,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 2)", offsetof(B_ctrl_custom_T, output) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 229,
+  { 232,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 3)", offsetof(B_ctrl_custom_T, output) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 230,
+  { 233,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 4)", offsetof(B_ctrl_custom_T, output) + (3*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 231,
+  { 234,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 5)", offsetof(B_ctrl_custom_T, output) + (4*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 232,
+  { 235,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 6)", offsetof(B_ctrl_custom_T, output) + (5*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 233,
+  { 236,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 7)", offsetof(B_ctrl_custom_T, output) + (6*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 234,
+  { 237,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 8)", offsetof(B_ctrl_custom_T, output) + (7*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 235,
+  { 238,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 9)", offsetof(B_ctrl_custom_T, output) + (8*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 236,
+  { 239,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 10)", offsetof(B_ctrl_custom_T, output) + (9*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 237,
+  { 240,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 11)", offsetof(B_ctrl_custom_T, output) + (10*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 238,
+  { 241,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 12)", offsetof(B_ctrl_custom_T, output) + (11*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 239, "ctrl_custom/MATLAB Function", 0, "(1, 1)", offsetof(B_ctrl_custom_T,
+  { 242, "ctrl_custom/MATLAB Function", 0, "(1, 1)", offsetof(B_ctrl_custom_T,
     commanded_tau) + (0*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 240, "ctrl_custom/MATLAB Function", 0, "(1, 2)", offsetof(B_ctrl_custom_T,
+  { 243, "ctrl_custom/MATLAB Function", 0, "(1, 2)", offsetof(B_ctrl_custom_T,
     commanded_tau) + (1*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 241, "ctrl_custom/MATLAB Function", 0, "(1, 3)", offsetof(B_ctrl_custom_T,
+  { 244, "ctrl_custom/MATLAB Function", 0, "(1, 3)", offsetof(B_ctrl_custom_T,
     commanded_tau) + (2*sizeof(real_T)), BLOCKIO_SIG, 22, 1, 2, 0, 0 },
 
-  { 242, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Supervisor",
+  { 245, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Supervisor",
     0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_gj.u) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 243,
+  { 246,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_g.Qcq) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 244,
+  { 247,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_g.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 245,
+  { 248,
     "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_g.Qcc) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 246,
+  { 249,
     "ctrl_custom/Thruster control /Thruster 6/Propeller Hydrodynamics/Actual Force and Torque",
     0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_c.Ta) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 247,
+  { 250,
     "ctrl_custom/Thruster control /Thruster 6/Propeller Hydrodynamics/Actual Force and Torque",
     1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_c.Qa) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 248, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Supervisor",
+  { 251, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Supervisor",
     0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_p.u) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 249,
+  { 252,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/MATLAB Function",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_o.n_d) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 250,
+  { 253,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/MATLAB Function",
     1, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_o.T_r) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 251,
+  { 254,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_o.Qcq) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 252,
+  { 255,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_o.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 253,
+  { 256,
     "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_o.Qcc) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 254,
+  { 257,
     "ctrl_custom/Thruster control /Thruster 5/Propeller Hydrodynamics/Actual Force and Torque",
     0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_k.Ta) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 255,
+  { 258,
     "ctrl_custom/Thruster control /Thruster 5/Propeller Hydrodynamics/Actual Force and Torque",
     1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_k.Qa) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 256, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Supervisor",
+  { 259, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Supervisor",
     0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_g.u) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 257,
+  { 260,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/MATLAB Function",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_d.n_d) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 258,
+  { 261,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/MATLAB Function",
     1, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_d.T_r) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 259,
+  { 262,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_p.Qcq) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 260,
+  { 263,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_p.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 261,
+  { 264,
     "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_p.Qcc) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 262,
+  { 265,
     "ctrl_custom/Thruster control /Thruster 4/Propeller Hydrodynamics/Actual Force and Torque",
     0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_a.Ta) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 263,
+  { 266,
     "ctrl_custom/Thruster control /Thruster 4/Propeller Hydrodynamics/Actual Force and Torque",
     1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_a.Qa) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 264, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Supervisor",
+  { 267, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Supervisor",
     0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_j.u) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 265,
+  { 268,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePower_ao.Qcq) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 266,
+  { 269,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePower_ao.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 267,
+  { 270,
     "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePower_ao.Qcc) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 268,
+  { 271,
     "ctrl_custom/Thruster control /Thruster 3/Propeller Hydrodynamics/Actual Force and Torque",
     0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_f.Ta) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 269,
+  { 272,
     "ctrl_custom/Thruster control /Thruster 3/Propeller Hydrodynamics/Actual Force and Torque",
     1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_f.Qa) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 270, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Supervisor",
+  { 273, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Supervisor",
     0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_c.u) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 271,
+  { 274,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/MATLAB Function",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_a.n_d) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 272,
+  { 275,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/MATLAB Function",
     1, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_a.T_r) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 273,
+  { 276,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_a.Qcq) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 274,
+  { 277,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_a.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 275,
+  { 278,
     "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_a.Qcc) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 276,
+  { 279,
     "ctrl_custom/Thruster control /Thruster 2/Propeller Hydrodynamics/Actual Force and Torque",
     0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_m.Ta) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 277,
+  { 280,
     "ctrl_custom/Thruster control /Thruster 2/Propeller Hydrodynamics/Actual Force and Torque",
     1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_m.Qa) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 278, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Supervisor",
+  { 281, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Supervisor",
     0, "", offsetof(B_ctrl_custom_T, sf_Supervisor.u) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 279,
+  { 282,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowerand.Qcq) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 280,
+  { 283,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowerand.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 281,
+  { 284,
     "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
     2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowerand.Qcc) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 282,
+  { 285,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function6",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction6.Tc_out) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 283,
+  { 286,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function5",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction5.Tc_out) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 284,
+  { 287,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function4",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction4.Tc_out) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 285,
+  { 288,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function3",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction3.Tc_out) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 286,
+  { 289,
     "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function2",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction2.Tc_out) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 287,
+  { 290,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Discrete-Time Integrator",
     0, "angle", offsetof(B_ctrl_custom_T, CoreSubsys[5].angle) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 288,
+  { 291,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay",
     0, "", offsetof(B_ctrl_custom_T, CoreSubsys[5].Delay) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 289,
+  { 292,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Max Rotation Rate",
     0, "", offsetof(B_ctrl_custom_T, CoreSubsys[5].MaxRotationRate) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 290, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 1)", offsetof
+  { 293, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (0*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 291, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 1)", offsetof
+  { 294, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (1*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 292, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 1)", offsetof
+  { 295, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (2*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 293, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 2)", offsetof
+  { 296, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (3*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 294, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 2)", offsetof
+  { 297, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (4*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 295, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 2)", offsetof
+  { 298, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (5*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 296, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 3)", offsetof
+  { 299, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (6*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 297, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 3)", offsetof
+  { 300, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (7*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 298, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 3)", offsetof
+  { 301, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (8*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 299, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 1)", offsetof
+  { 302, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (0*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 300, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 1)", offsetof
+  { 303, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (1*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 301, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 1)", offsetof
+  { 304, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (2*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 302, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 2)", offsetof
+  { 305, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (3*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 303, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 2)", offsetof
+  { 306, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (4*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 304, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 2)", offsetof
+  { 307, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (5*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 305, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 3)", offsetof
+  { 308, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (6*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 306, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 3)", offsetof
+  { 309, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (7*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 307, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 3)", offsetof
+  { 310, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (8*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
   { -1, "", -1, "", 0, 0, 0 }
 };
 
-static int32_t NI_SigListSize DataSection(".NIVS.siglistsize") = 308;
+static int32_t NI_SigListSize DataSection(".NIVS.siglistsize") = 311;
 static int32_t NI_VirtualBlockSources[1];
 static int32_t NI_SigDimList[] DataSection(".NIVS.sigdimlist") =
 { 1, 1
 };
 
-static int32_t NI_ExtListSize DataSection(".NIVS.extlistsize") = 90;
+static int32_t NI_ExtListSize DataSection(".NIVS.extlistsize") = 93;
 static NI_ExternalIO NI_ExtList[] DataSection(".NIVS.extlist") =
 {
   { 1, "Input to model", 1, EXT_IN, 1, 1, 1 },
@@ -12186,30 +12331,30 @@ static NI_ExternalIO NI_ExtList[] DataSection(".NIVS.extlist") =
 
   { 30, "Referance/y_ref", 0, EXT_IN, 1, 1, 1 },
 
-  { 31, "Initialization of parameters/Guidance Gains/w_x", 0, EXT_IN, 1, 1, 1 },
+  { 31, "Referance/psi_ref", 0, EXT_IN, 1, 1, 1 },
 
-  { 32, "Initialization of parameters/Guidance Gains/w_y", 0, EXT_IN, 1, 1, 1 },
+  { 32, "Initialization of parameters/Guidance Gains/w_x", 0, EXT_IN, 1, 1, 1 },
 
-  { 33, "Initialization of parameters/Guidance Gains/w_psi", 0, EXT_IN, 1, 1, 1
+  { 33, "Initialization of parameters/Guidance Gains/w_y", 0, EXT_IN, 1, 1, 1 },
+
+  { 34, "Initialization of parameters/Guidance Gains/w_psi", 0, EXT_IN, 1, 1, 1
   },
 
-  { 34, "Initialization of parameters/Guidance Gains/zeta_psi", 0, EXT_IN, 1, 1,
+  { 35, "Initialization of parameters/Guidance Gains/zeta_psi", 0, EXT_IN, 1, 1,
     1 },
 
-  { 35, "Initialization of parameters/Guidance Gains/zeta_x", 0, EXT_IN, 1, 1, 1
+  { 36, "Initialization of parameters/Guidance Gains/zeta_x", 0, EXT_IN, 1, 1, 1
   },
 
-  { 36, "Initialization of parameters/Guidance Gains/zeta_y", 0, EXT_IN, 1, 1, 1
+  { 37, "Initialization of parameters/Guidance Gains/zeta_y", 0, EXT_IN, 1, 1, 1
   },
 
-  { 37, "Initialization of parameters/Guidance Gains/T_psi", 0, EXT_IN, 1, 1, 1
+  { 38, "Initialization of parameters/Guidance Gains/T_psi", 0, EXT_IN, 1, 1, 1
   },
 
-  { 38, "Initialization of parameters/Guidance Gains/T_x", 0, EXT_IN, 1, 1, 1 },
+  { 39, "Initialization of parameters/Guidance Gains/T_x", 0, EXT_IN, 1, 1, 1 },
 
-  { 39, "Initialization of parameters/Guidance Gains/T_y", 0, EXT_IN, 1, 1, 1 },
-
-  { 40, "Referance/psi_ref", 0, EXT_IN, 1, 1, 1 },
+  { 40, "Initialization of parameters/Guidance Gains/T_y", 0, EXT_IN, 1, 1, 1 },
 
   { 41, "Thruster control /Thruster 1/Thruster control/Core controller/reset", 0,
     EXT_IN, 1, 1, 1 },
@@ -12315,7 +12460,13 @@ static NI_ExternalIO NI_ExtList[] DataSection(".NIVS.extlist") =
 
   { 37, "PID controller/x_error", 0, EXT_OUT, 1, 1, 1 },
 
-  { 38, "Thruster control /Thruster 1/Propeller Hydrodynamics/Control_test_Pa",
+  { 38, "PID controller/Integral_x", 0, EXT_OUT, 1, 1, 1 },
+
+  { 39, "PID controller/Integral_psi", 0, EXT_OUT, 1, 1, 1 },
+
+  { 40, "PID controller/Integral_y", 0, EXT_OUT, 1, 1, 1 },
+
+  { 41, "Thruster control /Thruster 1/Propeller Hydrodynamics/Control_test_Pa",
     0, EXT_OUT, 1, 1, 1 },
 
   { -1, "", 0, 0, 0, 0, 0 }
@@ -12334,8 +12485,8 @@ NI_Task NI_TaskList[] DataSection(".NIVS.tasklist") =
 int32_t NI_NumTasks DataSection(".NIVS.numtasks") = 1;
 static const char* NI_CompiledModelName DataSection(".NIVS.compiledmodelname") =
   "ctrl_custom";
-static const char* NI_CompiledModelVersion = "1.102";
-static const char* NI_CompiledModelDateTime = "Fri Jul 21 14:06:28 2017";
+static const char* NI_CompiledModelVersion = "1.113";
+static const char* NI_CompiledModelDateTime = "Tue Jul 25 18:27:10 2017";
 static const char* NI_builder DataSection(".NIVS.builder") =
   "NI Model Framework 2017.0.0.143 (2017) for Simulink Coder 8.11 (R2016b)";
 static const char* NI_BuilderVersion DataSection(".NIVS.builderversion") =
@@ -13147,7 +13298,7 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
        NULL)) {
     if (*numContStates < 0 || *numDiscStates < 0 || *numClockTicks < 0) {
       *numContStates = 33;
-      *numDiscStates = 1265.0;
+      *numDiscStates = 1304.0;
       *numClockTicks = NUMST - TID01EQ;
       return NI_OK;
     }
@@ -13587,12 +13738,25 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.x_error_DWORK1, 0,
       0, 0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.x_error_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Integral_x_DWORK1,
+      0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Integral_x_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.Integral_psi_DWORK1, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.Integral_psi_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Integral_y_DWORK1,
+      0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Integral_y_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.x_ref_DWORK1, 0, 0,
       0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.x_ref_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.y_ref_DWORK1, 0, 0,
       0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.y_ref_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.psi_ref_DWORK1, 0,
+      0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.psi_ref_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.w_x_DWORK1, 0, 0,
       0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.w_x_DWORK1");
@@ -13620,9 +13784,6 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.T_y_DWORK1, 0, 0,
       0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.T_y_DWORK1");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.psi_ref_DWORK1, 0,
-      0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.psi_ref_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType
       (&ctrl_custom_DW.DiscreteTransferFcn_tmp, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
@@ -14150,6 +14311,27 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     }
 
     for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.Integral_x_DWORK2, count, 24, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.Integral_x_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.Integral_psi_DWORK2, count, 24, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.Integral_psi_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.Integral_y_DWORK2, count, 24, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.Integral_y_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
       discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.x_ref_DWORK2,
         count, 24, 0);
       strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.x_ref_DWORK2");
@@ -14159,6 +14341,12 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.y_ref_DWORK2,
         count, 24, 0);
       strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.y_ref_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.psi_ref_DWORK2,
+        count, 24, 0);
+      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.psi_ref_DWORK2");
     }
 
     for (count = 0; count < 12; count++) {
@@ -14213,12 +14401,6 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.T_y_DWORK2,
         count, 24, 0);
       strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.T_y_DWORK2");
-    }
-
-    for (count = 0; count < 12; count++) {
-      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.psi_ref_DWORK2,
-        count, 24, 0);
-      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.psi_ref_DWORK2");
     }
 
     for (count = 0; count < 12; count++) {
@@ -14636,9 +14818,17 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
       ++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.x_error_DWORK1, 0, discStates[idx++],
       0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_x_DWORK1, 0, discStates[idx
+      ++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_psi_DWORK1, 0,
+      discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_y_DWORK1, 0, discStates[idx
+      ++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.x_ref_DWORK1, 0, discStates[idx++],
       0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.y_ref_DWORK1, 0, discStates[idx++],
+      0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.psi_ref_DWORK1, 0, discStates[idx++],
       0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.w_x_DWORK1, 0, discStates[idx++], 0,
       0);
@@ -14658,8 +14848,6 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
       0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.T_y_DWORK1, 0, discStates[idx++], 0,
       0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.psi_ref_DWORK1, 0, discStates[idx++],
-      0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp, 0,
       discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY, 0, discStates[idx++], 0, 0);
@@ -15054,12 +15242,32 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
     }
 
     for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_x_DWORK2, count,
+        discStates[idx++], 24, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_psi_DWORK2, count,
+        discStates[idx++], 24, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_y_DWORK2, count,
+        discStates[idx++], 24, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
       NIRT_SetValueByDataType(&ctrl_custom_DW.x_ref_DWORK2, count,
         discStates[idx++], 24, 0);
     }
 
     for (count = 0; count < 12; count++) {
       NIRT_SetValueByDataType(&ctrl_custom_DW.y_ref_DWORK2, count,
+        discStates[idx++], 24, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.psi_ref_DWORK2, count,
         discStates[idx++], 24, 0);
     }
 
@@ -15106,11 +15314,6 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
     for (count = 0; count < 12; count++) {
       NIRT_SetValueByDataType(&ctrl_custom_DW.T_y_DWORK2, count, discStates[idx
         ++], 24, 0);
-    }
-
-    for (count = 0; count < 12; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_DW.psi_ref_DWORK2, count,
-        discStates[idx++], 24, 0);
     }
 
     for (count = 0; count < 12; count++) {

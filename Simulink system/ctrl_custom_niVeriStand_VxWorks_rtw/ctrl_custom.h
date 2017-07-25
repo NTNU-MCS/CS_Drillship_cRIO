@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.102
+ * Model version              : 1.113
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Fri Jul 21 14:06:28 2017
+ * C source code generated on : Tue Jul 25 18:27:11 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -900,7 +900,8 @@ typedef struct {
   real_T Sum_h;                        /* '<S27>/Sum' */
   real_T regulationerror[3];           /* '<S7>/Sum4' */
   real_T TmpSignalConversionAtMatrixMult[3];/* '<S7>/Transposed rotation  matrix in yaw1' */
-  real_T Integrator1[3];               /* '<S10>/Integrator1' */
+  real_T Integrator1[3];               /* '<S7>/Integrator1' */
+  real_T Integrator1_i[3];             /* '<S10>/Integrator1' */
   real_T Integrator1_a[3];             /* '<S5>/Integrator1' */
   real_T Sum1[3];                      /* '<S7>/Sum1' */
   real_T start2[6];                    /* '<Root>/start2' */
@@ -938,6 +939,7 @@ typedef struct {
   real_T Gain5_a;                      /* '<S7>/Gain5' */
   real_T x_ref;                        /* '<S10>/x_ref' */
   real_T y_ref;                        /* '<S10>/y_ref' */
+  real_T psi_ref;                      /* '<S10>/psi_ref' */
   real_T w_x;                          /* '<S17>/w_x' */
   real_T w_y;                          /* '<S17>/w_y' */
   real_T w_psi;                        /* '<S17>/w_psi' */
@@ -947,7 +949,6 @@ typedef struct {
   real_T T_psi;                        /* '<S17>/T_psi' */
   real_T T_x;                          /* '<S17>/T_x' */
   real_T T_y;                          /* '<S17>/T_y' */
-  real_T psi_ref;                      /* '<S10>/psi_ref' */
   real_T Sum_m[3];                     /* '<S10>/Sum' */
   real_T Sum2[3];                      /* '<S10>/Sum2' */
   real_T Delay[6];                     /* '<S13>/Delay' */
@@ -1172,8 +1173,12 @@ typedef struct {
   real_T y_error_DWORK1;               /* '<S7>/y_error' */
   real_T psi_error_DWORK1;             /* '<S7>/psi_error' */
   real_T x_error_DWORK1;               /* '<S7>/x_error' */
+  real_T Integral_x_DWORK1;            /* '<S7>/Integral_x' */
+  real_T Integral_psi_DWORK1;          /* '<S7>/Integral_psi' */
+  real_T Integral_y_DWORK1;            /* '<S7>/Integral_y' */
   real_T x_ref_DWORK1;                 /* '<S10>/x_ref' */
   real_T y_ref_DWORK1;                 /* '<S10>/y_ref' */
+  real_T psi_ref_DWORK1;               /* '<S10>/psi_ref' */
   real_T w_x_DWORK1;                   /* '<S17>/w_x' */
   real_T w_y_DWORK1;                   /* '<S17>/w_y' */
   real_T w_psi_DWORK1;                 /* '<S17>/w_psi' */
@@ -1183,7 +1188,6 @@ typedef struct {
   real_T T_psi_DWORK1;                 /* '<S17>/T_psi' */
   real_T T_x_DWORK1;                   /* '<S17>/T_x' */
   real_T T_y_DWORK1;                   /* '<S17>/T_y' */
-  real_T psi_ref_DWORK1;               /* '<S10>/psi_ref' */
   real_T DiscreteTransferFcn_tmp;      /* '<S65>/Discrete Transfer Fcn' */
   real_T PrevY;                        /* '<S65>/Acceleration Limit' */
   real_T Memory_PreviousInput;         /* '<S65>/Memory' */
@@ -1287,8 +1291,12 @@ typedef struct {
   uint8_T y_error_DWORK2[12];          /* '<S7>/y_error' */
   uint8_T psi_error_DWORK2[12];        /* '<S7>/psi_error' */
   uint8_T x_error_DWORK2[12];          /* '<S7>/x_error' */
+  uint8_T Integral_x_DWORK2[12];       /* '<S7>/Integral_x' */
+  uint8_T Integral_psi_DWORK2[12];     /* '<S7>/Integral_psi' */
+  uint8_T Integral_y_DWORK2[12];       /* '<S7>/Integral_y' */
   uint8_T x_ref_DWORK2[12];            /* '<S10>/x_ref' */
   uint8_T y_ref_DWORK2[12];            /* '<S10>/y_ref' */
+  uint8_T psi_ref_DWORK2[12];          /* '<S10>/psi_ref' */
   uint8_T w_x_DWORK2[12];              /* '<S17>/w_x' */
   uint8_T w_y_DWORK2[12];              /* '<S17>/w_y' */
   uint8_T w_psi_DWORK2[12];            /* '<S17>/w_psi' */
@@ -1298,7 +1306,6 @@ typedef struct {
   uint8_T T_psi_DWORK2[12];            /* '<S17>/T_psi' */
   uint8_T T_x_DWORK2[12];              /* '<S17>/T_x' */
   uint8_T T_y_DWORK2[12];              /* '<S17>/T_y' */
-  uint8_T psi_ref_DWORK2[12];          /* '<S10>/psi_ref' */
   uint8_T reset_DWORK2[12];            /* '<S67>/reset' */
   uint8_T Control_test_Pa_DWORK2[12];  /* '<S63>/Control_test_Pa' */
   uint8_T reset_DWORK2_k[12];          /* '<S76>/reset' */
@@ -2039,6 +2046,12 @@ struct P_ctrl_custom_T_ {
                                         * Referenced by: '<S35>/Constant'
                                         */
   real_T Integrator1_IC;               /* Expression: 0
+                                        * Referenced by: '<S7>/Integrator1'
+                                        */
+  real_T Integrator1_UpperSat;         /* Expression: 10
+                                        * Referenced by: '<S7>/Integrator1'
+                                        */
+  real_T Integrator1_LowerSat;         /* Expression: -10
                                         * Referenced by: '<S7>/Integrator1'
                                         */
   real_T Integrator1_IC_b;             /* Expression: 0
@@ -3157,6 +3170,60 @@ struct P_ctrl_custom_T_ {
   real_T x_error_P6;                   /* Expression: btype
                                         * Referenced by: '<S7>/x_error'
                                         */
+  real_T Integral_x_P1;                /* Expression: width
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P2;                /* Expression: dtype
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P3;                /* Expression: portnum
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P4;                /* Expression: stime
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P5;                /* Expression: stype
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P6;                /* Expression: btype
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_psi_P1;              /* Expression: width
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P2;              /* Expression: dtype
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P3;              /* Expression: portnum
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P4;              /* Expression: stime
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P5;              /* Expression: stype
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P6;              /* Expression: btype
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_y_P1;                /* Expression: width
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P2;                /* Expression: dtype
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P3;                /* Expression: portnum
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P4;                /* Expression: stime
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P5;                /* Expression: stype
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P6;                /* Expression: btype
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
   real_T x_ref_P1;                     /* Expression: width
                                         * Referenced by: '<S10>/x_ref'
                                         */
@@ -3192,6 +3259,27 @@ struct P_ctrl_custom_T_ {
                                         */
   real_T y_ref_P6;                     /* Expression: btype
                                         * Referenced by: '<S10>/y_ref'
+                                        */
+  real_T psi_ref_P1;                   /* Expression: width
+                                        * Referenced by: '<S10>/psi_ref'
+                                        */
+  real_T psi_ref_P2;                   /* Expression: dtype
+                                        * Referenced by: '<S10>/psi_ref'
+                                        */
+  real_T psi_ref_P3;                   /* Expression: portnum
+                                        * Referenced by: '<S10>/psi_ref'
+                                        */
+  real_T psi_ref_P4;                   /* Expression: stime
+                                        * Referenced by: '<S10>/psi_ref'
+                                        */
+  real_T psi_ref_P5;                   /* Expression: stype
+                                        * Referenced by: '<S10>/psi_ref'
+                                        */
+  real_T psi_ref_P6;                   /* Expression: btype
+                                        * Referenced by: '<S10>/psi_ref'
+                                        */
+  real_T Gain5_Gain_n;                 /* Expression: pi/180
+                                        * Referenced by: '<S10>/Gain5'
                                         */
   real_T Integrator_IC_m;              /* Expression: 0
                                         * Referenced by: '<S10>/Integrator'
@@ -3357,24 +3445,6 @@ struct P_ctrl_custom_T_ {
                                         */
   real_T T_y_P6;                       /* Expression: btype
                                         * Referenced by: '<S17>/T_y'
-                                        */
-  real_T psi_ref_P1;                   /* Expression: width
-                                        * Referenced by: '<S10>/psi_ref'
-                                        */
-  real_T psi_ref_P2;                   /* Expression: dtype
-                                        * Referenced by: '<S10>/psi_ref'
-                                        */
-  real_T psi_ref_P3;                   /* Expression: portnum
-                                        * Referenced by: '<S10>/psi_ref'
-                                        */
-  real_T psi_ref_P4;                   /* Expression: stime
-                                        * Referenced by: '<S10>/psi_ref'
-                                        */
-  real_T psi_ref_P5;                   /* Expression: stype
-                                        * Referenced by: '<S10>/psi_ref'
-                                        */
-  real_T psi_ref_P6;                   /* Expression: btype
-                                        * Referenced by: '<S10>/psi_ref'
                                         */
   real_T Delay_InitialCondition;       /* Expression: 0
                                         * Referenced by: '<S13>/Delay'
@@ -4204,9 +4274,9 @@ extern RT_MODEL_ctrl_custom_T *const ctrl_custom_M;
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.102
+ * Model version : 1.113
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Fri Jul 21 14:06:28 2017
+ * Source generated on : Tue Jul 25 18:27:10 2017
  *========================================================================*/
 #if !defined(NI_HEADER_ctrl_custom_h_)
 #define NI_HEADER_ctrl_custom_h_

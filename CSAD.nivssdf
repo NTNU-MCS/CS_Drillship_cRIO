@@ -10,7 +10,7 @@
 				<String>CSAD</String>
 			</Property>
 			<Property Name="Version">
-				<String>1.0.0.56</String>
+				<String>1.0.0.64</String>
 			</Property>
 			<Property Name="Creator">
 				<String />
@@ -6471,10 +6471,10 @@
 									<Double>10000</Double>
 								</Property>
 								<Property Name="DLL Size">
-									<I32>557744</I32>
+									<I32>565924</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3583728237.9246545</Double>
+									<Double>3583844859.6321831</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -6507,7 +6507,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>cd5614399c53618f15d6e9a708e55ee2</String>
+									<String>6784814e6566d63c0c844859a846051e</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -6521,7 +6521,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\ctrl_custom.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>cd5614399c53618f15d6e9a708e55ee2</MD5>
+										<MD5>6784814e6566d63c0c844859a846051e</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">
@@ -7248,7 +7248,7 @@
 												<String>Referance/psi_ref</String>
 											</Property>
 											<Property Name="Index">
-												<I32>39</I32>
+												<I32>30</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7412,7 +7412,7 @@
 													<String>Initialization of parameters/Guidance Gains/w_x</String>
 												</Property>
 												<Property Name="Index">
-													<I32>30</I32>
+													<I32>31</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7427,7 +7427,7 @@
 													<String>Initialization of parameters/Guidance Gains/w_y</String>
 												</Property>
 												<Property Name="Index">
-													<I32>31</I32>
+													<I32>32</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7442,7 +7442,7 @@
 													<String>Initialization of parameters/Guidance Gains/w_psi</String>
 												</Property>
 												<Property Name="Index">
-													<I32>32</I32>
+													<I32>33</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7457,7 +7457,7 @@
 													<String>Initialization of parameters/Guidance Gains/zeta_psi</String>
 												</Property>
 												<Property Name="Index">
-													<I32>33</I32>
+													<I32>34</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7472,7 +7472,7 @@
 													<String>Initialization of parameters/Guidance Gains/zeta_x</String>
 												</Property>
 												<Property Name="Index">
-													<I32>34</I32>
+													<I32>35</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7487,7 +7487,7 @@
 													<String>Initialization of parameters/Guidance Gains/zeta_y</String>
 												</Property>
 												<Property Name="Index">
-													<I32>35</I32>
+													<I32>36</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7502,7 +7502,7 @@
 													<String>Initialization of parameters/Guidance Gains/T_psi</String>
 												</Property>
 												<Property Name="Index">
-													<I32>36</I32>
+													<I32>37</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7517,7 +7517,7 @@
 													<String>Initialization of parameters/Guidance Gains/T_x</String>
 												</Property>
 												<Property Name="Index">
-													<I32>37</I32>
+													<I32>38</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7532,7 +7532,7 @@
 													<String>Initialization of parameters/Guidance Gains/T_y</String>
 												</Property>
 												<Property Name="Index">
-													<I32>38</I32>
+													<I32>39</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -8107,7 +8107,7 @@
 														<String>Thruster control /Thruster 1/Propeller Hydrodynamics/Control_test_Pa</String>
 													</Property>
 													<Property Name="Index">
-														<I32>89</I32>
+														<I32>92</I32>
 													</Property>
 												</Properties>
 												<Errors />
@@ -8160,6 +8160,51 @@
 											</Property>
 											<Property Name="Index">
 												<I32>88</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="Integral_x" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>PID controller/Integral_x</String>
+											</Property>
+											<Property Name="Index">
+												<I32>89</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="Integral_psi" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>PID controller/Integral_psi</String>
+											</Property>
+											<Property Name="Index">
+												<I32>90</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="Integral_y" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>PID controller/Integral_y</String>
+											</Property>
+											<Property Name="Index">
+												<I32>91</I32>
 											</Property>
 										</Properties>
 										<Errors />
