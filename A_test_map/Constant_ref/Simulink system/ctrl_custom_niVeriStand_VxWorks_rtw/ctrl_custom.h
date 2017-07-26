@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.113
+ * Model version              : 1.140
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Tue Jul 25 18:27:11 2017
+ * C source code generated on : Wed Jul 26 14:53:26 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -880,7 +880,7 @@ typedef struct {
 /* Block signals (auto storage) */
 typedef struct {
   real_T Inputtomodel;                 /* '<Root>/Input to model' */
-  real_T start;                        /* '<Root>/start' */
+  real_T Startbutton;                  /* '<Root>/Startbutton' */
   real_T K_p_x;                        /* '<S16>/K_p_x' */
   real_T K_p_y;                        /* '<S16>/K_p_y' */
   real_T K_p_psi;                      /* '<S16>/K_p_psi' */
@@ -904,7 +904,7 @@ typedef struct {
   real_T Integrator1_i[3];             /* '<S10>/Integrator1' */
   real_T Integrator1_a[3];             /* '<S5>/Integrator1' */
   real_T Sum1[3];                      /* '<S7>/Sum1' */
-  real_T start2[6];                    /* '<Root>/start2' */
+  real_T Startbutton1[6];              /* '<Root>/Startbutton1' */
   real_T Gain5;                        /* '<Root>/Gain5' */
   real_T Gain_h;                       /* '<Root>/Gain' */
   real_T Gain1_n;                      /* '<Root>/Gain1' */
@@ -1110,7 +1110,7 @@ typedef struct {
   real_T DiscreteTransferFcn_states_pv;/* '<S55>/Discrete Transfer Fcn' */
   real_T Inputtomodel_DWORK1;          /* '<Root>/Input to model' */
   real_T OutputtoWorkspace_DWORK1;     /* '<Root>/Output to Workspace' */
-  real_T start_DWORK1;                 /* '<Root>/start' */
+  real_T Startbutton_DWORK1;           /* '<Root>/Startbutton' */
   real_T K_p_x_DWORK1;                 /* '<S16>/K_p_x' */
   real_T K_p_y_DWORK1;                 /* '<S16>/K_p_y' */
   real_T K_p_psi_DWORK1;               /* '<S16>/K_p_psi' */
@@ -1125,7 +1125,7 @@ typedef struct {
   real_T psi_m_DWORK1;                 /* '<S8>/psi_m' */
   real_T tau_surge_DWORK1;             /* '<Root>/tau_surge' */
   real_T tau_sway_DWORK1;              /* '<Root>/tau_sway' */
-  real_T start2_DWORK1[6];             /* '<Root>/start2' */
+  real_T Startbutton1_DWORK1[6];       /* '<Root>/Startbutton1' */
   real_T tau_psi_DWORK1;               /* '<Root>/tau_psi' */
   real_T psi_hat_DWORK1;               /* '<Root>/psi_hat' */
   real_T x_hat_DWORK1;                 /* '<Root>/x_hat' */
@@ -1228,7 +1228,7 @@ typedef struct {
   int_T Integrator_IWORK;              /* '<S5>/Integrator' */
   uint8_T Inputtomodel_DWORK2[12];     /* '<Root>/Input to model' */
   uint8_T OutputtoWorkspace_DWORK2[12];/* '<Root>/Output to Workspace' */
-  uint8_T start_DWORK2[12];            /* '<Root>/start' */
+  uint8_T Startbutton_DWORK2[12];      /* '<Root>/Startbutton' */
   uint8_T K_p_x_DWORK2[12];            /* '<S16>/K_p_x' */
   uint8_T K_p_y_DWORK2[12];            /* '<S16>/K_p_y' */
   uint8_T K_p_psi_DWORK2[12];          /* '<S16>/K_p_psi' */
@@ -1243,7 +1243,7 @@ typedef struct {
   uint8_T psi_m_DWORK2[12];            /* '<S8>/psi_m' */
   uint8_T tau_surge_DWORK2[12];        /* '<Root>/tau_surge' */
   uint8_T tau_sway_DWORK2[12];         /* '<Root>/tau_sway' */
-  uint8_T start2_DWORK2[12];           /* '<Root>/start2' */
+  uint8_T Startbutton1_DWORK2[12];     /* '<Root>/Startbutton1' */
   uint8_T tau_psi_DWORK2[12];          /* '<Root>/tau_psi' */
   uint8_T psi_hat_DWORK2[12];          /* '<Root>/psi_hat' */
   uint8_T x_hat_DWORK2[12];            /* '<Root>/x_hat' */
@@ -1739,23 +1739,23 @@ struct P_ctrl_custom_T_ {
   real_T OutputtoWorkspace_P6;         /* Expression: btype
                                         * Referenced by: '<Root>/Output to Workspace'
                                         */
-  real_T start_P1;                     /* Expression: width
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P1;               /* Expression: width
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P2;                     /* Expression: dtype
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P2;               /* Expression: dtype
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P3;                     /* Expression: portnum
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P3;               /* Expression: portnum
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P4;                     /* Expression: stime
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P4;               /* Expression: stime
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P5;                     /* Expression: stype
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P5;               /* Expression: stype
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P6;                     /* Expression: btype
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P6;               /* Expression: btype
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
   real_T K_p_x_P1;                     /* Expression: width
                                         * Referenced by: '<S16>/K_p_x'
@@ -2048,12 +2048,6 @@ struct P_ctrl_custom_T_ {
   real_T Integrator1_IC;               /* Expression: 0
                                         * Referenced by: '<S7>/Integrator1'
                                         */
-  real_T Integrator1_UpperSat;         /* Expression: 10
-                                        * Referenced by: '<S7>/Integrator1'
-                                        */
-  real_T Integrator1_LowerSat;         /* Expression: -10
-                                        * Referenced by: '<S7>/Integrator1'
-                                        */
   real_T Integrator1_IC_b;             /* Expression: 0
                                         * Referenced by: '<S10>/Integrator1'
                                         */
@@ -2096,23 +2090,23 @@ struct P_ctrl_custom_T_ {
   real_T tau_sway_P6;                  /* Expression: btype
                                         * Referenced by: '<Root>/tau_sway'
                                         */
-  real_T start2_P1;                    /* Expression: width
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P1;              /* Expression: width
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P2;                    /* Expression: dtype
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P2;              /* Expression: dtype
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P3;                    /* Expression: portnum
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P3;              /* Expression: portnum
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P4;                    /* Expression: stime
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P4;              /* Expression: stime
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P5;                    /* Expression: stype
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P5;              /* Expression: stype
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P6;                    /* Expression: btype
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P6;              /* Expression: btype
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
   real_T tau_psi_P1;                   /* Expression: width
                                         * Referenced by: '<Root>/tau_psi'
@@ -4274,9 +4268,9 @@ extern RT_MODEL_ctrl_custom_T *const ctrl_custom_M;
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.113
+ * Model version : 1.140
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Tue Jul 25 18:27:10 2017
+ * Source generated on : Wed Jul 26 14:53:25 2017
  *========================================================================*/
 #if !defined(NI_HEADER_ctrl_custom_h_)
 #define NI_HEADER_ctrl_custom_h_

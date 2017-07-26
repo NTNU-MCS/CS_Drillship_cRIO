@@ -10,7 +10,7 @@
 				<String>CSAD</String>
 			</Property>
 			<Property Name="Version">
-				<String>1.0.0.64</String>
+				<String>1.0.0.84</String>
 			</Property>
 			<Property Name="Creator">
 				<String />
@@ -6471,10 +6471,10 @@
 									<Double>10000</Double>
 								</Property>
 								<Property Name="DLL Size">
-									<I32>565924</I32>
+									<I32>562620</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3583844859.6321831</Double>
+									<Double>3583918435.6305208</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -6507,7 +6507,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>6784814e6566d63c0c844859a846051e</String>
+									<String>1067f916cc2640f75969e4686390a03b</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -6521,7 +6521,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\ctrl_custom.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>6784814e6566d63c0c844859a846051e</MD5>
+										<MD5>1067f916cc2640f75969e4686390a03b</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">
@@ -7223,7 +7223,7 @@
 										</Properties>
 										<Errors />
 										<DefaultValue>
-											<Elem>0</Elem>
+											<Elem>1.5</Elem>
 										</DefaultValue>
 									</Channel>
 									<Channel Name="y_ref" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7238,7 +7238,7 @@
 										</Properties>
 										<Errors />
 										<DefaultValue>
-											<Elem>0</Elem>
+											<Elem>-0.45</Elem>
 										</DefaultValue>
 									</Channel>
 									<Channel Name="psi_ref" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7277,7 +7277,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>1</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_p_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7292,7 +7292,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>1</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_p_psi" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7307,7 +7307,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>3</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_i_psi" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7322,7 +7322,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.01</Elem>
+												<Elem>0.05</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_i_x" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7367,7 +7367,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>42</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_d_x" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7382,7 +7382,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>20</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_d_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7397,7 +7397,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>30</Elem>
 											</DefaultValue>
 										</Channel>
 									</Section>
@@ -7551,11 +7551,16 @@
 									<Description />
 									<Properties />
 									<Errors />
-									<Channel Name="start2(1,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+								</Section>
+								<Section Name="Startbutton1" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+									<Description />
+									<Properties />
+									<Errors />
+									<Channel Name="Startbutton1(1,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>14</I32>
@@ -7569,11 +7574,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(2,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(2,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>14</I32>
@@ -7587,11 +7592,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(3,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(3,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>14</I32>
@@ -7605,11 +7610,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(4,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(4,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>14</I32>
@@ -7623,11 +7628,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(5,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(5,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>14</I32>
@@ -7641,11 +7646,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(6,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(6,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>14</I32>
@@ -7675,11 +7680,11 @@
 										<Elem>0</Elem>
 									</DefaultValue>
 								</Channel>
-								<Channel Name="start" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+								<Channel Name="Startbutton" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 									<Description />
 									<Properties>
 										<Property Name="Model Path">
-											<String>start</String>
+											<String>Startbutton</String>
 										</Property>
 										<Property Name="Index">
 											<I32>1</I32>
