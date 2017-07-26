@@ -1,6 +1,6 @@
 <signallist>
 <signal> Id = "0" Name = "ctrl_custom/Input to model" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "1" Name = "ctrl_custom/start" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "1" Name = "ctrl_custom/Startbutton" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "2" Name = "ctrl_custom/Initialization of parameters/Control Gains/K_p_x" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "3" Name = "ctrl_custom/Initialization of parameters/Control Gains/K_p_y" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "4" Name = "ctrl_custom/Initialization of parameters/Control Gains/K_p_psi" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
@@ -35,12 +35,12 @@
 <signal> Id = "33" Name = "ctrl_custom/PID controller/Sum1/(1, 1)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "34" Name = "ctrl_custom/PID controller/Sum1/(1, 2)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "35" Name = "ctrl_custom/PID controller/Sum1/(1, 3)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "36" Name = "ctrl_custom/start2/(1, 1)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "37" Name = "ctrl_custom/start2/(1, 2)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "38" Name = "ctrl_custom/start2/(1, 3)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "39" Name = "ctrl_custom/start2/(1, 4)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "40" Name = "ctrl_custom/start2/(1, 5)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "41" Name = "ctrl_custom/start2/(1, 6)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "36" Name = "ctrl_custom/Startbutton1/(1, 1)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "37" Name = "ctrl_custom/Startbutton1/(1, 2)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "38" Name = "ctrl_custom/Startbutton1/(1, 3)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "39" Name = "ctrl_custom/Startbutton1/(1, 4)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "40" Name = "ctrl_custom/Startbutton1/(1, 5)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "41" Name = "ctrl_custom/Startbutton1/(1, 6)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "42" Name = "ctrl_custom/Gain5" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "43" Name = "ctrl_custom/Gain" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "44" Name = "ctrl_custom/Gain1" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>

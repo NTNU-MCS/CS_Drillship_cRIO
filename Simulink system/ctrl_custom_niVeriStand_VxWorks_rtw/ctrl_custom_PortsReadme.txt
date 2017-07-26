@@ -1,6 +1,6 @@
 <portlist>
 <inport> Id = "1"  Name = "Input to model" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "2"  Name = "start" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "2"  Name = "Startbutton" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "3"  Name = "Initialization of parameters/Control Gains/K_p_x" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "4"  Name = "Initialization of parameters/Control Gains/K_p_y" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "5"  Name = "Initialization of parameters/Control Gains/K_p_psi" Width = "1" DataType = "real_T" </inport>
@@ -13,7 +13,7 @@
 <inport> Id = "12"  Name = "Pose/x_m" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "13"  Name = "Pose/y_m" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "14"  Name = "Pose/psi_m" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "15"  Name = "start2" Width = "6" DataType = "real_T" </inport>
+<inport> Id = "15"  Name = "Startbutton1" Width = "6" DataType = "real_T" </inport>
 <inport> Id = "16"  Name = "Thruster control /Thrust and Shaft speed mapped to PWM/rpm1 " Width = "1" DataType = "real_T" </inport>
 <inport> Id = "17"  Name = "Thruster control /Thrust and Shaft speed mapped to PWM/rpm2" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "18"  Name = "Thruster control /Thrust and Shaft speed mapped to PWM/rpm3" Width = "1" DataType = "real_T" </inport>
