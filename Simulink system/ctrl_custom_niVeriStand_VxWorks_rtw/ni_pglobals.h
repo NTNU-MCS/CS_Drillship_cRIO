@@ -2,9 +2,9 @@
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.141
+ * Model version : 1.153
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Wed Jul 26 18:28:29 2017
+ * Source generated on : Thu Jul 27 15:39:24 2017
  *========================================================================*/
 
 /*
