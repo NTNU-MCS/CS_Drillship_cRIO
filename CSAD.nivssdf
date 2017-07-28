@@ -10,7 +10,7 @@
 				<String>CSAD</String>
 			</Property>
 			<Property Name="Version">
-				<String>1.0.0.114</String>
+				<String>1.0.0.122</String>
 			</Property>
 			<Property Name="Creator">
 				<String />
@@ -6471,10 +6471,10 @@
 									<Double>10000</Double>
 								</Property>
 								<Property Name="DLL Size">
-									<I32>539761</I32>
+									<I32>542409</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3584007732.7756295</Double>
+									<Double>3584081965.8512712</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -6507,7 +6507,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>c0c58a448e59fe537b2b1f4ab8ff680b</String>
+									<String>7cd25cef63a910af58dac893db138a13</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -6521,7 +6521,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\ctrl_custom.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>c0c58a448e59fe537b2b1f4ab8ff680b</MD5>
+										<MD5>7cd25cef63a910af58dac893db138a13</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">
@@ -7031,36 +7031,6 @@
 									<Description />
 									<Properties />
 									<Errors />
-									<Channel Name="x_ref" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-										<Description />
-										<Properties>
-											<Property Name="Model Path">
-												<String>Referance/x_ref</String>
-											</Property>
-											<Property Name="Index">
-												<I32>28</I32>
-											</Property>
-										</Properties>
-										<Errors />
-										<DefaultValue>
-											<Elem>1.4</Elem>
-										</DefaultValue>
-									</Channel>
-									<Channel Name="y_ref" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-										<Description />
-										<Properties>
-											<Property Name="Model Path">
-												<String>Referance/y_ref</String>
-											</Property>
-											<Property Name="Index">
-												<I32>29</I32>
-											</Property>
-										</Properties>
-										<Errors />
-										<DefaultValue>
-											<Elem>-0.44</Elem>
-										</DefaultValue>
-									</Channel>
 									<Channel Name="psi_ref" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
@@ -7068,7 +7038,7 @@
 												<String>Referance/psi_ref</String>
 											</Property>
 											<Property Name="Index">
-												<I32>30</I32>
+												<I32>28</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7097,7 +7067,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>1</Elem>
+												<Elem>0.35</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_p_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7112,7 +7082,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>1</Elem>
+												<Elem>0.43</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_p_psi" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7127,7 +7097,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>1</Elem>
+												<Elem>0.2</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_i_psi" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7142,7 +7112,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.001</Elem>
+												<Elem>0</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_i_x" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7157,7 +7127,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.001</Elem>
+												<Elem>0</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_i_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7172,7 +7142,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.001</Elem>
+												<Elem>0</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_d_psi" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7187,7 +7157,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>0</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_d_x" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7202,7 +7172,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>9</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_d_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7217,7 +7187,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>11</Elem>
 											</DefaultValue>
 										</Channel>
 									</Section>
@@ -7232,7 +7202,7 @@
 													<String>Initialization of parameters/Guidance Gains/w_x</String>
 												</Property>
 												<Property Name="Index">
-													<I32>31</I32>
+													<I32>29</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7247,7 +7217,7 @@
 													<String>Initialization of parameters/Guidance Gains/w_y</String>
 												</Property>
 												<Property Name="Index">
-													<I32>32</I32>
+													<I32>30</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7262,7 +7232,7 @@
 													<String>Initialization of parameters/Guidance Gains/w_psi</String>
 												</Property>
 												<Property Name="Index">
-													<I32>33</I32>
+													<I32>31</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7277,7 +7247,7 @@
 													<String>Initialization of parameters/Guidance Gains/zeta_psi</String>
 												</Property>
 												<Property Name="Index">
-													<I32>34</I32>
+													<I32>32</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7292,7 +7262,7 @@
 													<String>Initialization of parameters/Guidance Gains/zeta_x</String>
 												</Property>
 												<Property Name="Index">
-													<I32>35</I32>
+													<I32>33</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7307,7 +7277,7 @@
 													<String>Initialization of parameters/Guidance Gains/zeta_y</String>
 												</Property>
 												<Property Name="Index">
-													<I32>36</I32>
+													<I32>34</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7322,7 +7292,7 @@
 													<String>Initialization of parameters/Guidance Gains/T_psi</String>
 												</Property>
 												<Property Name="Index">
-													<I32>37</I32>
+													<I32>35</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7337,6 +7307,41 @@
 													<String>Initialization of parameters/Guidance Gains/T_x</String>
 												</Property>
 												<Property Name="Index">
+													<I32>36</I32>
+												</Property>
+											</Properties>
+											<Errors />
+											<DefaultValue>
+												<Elem>1</Elem>
+											</DefaultValue>
+										</Channel>
+										<Channel Name="T_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+											<Description />
+											<Properties>
+												<Property Name="Model Path">
+													<String>Initialization of parameters/Guidance Gains/T_y</String>
+												</Property>
+												<Property Name="Index">
+													<I32>37</I32>
+												</Property>
+											</Properties>
+											<Errors />
+											<DefaultValue>
+												<Elem>1</Elem>
+											</DefaultValue>
+										</Channel>
+									</Section>
+									<Section Name="Setpoint Chasing" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+										<Description />
+										<Properties />
+										<Errors />
+										<Channel Name="Ts_x" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+											<Description />
+											<Properties>
+												<Property Name="Model Path">
+													<String>Initialization of parameters/Setpoint Chasing/Ts_x</String>
+												</Property>
+												<Property Name="Index">
 													<I32>38</I32>
 												</Property>
 											</Properties>
@@ -7345,11 +7350,11 @@
 												<Elem>5</Elem>
 											</DefaultValue>
 										</Channel>
-										<Channel Name="T_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Channel Name="Ts_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 											<Description />
 											<Properties>
 												<Property Name="Model Path">
-													<String>Initialization of parameters/Guidance Gains/T_y</String>
+													<String>Initialization of parameters/Setpoint Chasing/Ts_y</String>
 												</Property>
 												<Property Name="Index">
 													<I32>39</I32>

@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.140
+ * Model version              : 1.153
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Wed Jul 26 14:53:26 2017
+ * C source code generated on : Thu Jul 27 15:39:25 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -45,7 +45,7 @@ extern void ctrl_custo_ActualForceandTorque(real_T rtu_n, real_T rtu_Kq, real_T
   rtu_eps_c, real_T rtu_env, B_ActualForceandTorque_ctrl_c_T *localB);
 extern void ctrl_custom_MATLABFunction_a(real_T rtu_Td, real_T rtu_K_t0, real_T
   rtu_K_t0r, real_T rtu_rho, real_T rtu_D, real_T rtu_eps_c, real_T rtu_n_r,
-  B_MATLABFunction_ctrl_custo_a_T *localB);
+  B_MATLABFunction_ctrl_custo_l_T *localB);
 
 /* private model entry point functions */
 extern void ctrl_custom_derivatives(void);

@@ -12,9 +12,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.153
+ * Model version              : 1.156
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Thu Jul 27 15:39:25 2017
+ * C source code generated on : Fri Jul 28 12:18:58 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -655,18 +655,6 @@ P_ctrl_custom_T ctrl_custom_P = {
   -1.0,
   1.0,
   1.0,
-  -1.0,
-  1.0,
-  2.0,
-  -1.0,
-  1.0,
-  1.0,
-  -1.0,
-  1.0,
-  3.0,
-  -1.0,
-  1.0,
-  1.0,
   0.017453292519943295,
   0.0,
   0.0,
@@ -725,6 +713,19 @@ P_ctrl_custom_T ctrl_custom_P = {
   1.0,
   1.0,
   0.0,
+  -1.0,
+  1.0,
+  1.0,
+  -1.0,
+  1.0,
+  1.0,
+  -1.0,
+  1.0,
+  2.0,
+  -1.0,
+  1.0,
+  1.0,
+  0.0,
 
   { 1.0, -0.60653065971263342 },
 
@@ -931,23 +932,23 @@ P_ctrl_custom_T ctrl_custom_P = {
   1U,
   1U,
 
-  /* Start of '<S42>/CoreSubsys' */
+  /* Start of '<S46>/CoreSubsys' */
   {
     0.01,
     0.017453292519943295,
     0.0,
     1U
   }
-  /* End of '<S42>/CoreSubsys' */
+  /* End of '<S46>/CoreSubsys' */
 };
 
 /*========================================================================*
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.153
+ * Model version : 1.156
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Thu Jul 27 15:39:24 2017
+ * Source generated on : Fri Jul 28 12:18:57 2017
  *========================================================================*/
 #if defined VXWORKS || defined kNIOSLinux
 
@@ -1790,6 +1791,8 @@ NI_ParamSizeWidth P_ctrl_custom_T_sizes[] DataSection(".NIVS.defaultparamsizes")
   { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 9, 0 },
+
+  { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 1, 0 },
 

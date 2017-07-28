@@ -27,18 +27,18 @@
 <inport> Id = "26"  Name = "Thruster measurment/thr_angle_5" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "27"  Name = "Thruster measurment/thr_angle_6" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "28"  Name = "Thrust allocation/Angle_controller" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "29"  Name = "Referance/x_ref" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "30"  Name = "Referance/y_ref" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "31"  Name = "Referance/psi_ref" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "32"  Name = "Initialization of parameters/Guidance Gains/w_x" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "33"  Name = "Initialization of parameters/Guidance Gains/w_y" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "34"  Name = "Initialization of parameters/Guidance Gains/w_psi" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "35"  Name = "Initialization of parameters/Guidance Gains/zeta_psi" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "36"  Name = "Initialization of parameters/Guidance Gains/zeta_x" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "37"  Name = "Initialization of parameters/Guidance Gains/zeta_y" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "38"  Name = "Initialization of parameters/Guidance Gains/T_psi" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "39"  Name = "Initialization of parameters/Guidance Gains/T_x" Width = "1" DataType = "real_T" </inport>
-<inport> Id = "40"  Name = "Initialization of parameters/Guidance Gains/T_y" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "29"  Name = "Referance/psi_ref" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "30"  Name = "Initialization of parameters/Guidance Gains/w_x" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "31"  Name = "Initialization of parameters/Guidance Gains/w_y" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "32"  Name = "Initialization of parameters/Guidance Gains/w_psi" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "33"  Name = "Initialization of parameters/Guidance Gains/zeta_psi" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "34"  Name = "Initialization of parameters/Guidance Gains/zeta_x" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "35"  Name = "Initialization of parameters/Guidance Gains/zeta_y" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "36"  Name = "Initialization of parameters/Guidance Gains/T_psi" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "37"  Name = "Initialization of parameters/Guidance Gains/T_x" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "38"  Name = "Initialization of parameters/Guidance Gains/T_y" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "39"  Name = "Initialization of parameters/Setpoint Chasing/Ts_x" Width = "1" DataType = "real_T" </inport>
+<inport> Id = "40"  Name = "Initialization of parameters/Setpoint Chasing/Ts_y" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "41"  Name = "Thruster control 1/Thruster 1/Thruster control/Core controller/reset" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "42"  Name = "Thruster control 1/Thruster 2/Thruster control/Core controller/reset" Width = "1" DataType = "real_T" </inport>
 <inport> Id = "43"  Name = "Thruster control 1/Thruster 3/Thruster control/Core controller/reset" Width = "1" DataType = "real_T" </inport>
