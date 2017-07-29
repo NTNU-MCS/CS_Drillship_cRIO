@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.109
+ * Model version              : 1.160
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Wed Jul 26 09:02:22 2017
+ * C source code generated on : Sat Jul 29 13:12:00 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -875,12 +875,12 @@ typedef struct {
 typedef struct {
   real_T n_d;                          /* '<S77>/MATLAB Function' */
   real_T T_r;                          /* '<S77>/MATLAB Function' */
-} B_MATLABFunction_ctrl_custo_a_T;
+} B_MATLABFunction_ctrl_custo_l_T;
 
 /* Block signals (auto storage) */
 typedef struct {
   real_T Inputtomodel;                 /* '<Root>/Input to model' */
-  real_T start;                        /* '<Root>/start' */
+  real_T Startbutton;                  /* '<Root>/Startbutton' */
   real_T K_p_x;                        /* '<S18>/K_p_x' */
   real_T K_p_y;                        /* '<S18>/K_p_y' */
   real_T K_p_psi;                      /* '<S18>/K_p_psi' */
@@ -899,13 +899,13 @@ typedef struct {
   real_T Switch1[3];                   /* '<Root>/Switch1' */
   real_T Integrator[3];                /* '<S5>/Integrator' */
   real_T Sum;                          /* '<S29>/Sum' */
-  real_T Sum_c;                        /* '<S39>/Sum' */
+  real_T Sum_e;                        /* '<S39>/Sum' */
   real_T Integrator1[3];               /* '<S5>/Integrator1' */
   real_T regulationerror[3];           /* '<S7>/Sum4' */
   real_T TmpSignalConversionAtMatrixMult[3];/* '<S7>/Transposed rotation  matrix in yaw1' */
-  real_T Integrator1_i[3];             /* '<S11>/Integrator1' */
+  real_T MatrixMultiply1[3];           /* '<S7>/Matrix Multiply1' */
   real_T Switch[3];                    /* '<Root>/Switch' */
-  real_T start2[6];                    /* '<Root>/start2' */
+  real_T Startbutton1[6];              /* '<Root>/Startbutton1' */
   real_T Gain5_n;                      /* '<Root>/Gain5' */
   real_T Gain;                         /* '<Root>/Gain' */
   real_T Gain1;                        /* '<Root>/Gain1' */
@@ -930,15 +930,20 @@ typedef struct {
   real_T Saturation5;                  /* '<S51>/Saturation 5' */
   real_T Saturation6;                  /* '<S51>/Saturation 6' */
   real_T Gain_h[6];                    /* '<S10>/Gain' */
+  real_T Gain4;                        /* '<Root>/Gain4' */
+  real_T Gain2;                        /* '<Root>/Gain2' */
+  real_T Gain3;                        /* '<Root>/Gain3' */
   real_T Integrator2[3];               /* '<S5>/Integrator2' */
   real_T CreateDiagonalMatrix2[9];     /* '<S20>/Create Diagonal Matrix2' */
   real_T M1[3];                        /* '<S5>/M^-1' */
+  real_T Gain8;                        /* '<Root>/Gain8' */
   real_T CreateDiagonalMatrix[9];      /* '<S20>/Create Diagonal Matrix' */
   real_T CreateDiagonalMatrix1[9];     /* '<S20>/Create Diagonal Matrix1' */
-  real_T MatrixMultiply1[3];           /* '<S5>/Matrix Multiply1' */
+  real_T MatrixMultiply1_j[3];         /* '<S5>/Matrix Multiply1' */
   real_T Sum1[3];                      /* '<S5>/Sum1' */
   real_T Gain5_a;                      /* '<S7>/Gain5' */
   real_T x_ref;                        /* '<S11>/x_ref' */
+  real_T Integrator1_i[3];             /* '<S11>/Integrator1' */
   real_T w_x;                          /* '<S19>/w_x' */
   real_T w_y;                          /* '<S19>/w_y' */
   real_T w_psi;                        /* '<S19>/w_psi' */
@@ -952,84 +957,84 @@ typedef struct {
   real_T Sum_m[3];                     /* '<S11>/Sum' */
   real_T Sum2[3];                      /* '<S11>/Sum2' */
   real_T Delay[6];                     /* '<S15>/Delay' */
-  real_T Delay_d;                      /* '<S53>/Delay' */
-  real_T Delay_j;                      /* '<S68>/Delay' */
+  real_T Delay_n;                      /* '<S53>/Delay' */
+  real_T Delay_o;                      /* '<S68>/Delay' */
   real_T DiscreteTransferFcn;          /* '<S68>/Discrete Transfer Fcn' */
   real_T TSamp;                        /* '<S71>/TSamp' */
   real_T Inertiacompensation;          /* '<S68>/Inertia compensation' */
-  real_T Sum1_b;                       /* '<S68>/Sum1' */
+  real_T Sum1_i;                       /* '<S68>/Sum1' */
   real_T Memory;                       /* '<S68>/Memory' */
   real_T Kp;                           /* '<S70>/Kp' */
   real_T reset;                        /* '<S70>/reset' */
-  real_T Sum_h;                        /* '<S68>/Sum' */
+  real_T Sum_j;                        /* '<S68>/Sum' */
   real_T DiscreteTransferFcn_b;        /* '<S53>/Discrete Transfer Fcn' */
   real_T Findingrotationspeed;         /* '<S67>/Finding rotation speed' */
   real_T Ki;                           /* '<S70>/Ki' */
-  real_T Delay_c;                      /* '<S54>/Delay' */
-  real_T Delay_b;                      /* '<S77>/Delay' */
-  real_T DiscreteTransferFcn_l;        /* '<S77>/Discrete Transfer Fcn' */
-  real_T TSamp_m;                      /* '<S80>/TSamp' */
-  real_T Inertiacompensation_b;        /* '<S77>/Inertia compensation' */
-  real_T Sum1_l;                       /* '<S77>/Sum1' */
-  real_T Memory_l;                     /* '<S77>/Memory' */
+  real_T Delay_f;                      /* '<S54>/Delay' */
+  real_T Delay_fg;                     /* '<S77>/Delay' */
+  real_T DiscreteTransferFcn_h;        /* '<S77>/Discrete Transfer Fcn' */
+  real_T TSamp_g;                      /* '<S80>/TSamp' */
+  real_T Inertiacompensation_f;        /* '<S77>/Inertia compensation' */
+  real_T Sum1_c;                       /* '<S77>/Sum1' */
+  real_T Memory_a;                     /* '<S77>/Memory' */
   real_T Kp_c;                         /* '<S79>/Kp' */
-  real_T reset_l;                      /* '<S79>/reset' */
-  real_T Sum_d;                        /* '<S77>/Sum' */
-  real_T DiscreteTransferFcn_c;        /* '<S54>/Discrete Transfer Fcn' */
-  real_T Findingrotationspeed_h;       /* '<S76>/Finding rotation speed' */
-  real_T Ki_c;                         /* '<S79>/Ki' */
+  real_T reset_i;                      /* '<S79>/reset' */
+  real_T Sum_ms;                       /* '<S77>/Sum' */
+  real_T DiscreteTransferFcn_hl;       /* '<S54>/Discrete Transfer Fcn' */
+  real_T Findingrotationspeed_d;       /* '<S76>/Finding rotation speed' */
+  real_T Ki_n;                         /* '<S79>/Ki' */
   real_T Delay_h;                      /* '<S55>/Delay' */
-  real_T Delay_i;                      /* '<S86>/Delay' */
-  real_T DiscreteTransferFcn_d;        /* '<S86>/Discrete Transfer Fcn' */
-  real_T TSamp_k;                      /* '<S89>/TSamp' */
-  real_T Inertiacompensation_m;        /* '<S86>/Inertia compensation' */
-  real_T Sum1_c;                       /* '<S86>/Sum1' */
-  real_T Memory_ln;                    /* '<S86>/Memory' */
-  real_T Kp_i;                         /* '<S88>/Kp' */
-  real_T reset_i;                      /* '<S88>/reset' */
-  real_T Sum_n;                        /* '<S86>/Sum' */
-  real_T DiscreteTransferFcn_o;        /* '<S55>/Discrete Transfer Fcn' */
-  real_T Findingrotationspeed_m;       /* '<S85>/Finding rotation speed' */
-  real_T Ki_o;                         /* '<S88>/Ki' */
-  real_T Delay_e;                      /* '<S56>/Delay' */
-  real_T Delay_m;                      /* '<S95>/Delay' */
-  real_T DiscreteTransferFcn_p;        /* '<S95>/Discrete Transfer Fcn' */
-  real_T TSamp_d;                      /* '<S98>/TSamp' */
-  real_T Inertiacompensation_bn;       /* '<S95>/Inertia compensation' */
-  real_T Sum1_cp;                      /* '<S95>/Sum1' */
-  real_T Memory_j;                     /* '<S95>/Memory' */
-  real_T Kp_o;                         /* '<S97>/Kp' */
-  real_T reset_h;                      /* '<S97>/reset' */
-  real_T Sum_a;                        /* '<S95>/Sum' */
-  real_T DiscreteTransferFcn_oy;       /* '<S56>/Discrete Transfer Fcn' */
-  real_T Findingrotationspeed_p;       /* '<S94>/Finding rotation speed' */
-  real_T Ki_g;                         /* '<S97>/Ki' */
-  real_T Delay_jj;                     /* '<S57>/Delay' */
-  real_T Delay_n;                      /* '<S104>/Delay' */
-  real_T DiscreteTransferFcn_br;       /* '<S104>/Discrete Transfer Fcn' */
-  real_T TSamp_k4;                     /* '<S107>/TSamp' */
-  real_T Inertiacompensation_a;        /* '<S104>/Inertia compensation' */
-  real_T Sum1_e;                       /* '<S104>/Sum1' */
-  real_T Memory_d;                     /* '<S104>/Memory' */
-  real_T Kp_d;                         /* '<S106>/Kp' */
-  real_T reset_e;                      /* '<S106>/reset' */
-  real_T Sum_f;                        /* '<S104>/Sum' */
-  real_T DiscreteTransferFcn_m;        /* '<S57>/Discrete Transfer Fcn' */
-  real_T Findingrotationspeed_j;       /* '<S103>/Finding rotation speed' */
-  real_T Ki_m;                         /* '<S106>/Ki' */
-  real_T Delay_mu;                     /* '<S58>/Delay' */
-  real_T Delay_e5;                     /* '<S113>/Delay' */
-  real_T DiscreteTransferFcn_lk;       /* '<S113>/Discrete Transfer Fcn' */
-  real_T TSamp_mr;                     /* '<S116>/TSamp' */
-  real_T Inertiacompensation_b3;       /* '<S113>/Inertia compensation' */
-  real_T Sum1_p;                       /* '<S113>/Sum1' */
-  real_T Memory_o;                     /* '<S113>/Memory' */
-  real_T Kp_k;                         /* '<S115>/Kp' */
-  real_T reset_iu;                     /* '<S115>/reset' */
-  real_T Sum_g;                        /* '<S113>/Sum' */
-  real_T DiscreteTransferFcn_f;        /* '<S58>/Discrete Transfer Fcn' */
-  real_T Findingrotationspeed_c;       /* '<S112>/Finding rotation speed' */
-  real_T Ki_l;                         /* '<S115>/Ki' */
+  real_T Delay_l;                      /* '<S86>/Delay' */
+  real_T DiscreteTransferFcn_k;        /* '<S86>/Discrete Transfer Fcn' */
+  real_T TSamp_f;                      /* '<S89>/TSamp' */
+  real_T Inertiacompensation_k;        /* '<S86>/Inertia compensation' */
+  real_T Sum1_b;                       /* '<S86>/Sum1' */
+  real_T Memory_i;                     /* '<S86>/Memory' */
+  real_T Kp_h;                         /* '<S88>/Kp' */
+  real_T reset_f;                      /* '<S88>/reset' */
+  real_T Sum_l;                        /* '<S86>/Sum' */
+  real_T DiscreteTransferFcn_ho;       /* '<S55>/Discrete Transfer Fcn' */
+  real_T Findingrotationspeed_g;       /* '<S85>/Finding rotation speed' */
+  real_T Ki_f;                         /* '<S88>/Ki' */
+  real_T Delay_g;                      /* '<S56>/Delay' */
+  real_T Delay_nh;                     /* '<S95>/Delay' */
+  real_T DiscreteTransferFcn_j;        /* '<S95>/Discrete Transfer Fcn' */
+  real_T TSamp_a;                      /* '<S98>/TSamp' */
+  real_T Inertiacompensation_p;        /* '<S95>/Inertia compensation' */
+  real_T Sum1_h;                       /* '<S95>/Sum1' */
+  real_T Memory_c;                     /* '<S95>/Memory' */
+  real_T Kp_b;                         /* '<S97>/Kp' */
+  real_T reset_im;                     /* '<S97>/reset' */
+  real_T Sum_mg;                       /* '<S95>/Sum' */
+  real_T DiscreteTransferFcn_p;        /* '<S56>/Discrete Transfer Fcn' */
+  real_T Findingrotationspeed_e;       /* '<S94>/Finding rotation speed' */
+  real_T Ki_h;                         /* '<S97>/Ki' */
+  real_T Delay_f4;                     /* '<S57>/Delay' */
+  real_T Delay_a;                      /* '<S104>/Delay' */
+  real_T DiscreteTransferFcn_jz;       /* '<S104>/Discrete Transfer Fcn' */
+  real_T TSamp_aa;                     /* '<S107>/TSamp' */
+  real_T Inertiacompensation_d;        /* '<S104>/Inertia compensation' */
+  real_T Sum1_o;                       /* '<S104>/Sum1' */
+  real_T Memory_j;                     /* '<S104>/Memory' */
+  real_T Kp_ht;                        /* '<S106>/Kp' */
+  real_T reset_m;                      /* '<S106>/reset' */
+  real_T Sum_i;                        /* '<S104>/Sum' */
+  real_T DiscreteTransferFcn_ky;       /* '<S57>/Discrete Transfer Fcn' */
+  real_T Findingrotationspeed_n;       /* '<S103>/Finding rotation speed' */
+  real_T Ki_j;                         /* '<S106>/Ki' */
+  real_T Delay_j;                      /* '<S58>/Delay' */
+  real_T Delay_hd;                     /* '<S113>/Delay' */
+  real_T DiscreteTransferFcn_a;        /* '<S113>/Discrete Transfer Fcn' */
+  real_T TSamp_d;                      /* '<S116>/TSamp' */
+  real_T Inertiacompensation_a;        /* '<S113>/Inertia compensation' */
+  real_T Sum1_ie;                      /* '<S113>/Sum1' */
+  real_T Memory_g;                     /* '<S113>/Memory' */
+  real_T Kp_n;                         /* '<S115>/Kp' */
+  real_T reset_n;                      /* '<S115>/reset' */
+  real_T Sum_o;                        /* '<S113>/Sum' */
+  real_T DiscreteTransferFcn_o;        /* '<S58>/Discrete Transfer Fcn' */
+  real_T Findingrotationspeed_p;       /* '<S112>/Finding rotation speed' */
+  real_T Ki_a;                         /* '<S115>/Ki' */
   real_T TmpSignalConversionAtDelayInpor[6];/* '<S15>/Thrust and Shaft speed mapped to PWM' */
   real_T Acc_x;                        /* '<S1>/Acc_x' */
   real_T Acc_y;                        /* '<S1>/Acc_y' */
@@ -1038,31 +1043,31 @@ typedef struct {
   real_T Gyro_y;                       /* '<S1>/Gyro_y' */
   real_T Gyro_z;                       /* '<S1>/Gyro_z' */
   real_T n_d;                          /* '<S113>/MATLAB Function' */
-  real_T n_d_m;                        /* '<S86>/MATLAB Function' */
-  real_T n_d_k;                        /* '<S68>/MATLAB Function' */
+  real_T n_d_h;                        /* '<S86>/MATLAB Function' */
+  real_T n_d_f;                        /* '<S68>/MATLAB Function' */
   real_T Qa;                           /* '<S66>/Actual Force and Torque' */
   real_T Pa;                           /* '<S66>/Actual Force and Torque' */
   real_T Tc_out;                       /* '<S52>/MATLAB Function1' */
   real_T output[12];                   /* '<S52>/MATLAB Function' */
   real_T commanded_tau[3];             /* '<Root>/MATLAB Function' */
-  B_Supervisor_ctrl_custom_T sf_Supervisor_gj;/* '<S113>/Supervisor' */
-  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowera_g;/* '<S115>/Core controller: Torque,Power and Combined Torque//Power' */
-  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_c;/* '<S111>/Actual Force and Torque' */
-  B_Supervisor_ctrl_custom_T sf_Supervisor_p;/* '<S104>/Supervisor' */
-  B_MATLABFunction_ctrl_custo_a_T sf_MATLABFunction_o;/* '<S104>/MATLAB Function' */
-  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowera_o;/* '<S106>/Core controller: Torque,Power and Combined Torque//Power' */
-  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_k;/* '<S102>/Actual Force and Torque' */
-  B_Supervisor_ctrl_custom_T sf_Supervisor_g;/* '<S95>/Supervisor' */
-  B_MATLABFunction_ctrl_custo_a_T sf_MATLABFunction_d;/* '<S95>/MATLAB Function' */
-  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowera_p;/* '<S97>/Core controller: Torque,Power and Combined Torque//Power' */
-  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_a;/* '<S93>/Actual Force and Torque' */
-  B_Supervisor_ctrl_custom_T sf_Supervisor_j;/* '<S86>/Supervisor' */
-  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePower_ao;/* '<S88>/Core controller: Torque,Power and Combined Torque//Power' */
-  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_f;/* '<S84>/Actual Force and Torque' */
-  B_Supervisor_ctrl_custom_T sf_Supervisor_c;/* '<S77>/Supervisor' */
-  B_MATLABFunction_ctrl_custo_a_T sf_MATLABFunction_a;/* '<S77>/MATLAB Function' */
-  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowera_a;/* '<S79>/Core controller: Torque,Power and Combined Torque//Power' */
-  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_m;/* '<S75>/Actual Force and Torque' */
+  B_Supervisor_ctrl_custom_T sf_Supervisor_h;/* '<S113>/Supervisor' */
+  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowera_i;/* '<S115>/Core controller: Torque,Power and Combined Torque//Power' */
+  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_oa;/* '<S111>/Actual Force and Torque' */
+  B_Supervisor_ctrl_custom_T sf_Supervisor_l;/* '<S104>/Supervisor' */
+  B_MATLABFunction_ctrl_custo_l_T sf_MATLABFunction_i;/* '<S104>/MATLAB Function' */
+  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowera_h;/* '<S106>/Core controller: Torque,Power and Combined Torque//Power' */
+  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_o;/* '<S102>/Actual Force and Torque' */
+  B_Supervisor_ctrl_custom_T sf_Supervisor_c;/* '<S95>/Supervisor' */
+  B_MATLABFunction_ctrl_custo_l_T sf_MATLABFunction_ai;/* '<S95>/MATLAB Function' */
+  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowera_d;/* '<S97>/Core controller: Torque,Power and Combined Torque//Power' */
+  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_j3;/* '<S93>/Actual Force and Torque' */
+  B_Supervisor_ctrl_custom_T sf_Supervisor_k;/* '<S86>/Supervisor' */
+  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowera_j;/* '<S88>/Core controller: Torque,Power and Combined Torque//Power' */
+  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_i;/* '<S84>/Actual Force and Torque' */
+  B_Supervisor_ctrl_custom_T sf_Supervisor_f;/* '<S77>/Supervisor' */
+  B_MATLABFunction_ctrl_custo_l_T sf_MATLABFunction_a;/* '<S77>/MATLAB Function' */
+  B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowera_c;/* '<S79>/Core controller: Torque,Power and Combined Torque//Power' */
+  B_ActualForceandTorque_ctrl_c_T sf_ActualForceandTorque_j;/* '<S75>/Actual Force and Torque' */
   B_Supervisor_ctrl_custom_T sf_Supervisor;/* '<S68>/Supervisor' */
   B_CorecontrollerTorquePoweran_T sf_CorecontrollerTorquePowerand;/* '<S70>/Core controller: Torque,Power and Combined Torque//Power' */
   B_MATLABFunction2_ctrl_custom_T sf_MATLABFunction6;/* '<S52>/MATLAB Function6' */
@@ -1078,39 +1083,39 @@ typedef struct {
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
   real_T Delay_DSTATE[6];              /* '<S15>/Delay' */
-  real_T Delay_DSTATE_f;               /* '<S53>/Delay' */
-  real_T Delay_DSTATE_k;               /* '<S68>/Delay' */
+  real_T Delay_DSTATE_i;               /* '<S53>/Delay' */
+  real_T Delay_DSTATE_l;               /* '<S68>/Delay' */
   real_T DiscreteTransferFcn_states[2];/* '<S68>/Discrete Transfer Fcn' */
   real_T UD_DSTATE;                    /* '<S71>/UD' */
-  real_T DiscreteTransferFcn_states_k; /* '<S53>/Discrete Transfer Fcn' */
-  real_T Delay_DSTATE_c;               /* '<S54>/Delay' */
-  real_T Delay_DSTATE_j;               /* '<S77>/Delay' */
-  real_T DiscreteTransferFcn_states_j[2];/* '<S77>/Discrete Transfer Fcn' */
-  real_T UD_DSTATE_f;                  /* '<S80>/UD' */
-  real_T DiscreteTransferFcn_states_j0;/* '<S54>/Discrete Transfer Fcn' */
-  real_T Delay_DSTATE_m;               /* '<S55>/Delay' */
-  real_T Delay_DSTATE_e;               /* '<S86>/Delay' */
-  real_T DiscreteTransferFcn_states_f[2];/* '<S86>/Discrete Transfer Fcn' */
-  real_T UD_DSTATE_p;                  /* '<S89>/UD' */
-  real_T DiscreteTransferFcn_states_m; /* '<S55>/Discrete Transfer Fcn' */
-  real_T Delay_DSTATE_kg;              /* '<S56>/Delay' */
-  real_T Delay_DSTATE_ki;              /* '<S95>/Delay' */
-  real_T DiscreteTransferFcn_states_e[2];/* '<S95>/Discrete Transfer Fcn' */
-  real_T UD_DSTATE_a;                  /* '<S98>/UD' */
-  real_T DiscreteTransferFcn_states_p; /* '<S56>/Discrete Transfer Fcn' */
-  real_T Delay_DSTATE_p;               /* '<S57>/Delay' */
-  real_T Delay_DSTATE_kf;              /* '<S104>/Delay' */
-  real_T DiscreteTransferFcn_states_jn[2];/* '<S104>/Discrete Transfer Fcn' */
-  real_T UD_DSTATE_l;                  /* '<S107>/UD' */
-  real_T DiscreteTransferFcn_states_g; /* '<S57>/Discrete Transfer Fcn' */
-  real_T Delay_DSTATE_o;               /* '<S58>/Delay' */
-  real_T Delay_DSTATE_h;               /* '<S113>/Delay' */
-  real_T DiscreteTransferFcn_states_k0[2];/* '<S113>/Discrete Transfer Fcn' */
-  real_T UD_DSTATE_e;                  /* '<S116>/UD' */
-  real_T DiscreteTransferFcn_states_pv;/* '<S58>/Discrete Transfer Fcn' */
+  real_T DiscreteTransferFcn_states_h; /* '<S53>/Discrete Transfer Fcn' */
+  real_T Delay_DSTATE_f;               /* '<S54>/Delay' */
+  real_T Delay_DSTATE_d;               /* '<S77>/Delay' */
+  real_T DiscreteTransferFcn_states_d[2];/* '<S77>/Discrete Transfer Fcn' */
+  real_T UD_DSTATE_i;                  /* '<S80>/UD' */
+  real_T DiscreteTransferFcn_states_i; /* '<S54>/Discrete Transfer Fcn' */
+  real_T Delay_DSTATE_j;               /* '<S55>/Delay' */
+  real_T Delay_DSTATE_c;               /* '<S86>/Delay' */
+  real_T DiscreteTransferFcn_states_o[2];/* '<S86>/Discrete Transfer Fcn' */
+  real_T UD_DSTATE_a;                  /* '<S89>/UD' */
+  real_T DiscreteTransferFcn_states_c; /* '<S55>/Discrete Transfer Fcn' */
+  real_T Delay_DSTATE_g;               /* '<S56>/Delay' */
+  real_T Delay_DSTATE_k;               /* '<S95>/Delay' */
+  real_T DiscreteTransferFcn_states_cl[2];/* '<S95>/Discrete Transfer Fcn' */
+  real_T UD_DSTATE_g;                  /* '<S98>/UD' */
+  real_T DiscreteTransferFcn_states_m; /* '<S56>/Discrete Transfer Fcn' */
+  real_T Delay_DSTATE_n;               /* '<S57>/Delay' */
+  real_T Delay_DSTATE_jt;              /* '<S104>/Delay' */
+  real_T DiscreteTransferFcn_states_dh[2];/* '<S104>/Discrete Transfer Fcn' */
+  real_T UD_DSTATE_gf;                 /* '<S107>/UD' */
+  real_T DiscreteTransferFcn_states_ho;/* '<S57>/Discrete Transfer Fcn' */
+  real_T Delay_DSTATE_k2;              /* '<S58>/Delay' */
+  real_T Delay_DSTATE_kz;              /* '<S113>/Delay' */
+  real_T DiscreteTransferFcn_states_e[2];/* '<S113>/Discrete Transfer Fcn' */
+  real_T UD_DSTATE_go;                 /* '<S116>/UD' */
+  real_T DiscreteTransferFcn_states_b; /* '<S58>/Discrete Transfer Fcn' */
   real_T Inputtomodel_DWORK1;          /* '<Root>/Input to model' */
   real_T OutputtoWorkspace_DWORK1;     /* '<Root>/Output to Workspace' */
-  real_T start_DWORK1;                 /* '<Root>/start' */
+  real_T Startbutton_DWORK1;           /* '<Root>/Startbutton' */
   real_T K_p_x_DWORK1;                 /* '<S18>/K_p_x' */
   real_T K_p_y_DWORK1;                 /* '<S18>/K_p_y' */
   real_T K_p_psi_DWORK1;               /* '<S18>/K_p_psi' */
@@ -1127,7 +1132,7 @@ typedef struct {
   real_T Controllswitch_DWORK1;        /* '<Root>/Controll switch' */
   real_T tau_surge_DWORK1;             /* '<Root>/tau_surge' */
   real_T tau_sway_DWORK1;              /* '<Root>/tau_sway' */
-  real_T start2_DWORK1[6];             /* '<Root>/start2' */
+  real_T Startbutton1_DWORK1[6];       /* '<Root>/Startbutton1' */
   real_T tau_psi_DWORK1;               /* '<Root>/tau_psi' */
   real_T psi_hat_DWORK1;               /* '<Root>/psi_hat' */
   real_T x_hat_DWORK1;                 /* '<Root>/x_hat' */
@@ -1147,6 +1152,10 @@ typedef struct {
   real_T Angle_controller_DWORK1;      /* '<S13>/Angle_controller' */
   real_T tau_commanded_psi_DWORK1;     /* '<Root>/tau_commanded_psi' */
   real_T tau_commanded_x_DWORK1;       /* '<Root>/tau_commanded_x' */
+  real_T tau_commanded_y_DWORK1;       /* '<Root>/tau_commanded_y' */
+  real_T psi_ref_filter_DWORK1;        /* '<Root>/psi_ref_filter' */
+  real_T x_ref_filter_DWORK1;          /* '<Root>/x_ref_filter' */
+  real_T y_ref_filter_DWORK1;          /* '<Root>/y_ref_filter' */
   real_T x_hat_DWORK1_o;               /* '<S32>/x_hat' */
   real_T y_hat_DWORK1_d;               /* '<S32>/y_hat' */
   real_T psi_hat_DWORK1_g;             /* '<S32>/psi_hat' */
@@ -1171,10 +1180,13 @@ typedef struct {
   real_T u4_DWORK1;                    /* '<S17>/u4' */
   real_T u5_DWORK1;                    /* '<S17>/u5' */
   real_T u6_DWORK1;                    /* '<S17>/u6' */
-  real_T tau_commanded_y_DWORK1;       /* '<Root>/tau_commanded_y' */
+  real_T heading_DWORK1;               /* '<Root>/heading' */
   real_T y_error_DWORK1;               /* '<S7>/y_error' */
   real_T psi_error_DWORK1;             /* '<S7>/psi_error' */
   real_T x_error_DWORK1;               /* '<S7>/x_error' */
+  real_T Integral_x_DWORK1;            /* '<S7>/Integral_x' */
+  real_T Integral_psi_DWORK1;          /* '<S7>/Integral_psi' */
+  real_T Integral_y_DWORK1;            /* '<S7>/Integral_y' */
   real_T x_ref_DWORK1;                 /* '<S11>/x_ref' */
   real_T w_x_DWORK1;                   /* '<S19>/w_x' */
   real_T w_y_DWORK1;                   /* '<S19>/w_y' */
@@ -1192,31 +1204,31 @@ typedef struct {
   real_T reset_DWORK1;                 /* '<S70>/reset' */
   real_T DiscreteTransferFcn_tmp_n;    /* '<S53>/Discrete Transfer Fcn' */
   real_T Control_test_Pa_DWORK1;       /* '<S66>/Control_test_Pa' */
-  real_T DiscreteTransferFcn_tmp_f;    /* '<S77>/Discrete Transfer Fcn' */
-  real_T PrevY_p;                      /* '<S77>/Acceleration Limit' */
-  real_T Memory_PreviousInput_g;       /* '<S77>/Memory' */
-  real_T reset_DWORK1_d;               /* '<S79>/reset' */
-  real_T DiscreteTransferFcn_tmp_fg;   /* '<S54>/Discrete Transfer Fcn' */
-  real_T DiscreteTransferFcn_tmp_k;    /* '<S86>/Discrete Transfer Fcn' */
-  real_T PrevY_k;                      /* '<S86>/Acceleration limiter' */
-  real_T Memory_PreviousInput_f;       /* '<S86>/Memory' */
-  real_T reset_DWORK1_o;               /* '<S88>/reset' */
-  real_T DiscreteTransferFcn_tmp_b;    /* '<S55>/Discrete Transfer Fcn' */
+  real_T DiscreteTransferFcn_tmp_h;    /* '<S77>/Discrete Transfer Fcn' */
+  real_T PrevY_a;                      /* '<S77>/Acceleration Limit' */
+  real_T Memory_PreviousInput_c;       /* '<S77>/Memory' */
+  real_T reset_DWORK1_a;               /* '<S79>/reset' */
+  real_T DiscreteTransferFcn_tmp_a;    /* '<S54>/Discrete Transfer Fcn' */
+  real_T DiscreteTransferFcn_tmp_g;    /* '<S86>/Discrete Transfer Fcn' */
+  real_T PrevY_an;                     /* '<S86>/Acceleration limiter' */
+  real_T Memory_PreviousInput_b;       /* '<S86>/Memory' */
+  real_T reset_DWORK1_e;               /* '<S88>/reset' */
+  real_T DiscreteTransferFcn_tmp_hw;   /* '<S55>/Discrete Transfer Fcn' */
   real_T DiscreteTransferFcn_tmp_l;    /* '<S95>/Discrete Transfer Fcn' */
-  real_T PrevY_m;                      /* '<S95>/Acceleration limiter' */
-  real_T Memory_PreviousInput_d;       /* '<S95>/Memory' */
-  real_T reset_DWORK1_l;               /* '<S97>/reset' */
-  real_T DiscreteTransferFcn_tmp_fg5;  /* '<S56>/Discrete Transfer Fcn' */
-  real_T DiscreteTransferFcn_tmp_i;    /* '<S104>/Discrete Transfer Fcn' */
-  real_T PrevY_mo;                     /* '<S104>/Acceleration limiter' */
-  real_T Memory_PreviousInput_l;       /* '<S104>/Memory' */
-  real_T reset_DWORK1_dp;              /* '<S106>/reset' */
+  real_T PrevY_e;                      /* '<S95>/Acceleration limiter' */
+  real_T Memory_PreviousInput_g;       /* '<S95>/Memory' */
+  real_T reset_DWORK1_aw;              /* '<S97>/reset' */
+  real_T DiscreteTransferFcn_tmp_hu;   /* '<S56>/Discrete Transfer Fcn' */
+  real_T DiscreteTransferFcn_tmp_d;    /* '<S104>/Discrete Transfer Fcn' */
+  real_T PrevY_i;                      /* '<S104>/Acceleration limiter' */
+  real_T Memory_PreviousInput_f;       /* '<S104>/Memory' */
+  real_T reset_DWORK1_f;               /* '<S106>/reset' */
   real_T DiscreteTransferFcn_tmp_m;    /* '<S57>/Discrete Transfer Fcn' */
   real_T DiscreteTransferFcn_tmp_o;    /* '<S113>/Discrete Transfer Fcn' */
-  real_T PrevY_k4;                     /* '<S113>/Acceleration limiter' */
-  real_T Memory_PreviousInput_f2;      /* '<S113>/Memory' */
-  real_T reset_DWORK1_dy;              /* '<S115>/reset' */
-  real_T DiscreteTransferFcn_tmp_ir;   /* '<S58>/Discrete Transfer Fcn' */
+  real_T PrevY_n;                      /* '<S113>/Acceleration limiter' */
+  real_T Memory_PreviousInput_o;       /* '<S113>/Memory' */
+  real_T reset_DWORK1_m;               /* '<S115>/reset' */
+  real_T DiscreteTransferFcn_tmp_k;    /* '<S58>/Discrete Transfer Fcn' */
   real_T Acc_x_DWORK1;                 /* '<S1>/Acc_x' */
   real_T Acc_y_DWORK1;                 /* '<S1>/Acc_y' */
   real_T Acc_z_DWORK1;                 /* '<S1>/Acc_z' */
@@ -1226,7 +1238,7 @@ typedef struct {
   int_T Integrator_IWORK;              /* '<S5>/Integrator' */
   uint8_T Inputtomodel_DWORK2[12];     /* '<Root>/Input to model' */
   uint8_T OutputtoWorkspace_DWORK2[12];/* '<Root>/Output to Workspace' */
-  uint8_T start_DWORK2[12];            /* '<Root>/start' */
+  uint8_T Startbutton_DWORK2[12];      /* '<Root>/Startbutton' */
   uint8_T K_p_x_DWORK2[12];            /* '<S18>/K_p_x' */
   uint8_T K_p_y_DWORK2[12];            /* '<S18>/K_p_y' */
   uint8_T K_p_psi_DWORK2[12];          /* '<S18>/K_p_psi' */
@@ -1243,7 +1255,7 @@ typedef struct {
   uint8_T Controllswitch_DWORK2[12];   /* '<Root>/Controll switch' */
   uint8_T tau_surge_DWORK2[12];        /* '<Root>/tau_surge' */
   uint8_T tau_sway_DWORK2[12];         /* '<Root>/tau_sway' */
-  uint8_T start2_DWORK2[12];           /* '<Root>/start2' */
+  uint8_T Startbutton1_DWORK2[12];     /* '<Root>/Startbutton1' */
   uint8_T tau_psi_DWORK2[12];          /* '<Root>/tau_psi' */
   uint8_T psi_hat_DWORK2[12];          /* '<Root>/psi_hat' */
   uint8_T x_hat_DWORK2[12];            /* '<Root>/x_hat' */
@@ -1263,6 +1275,10 @@ typedef struct {
   uint8_T Angle_controller_DWORK2[12]; /* '<S13>/Angle_controller' */
   uint8_T tau_commanded_psi_DWORK2[12];/* '<Root>/tau_commanded_psi' */
   uint8_T tau_commanded_x_DWORK2[12];  /* '<Root>/tau_commanded_x' */
+  uint8_T tau_commanded_y_DWORK2[12];  /* '<Root>/tau_commanded_y' */
+  uint8_T psi_ref_filter_DWORK2[12];   /* '<Root>/psi_ref_filter' */
+  uint8_T x_ref_filter_DWORK2[12];     /* '<Root>/x_ref_filter' */
+  uint8_T y_ref_filter_DWORK2[12];     /* '<Root>/y_ref_filter' */
   uint8_T x_hat_DWORK2_b[12];          /* '<S32>/x_hat' */
   uint8_T y_hat_DWORK2_l[12];          /* '<S32>/y_hat' */
   uint8_T psi_hat_DWORK2_k[12];        /* '<S32>/psi_hat' */
@@ -1287,10 +1303,13 @@ typedef struct {
   uint8_T u4_DWORK2[12];               /* '<S17>/u4' */
   uint8_T u5_DWORK2[12];               /* '<S17>/u5' */
   uint8_T u6_DWORK2[12];               /* '<S17>/u6' */
-  uint8_T tau_commanded_y_DWORK2[12];  /* '<Root>/tau_commanded_y' */
+  uint8_T heading_DWORK2[12];          /* '<Root>/heading' */
   uint8_T y_error_DWORK2[12];          /* '<S7>/y_error' */
   uint8_T psi_error_DWORK2[12];        /* '<S7>/psi_error' */
   uint8_T x_error_DWORK2[12];          /* '<S7>/x_error' */
+  uint8_T Integral_x_DWORK2[12];       /* '<S7>/Integral_x' */
+  uint8_T Integral_psi_DWORK2[12];     /* '<S7>/Integral_psi' */
+  uint8_T Integral_y_DWORK2[12];       /* '<S7>/Integral_y' */
   uint8_T x_ref_DWORK2[12];            /* '<S11>/x_ref' */
   uint8_T w_x_DWORK2[12];              /* '<S19>/w_x' */
   uint8_T w_y_DWORK2[12];              /* '<S19>/w_y' */
@@ -1304,11 +1323,11 @@ typedef struct {
   uint8_T y_ref_DWORK2[12];            /* '<S11>/y_ref' */
   uint8_T reset_DWORK2[12];            /* '<S70>/reset' */
   uint8_T Control_test_Pa_DWORK2[12];  /* '<S66>/Control_test_Pa' */
-  uint8_T reset_DWORK2_k[12];          /* '<S79>/reset' */
-  uint8_T reset_DWORK2_p[12];          /* '<S88>/reset' */
-  uint8_T reset_DWORK2_m[12];          /* '<S97>/reset' */
-  uint8_T reset_DWORK2_i[12];          /* '<S106>/reset' */
-  uint8_T reset_DWORK2_j[12];          /* '<S115>/reset' */
+  uint8_T reset_DWORK2_l[12];          /* '<S79>/reset' */
+  uint8_T reset_DWORK2_d[12];          /* '<S88>/reset' */
+  uint8_T reset_DWORK2_df[12];         /* '<S97>/reset' */
+  uint8_T reset_DWORK2_p[12];          /* '<S106>/reset' */
+  uint8_T reset_DWORK2_g[12];          /* '<S115>/reset' */
   uint8_T Acc_x_DWORK2[12];            /* '<S1>/Acc_x' */
   uint8_T Acc_y_DWORK2[12];            /* '<S1>/Acc_y' */
   uint8_T Acc_z_DWORK2[12];            /* '<S1>/Acc_z' */
@@ -1326,21 +1345,21 @@ typedef struct {
   real_T Integrator1_CSTATE_n[3];      /* '<S5>/Integrator1' */
   real_T Integrator2_CSTATE[3];        /* '<S11>/Integrator2' */
   real_T Integrator1_CSTATE_m[3];      /* '<S7>/Integrator1' */
-  real_T Integrator1_CSTATE_d[3];      /* '<S11>/Integrator1' */
-  real_T Integrator_CSTATE_a;          /* '<S67>/Integrator' */
-  real_T Integrator_CSTATE_f;          /* '<S76>/Integrator' */
-  real_T Integrator_CSTATE_ao;         /* '<S85>/Integrator' */
-  real_T Integrator_CSTATE_k;          /* '<S94>/Integrator' */
-  real_T Integrator_CSTATE_k2;         /* '<S103>/Integrator' */
-  real_T Integrator_CSTATE_i;          /* '<S112>/Integrator' */
+  real_T Integrator_CSTATE_p;          /* '<S67>/Integrator' */
+  real_T Integrator_CSTATE_g;          /* '<S76>/Integrator' */
+  real_T Integrator_CSTATE_n;          /* '<S85>/Integrator' */
+  real_T Integrator_CSTATE_b;          /* '<S94>/Integrator' */
+  real_T Integrator_CSTATE_c;          /* '<S103>/Integrator' */
+  real_T Integrator_CSTATE_l;          /* '<S112>/Integrator' */
   real_T Integrator2_CSTATE_j[3];      /* '<S5>/Integrator2' */
-  real_T Integrator_CSTATE_f5[3];      /* '<S11>/Integrator' */
-  real_T Integrator_CSTATE_m;          /* '<S70>/Integrator' */
-  real_T Integrator_CSTATE_ko;         /* '<S79>/Integrator' */
-  real_T Integrator_CSTATE_c;          /* '<S88>/Integrator' */
-  real_T Integrator_CSTATE_p;          /* '<S97>/Integrator' */
-  real_T Integrator_CSTATE_n;          /* '<S106>/Integrator' */
-  real_T Integrator_CSTATE_ci;         /* '<S115>/Integrator' */
+  real_T Integrator_CSTATE_f[3];       /* '<S11>/Integrator' */
+  real_T Integrator1_CSTATE_d[3];      /* '<S11>/Integrator1' */
+  real_T Integrator_CSTATE_ph;         /* '<S70>/Integrator' */
+  real_T Integrator_CSTATE_o;          /* '<S79>/Integrator' */
+  real_T Integrator_CSTATE_or;         /* '<S88>/Integrator' */
+  real_T Integrator_CSTATE_h;          /* '<S97>/Integrator' */
+  real_T Integrator_CSTATE_fm;         /* '<S106>/Integrator' */
+  real_T Integrator_CSTATE_m;          /* '<S115>/Integrator' */
 } X_ctrl_custom_T;
 
 /* State derivatives (auto storage) */
@@ -1351,21 +1370,21 @@ typedef struct {
   real_T Integrator1_CSTATE_n[3];      /* '<S5>/Integrator1' */
   real_T Integrator2_CSTATE[3];        /* '<S11>/Integrator2' */
   real_T Integrator1_CSTATE_m[3];      /* '<S7>/Integrator1' */
-  real_T Integrator1_CSTATE_d[3];      /* '<S11>/Integrator1' */
-  real_T Integrator_CSTATE_a;          /* '<S67>/Integrator' */
-  real_T Integrator_CSTATE_f;          /* '<S76>/Integrator' */
-  real_T Integrator_CSTATE_ao;         /* '<S85>/Integrator' */
-  real_T Integrator_CSTATE_k;          /* '<S94>/Integrator' */
-  real_T Integrator_CSTATE_k2;         /* '<S103>/Integrator' */
-  real_T Integrator_CSTATE_i;          /* '<S112>/Integrator' */
+  real_T Integrator_CSTATE_p;          /* '<S67>/Integrator' */
+  real_T Integrator_CSTATE_g;          /* '<S76>/Integrator' */
+  real_T Integrator_CSTATE_n;          /* '<S85>/Integrator' */
+  real_T Integrator_CSTATE_b;          /* '<S94>/Integrator' */
+  real_T Integrator_CSTATE_c;          /* '<S103>/Integrator' */
+  real_T Integrator_CSTATE_l;          /* '<S112>/Integrator' */
   real_T Integrator2_CSTATE_j[3];      /* '<S5>/Integrator2' */
-  real_T Integrator_CSTATE_f5[3];      /* '<S11>/Integrator' */
-  real_T Integrator_CSTATE_m;          /* '<S70>/Integrator' */
-  real_T Integrator_CSTATE_ko;         /* '<S79>/Integrator' */
-  real_T Integrator_CSTATE_c;          /* '<S88>/Integrator' */
-  real_T Integrator_CSTATE_p;          /* '<S97>/Integrator' */
-  real_T Integrator_CSTATE_n;          /* '<S106>/Integrator' */
-  real_T Integrator_CSTATE_ci;         /* '<S115>/Integrator' */
+  real_T Integrator_CSTATE_f[3];       /* '<S11>/Integrator' */
+  real_T Integrator1_CSTATE_d[3];      /* '<S11>/Integrator1' */
+  real_T Integrator_CSTATE_ph;         /* '<S70>/Integrator' */
+  real_T Integrator_CSTATE_o;          /* '<S79>/Integrator' */
+  real_T Integrator_CSTATE_or;         /* '<S88>/Integrator' */
+  real_T Integrator_CSTATE_h;          /* '<S97>/Integrator' */
+  real_T Integrator_CSTATE_fm;         /* '<S106>/Integrator' */
+  real_T Integrator_CSTATE_m;          /* '<S115>/Integrator' */
 } XDot_ctrl_custom_T;
 
 /* State disabled  */
@@ -1376,42 +1395,39 @@ typedef struct {
   boolean_T Integrator1_CSTATE_n[3];   /* '<S5>/Integrator1' */
   boolean_T Integrator2_CSTATE[3];     /* '<S11>/Integrator2' */
   boolean_T Integrator1_CSTATE_m[3];   /* '<S7>/Integrator1' */
-  boolean_T Integrator1_CSTATE_d[3];   /* '<S11>/Integrator1' */
-  boolean_T Integrator_CSTATE_a;       /* '<S67>/Integrator' */
-  boolean_T Integrator_CSTATE_f;       /* '<S76>/Integrator' */
-  boolean_T Integrator_CSTATE_ao;      /* '<S85>/Integrator' */
-  boolean_T Integrator_CSTATE_k;       /* '<S94>/Integrator' */
-  boolean_T Integrator_CSTATE_k2;      /* '<S103>/Integrator' */
-  boolean_T Integrator_CSTATE_i;       /* '<S112>/Integrator' */
+  boolean_T Integrator_CSTATE_p;       /* '<S67>/Integrator' */
+  boolean_T Integrator_CSTATE_g;       /* '<S76>/Integrator' */
+  boolean_T Integrator_CSTATE_n;       /* '<S85>/Integrator' */
+  boolean_T Integrator_CSTATE_b;       /* '<S94>/Integrator' */
+  boolean_T Integrator_CSTATE_c;       /* '<S103>/Integrator' */
+  boolean_T Integrator_CSTATE_l;       /* '<S112>/Integrator' */
   boolean_T Integrator2_CSTATE_j[3];   /* '<S5>/Integrator2' */
-  boolean_T Integrator_CSTATE_f5[3];   /* '<S11>/Integrator' */
-  boolean_T Integrator_CSTATE_m;       /* '<S70>/Integrator' */
-  boolean_T Integrator_CSTATE_ko;      /* '<S79>/Integrator' */
-  boolean_T Integrator_CSTATE_c;       /* '<S88>/Integrator' */
-  boolean_T Integrator_CSTATE_p;       /* '<S97>/Integrator' */
-  boolean_T Integrator_CSTATE_n;       /* '<S106>/Integrator' */
-  boolean_T Integrator_CSTATE_ci;      /* '<S115>/Integrator' */
+  boolean_T Integrator_CSTATE_f[3];    /* '<S11>/Integrator' */
+  boolean_T Integrator1_CSTATE_d[3];   /* '<S11>/Integrator1' */
+  boolean_T Integrator_CSTATE_ph;      /* '<S70>/Integrator' */
+  boolean_T Integrator_CSTATE_o;       /* '<S79>/Integrator' */
+  boolean_T Integrator_CSTATE_or;      /* '<S88>/Integrator' */
+  boolean_T Integrator_CSTATE_h;       /* '<S97>/Integrator' */
+  boolean_T Integrator_CSTATE_fm;      /* '<S106>/Integrator' */
+  boolean_T Integrator_CSTATE_m;       /* '<S115>/Integrator' */
 } XDis_ctrl_custom_T;
 
 /* Zero-crossing (trigger) state */
 typedef struct {
-  ZCSigState Integrator_Reset_ZCE;     /* '<S5>/Integrator' */
   ZCSigState Integrator1_Reset_ZCE;    /* '<S8>/Integrator1' */
-  ZCSigState Integrator1_Reset_ZCE_o;  /* '<S5>/Integrator1' */
   ZCSigState Integrator1_Reset_ZCE_g;  /* '<S7>/Integrator1' */
-  ZCSigState Integrator_Reset_ZCE_g;   /* '<S67>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_n;   /* '<S76>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_e;   /* '<S85>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_l;   /* '<S94>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_j;   /* '<S103>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_m;   /* '<S112>/Integrator' */
-  ZCSigState Integrator2_Reset_ZCE;    /* '<S5>/Integrator2' */
-  ZCSigState Integrator_Reset_ZCE_lk;  /* '<S70>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_p;   /* '<S79>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_gm;  /* '<S88>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_ja;  /* '<S97>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_i;   /* '<S106>/Integrator' */
-  ZCSigState Integrator_Reset_ZCE_b;   /* '<S115>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE;     /* '<S67>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_a;   /* '<S76>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_h;   /* '<S85>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_j;   /* '<S94>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_e;   /* '<S103>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_i;   /* '<S112>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_ju;  /* '<S70>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_o;   /* '<S79>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_l;   /* '<S88>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_n;   /* '<S97>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_aa;  /* '<S106>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE_li;  /* '<S115>/Integrator' */
 } PrevZCX_ctrl_custom_T;
 
 #ifndef ODE3_INTG
@@ -1691,19 +1707,19 @@ struct P_ctrl_custom_T_ {
   real_T DiscreteDerivative_ICPrevScaled;/* Mask Parameter: DiscreteDerivative_ICPrevScaled
                                           * Referenced by: '<S71>/UD'
                                           */
-  real_T DiscreteDerivative_ICPrevScal_l;/* Mask Parameter: DiscreteDerivative_ICPrevScal_l
+  real_T DiscreteDerivative_ICPrevScal_k;/* Mask Parameter: DiscreteDerivative_ICPrevScal_k
                                           * Referenced by: '<S80>/UD'
                                           */
-  real_T DiscreteDerivative_ICPrevScal_k;/* Mask Parameter: DiscreteDerivative_ICPrevScal_k
+  real_T DiscreteDerivative_ICPrevScal_h;/* Mask Parameter: DiscreteDerivative_ICPrevScal_h
                                           * Referenced by: '<S89>/UD'
                                           */
-  real_T DiscreteDerivative_ICPrevScal_i;/* Mask Parameter: DiscreteDerivative_ICPrevScal_i
+  real_T DiscreteDerivative_ICPrevSca_kv;/* Mask Parameter: DiscreteDerivative_ICPrevSca_kv
                                           * Referenced by: '<S98>/UD'
                                           */
-  real_T DiscreteDerivative_ICPrevScal_b;/* Mask Parameter: DiscreteDerivative_ICPrevScal_b
+  real_T DiscreteDerivative_ICPrevScal_c;/* Mask Parameter: DiscreteDerivative_ICPrevScal_c
                                           * Referenced by: '<S107>/UD'
                                           */
-  real_T DiscreteDerivative_ICPrevSca_iv;/* Mask Parameter: DiscreteDerivative_ICPrevSca_iv
+  real_T DiscreteDerivative_ICPrevSca_hs;/* Mask Parameter: DiscreteDerivative_ICPrevSca_hs
                                           * Referenced by: '<S116>/UD'
                                           */
   real_T Inputtomodel_P1;              /* Expression: width
@@ -1742,23 +1758,23 @@ struct P_ctrl_custom_T_ {
   real_T OutputtoWorkspace_P6;         /* Expression: btype
                                         * Referenced by: '<Root>/Output to Workspace'
                                         */
-  real_T start_P1;                     /* Expression: width
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P1;               /* Expression: width
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P2;                     /* Expression: dtype
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P2;               /* Expression: dtype
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P3;                     /* Expression: portnum
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P3;               /* Expression: portnum
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P4;                     /* Expression: stime
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P4;               /* Expression: stime
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P5;                     /* Expression: stype
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P5;               /* Expression: stype
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
-  real_T start_P6;                     /* Expression: btype
-                                        * Referenced by: '<Root>/start'
+  real_T Startbutton_P6;               /* Expression: btype
+                                        * Referenced by: '<Root>/Startbutton'
                                         */
   real_T K_p_x_P1;                     /* Expression: width
                                         * Referenced by: '<S18>/K_p_x'
@@ -2015,7 +2031,7 @@ struct P_ctrl_custom_T_ {
   real_T Basin_rotation_P6;            /* Expression: btype
                                         * Referenced by: '<S12>/Basin_rotation'
                                         */
-  real_T Gain5_Gain_g;                 /* Expression: pi/180
+  real_T Gain5_Gain_h;                 /* Expression: pi/180
                                         * Referenced by: '<S12>/Gain5'
                                         */
   real_T Controllswitch_P1;            /* Expression: width
@@ -2057,16 +2073,16 @@ struct P_ctrl_custom_T_ {
   real_T TransferFcn2_C;               /* Computed Parameter: TransferFcn2_C
                                         * Referenced by: '<S12>/Transfer Fcn2'
                                         */
-  real_T Saturation_UpperSat_a;        /* Expression: 1e10
+  real_T Saturation_UpperSat_l;        /* Expression: 1e10
                                         * Referenced by: '<S39>/Saturation'
                                         */
-  real_T Saturation_LowerSat_b;        /* Expression: -1e10
+  real_T Saturation_LowerSat_i;        /* Expression: -1e10
                                         * Referenced by: '<S39>/Saturation'
                                         */
-  real_T Gain_Gain_e;                  /* Expression: pi
+  real_T Gain_Gain_o;                  /* Expression: pi
                                         * Referenced by: '<S39>/Gain'
                                         */
-  real_T Constant_Value_d;             /* Expression: 2*pi
+  real_T Constant_Value_e;             /* Expression: 2*pi
                                         * Referenced by: '<S39>/Constant'
                                         */
   real_T Integrator1_IC;               /* Expression: 0
@@ -2081,7 +2097,7 @@ struct P_ctrl_custom_T_ {
   real_T Saturation_LowerSat_p;        /* Expression: -1e10
                                         * Referenced by: '<S38>/Saturation'
                                         */
-  real_T Gain_Gain_o;                  /* Expression: pi
+  real_T Gain_Gain_ov;                 /* Expression: pi
                                         * Referenced by: '<S38>/Gain'
                                         */
   real_T Constant_Value_p;             /* Expression: 2*pi
@@ -2096,10 +2112,10 @@ struct P_ctrl_custom_T_ {
   real_T Saturation_LowerSat_c;        /* Expression: -1e10
                                         * Referenced by: '<S43>/Saturation'
                                         */
-  real_T Gain_Gain_e2;                 /* Expression: pi
+  real_T Gain_Gain_e;                  /* Expression: pi
                                         * Referenced by: '<S43>/Gain'
                                         */
-  real_T Constant_Value_e;             /* Expression: 2*pi
+  real_T Constant_Value_ey;            /* Expression: 2*pi
                                         * Referenced by: '<S43>/Constant'
                                         */
   real_T Saturation_UpperSat_ir;       /* Expression: 1e10
@@ -2117,13 +2133,10 @@ struct P_ctrl_custom_T_ {
   real_T Integrator1_IC_e;             /* Expression: 0
                                         * Referenced by: '<S7>/Integrator1'
                                         */
-  real_T Integrator1_IC_b;             /* Expression: 0
-                                        * Referenced by: '<S11>/Integrator1'
-                                        */
-  real_T Constant_Value_i;             /* Expression: 0
+  real_T Constant_Value_j;             /* Expression: 0
                                         * Referenced by: '<Root>/Constant'
                                         */
-  real_T Constant1_Value_k;            /* Expression: 0
+  real_T Constant1_Value_i;            /* Expression: 0
                                         * Referenced by: '<Root>/Constant1'
                                         */
   real_T Switch_Threshold;             /* Expression: 1
@@ -2165,23 +2178,23 @@ struct P_ctrl_custom_T_ {
   real_T tau_sway_P6;                  /* Expression: btype
                                         * Referenced by: '<Root>/tau_sway'
                                         */
-  real_T start2_P1;                    /* Expression: width
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P1;              /* Expression: width
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P2;                    /* Expression: dtype
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P2;              /* Expression: dtype
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P3;                    /* Expression: portnum
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P3;              /* Expression: portnum
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P4;                    /* Expression: stime
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P4;              /* Expression: stime
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P5;                    /* Expression: stype
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P5;              /* Expression: stype
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
-  real_T start2_P6;                    /* Expression: btype
-                                        * Referenced by: '<Root>/start2'
+  real_T Startbutton1_P6;              /* Expression: btype
+                                        * Referenced by: '<Root>/Startbutton1'
                                         */
   real_T tau_psi_P1;                   /* Expression: width
                                         * Referenced by: '<Root>/tau_psi'
@@ -2273,31 +2286,31 @@ struct P_ctrl_custom_T_ {
   real_T Integrator_IC_h;              /* Expression: 0
                                         * Referenced by: '<S76>/Integrator'
                                         */
-  real_T Lossesplaceholder_Value_e;    /* Expression: 0
+  real_T Lossesplaceholder_Value_n;    /* Expression: 0
                                         * Referenced by: '<S54>/Losses (placeholder)'
                                         */
-  real_T Integrator_IC_o;              /* Expression: 0
+  real_T Integrator_IC_e;              /* Expression: 0
                                         * Referenced by: '<S85>/Integrator'
                                         */
-  real_T Lossesplaceholder_Value_d;    /* Expression: 0
+  real_T Lossesplaceholder_Value_j;    /* Expression: 0
                                         * Referenced by: '<S55>/Losses (placeholder)'
                                         */
-  real_T Integrator_IC_hz;             /* Expression: 0
+  real_T Integrator_IC_d;              /* Expression: 0
                                         * Referenced by: '<S94>/Integrator'
                                         */
-  real_T Lossesplaceholder_Value_n;    /* Expression: 0
+  real_T Lossesplaceholder_Value_c;    /* Expression: 0
                                         * Referenced by: '<S56>/Losses (placeholder)'
                                         */
-  real_T Integrator_IC_d;              /* Expression: 0
+  real_T Integrator_IC_eb;             /* Expression: 0
                                         * Referenced by: '<S103>/Integrator'
                                         */
-  real_T Lossesplaceholder_Value_k;    /* Expression: 0
+  real_T Lossesplaceholder_Value_o;    /* Expression: 0
                                         * Referenced by: '<S57>/Losses (placeholder)'
                                         */
-  real_T Integrator_IC_b;              /* Expression: 0
+  real_T Integrator_IC_a;              /* Expression: 0
                                         * Referenced by: '<S112>/Integrator'
                                         */
-  real_T Lossesplaceholder_Value_nh;   /* Expression: 0
+  real_T Lossesplaceholder_Value_d;    /* Expression: 0
                                         * Referenced by: '<S58>/Losses (placeholder)'
                                         */
   real_T controller_Value;             /* Expression: 2
@@ -2321,7 +2334,7 @@ struct P_ctrl_custom_T_ {
   real_T rpm1_P6;                      /* Expression: btype
                                         * Referenced by: '<S52>/rpm1 '
                                         */
-  real_T Gain_Gain_a;                  /* Expression: 1/60
+  real_T Gain_Gain_ol;                 /* Expression: 1/60
                                         * Referenced by: '<S52>/Gain'
                                         */
   real_T rpm2_P1;                      /* Expression: width
@@ -2342,7 +2355,7 @@ struct P_ctrl_custom_T_ {
   real_T rpm2_P6;                      /* Expression: btype
                                         * Referenced by: '<S52>/rpm2'
                                         */
-  real_T Gain1_Gain_i;                 /* Expression: 1/60
+  real_T Gain1_Gain_g;                 /* Expression: 1/60
                                         * Referenced by: '<S52>/Gain1'
                                         */
   real_T rpm3_P1;                      /* Expression: width
@@ -2426,7 +2439,7 @@ struct P_ctrl_custom_T_ {
   real_T rpm6_P6;                      /* Expression: btype
                                         * Referenced by: '<S52>/rpm6'
                                         */
-  real_T Gain5_Gain_f;                 /* Expression: 1/60
+  real_T Gain5_Gain_es;                /* Expression: 1/60
                                         * Referenced by: '<S52>/Gain5'
                                         */
   real_T thr_angle_1_P1;               /* Expression: width
@@ -2651,6 +2664,87 @@ struct P_ctrl_custom_T_ {
   real_T tau_commanded_x_P6;           /* Expression: btype
                                         * Referenced by: '<Root>/tau_commanded_x'
                                         */
+  real_T tau_commanded_y_P1;           /* Expression: width
+                                        * Referenced by: '<Root>/tau_commanded_y'
+                                        */
+  real_T tau_commanded_y_P2;           /* Expression: dtype
+                                        * Referenced by: '<Root>/tau_commanded_y'
+                                        */
+  real_T tau_commanded_y_P3;           /* Expression: portnum
+                                        * Referenced by: '<Root>/tau_commanded_y'
+                                        */
+  real_T tau_commanded_y_P4;           /* Expression: stime
+                                        * Referenced by: '<Root>/tau_commanded_y'
+                                        */
+  real_T tau_commanded_y_P5;           /* Expression: stype
+                                        * Referenced by: '<Root>/tau_commanded_y'
+                                        */
+  real_T tau_commanded_y_P6;           /* Expression: btype
+                                        * Referenced by: '<Root>/tau_commanded_y'
+                                        */
+  real_T Gain4_Gain_d;                 /* Expression: 180/pi
+                                        * Referenced by: '<Root>/Gain4'
+                                        */
+  real_T psi_ref_filter_P1;            /* Expression: width
+                                        * Referenced by: '<Root>/psi_ref_filter'
+                                        */
+  real_T psi_ref_filter_P2;            /* Expression: dtype
+                                        * Referenced by: '<Root>/psi_ref_filter'
+                                        */
+  real_T psi_ref_filter_P3;            /* Expression: portnum
+                                        * Referenced by: '<Root>/psi_ref_filter'
+                                        */
+  real_T psi_ref_filter_P4;            /* Expression: stime
+                                        * Referenced by: '<Root>/psi_ref_filter'
+                                        */
+  real_T psi_ref_filter_P5;            /* Expression: stype
+                                        * Referenced by: '<Root>/psi_ref_filter'
+                                        */
+  real_T psi_ref_filter_P6;            /* Expression: btype
+                                        * Referenced by: '<Root>/psi_ref_filter'
+                                        */
+  real_T Gain2_Gain_d;                 /* Expression: 1000
+                                        * Referenced by: '<Root>/Gain2'
+                                        */
+  real_T x_ref_filter_P1;              /* Expression: width
+                                        * Referenced by: '<Root>/x_ref_filter'
+                                        */
+  real_T x_ref_filter_P2;              /* Expression: dtype
+                                        * Referenced by: '<Root>/x_ref_filter'
+                                        */
+  real_T x_ref_filter_P3;              /* Expression: portnum
+                                        * Referenced by: '<Root>/x_ref_filter'
+                                        */
+  real_T x_ref_filter_P4;              /* Expression: stime
+                                        * Referenced by: '<Root>/x_ref_filter'
+                                        */
+  real_T x_ref_filter_P5;              /* Expression: stype
+                                        * Referenced by: '<Root>/x_ref_filter'
+                                        */
+  real_T x_ref_filter_P6;              /* Expression: btype
+                                        * Referenced by: '<Root>/x_ref_filter'
+                                        */
+  real_T Gain3_Gain_f;                 /* Expression: 1000
+                                        * Referenced by: '<Root>/Gain3'
+                                        */
+  real_T y_ref_filter_P1;              /* Expression: width
+                                        * Referenced by: '<Root>/y_ref_filter'
+                                        */
+  real_T y_ref_filter_P2;              /* Expression: dtype
+                                        * Referenced by: '<Root>/y_ref_filter'
+                                        */
+  real_T y_ref_filter_P3;              /* Expression: portnum
+                                        * Referenced by: '<Root>/y_ref_filter'
+                                        */
+  real_T y_ref_filter_P4;              /* Expression: stime
+                                        * Referenced by: '<Root>/y_ref_filter'
+                                        */
+  real_T y_ref_filter_P5;              /* Expression: stype
+                                        * Referenced by: '<Root>/y_ref_filter'
+                                        */
+  real_T y_ref_filter_P6;              /* Expression: btype
+                                        * Referenced by: '<Root>/y_ref_filter'
+                                        */
   real_T x_hat_P1_j;                   /* Expression: width
                                         * Referenced by: '<S32>/x_hat'
                                         */
@@ -2768,7 +2862,7 @@ struct P_ctrl_custom_T_ {
   real_T Gain_Gain_gg;                 /* Expression: pi
                                         * Referenced by: '<S30>/Gain'
                                         */
-  real_T Constant_Value_iq;            /* Expression: 2*pi
+  real_T Constant_Value_i;             /* Expression: 2*pi
                                         * Referenced by: '<S30>/Constant'
                                         */
   real_T Integrator2_IC_i[3];          /* Expression: [0 0 0]'
@@ -3002,7 +3096,7 @@ struct P_ctrl_custom_T_ {
   real_T alpha6_P6;                    /* Expression: btype
                                         * Referenced by: '<S17>/alpha6'
                                         */
-  real_T Saturation1_LowerSat_p;       /* Expression: 0
+  real_T Saturation1_LowerSat_k;       /* Expression: 0
                                         * Referenced by: '<S52>/Saturation 1'
                                         */
   real_T Saturation2_UpperSat_j;       /* Expression: 0
@@ -3074,10 +3168,10 @@ struct P_ctrl_custom_T_ {
   real_T u3_P6;                        /* Expression: btype
                                         * Referenced by: '<S17>/u3'
                                         */
-  real_T Saturation3_LowerSat_m;       /* Expression: 0
+  real_T Saturation3_LowerSat_a;       /* Expression: 0
                                         * Referenced by: '<S52>/Saturation 3'
                                         */
-  real_T Saturation4_UpperSat_l;       /* Expression: 0
+  real_T Saturation4_UpperSat_m;       /* Expression: 0
                                         * Referenced by: '<S52>/Saturation 4'
                                         */
   real_T u4_P1;                        /* Expression: width
@@ -3098,10 +3192,10 @@ struct P_ctrl_custom_T_ {
   real_T u4_P6;                        /* Expression: btype
                                         * Referenced by: '<S17>/u4'
                                         */
-  real_T Saturation5_LowerSat_j;       /* Expression: 0
+  real_T Saturation5_LowerSat_a;       /* Expression: 0
                                         * Referenced by: '<S52>/Saturation 5'
                                         */
-  real_T Saturation6_UpperSat_c;       /* Expression: 0
+  real_T Saturation6_UpperSat_j;       /* Expression: 0
                                         * Referenced by: '<S52>/Saturation 6'
                                         */
   real_T u5_P1;                        /* Expression: width
@@ -3146,23 +3240,26 @@ struct P_ctrl_custom_T_ {
   real_T u6_P6;                        /* Expression: btype
                                         * Referenced by: '<S17>/u6'
                                         */
-  real_T tau_commanded_y_P1;           /* Expression: width
-                                        * Referenced by: '<Root>/tau_commanded_y'
+  real_T Gain8_Gain;                   /* Expression: 180/pi
+                                        * Referenced by: '<Root>/Gain8'
                                         */
-  real_T tau_commanded_y_P2;           /* Expression: dtype
-                                        * Referenced by: '<Root>/tau_commanded_y'
+  real_T heading_P1;                   /* Expression: width
+                                        * Referenced by: '<Root>/heading'
                                         */
-  real_T tau_commanded_y_P3;           /* Expression: portnum
-                                        * Referenced by: '<Root>/tau_commanded_y'
+  real_T heading_P2;                   /* Expression: dtype
+                                        * Referenced by: '<Root>/heading'
                                         */
-  real_T tau_commanded_y_P4;           /* Expression: stime
-                                        * Referenced by: '<Root>/tau_commanded_y'
+  real_T heading_P3;                   /* Expression: portnum
+                                        * Referenced by: '<Root>/heading'
                                         */
-  real_T tau_commanded_y_P5;           /* Expression: stype
-                                        * Referenced by: '<Root>/tau_commanded_y'
+  real_T heading_P4;                   /* Expression: stime
+                                        * Referenced by: '<Root>/heading'
                                         */
-  real_T tau_commanded_y_P6;           /* Expression: btype
-                                        * Referenced by: '<Root>/tau_commanded_y'
+  real_T heading_P5;                   /* Expression: stype
+                                        * Referenced by: '<Root>/heading'
+                                        */
+  real_T heading_P6;                   /* Expression: btype
+                                        * Referenced by: '<Root>/heading'
                                         */
   real_T Constant_Value_g;             /* Expression: 50
                                         * Referenced by: '<S20>/Constant'
@@ -3239,6 +3336,60 @@ struct P_ctrl_custom_T_ {
   real_T x_error_P6;                   /* Expression: btype
                                         * Referenced by: '<S7>/x_error'
                                         */
+  real_T Integral_x_P1;                /* Expression: width
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P2;                /* Expression: dtype
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P3;                /* Expression: portnum
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P4;                /* Expression: stime
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P5;                /* Expression: stype
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_x_P6;                /* Expression: btype
+                                        * Referenced by: '<S7>/Integral_x'
+                                        */
+  real_T Integral_psi_P1;              /* Expression: width
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P2;              /* Expression: dtype
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P3;              /* Expression: portnum
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P4;              /* Expression: stime
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P5;              /* Expression: stype
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_psi_P6;              /* Expression: btype
+                                        * Referenced by: '<S7>/Integral_psi'
+                                        */
+  real_T Integral_y_P1;                /* Expression: width
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P2;                /* Expression: dtype
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P3;                /* Expression: portnum
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P4;                /* Expression: stime
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P5;                /* Expression: stype
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
+  real_T Integral_y_P6;                /* Expression: btype
+                                        * Referenced by: '<S7>/Integral_y'
+                                        */
   real_T x_ref_P1;                     /* Expression: width
                                         * Referenced by: '<S11>/x_ref'
                                         */
@@ -3257,11 +3408,14 @@ struct P_ctrl_custom_T_ {
   real_T x_ref_P6;                     /* Expression: btype
                                         * Referenced by: '<S11>/x_ref'
                                         */
-  real_T Gain_Gain_b;                  /* Expression: -1
+  real_T Gain_Gain_f;                  /* Expression: -1
                                         * Referenced by: '<S11>/Gain'
                                         */
   real_T Integrator_IC_m;              /* Expression: 0
                                         * Referenced by: '<S11>/Integrator'
+                                        */
+  real_T Integrator1_IC_b;             /* Expression: 0
+                                        * Referenced by: '<S11>/Integrator1'
                                         */
   real_T w_x_P1;                       /* Expression: width
                                         * Referenced by: '<S19>/w_x'
@@ -3446,22 +3600,22 @@ struct P_ctrl_custom_T_ {
   real_T Delay_InitialCondition;       /* Expression: 0
                                         * Referenced by: '<S15>/Delay'
                                         */
-  real_T Constant_Value_j[2];          /* Expression: hd2.den{1,1}
+  real_T Constant_Value_k[2];          /* Expression: hd2.den{1,1}
                                         * Referenced by: '<S53>/Constant'
                                         */
-  real_T Constant1_Value_i[2];         /* Expression: hd2.num{1,1}
+  real_T Constant1_Value_m[2];         /* Expression: hd2.num{1,1}
                                         * Referenced by: '<S53>/Constant1'
                                         */
-  real_T Delay_InitialCondition_m;     /* Expression: 0
+  real_T Delay_InitialCondition_g;     /* Expression: 0
                                         * Referenced by: '<S53>/Delay'
                                         */
   real_T Delay_InitialCondition_a;     /* Expression: 0
                                         * Referenced by: '<S68>/Delay'
                                         */
-  real_T Constant1_Value_p[3];         /* Expression: hd.num{1,1}
+  real_T Constant1_Value_i4[3];        /* Expression: hd.num{1,1}
                                         * Referenced by: '<S68>/Constant1'
                                         */
-  real_T Constant2_Value_b[3];         /* Expression: hd.den{1,1}
+  real_T Constant2_Value_p[3];         /* Expression: hd.den{1,1}
                                         * Referenced by: '<S68>/Constant2'
                                         */
   real_T DiscreteTransferFcn_InitialStat;/* Expression: 0
@@ -3500,13 +3654,13 @@ struct P_ctrl_custom_T_ {
   real_T reset_P6;                     /* Expression: btype
                                         * Referenced by: '<S70>/reset'
                                         */
-  real_T Integrator_IC_j;              /* Expression: 0
+  real_T Integrator_IC_p;              /* Expression: 0
                                         * Referenced by: '<S70>/Integrator'
                                         */
   real_T NaN_Value;                    /* Expression: 0
                                         * Referenced by: '<S68>/NaN'
                                         */
-  real_T DiscreteTransferFcn_InitialSt_i;/* Expression: 0
+  real_T DiscreteTransferFcn_InitialSt_f;/* Expression: 0
                                           * Referenced by: '<S53>/Discrete Transfer Fcn'
                                           */
   real_T Control_test_Pa_P1;           /* Expression: width
@@ -3527,43 +3681,43 @@ struct P_ctrl_custom_T_ {
   real_T Control_test_Pa_P6;           /* Expression: btype
                                         * Referenced by: '<S66>/Control_test_Pa'
                                         */
-  real_T Constant_Value_dp[2];         /* Expression: hd2.den{1,1}
+  real_T Constant_Value_m[2];          /* Expression: hd2.den{1,1}
                                         * Referenced by: '<S54>/Constant'
                                         */
-  real_T Constant1_Value_b[2];         /* Expression: hd2.num{1,1}
+  real_T Constant1_Value_k[2];         /* Expression: hd2.num{1,1}
                                         * Referenced by: '<S54>/Constant1'
                                         */
-  real_T Delay_InitialCondition_j;     /* Expression: 0
+  real_T Delay_InitialCondition_i;     /* Expression: 0
                                         * Referenced by: '<S54>/Delay'
                                         */
-  real_T Delay_InitialCondition_n;     /* Expression: 0
+  real_T Delay_InitialCondition_a0;    /* Expression: 0
                                         * Referenced by: '<S77>/Delay'
                                         */
-  real_T Constant1_Value_m[3];         /* Expression: hd.num{1,1}
+  real_T Constant1_Value_e[3];         /* Expression: hd.num{1,1}
                                         * Referenced by: '<S77>/Constant1'
                                         */
-  real_T Constant2_Value_k[3];         /* Expression: hd.den{1,1}
+  real_T Constant2_Value_e[3];         /* Expression: hd.den{1,1}
                                         * Referenced by: '<S77>/Constant2'
                                         */
-  real_T DiscreteTransferFcn_InitialSt_f;/* Expression: 0
+  real_T DiscreteTransferFcn_InitialSt_m;/* Expression: 0
                                           * Referenced by: '<S77>/Discrete Transfer Fcn'
                                           */
-  real_T TSamp_WtEt_g;                 /* Computed Parameter: TSamp_WtEt_g
+  real_T TSamp_WtEt_o;                 /* Computed Parameter: TSamp_WtEt_o
                                         * Referenced by: '<S80>/TSamp'
                                         */
-  real_T AccelerationLimit_RisingLim_p;/* Computed Parameter: AccelerationLimit_RisingLim_p
+  real_T AccelerationLimit_RisingLim_h;/* Computed Parameter: AccelerationLimit_RisingLim_h
                                         * Referenced by: '<S77>/Acceleration Limit'
                                         */
-  real_T AccelerationLimit_FallingLim_n;/* Computed Parameter: AccelerationLimit_FallingLim_n
+  real_T AccelerationLimit_FallingLim_c;/* Computed Parameter: AccelerationLimit_FallingLim_c
                                          * Referenced by: '<S77>/Acceleration Limit'
                                          */
-  real_T AccelerationLimit_IC_l;       /* Expression: 0
+  real_T AccelerationLimit_IC_o;       /* Expression: 0
                                         * Referenced by: '<S77>/Acceleration Limit'
                                         */
-  real_T Memory_X0_h;                  /* Expression: 1
+  real_T Memory_X0_e;                  /* Expression: 1
                                         * Referenced by: '<S77>/Memory'
                                         */
-  real_T reset_P1_l;                   /* Expression: width
+  real_T reset_P1_a;                   /* Expression: width
                                         * Referenced by: '<S79>/reset'
                                         */
   real_T reset_P2_j;                   /* Expression: dtype
@@ -3572,46 +3726,46 @@ struct P_ctrl_custom_T_ {
   real_T reset_P3_m;                   /* Expression: portnum
                                         * Referenced by: '<S79>/reset'
                                         */
-  real_T reset_P4_g;                   /* Expression: stime
+  real_T reset_P4_l;                   /* Expression: stime
                                         * Referenced by: '<S79>/reset'
                                         */
-  real_T reset_P5_d;                   /* Expression: stype
+  real_T reset_P5_i;                   /* Expression: stype
                                         * Referenced by: '<S79>/reset'
                                         */
-  real_T reset_P6_m;                   /* Expression: btype
+  real_T reset_P6_j;                   /* Expression: btype
                                         * Referenced by: '<S79>/reset'
                                         */
-  real_T Integrator_IC_p;              /* Expression: 0
+  real_T Integrator_IC_k;              /* Expression: 0
                                         * Referenced by: '<S79>/Integrator'
                                         */
-  real_T NaN_Value_n;                  /* Expression: 0
+  real_T NaN_Value_m;                  /* Expression: 0
                                         * Referenced by: '<S77>/NaN'
                                         */
-  real_T DiscreteTransferFcn_InitialSt_p;/* Expression: 0
+  real_T DiscreteTransferFcn_InitialSt_d;/* Expression: 0
                                           * Referenced by: '<S54>/Discrete Transfer Fcn'
                                           */
-  real_T Constant_Value_gq[2];         /* Expression: hd2.den{1,1}
+  real_T Constant_Value_n[2];          /* Expression: hd2.den{1,1}
                                         * Referenced by: '<S55>/Constant'
                                         */
-  real_T Constant1_Value_l[2];         /* Expression: hd2.num{1,1}
+  real_T Constant1_Value_mm[2];        /* Expression: hd2.num{1,1}
                                         * Referenced by: '<S55>/Constant1'
                                         */
-  real_T Delay_InitialCondition_b;     /* Expression: 0
+  real_T Delay_InitialCondition_e;     /* Expression: 0
                                         * Referenced by: '<S55>/Delay'
                                         */
-  real_T Delay_InitialCondition_o;     /* Expression: 0
+  real_T Delay_InitialCondition_f;     /* Expression: 0
                                         * Referenced by: '<S86>/Delay'
                                         */
-  real_T Constant1_Value_c[3];         /* Expression: hd.num{1,1}
+  real_T Constant1_Value_g[3];         /* Expression: hd.num{1,1}
                                         * Referenced by: '<S86>/Constant1'
                                         */
-  real_T Constant2_Value_k5[3];        /* Expression: hd.den{1,1}
+  real_T Constant2_Value_f[3];         /* Expression: hd.den{1,1}
                                         * Referenced by: '<S86>/Constant2'
                                         */
-  real_T DiscreteTransferFcn_InitialSt_h;/* Expression: 0
+  real_T DiscreteTransferFcn_InitialSt_c;/* Expression: 0
                                           * Referenced by: '<S86>/Discrete Transfer Fcn'
                                           */
-  real_T TSamp_WtEt_i;                 /* Computed Parameter: TSamp_WtEt_i
+  real_T TSamp_WtEt_p;                 /* Computed Parameter: TSamp_WtEt_p
                                         * Referenced by: '<S89>/TSamp'
                                         */
   real_T Accelerationlimiter_RisingLim;/* Computed Parameter: Accelerationlimiter_RisingLim
@@ -3626,220 +3780,220 @@ struct P_ctrl_custom_T_ {
   real_T Memory_X0_d;                  /* Expression: 1
                                         * Referenced by: '<S86>/Memory'
                                         */
-  real_T reset_P1_e;                   /* Expression: width
+  real_T reset_P1_o;                   /* Expression: width
                                         * Referenced by: '<S88>/reset'
                                         */
-  real_T reset_P2_h;                   /* Expression: dtype
+  real_T reset_P2_jm;                  /* Expression: dtype
                                         * Referenced by: '<S88>/reset'
                                         */
-  real_T reset_P3_e;                   /* Expression: portnum
+  real_T reset_P3_a;                   /* Expression: portnum
                                         * Referenced by: '<S88>/reset'
                                         */
-  real_T reset_P4_g2;                  /* Expression: stime
+  real_T reset_P4_a;                   /* Expression: stime
                                         * Referenced by: '<S88>/reset'
                                         */
-  real_T reset_P5_f;                   /* Expression: stype
+  real_T reset_P5_d;                   /* Expression: stype
                                         * Referenced by: '<S88>/reset'
                                         */
-  real_T reset_P6_a;                   /* Expression: btype
+  real_T reset_P6_e;                   /* Expression: btype
                                         * Referenced by: '<S88>/reset'
                                         */
-  real_T Integrator_IC_k;              /* Expression: 0
+  real_T Integrator_IC_hm;             /* Expression: 0
                                         * Referenced by: '<S88>/Integrator'
                                         */
-  real_T NaN_Value_k;                  /* Expression: 0
+  real_T NaN_Value_a;                  /* Expression: 0
                                         * Referenced by: '<S86>/NaN'
                                         */
-  real_T DiscreteTransferFcn_InitialSt_n;/* Expression: 0
+  real_T DiscreteTransferFcn_InitialSt_e;/* Expression: 0
                                           * Referenced by: '<S55>/Discrete Transfer Fcn'
                                           */
-  real_T Constant_Value_m[2];          /* Expression: hd2.den{1,1}
+  real_T Constant_Value_nc[2];         /* Expression: hd2.den{1,1}
                                         * Referenced by: '<S56>/Constant'
                                         */
-  real_T Constant1_Value_h[2];         /* Expression: hd2.num{1,1}
+  real_T Constant1_Value_oy[2];        /* Expression: hd2.num{1,1}
                                         * Referenced by: '<S56>/Constant1'
                                         */
-  real_T Delay_InitialCondition_d;     /* Expression: 0
+  real_T Delay_InitialCondition_h;     /* Expression: 0
                                         * Referenced by: '<S56>/Delay'
                                         */
-  real_T Delay_InitialCondition_b4;    /* Expression: 0
+  real_T Delay_InitialCondition_o;     /* Expression: 0
                                         * Referenced by: '<S95>/Delay'
                                         */
-  real_T Constant1_Value_d[3];         /* Expression: hd.num{1,1}
+  real_T Constant1_Value_h[3];         /* Expression: hd.num{1,1}
                                         * Referenced by: '<S95>/Constant1'
                                         */
-  real_T Constant2_Value_h[3];         /* Expression: hd.den{1,1}
+  real_T Constant2_Value_j[3];         /* Expression: hd.den{1,1}
                                         * Referenced by: '<S95>/Constant2'
                                         */
-  real_T DiscreteTransferFcn_InitialS_nq;/* Expression: 0
+  real_T DiscreteTransferFcn_InitialSt_n;/* Expression: 0
                                           * Referenced by: '<S95>/Discrete Transfer Fcn'
                                           */
-  real_T TSamp_WtEt_n;                 /* Computed Parameter: TSamp_WtEt_n
+  real_T TSamp_WtEt_j;                 /* Computed Parameter: TSamp_WtEt_j
                                         * Referenced by: '<S98>/TSamp'
                                         */
-  real_T Accelerationlimiter_RisingLim_i;/* Computed Parameter: Accelerationlimiter_RisingLim_i
+  real_T Accelerationlimiter_RisingLim_l;/* Computed Parameter: Accelerationlimiter_RisingLim_l
                                           * Referenced by: '<S95>/Acceleration limiter'
                                           */
-  real_T Accelerationlimiter_FallingLi_i;/* Computed Parameter: Accelerationlimiter_FallingLi_i
+  real_T Accelerationlimiter_FallingLi_k;/* Computed Parameter: Accelerationlimiter_FallingLi_k
                                           * Referenced by: '<S95>/Acceleration limiter'
                                           */
-  real_T Accelerationlimiter_IC_i;     /* Expression: 0
+  real_T Accelerationlimiter_IC_j;     /* Expression: 0
                                         * Referenced by: '<S95>/Acceleration limiter'
                                         */
-  real_T Memory_X0_b;                  /* Expression: 1
+  real_T Memory_X0_l;                  /* Expression: 1
                                         * Referenced by: '<S95>/Memory'
                                         */
-  real_T reset_P1_p;                   /* Expression: width
+  real_T reset_P1_as;                  /* Expression: width
                                         * Referenced by: '<S97>/reset'
-                                        */
-  real_T reset_P2_f;                   /* Expression: dtype
-                                        * Referenced by: '<S97>/reset'
-                                        */
-  real_T reset_P3_n;                   /* Expression: portnum
-                                        * Referenced by: '<S97>/reset'
-                                        */
-  real_T reset_P4_h;                   /* Expression: stime
-                                        * Referenced by: '<S97>/reset'
-                                        */
-  real_T reset_P5_i;                   /* Expression: stype
-                                        * Referenced by: '<S97>/reset'
-                                        */
-  real_T reset_P6_g;                   /* Expression: btype
-                                        * Referenced by: '<S97>/reset'
-                                        */
-  real_T Integrator_IC_l;              /* Expression: 0
-                                        * Referenced by: '<S97>/Integrator'
-                                        */
-  real_T NaN_Value_ks;                 /* Expression: 0
-                                        * Referenced by: '<S95>/NaN'
-                                        */
-  real_T DiscreteTransferFcn_InitialSt_g;/* Expression: 0
-                                          * Referenced by: '<S56>/Discrete Transfer Fcn'
-                                          */
-  real_T Constant_Value_gh[2];         /* Expression: hd2.den{1,1}
-                                        * Referenced by: '<S57>/Constant'
-                                        */
-  real_T Constant1_Value_e[2];         /* Expression: hd2.num{1,1}
-                                        * Referenced by: '<S57>/Constant1'
-                                        */
-  real_T Delay_InitialCondition_g;     /* Expression: 0
-                                        * Referenced by: '<S57>/Delay'
-                                        */
-  real_T Delay_InitialCondition_p;     /* Expression: 0
-                                        * Referenced by: '<S104>/Delay'
-                                        */
-  real_T Constant1_Value_kj[3];        /* Expression: hd.num{1,1}
-                                        * Referenced by: '<S104>/Constant1'
-                                        */
-  real_T Constant2_Value_b0[3];        /* Expression: hd.den{1,1}
-                                        * Referenced by: '<S104>/Constant2'
-                                        */
-  real_T DiscreteTransferFcn_InitialS_il;/* Expression: 0
-                                          * Referenced by: '<S104>/Discrete Transfer Fcn'
-                                          */
-  real_T TSamp_WtEt_ih;                /* Computed Parameter: TSamp_WtEt_ih
-                                        * Referenced by: '<S107>/TSamp'
-                                        */
-  real_T Accelerationlimiter_RisingLim_k;/* Computed Parameter: Accelerationlimiter_RisingLim_k
-                                          * Referenced by: '<S104>/Acceleration limiter'
-                                          */
-  real_T Accelerationlimiter_FallingLi_c;/* Computed Parameter: Accelerationlimiter_FallingLi_c
-                                          * Referenced by: '<S104>/Acceleration limiter'
-                                          */
-  real_T Accelerationlimiter_IC_d;     /* Expression: 0
-                                        * Referenced by: '<S104>/Acceleration limiter'
-                                        */
-  real_T Memory_X0_n;                  /* Expression: 1
-                                        * Referenced by: '<S104>/Memory'
-                                        */
-  real_T reset_P1_k;                   /* Expression: width
-                                        * Referenced by: '<S106>/reset'
                                         */
   real_T reset_P2_a;                   /* Expression: dtype
+                                        * Referenced by: '<S97>/reset'
+                                        */
+  real_T reset_P3_j;                   /* Expression: portnum
+                                        * Referenced by: '<S97>/reset'
+                                        */
+  real_T reset_P4_d;                   /* Expression: stime
+                                        * Referenced by: '<S97>/reset'
+                                        */
+  real_T reset_P5_id;                  /* Expression: stype
+                                        * Referenced by: '<S97>/reset'
+                                        */
+  real_T reset_P6_c;                   /* Expression: btype
+                                        * Referenced by: '<S97>/reset'
+                                        */
+  real_T Integrator_IC_f;              /* Expression: 0
+                                        * Referenced by: '<S97>/Integrator'
+                                        */
+  real_T NaN_Value_j;                  /* Expression: 0
+                                        * Referenced by: '<S95>/NaN'
+                                        */
+  real_T DiscreteTransferFcn_InitialSt_j;/* Expression: 0
+                                          * Referenced by: '<S56>/Discrete Transfer Fcn'
+                                          */
+  real_T Constant_Value_jy[2];         /* Expression: hd2.den{1,1}
+                                        * Referenced by: '<S57>/Constant'
+                                        */
+  real_T Constant1_Value_hy[2];        /* Expression: hd2.num{1,1}
+                                        * Referenced by: '<S57>/Constant1'
+                                        */
+  real_T Delay_InitialCondition_eo;    /* Expression: 0
+                                        * Referenced by: '<S57>/Delay'
+                                        */
+  real_T Delay_InitialCondition_k;     /* Expression: 0
+                                        * Referenced by: '<S104>/Delay'
+                                        */
+  real_T Constant1_Value_p[3];         /* Expression: hd.num{1,1}
+                                        * Referenced by: '<S104>/Constant1'
+                                        */
+  real_T Constant2_Value_b[3];         /* Expression: hd.den{1,1}
+                                        * Referenced by: '<S104>/Constant2'
+                                        */
+  real_T DiscreteTransferFcn_InitialSt_a;/* Expression: 0
+                                          * Referenced by: '<S104>/Discrete Transfer Fcn'
+                                          */
+  real_T TSamp_WtEt_p1;                /* Computed Parameter: TSamp_WtEt_p1
+                                        * Referenced by: '<S107>/TSamp'
+                                        */
+  real_T Accelerationlimiter_RisingLim_a;/* Computed Parameter: Accelerationlimiter_RisingLim_a
+                                          * Referenced by: '<S104>/Acceleration limiter'
+                                          */
+  real_T Accelerationlimiter_FallingLi_e;/* Computed Parameter: Accelerationlimiter_FallingLi_e
+                                          * Referenced by: '<S104>/Acceleration limiter'
+                                          */
+  real_T Accelerationlimiter_IC_h;     /* Expression: 0
+                                        * Referenced by: '<S104>/Acceleration limiter'
+                                        */
+  real_T Memory_X0_c;                  /* Expression: 1
+                                        * Referenced by: '<S104>/Memory'
+                                        */
+  real_T reset_P1_j;                   /* Expression: width
                                         * Referenced by: '<S106>/reset'
                                         */
-  real_T reset_P3_mr;                  /* Expression: portnum
+  real_T reset_P2_l;                   /* Expression: dtype
                                         * Referenced by: '<S106>/reset'
                                         */
-  real_T reset_P4_hn;                  /* Expression: stime
+  real_T reset_P3_n;                   /* Expression: portnum
                                         * Referenced by: '<S106>/reset'
                                         */
-  real_T reset_P5_fh;                  /* Expression: stype
+  real_T reset_P4_p;                   /* Expression: stime
                                         * Referenced by: '<S106>/reset'
                                         */
-  real_T reset_P6_f;                   /* Expression: btype
+  real_T reset_P5_e;                   /* Expression: stype
                                         * Referenced by: '<S106>/reset'
                                         */
-  real_T Integrator_IC_hh;             /* Expression: 0
+  real_T reset_P6_g;                   /* Expression: btype
+                                        * Referenced by: '<S106>/reset'
+                                        */
+  real_T Integrator_IC_fh;             /* Expression: 0
                                         * Referenced by: '<S106>/Integrator'
                                         */
-  real_T NaN_Value_ny;                 /* Expression: 0
+  real_T NaN_Value_n;                  /* Expression: 0
                                         * Referenced by: '<S104>/NaN'
                                         */
-  real_T DiscreteTransferFcn_InitialSt_k;/* Expression: 0
+  real_T DiscreteTransferFcn_InitialSt_o;/* Expression: 0
                                           * Referenced by: '<S57>/Discrete Transfer Fcn'
                                           */
-  real_T Constant_Value_b[2];          /* Expression: hd2.den{1,1}
+  real_T Constant_Value_j2[2];         /* Expression: hd2.den{1,1}
                                         * Referenced by: '<S58>/Constant'
                                         */
-  real_T Constant1_Value_oi[2];        /* Expression: hd2.num{1,1}
+  real_T Constant1_Value_ol[2];        /* Expression: hd2.num{1,1}
                                         * Referenced by: '<S58>/Constant1'
                                         */
-  real_T Delay_InitialCondition_md;    /* Expression: 0
+  real_T Delay_InitialCondition_l;     /* Expression: 0
                                         * Referenced by: '<S58>/Delay'
                                         */
-  real_T Delay_InitialCondition_gp;    /* Expression: 0
+  real_T Delay_InitialCondition_op;    /* Expression: 0
                                         * Referenced by: '<S113>/Delay'
                                         */
-  real_T Constant1_Value_pu[3];        /* Expression: hd.num{1,1}
+  real_T Constant1_Value_f[3];         /* Expression: hd.num{1,1}
                                         * Referenced by: '<S113>/Constant1'
                                         */
-  real_T Constant2_Value_p[3];         /* Expression: hd.den{1,1}
+  real_T Constant2_Value_jp[3];        /* Expression: hd.den{1,1}
                                         * Referenced by: '<S113>/Constant2'
                                         */
-  real_T DiscreteTransferFcn_InitialS_fz;/* Expression: 0
+  real_T DiscreteTransferFcn_InitialS_ok;/* Expression: 0
                                           * Referenced by: '<S113>/Discrete Transfer Fcn'
                                           */
-  real_T TSamp_WtEt_l;                 /* Computed Parameter: TSamp_WtEt_l
+  real_T TSamp_WtEt_h;                 /* Computed Parameter: TSamp_WtEt_h
                                         * Referenced by: '<S116>/TSamp'
                                         */
-  real_T Accelerationlimiter_RisingLim_b;/* Computed Parameter: Accelerationlimiter_RisingLim_b
+  real_T Accelerationlimiter_RisingLim_p;/* Computed Parameter: Accelerationlimiter_RisingLim_p
                                           * Referenced by: '<S113>/Acceleration limiter'
                                           */
-  real_T Accelerationlimiter_FallingLi_j;/* Computed Parameter: Accelerationlimiter_FallingLi_j
+  real_T Accelerationlimiter_FallingLi_p;/* Computed Parameter: Accelerationlimiter_FallingLi_p
                                           * Referenced by: '<S113>/Acceleration limiter'
                                           */
-  real_T Accelerationlimiter_IC_g;     /* Expression: 0
+  real_T Accelerationlimiter_IC_d;     /* Expression: 0
                                         * Referenced by: '<S113>/Acceleration limiter'
                                         */
-  real_T Memory_X0_m;                  /* Expression: 1
+  real_T Memory_X0_f;                  /* Expression: 1
                                         * Referenced by: '<S113>/Memory'
                                         */
-  real_T reset_P1_f;                   /* Expression: width
+  real_T reset_P1_g;                   /* Expression: width
                                         * Referenced by: '<S115>/reset'
                                         */
-  real_T reset_P2_i;                   /* Expression: dtype
+  real_T reset_P2_c;                   /* Expression: dtype
                                         * Referenced by: '<S115>/reset'
                                         */
-  real_T reset_P3_d;                   /* Expression: portnum
+  real_T reset_P3_na;                  /* Expression: portnum
                                         * Referenced by: '<S115>/reset'
                                         */
-  real_T reset_P4_l;                   /* Expression: stime
+  real_T reset_P4_j;                   /* Expression: stime
                                         * Referenced by: '<S115>/reset'
                                         */
-  real_T reset_P5_j;                   /* Expression: stype
+  real_T reset_P5_h;                   /* Expression: stype
                                         * Referenced by: '<S115>/reset'
                                         */
   real_T reset_P6_o;                   /* Expression: btype
                                         * Referenced by: '<S115>/reset'
                                         */
-  real_T Integrator_IC_pr;             /* Expression: 0
+  real_T Integrator_IC_i;              /* Expression: 0
                                         * Referenced by: '<S115>/Integrator'
                                         */
-  real_T NaN_Value_m;                  /* Expression: 0
+  real_T NaN_Value_c;                  /* Expression: 0
                                         * Referenced by: '<S113>/NaN'
                                         */
-  real_T DiscreteTransferFcn_InitialSt_j;/* Expression: 0
+  real_T DiscreteTransferFcn_InitialS_fx;/* Expression: 0
                                           * Referenced by: '<S58>/Discrete Transfer Fcn'
                                           */
   real_T Acc_x_P1;                     /* Expression: width
@@ -3953,40 +4107,40 @@ struct P_ctrl_custom_T_ {
   uint32_T Delay_DelayLength;          /* Computed Parameter: Delay_DelayLength
                                         * Referenced by: '<S15>/Delay'
                                         */
-  uint32_T Delay_DelayLength_a;        /* Computed Parameter: Delay_DelayLength_a
+  uint32_T Delay_DelayLength_n;        /* Computed Parameter: Delay_DelayLength_n
                                         * Referenced by: '<S53>/Delay'
                                         */
-  uint32_T Delay_DelayLength_h;        /* Computed Parameter: Delay_DelayLength_h
+  uint32_T Delay_DelayLength_g;        /* Computed Parameter: Delay_DelayLength_g
                                         * Referenced by: '<S68>/Delay'
                                         */
-  uint32_T Delay_DelayLength_f;        /* Computed Parameter: Delay_DelayLength_f
+  uint32_T Delay_DelayLength_e;        /* Computed Parameter: Delay_DelayLength_e
                                         * Referenced by: '<S54>/Delay'
                                         */
-  uint32_T Delay_DelayLength_o;        /* Computed Parameter: Delay_DelayLength_o
+  uint32_T Delay_DelayLength_f;        /* Computed Parameter: Delay_DelayLength_f
                                         * Referenced by: '<S77>/Delay'
                                         */
-  uint32_T Delay_DelayLength_e;        /* Computed Parameter: Delay_DelayLength_e
+  uint32_T Delay_DelayLength_c;        /* Computed Parameter: Delay_DelayLength_c
                                         * Referenced by: '<S55>/Delay'
                                         */
-  uint32_T Delay_DelayLength_o2;       /* Computed Parameter: Delay_DelayLength_o2
+  uint32_T Delay_DelayLength_i;        /* Computed Parameter: Delay_DelayLength_i
                                         * Referenced by: '<S86>/Delay'
                                         */
-  uint32_T Delay_DelayLength_k;        /* Computed Parameter: Delay_DelayLength_k
+  uint32_T Delay_DelayLength_o;        /* Computed Parameter: Delay_DelayLength_o
                                         * Referenced by: '<S56>/Delay'
                                         */
-  uint32_T Delay_DelayLength_kr;       /* Computed Parameter: Delay_DelayLength_kr
+  uint32_T Delay_DelayLength_j;        /* Computed Parameter: Delay_DelayLength_j
                                         * Referenced by: '<S95>/Delay'
                                         */
-  uint32_T Delay_DelayLength_n;        /* Computed Parameter: Delay_DelayLength_n
+  uint32_T Delay_DelayLength_a;        /* Computed Parameter: Delay_DelayLength_a
                                         * Referenced by: '<S57>/Delay'
                                         */
-  uint32_T Delay_DelayLength_n4;       /* Computed Parameter: Delay_DelayLength_n4
+  uint32_T Delay_DelayLength_l;        /* Computed Parameter: Delay_DelayLength_l
                                         * Referenced by: '<S104>/Delay'
                                         */
-  uint32_T Delay_DelayLength_ho;       /* Computed Parameter: Delay_DelayLength_ho
+  uint32_T Delay_DelayLength_ni;       /* Computed Parameter: Delay_DelayLength_ni
                                         * Referenced by: '<S58>/Delay'
                                         */
-  uint32_T Delay_DelayLength_hw;       /* Computed Parameter: Delay_DelayLength_hw
+  uint32_T Delay_DelayLength_jx;       /* Computed Parameter: Delay_DelayLength_jx
                                         * Referenced by: '<S113>/Delay'
                                         */
   P_CoreSubsys_ctrl_custom_T CoreSubsys;/* '<S45>/CoreSubsys' */
@@ -4162,7 +4316,7 @@ extern RT_MODEL_ctrl_custom_T *const ctrl_custom_M;
  * '<S12>'  : 'ctrl_custom/Reference basin'
  * '<S13>'  : 'ctrl_custom/Thrust allocation'
  * '<S14>'  : 'ctrl_custom/Thruster Parameters '
- * '<S15>'  : 'ctrl_custom/Thruster control '
+ * '<S15>'  : 'ctrl_custom/Thruster control 1'
  * '<S16>'  : 'ctrl_custom/Thruster measurment'
  * '<S17>'  : 'ctrl_custom/gain'
  * '<S18>'  : 'ctrl_custom/Initialization of parameters/Control Gains'
@@ -4198,75 +4352,75 @@ extern RT_MODEL_ctrl_custom_T *const ctrl_custom_M;
  * '<S48>'  : 'ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Degrees to Radians'
  * '<S49>'  : 'ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Ensuring angle is  [-pi pi]'
  * '<S50>'  : 'ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/MATLAB Function1'
- * '<S51>'  : 'ctrl_custom/Thruster control /Subsystem1'
- * '<S52>'  : 'ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM'
- * '<S53>'  : 'ctrl_custom/Thruster control /Thruster 1'
- * '<S54>'  : 'ctrl_custom/Thruster control /Thruster 2'
- * '<S55>'  : 'ctrl_custom/Thruster control /Thruster 3'
- * '<S56>'  : 'ctrl_custom/Thruster control /Thruster 4'
- * '<S57>'  : 'ctrl_custom/Thruster control /Thruster 5'
- * '<S58>'  : 'ctrl_custom/Thruster control /Thruster 6'
- * '<S59>'  : 'ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function'
- * '<S60>'  : 'ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function1'
- * '<S61>'  : 'ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function2'
- * '<S62>'  : 'ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function3'
- * '<S63>'  : 'ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function4'
- * '<S64>'  : 'ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function5'
- * '<S65>'  : 'ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function6'
- * '<S66>'  : 'ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics'
- * '<S67>'  : 'ctrl_custom/Thruster control /Thruster 1/Shaft dynamics'
- * '<S68>'  : 'ctrl_custom/Thruster control /Thruster 1/Thruster control'
- * '<S69>'  : 'ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics/Actual Force and Torque'
- * '<S70>'  : 'ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller'
- * '<S71>'  : 'ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Derivative'
- * '<S72>'  : 'ctrl_custom/Thruster control /Thruster 1/Thruster control/MATLAB Function'
- * '<S73>'  : 'ctrl_custom/Thruster control /Thruster 1/Thruster control/Supervisor'
- * '<S74>'  : 'ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
- * '<S75>'  : 'ctrl_custom/Thruster control /Thruster 2/Propeller Hydrodynamics'
- * '<S76>'  : 'ctrl_custom/Thruster control /Thruster 2/Shaft dynamics'
- * '<S77>'  : 'ctrl_custom/Thruster control /Thruster 2/Thruster control'
- * '<S78>'  : 'ctrl_custom/Thruster control /Thruster 2/Propeller Hydrodynamics/Actual Force and Torque'
- * '<S79>'  : 'ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller'
- * '<S80>'  : 'ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Derivative'
- * '<S81>'  : 'ctrl_custom/Thruster control /Thruster 2/Thruster control/MATLAB Function'
- * '<S82>'  : 'ctrl_custom/Thruster control /Thruster 2/Thruster control/Supervisor'
- * '<S83>'  : 'ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
- * '<S84>'  : 'ctrl_custom/Thruster control /Thruster 3/Propeller Hydrodynamics'
- * '<S85>'  : 'ctrl_custom/Thruster control /Thruster 3/Shaft dynamics'
- * '<S86>'  : 'ctrl_custom/Thruster control /Thruster 3/Thruster control'
- * '<S87>'  : 'ctrl_custom/Thruster control /Thruster 3/Propeller Hydrodynamics/Actual Force and Torque'
- * '<S88>'  : 'ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller'
- * '<S89>'  : 'ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Derivative'
- * '<S90>'  : 'ctrl_custom/Thruster control /Thruster 3/Thruster control/MATLAB Function'
- * '<S91>'  : 'ctrl_custom/Thruster control /Thruster 3/Thruster control/Supervisor'
- * '<S92>'  : 'ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
- * '<S93>'  : 'ctrl_custom/Thruster control /Thruster 4/Propeller Hydrodynamics'
- * '<S94>'  : 'ctrl_custom/Thruster control /Thruster 4/Shaft dynamics'
- * '<S95>'  : 'ctrl_custom/Thruster control /Thruster 4/Thruster control'
- * '<S96>'  : 'ctrl_custom/Thruster control /Thruster 4/Propeller Hydrodynamics/Actual Force and Torque'
- * '<S97>'  : 'ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller'
- * '<S98>'  : 'ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Derivative'
- * '<S99>'  : 'ctrl_custom/Thruster control /Thruster 4/Thruster control/MATLAB Function'
- * '<S100>' : 'ctrl_custom/Thruster control /Thruster 4/Thruster control/Supervisor'
- * '<S101>' : 'ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
- * '<S102>' : 'ctrl_custom/Thruster control /Thruster 5/Propeller Hydrodynamics'
- * '<S103>' : 'ctrl_custom/Thruster control /Thruster 5/Shaft dynamics'
- * '<S104>' : 'ctrl_custom/Thruster control /Thruster 5/Thruster control'
- * '<S105>' : 'ctrl_custom/Thruster control /Thruster 5/Propeller Hydrodynamics/Actual Force and Torque'
- * '<S106>' : 'ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller'
- * '<S107>' : 'ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Derivative'
- * '<S108>' : 'ctrl_custom/Thruster control /Thruster 5/Thruster control/MATLAB Function'
- * '<S109>' : 'ctrl_custom/Thruster control /Thruster 5/Thruster control/Supervisor'
- * '<S110>' : 'ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
- * '<S111>' : 'ctrl_custom/Thruster control /Thruster 6/Propeller Hydrodynamics'
- * '<S112>' : 'ctrl_custom/Thruster control /Thruster 6/Shaft dynamics'
- * '<S113>' : 'ctrl_custom/Thruster control /Thruster 6/Thruster control'
- * '<S114>' : 'ctrl_custom/Thruster control /Thruster 6/Propeller Hydrodynamics/Actual Force and Torque'
- * '<S115>' : 'ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller'
- * '<S116>' : 'ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Derivative'
- * '<S117>' : 'ctrl_custom/Thruster control /Thruster 6/Thruster control/MATLAB Function'
- * '<S118>' : 'ctrl_custom/Thruster control /Thruster 6/Thruster control/Supervisor'
- * '<S119>' : 'ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
+ * '<S51>'  : 'ctrl_custom/Thruster control 1/Subsystem1'
+ * '<S52>'  : 'ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM'
+ * '<S53>'  : 'ctrl_custom/Thruster control 1/Thruster 1'
+ * '<S54>'  : 'ctrl_custom/Thruster control 1/Thruster 2'
+ * '<S55>'  : 'ctrl_custom/Thruster control 1/Thruster 3'
+ * '<S56>'  : 'ctrl_custom/Thruster control 1/Thruster 4'
+ * '<S57>'  : 'ctrl_custom/Thruster control 1/Thruster 5'
+ * '<S58>'  : 'ctrl_custom/Thruster control 1/Thruster 6'
+ * '<S59>'  : 'ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function'
+ * '<S60>'  : 'ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function1'
+ * '<S61>'  : 'ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function2'
+ * '<S62>'  : 'ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function3'
+ * '<S63>'  : 'ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function4'
+ * '<S64>'  : 'ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function5'
+ * '<S65>'  : 'ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function6'
+ * '<S66>'  : 'ctrl_custom/Thruster control 1/Thruster 1/Propeller Hydrodynamics'
+ * '<S67>'  : 'ctrl_custom/Thruster control 1/Thruster 1/Shaft dynamics'
+ * '<S68>'  : 'ctrl_custom/Thruster control 1/Thruster 1/Thruster control'
+ * '<S69>'  : 'ctrl_custom/Thruster control 1/Thruster 1/Propeller Hydrodynamics/Actual Force and Torque'
+ * '<S70>'  : 'ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller'
+ * '<S71>'  : 'ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Discrete Derivative'
+ * '<S72>'  : 'ctrl_custom/Thruster control 1/Thruster 1/Thruster control/MATLAB Function'
+ * '<S73>'  : 'ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Supervisor'
+ * '<S74>'  : 'ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
+ * '<S75>'  : 'ctrl_custom/Thruster control 1/Thruster 2/Propeller Hydrodynamics'
+ * '<S76>'  : 'ctrl_custom/Thruster control 1/Thruster 2/Shaft dynamics'
+ * '<S77>'  : 'ctrl_custom/Thruster control 1/Thruster 2/Thruster control'
+ * '<S78>'  : 'ctrl_custom/Thruster control 1/Thruster 2/Propeller Hydrodynamics/Actual Force and Torque'
+ * '<S79>'  : 'ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller'
+ * '<S80>'  : 'ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Discrete Derivative'
+ * '<S81>'  : 'ctrl_custom/Thruster control 1/Thruster 2/Thruster control/MATLAB Function'
+ * '<S82>'  : 'ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Supervisor'
+ * '<S83>'  : 'ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
+ * '<S84>'  : 'ctrl_custom/Thruster control 1/Thruster 3/Propeller Hydrodynamics'
+ * '<S85>'  : 'ctrl_custom/Thruster control 1/Thruster 3/Shaft dynamics'
+ * '<S86>'  : 'ctrl_custom/Thruster control 1/Thruster 3/Thruster control'
+ * '<S87>'  : 'ctrl_custom/Thruster control 1/Thruster 3/Propeller Hydrodynamics/Actual Force and Torque'
+ * '<S88>'  : 'ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller'
+ * '<S89>'  : 'ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Discrete Derivative'
+ * '<S90>'  : 'ctrl_custom/Thruster control 1/Thruster 3/Thruster control/MATLAB Function'
+ * '<S91>'  : 'ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Supervisor'
+ * '<S92>'  : 'ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
+ * '<S93>'  : 'ctrl_custom/Thruster control 1/Thruster 4/Propeller Hydrodynamics'
+ * '<S94>'  : 'ctrl_custom/Thruster control 1/Thruster 4/Shaft dynamics'
+ * '<S95>'  : 'ctrl_custom/Thruster control 1/Thruster 4/Thruster control'
+ * '<S96>'  : 'ctrl_custom/Thruster control 1/Thruster 4/Propeller Hydrodynamics/Actual Force and Torque'
+ * '<S97>'  : 'ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller'
+ * '<S98>'  : 'ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Discrete Derivative'
+ * '<S99>'  : 'ctrl_custom/Thruster control 1/Thruster 4/Thruster control/MATLAB Function'
+ * '<S100>' : 'ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Supervisor'
+ * '<S101>' : 'ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
+ * '<S102>' : 'ctrl_custom/Thruster control 1/Thruster 5/Propeller Hydrodynamics'
+ * '<S103>' : 'ctrl_custom/Thruster control 1/Thruster 5/Shaft dynamics'
+ * '<S104>' : 'ctrl_custom/Thruster control 1/Thruster 5/Thruster control'
+ * '<S105>' : 'ctrl_custom/Thruster control 1/Thruster 5/Propeller Hydrodynamics/Actual Force and Torque'
+ * '<S106>' : 'ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller'
+ * '<S107>' : 'ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Discrete Derivative'
+ * '<S108>' : 'ctrl_custom/Thruster control 1/Thruster 5/Thruster control/MATLAB Function'
+ * '<S109>' : 'ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Supervisor'
+ * '<S110>' : 'ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
+ * '<S111>' : 'ctrl_custom/Thruster control 1/Thruster 6/Propeller Hydrodynamics'
+ * '<S112>' : 'ctrl_custom/Thruster control 1/Thruster 6/Shaft dynamics'
+ * '<S113>' : 'ctrl_custom/Thruster control 1/Thruster 6/Thruster control'
+ * '<S114>' : 'ctrl_custom/Thruster control 1/Thruster 6/Propeller Hydrodynamics/Actual Force and Torque'
+ * '<S115>' : 'ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller'
+ * '<S116>' : 'ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Discrete Derivative'
+ * '<S117>' : 'ctrl_custom/Thruster control 1/Thruster 6/Thruster control/MATLAB Function'
+ * '<S118>' : 'ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Supervisor'
+ * '<S119>' : 'ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power'
  */
 #endif                                 /* RTW_HEADER_ctrl_custom_h_ */
 
@@ -4274,9 +4428,9 @@ extern RT_MODEL_ctrl_custom_T *const ctrl_custom_M;
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.109
+ * Model version : 1.160
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Wed Jul 26 09:02:21 2017
+ * Source generated on : Sat Jul 29 13:11:58 2017
  *========================================================================*/
 #if !defined(NI_HEADER_ctrl_custom_h_)
 #define NI_HEADER_ctrl_custom_h_

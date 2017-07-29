@@ -12,9 +12,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.160
+ * Model version              : 1.156
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Sat Jul 29 13:12:00 2017
+ * C source code generated on : Fri Jul 28 12:18:58 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -210,26 +210,19 @@ P_ctrl_custom_T ctrl_custom_P = {
   -1.0E+10,
   3.1415926535897931,
   6.2831853071795862,
-  -1.0,
-  1.0,
-  1.0,
-  -1.0,
-  1.0,
-  1.0,
-  0.017453292519943295,
-  -1.0,
-  1.0,
-  4.0,
-  -1.0,
-  1.0,
-  1.0,
-  1.0,
   1.0E+10,
   -1.0E+10,
   3.1415926535897931,
   6.2831853071795862,
-  -0.2,
-  0.2,
+  1.0E+10,
+  -1.0E+10,
+  3.1415926535897931,
+  6.2831853071795862,
+  0.0,
+  1.0E+10,
+  -1.0E+10,
+  3.1415926535897931,
+  6.2831853071795862,
   1.0E+10,
   -1.0E+10,
   3.1415926535897931,
@@ -237,23 +230,6 @@ P_ctrl_custom_T ctrl_custom_P = {
   0.0,
 
   { 0.0, 0.0, 0.0 },
-  1.0E+10,
-  -1.0E+10,
-  3.1415926535897931,
-  6.2831853071795862,
-  0.0,
-  1.0E+10,
-  -1.0E+10,
-  3.1415926535897931,
-  6.2831853071795862,
-  1.0E+10,
-  -1.0E+10,
-  3.1415926535897931,
-  6.2831853071795862,
-  0.0,
-  0.0,
-  0.0,
-  1.0,
   -1.0,
   1.0,
   2.0,
@@ -455,13 +431,6 @@ P_ctrl_custom_T ctrl_custom_P = {
   -1.0,
   1.0,
   0.0,
-  1000.0,
-  -1.0,
-  1.0,
-  13.0,
-  -1.0,
-  1.0,
-  0.0,
   -1.0,
   1.0,
   1.0,
@@ -630,10 +599,10 @@ P_ctrl_custom_T ctrl_custom_P = {
   -1.0,
   1.0,
   0.0,
-  57.295779513082323,
+  1000.0,
   -1.0,
   1.0,
-  14.0,
+  13.0,
   -1.0,
   1.0,
   0.0,
@@ -686,7 +655,7 @@ P_ctrl_custom_T ctrl_custom_P = {
   -1.0,
   1.0,
   1.0,
-  -1.0,
+  0.017453292519943295,
   0.0,
   0.0,
   -1.0,
@@ -743,6 +712,13 @@ P_ctrl_custom_T ctrl_custom_P = {
   -1.0,
   1.0,
   1.0,
+  0.0,
+  -1.0,
+  1.0,
+  1.0,
+  -1.0,
+  1.0,
+  1.0,
   -1.0,
   1.0,
   2.0,
@@ -956,23 +932,23 @@ P_ctrl_custom_T ctrl_custom_P = {
   1U,
   1U,
 
-  /* Start of '<S45>/CoreSubsys' */
+  /* Start of '<S46>/CoreSubsys' */
   {
     0.01,
     0.017453292519943295,
     0.0,
     1U
   }
-  /* End of '<S45>/CoreSubsys' */
+  /* End of '<S46>/CoreSubsys' */
 };
 
 /*========================================================================*
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.160
+ * Model version : 1.156
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Sat Jul 29 13:11:58 2017
+ * Source generated on : Fri Jul 28 12:18:57 2017
  *========================================================================*/
 #if defined VXWORKS || defined kNIOSLinux
 
@@ -1336,20 +1312,6 @@ NI_ParamSizeWidth P_ctrl_custom_T_sizes[] DataSection(".NIVS.defaultparamsizes")
 
   { sizeof(real_T), 1, 0 },
 
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
   { sizeof(real_T), 3, 0 },
 
   { sizeof(real_T), 1, 0 },
@@ -1626,40 +1588,6 @@ NI_ParamSizeWidth P_ctrl_custom_T_sizes[] DataSection(".NIVS.defaultparamsizes")
 
   { sizeof(real_T), 1, 0 },
 
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
   { sizeof(real_T), 6, 0 },
 
   { sizeof(real_T), 6, 0 },
@@ -1709,20 +1637,6 @@ NI_ParamSizeWidth P_ctrl_custom_T_sizes[] DataSection(".NIVS.defaultparamsizes")
   { sizeof(real_T), 6, 0 },
 
   { sizeof(real_T), 6, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
-
-  { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 1, 0 },
 
@@ -1877,6 +1791,20 @@ NI_ParamSizeWidth P_ctrl_custom_T_sizes[] DataSection(".NIVS.defaultparamsizes")
   { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 9, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 1, 0 },
 

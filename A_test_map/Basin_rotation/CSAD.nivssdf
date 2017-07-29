@@ -10,7 +10,7 @@
 				<String>CSAD</String>
 			</Property>
 			<Property Name="Version">
-				<String>1.0.0.67</String>
+				<String>1.0.0.120</String>
 			</Property>
 			<Property Name="Creator">
 				<String />
@@ -6471,10 +6471,10 @@
 									<Double>10000</Double>
 								</Property>
 								<Property Name="DLL Size">
-									<I32>564556</I32>
+									<I32>547945</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3583897388.7926621</Double>
+									<Double>3584171563.0675817</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -6507,7 +6507,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>d1f104d005b4af8a439ea0e4d7a142aa</String>
+									<String>4014b58887095f871377941494c3eee9</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -6521,7 +6521,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\ctrl_custom.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>d1f104d005b4af8a439ea0e4d7a142aa</MD5>
+										<MD5>4014b58887095f871377941494c3eee9</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">
@@ -6918,21 +6918,6 @@
 												<Description />
 												<Properties />
 												<Errors />
-												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-													<Description />
-													<Properties>
-														<Property Name="Model Path">
-															<String>Thruster control /Thruster 1/Thruster control/Core controller/reset</String>
-														</Property>
-														<Property Name="Index">
-															<I32>41</I32>
-														</Property>
-													</Properties>
-													<Errors />
-													<DefaultValue>
-														<Elem>0</Elem>
-													</DefaultValue>
-												</Channel>
 											</Section>
 										</Section>
 									</Section>
@@ -6953,21 +6938,6 @@
 												<Description />
 												<Properties />
 												<Errors />
-												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-													<Description />
-													<Properties>
-														<Property Name="Model Path">
-															<String>Thruster control /Thruster 2/Thruster control/Core controller/reset</String>
-														</Property>
-														<Property Name="Index">
-															<I32>42</I32>
-														</Property>
-													</Properties>
-													<Errors />
-													<DefaultValue>
-														<Elem>0</Elem>
-													</DefaultValue>
-												</Channel>
 											</Section>
 										</Section>
 									</Section>
@@ -6988,21 +6958,6 @@
 												<Description />
 												<Properties />
 												<Errors />
-												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-													<Description />
-													<Properties>
-														<Property Name="Model Path">
-															<String>Thruster control /Thruster 3/Thruster control/Core controller/reset</String>
-														</Property>
-														<Property Name="Index">
-															<I32>43</I32>
-														</Property>
-													</Properties>
-													<Errors />
-													<DefaultValue>
-														<Elem>0</Elem>
-													</DefaultValue>
-												</Channel>
 											</Section>
 										</Section>
 									</Section>
@@ -7023,21 +6978,6 @@
 												<Description />
 												<Properties />
 												<Errors />
-												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-													<Description />
-													<Properties>
-														<Property Name="Model Path">
-															<String>Thruster control /Thruster 4/Thruster control/Core controller/reset</String>
-														</Property>
-														<Property Name="Index">
-															<I32>44</I32>
-														</Property>
-													</Properties>
-													<Errors />
-													<DefaultValue>
-														<Elem>0</Elem>
-													</DefaultValue>
-												</Channel>
 											</Section>
 										</Section>
 									</Section>
@@ -7058,21 +6998,6 @@
 												<Description />
 												<Properties />
 												<Errors />
-												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-													<Description />
-													<Properties>
-														<Property Name="Model Path">
-															<String>Thruster control /Thruster 5/Thruster control/Core controller/reset</String>
-														</Property>
-														<Property Name="Index">
-															<I32>45</I32>
-														</Property>
-													</Properties>
-													<Errors />
-													<DefaultValue>
-														<Elem>0</Elem>
-													</DefaultValue>
-												</Channel>
 											</Section>
 										</Section>
 									</Section>
@@ -7093,21 +7018,6 @@
 												<Description />
 												<Properties />
 												<Errors />
-												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-													<Description />
-													<Properties>
-														<Property Name="Model Path">
-															<String>Thruster control /Thruster 6/Thruster control/Core controller/reset</String>
-														</Property>
-														<Property Name="Index">
-															<I32>46</I32>
-														</Property>
-													</Properties>
-													<Errors />
-													<DefaultValue>
-														<Elem>0</Elem>
-													</DefaultValue>
-												</Channel>
 											</Section>
 										</Section>
 									</Section>
@@ -7115,96 +7025,6 @@
 										<Description />
 										<Properties />
 										<Errors />
-										<Channel Name="rpm1 " TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-											<Description />
-											<Properties>
-												<Property Name="Model Path">
-													<String>Thruster control /Thrust and Shaft speed mapped to PWM/rpm1 </String>
-												</Property>
-												<Property Name="Index">
-													<I32>17</I32>
-												</Property>
-											</Properties>
-											<Errors />
-											<DefaultValue>
-												<Elem>0</Elem>
-											</DefaultValue>
-										</Channel>
-										<Channel Name="rpm2" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-											<Description />
-											<Properties>
-												<Property Name="Model Path">
-													<String>Thruster control /Thrust and Shaft speed mapped to PWM/rpm2</String>
-												</Property>
-												<Property Name="Index">
-													<I32>18</I32>
-												</Property>
-											</Properties>
-											<Errors />
-											<DefaultValue>
-												<Elem>0</Elem>
-											</DefaultValue>
-										</Channel>
-										<Channel Name="rpm3" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-											<Description />
-											<Properties>
-												<Property Name="Model Path">
-													<String>Thruster control /Thrust and Shaft speed mapped to PWM/rpm3</String>
-												</Property>
-												<Property Name="Index">
-													<I32>19</I32>
-												</Property>
-											</Properties>
-											<Errors />
-											<DefaultValue>
-												<Elem>0</Elem>
-											</DefaultValue>
-										</Channel>
-										<Channel Name="rpm4" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-											<Description />
-											<Properties>
-												<Property Name="Model Path">
-													<String>Thruster control /Thrust and Shaft speed mapped to PWM/rpm4</String>
-												</Property>
-												<Property Name="Index">
-													<I32>20</I32>
-												</Property>
-											</Properties>
-											<Errors />
-											<DefaultValue>
-												<Elem>0</Elem>
-											</DefaultValue>
-										</Channel>
-										<Channel Name="rpm5" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-											<Description />
-											<Properties>
-												<Property Name="Model Path">
-													<String>Thruster control /Thrust and Shaft speed mapped to PWM/rpm5</String>
-												</Property>
-												<Property Name="Index">
-													<I32>21</I32>
-												</Property>
-											</Properties>
-											<Errors />
-											<DefaultValue>
-												<Elem>0</Elem>
-											</DefaultValue>
-										</Channel>
-										<Channel Name="rpm6" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
-											<Description />
-											<Properties>
-												<Property Name="Model Path">
-													<String>Thruster control /Thrust and Shaft speed mapped to PWM/rpm6</String>
-												</Property>
-												<Property Name="Index">
-													<I32>22</I32>
-												</Property>
-											</Properties>
-											<Errors />
-											<DefaultValue>
-												<Elem>0</Elem>
-											</DefaultValue>
-										</Channel>
 									</Section>
 								</Section>
 								<Section Name="Referance" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
@@ -7223,7 +7043,7 @@
 										</Properties>
 										<Errors />
 										<DefaultValue>
-											<Elem>0</Elem>
+											<Elem>1.5</Elem>
 										</DefaultValue>
 									</Channel>
 									<Channel Name="y_ref" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7238,7 +7058,7 @@
 										</Properties>
 										<Errors />
 										<DefaultValue>
-											<Elem>0</Elem>
+											<Elem>-0.53</Elem>
 										</DefaultValue>
 									</Channel>
 								</Section>
@@ -7262,7 +7082,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>0.35</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_p_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7277,7 +7097,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>0.43</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_p_psi" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7292,7 +7112,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>0.2</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_i_psi" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7307,7 +7127,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.01</Elem>
+												<Elem>0</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_i_x" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7322,7 +7142,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.01</Elem>
+												<Elem>0</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_i_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7337,7 +7157,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.01</Elem>
+												<Elem>0</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_d_psi" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7352,7 +7172,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>0</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_d_x" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7367,7 +7187,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>9</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="K_d_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7382,7 +7202,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>0.1</Elem>
+												<Elem>11</Elem>
 											</DefaultValue>
 										</Channel>
 									</Section>
@@ -7492,7 +7312,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>35</Elem>
+												<Elem>5</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="T_x" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7507,7 +7327,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>35</Elem>
+												<Elem>5</Elem>
 											</DefaultValue>
 										</Channel>
 										<Channel Name="T_y" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
@@ -7522,7 +7342,7 @@
 											</Properties>
 											<Errors />
 											<DefaultValue>
-												<Elem>35</Elem>
+												<Elem>5</Elem>
 											</DefaultValue>
 										</Channel>
 									</Section>
@@ -7536,11 +7356,16 @@
 									<Description />
 									<Properties />
 									<Errors />
-									<Channel Name="start2(1,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+								</Section>
+								<Section Name="Startbutton1" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+									<Description />
+									<Properties />
+									<Errors />
+									<Channel Name="Startbutton1(1,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>16</I32>
@@ -7554,11 +7379,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(2,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(2,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>16</I32>
@@ -7572,11 +7397,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(3,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(3,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>16</I32>
@@ -7590,11 +7415,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(4,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(4,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>16</I32>
@@ -7608,11 +7433,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(5,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(5,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>16</I32>
@@ -7626,11 +7451,11 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
-									<Channel Name="start2(6,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Channel Name="Startbutton1(6,1)" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 										<Description />
 										<Properties>
 											<Property Name="Model Path">
-												<String>start2</String>
+												<String>Startbutton1</String>
 											</Property>
 											<Property Name="Index">
 												<I32>16</I32>
@@ -7644,6 +7469,286 @@
 											<Elem>0</Elem>
 										</DefaultValue>
 									</Channel>
+								</Section>
+								<Section Name="Thruster control 1" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+									<Description />
+									<Properties />
+									<Errors />
+									<Section Name="Thrust and Shaft speed mapped to PWM" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+										<Description />
+										<Properties />
+										<Errors />
+										<Channel Name="rpm1 " TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+											<Description />
+											<Properties>
+												<Property Name="Model Path">
+													<String>Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm1 </String>
+												</Property>
+												<Property Name="Index">
+													<I32>17</I32>
+												</Property>
+											</Properties>
+											<Errors />
+											<DefaultValue>
+												<Elem>0</Elem>
+											</DefaultValue>
+										</Channel>
+										<Channel Name="rpm2" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+											<Description />
+											<Properties>
+												<Property Name="Model Path">
+													<String>Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm2</String>
+												</Property>
+												<Property Name="Index">
+													<I32>18</I32>
+												</Property>
+											</Properties>
+											<Errors />
+											<DefaultValue>
+												<Elem>0</Elem>
+											</DefaultValue>
+										</Channel>
+										<Channel Name="rpm3" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+											<Description />
+											<Properties>
+												<Property Name="Model Path">
+													<String>Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm3</String>
+												</Property>
+												<Property Name="Index">
+													<I32>19</I32>
+												</Property>
+											</Properties>
+											<Errors />
+											<DefaultValue>
+												<Elem>0</Elem>
+											</DefaultValue>
+										</Channel>
+										<Channel Name="rpm4" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+											<Description />
+											<Properties>
+												<Property Name="Model Path">
+													<String>Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm4</String>
+												</Property>
+												<Property Name="Index">
+													<I32>20</I32>
+												</Property>
+											</Properties>
+											<Errors />
+											<DefaultValue>
+												<Elem>0</Elem>
+											</DefaultValue>
+										</Channel>
+										<Channel Name="rpm5" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+											<Description />
+											<Properties>
+												<Property Name="Model Path">
+													<String>Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm5</String>
+												</Property>
+												<Property Name="Index">
+													<I32>21</I32>
+												</Property>
+											</Properties>
+											<Errors />
+											<DefaultValue>
+												<Elem>0</Elem>
+											</DefaultValue>
+										</Channel>
+										<Channel Name="rpm6" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+											<Description />
+											<Properties>
+												<Property Name="Model Path">
+													<String>Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm6</String>
+												</Property>
+												<Property Name="Index">
+													<I32>22</I32>
+												</Property>
+											</Properties>
+											<Errors />
+											<DefaultValue>
+												<Elem>0</Elem>
+											</DefaultValue>
+										</Channel>
+									</Section>
+									<Section Name="Thruster 1" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+										<Description />
+										<Properties />
+										<Errors />
+										<Section Name="Thruster control" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+											<Description />
+											<Properties />
+											<Errors />
+											<Section Name="Core controller" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+												<Description />
+												<Properties />
+												<Errors />
+												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+													<Description />
+													<Properties>
+														<Property Name="Model Path">
+															<String>Thruster control 1/Thruster 1/Thruster control/Core controller/reset</String>
+														</Property>
+														<Property Name="Index">
+															<I32>41</I32>
+														</Property>
+													</Properties>
+													<Errors />
+													<DefaultValue>
+														<Elem>0</Elem>
+													</DefaultValue>
+												</Channel>
+											</Section>
+										</Section>
+									</Section>
+									<Section Name="Thruster 2" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+										<Description />
+										<Properties />
+										<Errors />
+										<Section Name="Thruster control" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+											<Description />
+											<Properties />
+											<Errors />
+											<Section Name="Core controller" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+												<Description />
+												<Properties />
+												<Errors />
+												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+													<Description />
+													<Properties>
+														<Property Name="Model Path">
+															<String>Thruster control 1/Thruster 2/Thruster control/Core controller/reset</String>
+														</Property>
+														<Property Name="Index">
+															<I32>42</I32>
+														</Property>
+													</Properties>
+													<Errors />
+													<DefaultValue>
+														<Elem>0</Elem>
+													</DefaultValue>
+												</Channel>
+											</Section>
+										</Section>
+									</Section>
+									<Section Name="Thruster 3" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+										<Description />
+										<Properties />
+										<Errors />
+										<Section Name="Thruster control" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+											<Description />
+											<Properties />
+											<Errors />
+											<Section Name="Core controller" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+												<Description />
+												<Properties />
+												<Errors />
+												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+													<Description />
+													<Properties>
+														<Property Name="Model Path">
+															<String>Thruster control 1/Thruster 3/Thruster control/Core controller/reset</String>
+														</Property>
+														<Property Name="Index">
+															<I32>43</I32>
+														</Property>
+													</Properties>
+													<Errors />
+													<DefaultValue>
+														<Elem>0</Elem>
+													</DefaultValue>
+												</Channel>
+											</Section>
+										</Section>
+									</Section>
+									<Section Name="Thruster 4" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+										<Description />
+										<Properties />
+										<Errors />
+										<Section Name="Thruster control" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+											<Description />
+											<Properties />
+											<Errors />
+											<Section Name="Core controller" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+												<Description />
+												<Properties />
+												<Errors />
+												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+													<Description />
+													<Properties>
+														<Property Name="Model Path">
+															<String>Thruster control 1/Thruster 4/Thruster control/Core controller/reset</String>
+														</Property>
+														<Property Name="Index">
+															<I32>44</I32>
+														</Property>
+													</Properties>
+													<Errors />
+													<DefaultValue>
+														<Elem>0</Elem>
+													</DefaultValue>
+												</Channel>
+											</Section>
+										</Section>
+									</Section>
+									<Section Name="Thruster 5" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+										<Description />
+										<Properties />
+										<Errors />
+										<Section Name="Thruster control" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+											<Description />
+											<Properties />
+											<Errors />
+											<Section Name="Core controller" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+												<Description />
+												<Properties />
+												<Errors />
+												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+													<Description />
+													<Properties>
+														<Property Name="Model Path">
+															<String>Thruster control 1/Thruster 5/Thruster control/Core controller/reset</String>
+														</Property>
+														<Property Name="Index">
+															<I32>45</I32>
+														</Property>
+													</Properties>
+													<Errors />
+													<DefaultValue>
+														<Elem>0</Elem>
+													</DefaultValue>
+												</Channel>
+											</Section>
+										</Section>
+									</Section>
+									<Section Name="Thruster 6" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+										<Description />
+										<Properties />
+										<Errors />
+										<Section Name="Thruster control" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+											<Description />
+											<Properties />
+											<Errors />
+											<Section Name="Core controller" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+												<Description />
+												<Properties />
+												<Errors />
+												<Channel Name="reset" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+													<Description />
+													<Properties>
+														<Property Name="Model Path">
+															<String>Thruster control 1/Thruster 6/Thruster control/Core controller/reset</String>
+														</Property>
+														<Property Name="Index">
+															<I32>46</I32>
+														</Property>
+													</Properties>
+													<Errors />
+													<DefaultValue>
+														<Elem>0</Elem>
+													</DefaultValue>
+												</Channel>
+											</Section>
+										</Section>
+									</Section>
 								</Section>
 								<Section Name="Reference basin" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
 									<Description />
@@ -7680,11 +7785,11 @@
 										<Elem>0</Elem>
 									</DefaultValue>
 								</Channel>
-								<Channel Name="start" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+								<Channel Name="Startbutton" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 									<Description />
 									<Properties>
 										<Property Name="Model Path">
-											<String>start</String>
+											<String>Startbutton</String>
 										</Property>
 										<Property Name="Index">
 											<I32>1</I32>
@@ -7729,7 +7834,7 @@
 												<String>gain/alpha1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>74</I32>
+												<I32>78</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7744,7 +7849,7 @@
 												<String>gain/alpha2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>75</I32>
+												<I32>79</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7759,7 +7864,7 @@
 												<String>gain/alpha3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>76</I32>
+												<I32>80</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7774,7 +7879,7 @@
 												<String>gain/alpha4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>77</I32>
+												<I32>81</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7789,7 +7894,7 @@
 												<String>gain/alpha5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>78</I32>
+												<I32>82</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7804,7 +7909,7 @@
 												<String>gain/alpha6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>79</I32>
+												<I32>83</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7819,7 +7924,7 @@
 												<String>gain/u1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>80</I32>
+												<I32>84</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7834,7 +7939,7 @@
 												<String>gain/u2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>81</I32>
+												<I32>85</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7849,7 +7954,7 @@
 												<String>gain/u3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>82</I32>
+												<I32>86</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7864,7 +7969,7 @@
 												<String>gain/u4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>83</I32>
+												<I32>87</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7879,7 +7984,7 @@
 												<String>gain/u5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>84</I32>
+												<I32>88</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7894,7 +7999,7 @@
 												<String>gain/u6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>85</I32>
+												<I32>89</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7918,7 +8023,7 @@
 													<String>Observer output /eta_hat output/x_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>62</I32>
+													<I32>66</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7933,7 +8038,7 @@
 													<String>Observer output /eta_hat output/y_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>63</I32>
+													<I32>67</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7948,7 +8053,7 @@
 													<String>Observer output /eta_hat output/psi_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>64</I32>
+													<I32>68</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7968,7 +8073,7 @@
 													<String>Observer output /nu_hat output/u_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>65</I32>
+													<I32>69</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7983,7 +8088,7 @@
 													<String>Observer output /nu_hat output/v_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>66</I32>
+													<I32>70</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -7998,7 +8103,7 @@
 													<String>Observer output /nu_hat output/r_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>67</I32>
+													<I32>71</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -8018,7 +8123,7 @@
 													<String>Observer output /nu_dot_hat output/u_dot_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>68</I32>
+													<I32>72</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -8033,7 +8138,7 @@
 													<String>Observer output /nu_dot_hat output/v_dot_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>69</I32>
+													<I32>73</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -8048,7 +8153,7 @@
 													<String>Observer output /nu_dot_hat output/r_dot_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>70</I32>
+													<I32>74</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -8068,7 +8173,7 @@
 													<String>Observer output /b_hat output/b_x_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>71</I32>
+													<I32>75</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -8083,7 +8188,7 @@
 													<String>Observer output /b_hat output/b_y_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>72</I32>
+													<I32>76</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -8098,7 +8203,7 @@
 													<String>Observer output /b_hat output/b_psi_hat</String>
 												</Property>
 												<Property Name="Index">
-													<I32>73</I32>
+													<I32>77</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -8120,21 +8225,6 @@
 											<Description />
 											<Properties />
 											<Errors />
-											<Channel Name="Control_test_Pa" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
-												<Description />
-												<Properties>
-													<Property Name="Model Path">
-														<String>Thruster control /Thruster 1/Propeller Hydrodynamics/Control_test_Pa</String>
-													</Property>
-													<Property Name="Index">
-														<I32>90</I32>
-													</Property>
-												</Properties>
-												<Errors />
-												<DefaultValue>
-													<Elem>0</Elem>
-												</DefaultValue>
-											</Channel>
 										</Section>
 									</Section>
 								</Section>
@@ -8149,7 +8239,7 @@
 												<String>PID controller/y_error</String>
 											</Property>
 											<Property Name="Index">
-												<I32>87</I32>
+												<I32>91</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -8164,7 +8254,7 @@
 												<String>PID controller/psi_error</String>
 											</Property>
 											<Property Name="Index">
-												<I32>88</I32>
+												<I32>92</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -8179,7 +8269,52 @@
 												<String>PID controller/x_error</String>
 											</Property>
 											<Property Name="Index">
-												<I32>89</I32>
+												<I32>93</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="Integral_x" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>PID controller/Integral_x</String>
+											</Property>
+											<Property Name="Index">
+												<I32>94</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="Integral_psi" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>PID controller/Integral_psi</String>
+											</Property>
+											<Property Name="Index">
+												<I32>95</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="Integral_y" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>PID controller/Integral_y</String>
+											</Property>
+											<Property Name="Index">
+												<I32>96</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -8212,6 +8347,36 @@
 									<Description />
 									<Properties />
 									<Errors />
+								</Section>
+								<Section Name="Thruster control 1" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+									<Description />
+									<Properties />
+									<Errors />
+									<Section Name="Thruster 1" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+										<Description />
+										<Properties />
+										<Errors />
+										<Section Name="Propeller Hydrodynamics" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+											<Description />
+											<Properties />
+											<Errors />
+											<Channel Name="Control_test_Pa" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+												<Description />
+												<Properties>
+													<Property Name="Model Path">
+														<String>Thruster control 1/Thruster 1/Propeller Hydrodynamics/Control_test_Pa</String>
+													</Property>
+													<Property Name="Index">
+														<I32>97</I32>
+													</Property>
+												</Properties>
+												<Errors />
+												<DefaultValue>
+													<Elem>0</Elem>
+												</DefaultValue>
+											</Channel>
+										</Section>
+									</Section>
 								</Section>
 								<Channel Name="Output to Workspace" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
 									<Description />
@@ -8355,7 +8520,67 @@
 											<String>tau_commanded_y</String>
 										</Property>
 										<Property Name="Index">
-											<I32>86</I32>
+											<I32>62</I32>
+										</Property>
+									</Properties>
+									<Errors />
+									<DefaultValue>
+										<Elem>0</Elem>
+									</DefaultValue>
+								</Channel>
+								<Channel Name="psi_ref_filter" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+									<Description />
+									<Properties>
+										<Property Name="Model Path">
+											<String>psi_ref_filter</String>
+										</Property>
+										<Property Name="Index">
+											<I32>63</I32>
+										</Property>
+									</Properties>
+									<Errors />
+									<DefaultValue>
+										<Elem>0</Elem>
+									</DefaultValue>
+								</Channel>
+								<Channel Name="x_ref_filter" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+									<Description />
+									<Properties>
+										<Property Name="Model Path">
+											<String>x_ref_filter</String>
+										</Property>
+										<Property Name="Index">
+											<I32>64</I32>
+										</Property>
+									</Properties>
+									<Errors />
+									<DefaultValue>
+										<Elem>0</Elem>
+									</DefaultValue>
+								</Channel>
+								<Channel Name="y_ref_filter" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+									<Description />
+									<Properties>
+										<Property Name="Model Path">
+											<String>y_ref_filter</String>
+										</Property>
+										<Property Name="Index">
+											<I32>65</I32>
+										</Property>
+									</Properties>
+									<Errors />
+									<DefaultValue>
+										<Elem>0</Elem>
+									</DefaultValue>
+								</Channel>
+								<Channel Name="heading" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+									<Description />
+									<Properties>
+										<Property Name="Model Path">
+											<String>heading</String>
+										</Property>
+										<Property Name="Index">
+											<I32>90</I32>
 										</Property>
 									</Properties>
 									<Errors />

@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.109
+ * Model version              : 1.160
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Wed Jul 26 09:02:22 2017
+ * C source code generated on : Sat Jul 29 13:12:00 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -40,7 +40,6 @@ RT_MODEL_ctrl_custom_T ctrl_custom_M_;
 RT_MODEL_ctrl_custom_T *const ctrl_custom_M = &ctrl_custom_M_;
 
 /* Forward declaration for local functions */
-static void ctrl_custom_diag(const real_T v[6], real_T d[36]);
 static real_T ctrl_custom_xnrm2(int32_T n, const real_T x[18], int32_T ix0);
 static real_T ctrl_custom_xnrm2_k(int32_T n, const real_T x[6], int32_T ix0);
 static void ctrl_custom_xaxpy_a2(int32_T n, real_T a, const real_T x[3], int32_T
@@ -68,11 +67,8 @@ static real_T ctrl_custom_xdotc(int32_T n, const real_T x[18], int32_T ix0,
   const real_T y[18], int32_T iy0);
 static void ctrl_custom_xaxpy(int32_T n, real_T a, int32_T ix0, real_T y[18],
   int32_T iy0);
-static void ctrl_custom_svd_h(const real_T A[18], real_T U[9], real_T S[9],
-  real_T V[18]);
 static void ctrl_custom_svd(const real_T A[18], real_T U[9], real_T S[9], real_T
   V[18]);
-static void ctrl_custom_isfinite(const real_T x[9], boolean_T b[9]);
 static real_T ctrl_custom_xnrm2_ky(int32_T n, const real_T x[36], int32_T ix0);
 static real_T ctrl_custom_xnrm2_kyb(int32_T n, const real_T x[12], int32_T ix0);
 static void ctrl_custom_xaxpy_a2fbjv1(int32_T n, real_T a, const real_T x[3],
@@ -91,11 +87,8 @@ static real_T ctrl_custom_xdotc_lso(int32_T n, const real_T x[36], int32_T ix0,
   const real_T y[36], int32_T iy0);
 static void ctrl_custom_xaxpy_a2fbj(int32_T n, real_T a, int32_T ix0, real_T y
   [36], int32_T iy0);
-static void ctrl_custom_svd_hb2(const real_T A[36], real_T U[9], real_T S[9],
+static void ctrl_custom_svd_h(const real_T A[36], real_T U[9], real_T S[9],
   real_T V[36]);
-static void ctrl_custom_svd_hb(const real_T A[36], real_T U[9], real_T S[9],
-  real_T V[36]);
-static void ctrl_custom_abs(const real_T x[2], real_T y[2]);
 static void ctrl_custom_cosd(real_T *x);
 static void ctrl_custom_sind(real_T *x);
 static void ctrl_custom_cosd_m(real_T *x);
@@ -216,7 +209,7 @@ void ctrl_custom_MATLABFunction(const real_T rtu_omega[9], const real_T
 void ctrl_custom_MATLABFunction2(real_T rtu_Tc_in1, real_T rtu_signal, real_T
   rtu_Tc_in2, B_MATLABFunction2_ctrl_custom_T *localB)
 {
-  /* MATLAB Function 'Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function2': '<S61>:1' */
+  /* MATLAB Function 'Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function2': '<S61>:1' */
   if (rtu_signal >= 0.0) {
     /* '<S61>:1:4' */
     /* '<S61>:1:5' */
@@ -293,7 +286,7 @@ void CorecontrollerTorquePowerandCom(real_T rtu_k_cc, real_T rtu_p_cc, real_T
   real_T K_QC;
   real_T rtu_Tr_0;
 
-  /* MATLAB Function 'Thruster control /Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power': '<S74>:1' */
+  /* MATLAB Function 'Thruster control 1/Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power': '<S74>:1' */
   /* '<S74>:1:4' */
   lambda_c = tanh(rtu_eps_c * rtu_n / 5.0) * 0.5 + 0.5;
 
@@ -346,7 +339,7 @@ void CorecontrollerTorquePowerandCom(real_T rtu_k_cc, real_T rtu_p_cc, real_T
 void ctrl_custom_Supervisor(real_T rtu_control, real_T rtu_input, real_T rtu_n,
   B_Supervisor_ctrl_custom_T *localB)
 {
-  /* MATLAB Function 'Thruster control /Thruster 1/Thruster control/Supervisor': '<S73>:1' */
+  /* MATLAB Function 'Thruster control 1/Thruster 1/Thruster control/Supervisor': '<S73>:1' */
   /* '<S73>:1:2' */
   localB->u = 1.0;
   if (rtu_control == 1.0) {
@@ -490,7 +483,7 @@ void ctrl_custo_ActualForceandTorque(real_T rtu_n, real_T rtu_Kq, real_T rtu_Kt,
   real_T lambda_c;
   real_T rtu_n_0;
 
-  /* MATLAB Function 'Thruster control /Thruster 2/Propeller Hydrodynamics/Actual Force and Torque': '<S78>:1' */
+  /* MATLAB Function 'Thruster control 1/Thruster 2/Propeller Hydrodynamics/Actual Force and Torque': '<S78>:1' */
   /* '<S78>:1:3' */
   lambda_c = tanh(rtu_eps_c * rtu_n / 5.0) * 0.5 + 0.5;
 
@@ -534,13 +527,13 @@ void ctrl_custo_ActualForceandTorque(real_T rtu_n, real_T rtu_Kq, real_T rtu_Kt,
  */
 void ctrl_custom_MATLABFunction_a(real_T rtu_Td, real_T rtu_K_t0, real_T
   rtu_K_t0r, real_T rtu_rho, real_T rtu_D, real_T rtu_eps_c, real_T rtu_n_r,
-  B_MATLABFunction_ctrl_custo_a_T *localB)
+  B_MATLABFunction_ctrl_custo_l_T *localB)
 {
   real_T lambda_c;
   real_T rtu_Td_0;
   real_T rtu_n_r_0;
 
-  /* MATLAB Function 'Thruster control /Thruster 2/Thruster control/MATLAB Function': '<S81>:1' */
+  /* MATLAB Function 'Thruster control 1/Thruster 2/Thruster control/MATLAB Function': '<S81>:1' */
   /* '<S81>:1:5' */
   if (rtu_Td < 0.0) {
     rtu_Td_0 = -1.0;
@@ -620,16 +613,6 @@ real_T rt_remd_snf(real_T u0, real_T u1)
   }
 
   return y;
-}
-
-/* Function for MATLAB Function: '<S13>/MATLAB Function' */
-static void ctrl_custom_diag(const real_T v[6], real_T d[36])
-{
-  int32_T j;
-  memset(&d[0], 0, 36U * sizeof(real_T));
-  for (j = 0; j < 6; j++) {
-    d[j + 6 * j] = v[j];
-  }
 }
 
 /* Function for MATLAB Function: '<S13>/MATLAB Function' */
@@ -992,8 +975,8 @@ static void ctrl_custom_xaxpy(int32_T n, real_T a, int32_T ix0, real_T y[18],
 }
 
 /* Function for MATLAB Function: '<S13>/MATLAB Function' */
-static void ctrl_custom_svd_h(const real_T A[18], real_T U[9], real_T S[9],
-  real_T V[18])
+static void ctrl_custom_svd(const real_T A[18], real_T U[9], real_T S[9], real_T
+  V[18])
 {
   real_T b_A[18];
   real_T s[4];
@@ -1583,46 +1566,6 @@ static void ctrl_custom_svd_h(const real_T A[18], real_T U[9], real_T S[9],
 }
 
 /* Function for MATLAB Function: '<S13>/MATLAB Function' */
-static void ctrl_custom_svd(const real_T A[18], real_T U[9], real_T S[9], real_T
-  V[18])
-{
-  boolean_T b_p;
-  int32_T k;
-  b_p = true;
-  for (k = 0; k < 18; k++) {
-    if (b_p && ((!rtIsInf(A[k])) && (!rtIsNaN(A[k])))) {
-    } else {
-      b_p = false;
-    }
-  }
-
-  if (b_p) {
-    ctrl_custom_svd_h(A, U, S, V);
-  } else {
-    for (k = 0; k < 9; k++) {
-      U[k] = (rtNaN);
-      S[k] = 0.0;
-    }
-
-    S[0] = (rtNaN);
-    S[4] = (rtNaN);
-    S[8] = (rtNaN);
-    for (k = 0; k < 18; k++) {
-      V[k] = (rtNaN);
-    }
-  }
-}
-
-/* Function for MATLAB Function: '<S13>/MATLAB Function' */
-static void ctrl_custom_isfinite(const real_T x[9], boolean_T b[9])
-{
-  int32_T i;
-  for (i = 0; i < 9; i++) {
-    b[i] = ((!rtIsInf(x[i])) && (!rtIsNaN(x[i])));
-  }
-}
-
-/* Function for MATLAB Function: '<S13>/MATLAB Function' */
 static real_T ctrl_custom_xnrm2_ky(int32_T n, const real_T x[36], int32_T ix0)
 {
   real_T y;
@@ -1843,7 +1786,7 @@ static void ctrl_custom_xaxpy_a2fbj(int32_T n, real_T a, int32_T ix0, real_T y
 }
 
 /* Function for MATLAB Function: '<S13>/MATLAB Function' */
-static void ctrl_custom_svd_hb2(const real_T A[36], real_T U[9], real_T S[9],
+static void ctrl_custom_svd_h(const real_T A[36], real_T U[9], real_T S[9],
   real_T V[36])
 {
   real_T b_A[36];
@@ -2424,37 +2367,6 @@ static void ctrl_custom_svd_hb2(const real_T A[36], real_T U[9], real_T S[9],
   S[8] = work[2];
 }
 
-/* Function for MATLAB Function: '<S13>/MATLAB Function' */
-static void ctrl_custom_svd_hb(const real_T A[36], real_T U[9], real_T S[9],
-  real_T V[36])
-{
-  boolean_T b_p;
-  int32_T k;
-  b_p = true;
-  for (k = 0; k < 36; k++) {
-    if (b_p && ((!rtIsInf(A[k])) && (!rtIsNaN(A[k])))) {
-    } else {
-      b_p = false;
-    }
-  }
-
-  if (b_p) {
-    ctrl_custom_svd_hb2(A, U, S, V);
-  } else {
-    for (k = 0; k < 9; k++) {
-      U[k] = (rtNaN);
-      S[k] = 0.0;
-    }
-
-    S[0] = (rtNaN);
-    S[4] = (rtNaN);
-    S[8] = (rtNaN);
-    for (k = 0; k < 36; k++) {
-      V[k] = (rtNaN);
-    }
-  }
-}
-
 real_T rt_atan2d_snf(real_T u0, real_T u1)
 {
   real_T y;
@@ -2489,13 +2401,6 @@ real_T rt_atan2d_snf(real_T u0, real_T u1)
   }
 
   return y;
-}
-
-/* Function for MATLAB Function: '<S13>/MATLAB Function' */
-static void ctrl_custom_abs(const real_T x[2], real_T y[2])
-{
-  y[0] = fabs(x[0]);
-  y[1] = fabs(x[1]);
 }
 
 /* Function for MATLAB Function: '<Root>/MATLAB Function' */
@@ -2714,10 +2619,10 @@ static void ctrl_custom_sind_k(real_T *x)
 void ctrl_custom_output(void)
 {
   /* local block i/o variables */
+  real_T rtb_Integrator_p;
   real_T rtb_Integrator_n;
-  real_T rtb_Integrator_g;
-  real_T rtb_Integrator_l;
   real_T rtb_Integrator_k;
+  real_T rtb_Integrator_h;
   real_T rtb_Integrator_c;
   real_T rtb_positivethrust2;
   real_T rtb_negativethrust2;
@@ -2732,8 +2637,8 @@ void ctrl_custom_output(void)
   real_T rtb_CreateDiagonalMatrix3[9];
   real_T rtb_CreateDiagonalMatrix4[9];
   real_T rtb_T_r;
-  real_T rtb_T_r_e;
-  real_T rtb_T_r_p;
+  real_T rtb_T_r_j;
+  real_T rtb_T_r_a;
   real_T rtb_sys[12];
   real_T rtb_ImpSel_InsertedFor_reset_at;
 
@@ -2741,17 +2646,22 @@ void ctrl_custom_output(void)
   int32_T ForEach_itr;
   ZCEventType zcEvent;
   real_T s[6];
-  real_T K[6];
+  real_T B[18];
   real_T S_singular_cross[9];
-  real_T c1[2];
-  real_T b_V_singular[36];
-  real_T varargin_1[2];
+  real_T Te[36];
+  real_T b_U[9];
+  real_T b_V[36];
+  boolean_T d_p;
+  static const int8_T b_b[36] = { 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0,
+    0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1 };
+
   static const int8_T d[12] = { 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 };
 
   static const int8_T e[12] = { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 };
 
-  boolean_T f[9];
-  real_T f_0;
+  boolean_T h[9];
+  real_T e_0;
+  real_T h_0;
   real_T i;
   real_T j;
   real_T k;
@@ -2764,43 +2674,34 @@ void ctrl_custom_output(void)
   real_T r;
   real_T s_0;
   real_T t;
+  real_T u;
   real_T v;
   real_T w;
   real_T x;
   real_T y;
-  real_T c_23;
-  real_T rtb_Row2_f;
+  real_T rtb_Row3;
+  real_T rtb_Row2;
   real_T rtb_Row1_d;
+  real_T rtb_Sum_e;
+  real_T rtb_MatrixMultiply4[3];
   real_T rtb_psi_dot;
-  real_T rtb_Row1_m;
-  real_T rtb_TmpSignalConversionAtMatrix[3];
+  real_T rtb_Row1;
+  real_T rtb_MatrixMultiply3[3];
   real_T rtb_y[6];
   real_T rtb_ImpAsg_InsertedFor_commande[6];
-  real_T rtb_Sum_m;
+  real_T rtb_Sum_f;
   real_T rtb_TmpSignalConversionAtSFunct[12];
-  real_T rtb_TmpSignalConversionAtSFu_fw[6];
-  real_T rtb_TmpSignalConversionAtSFun_d[6];
+  real_T rtb_TmpSignalConversionAtSFun_i[6];
+  real_T rtb_TmpSignalConversionAtSFu_e5[6];
   real_T rtb_TmpSignalConversionAtSFun_o[10];
-  real_T rtb_MatrixMultiply2_j[3];
-  real_T rtb_MatrixMultiply1[3];
+  real_T rtb_negativethrust1;
   real_T rtb_CreateDiagonalMatrix5[9];
-  real_T rtb_CreateDiagonalMatrix[9];
   int32_T i_0;
-  real_T c1_0[2];
-  real_T c1_1[2];
-  real_T c1_2[2];
-  real_T c1_3[2];
-  real_T c1_4[2];
-  real_T c1_5[2];
-  real_T d_0[36];
-  boolean_T tmp[9];
   real_T rtb_y_0[18];
-  real_T rtb_y_1[18];
   int32_T b_i;
-  real_T V_singular[18];
-  real_T b_V_singular_0[36];
-  real_T tmp_0[6];
-  real_T c_23_0[18];
+  real_T b_V_0[36];
+  real_T tmp[6];
+  real_T rtb_negativethrust1_0[18];
   real_T rtb_psi_dot_0[4];
   real_T rtb_psi_dot_1[4];
   real_T rtb_psi_dot_2[4];
@@ -2819,28 +2720,15 @@ void ctrl_custom_output(void)
   real_T rtb_psi_dot_f[4];
   real_T rtb_psi_dot_g[4];
   real_T rtb_psi_dot_h[4];
+  real_T tmp_0[3];
   real_T tmp_1[3];
-  real_T tmp_2[3];
+  real_T tmp_2[9];
   real_T tmp_3[9];
-  real_T rtb_Row2_o[3];
+  real_T tmp_4[3];
+  real_T rtb_Sum_a[3];
   int32_T b_data[9];
   int32_T b_sizes;
   int32_T c_data[9];
-  boolean_T f_1;
-  real_T Alpha1_idx_3;
-  real_T Alpha1_idx_4;
-  boolean_T exitg1;
-  boolean_T exitg2;
-  boolean_T exitg3;
-  boolean_T exitg4;
-  boolean_T exitg5;
-  boolean_T exitg6;
-  boolean_T exitg7;
-  boolean_T exitg8;
-  boolean_T exitg9;
-  boolean_T exitg10;
-  boolean_T exitg11;
-  boolean_T exitg12;
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* set solver stop time */
     if (!(ctrl_custom_M->Timing.clockTick0+1)) {
@@ -2863,84 +2751,73 @@ void ctrl_custom_output(void)
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
   }
 
-  /* Gain: '<S9>/Gain' */
-  rtb_Row2_f = ctrl_custom_P.Gain_Gain * ctrl_custom_B.x_m;
-
-  /* Gain: '<S9>/Gain1' */
-  rtb_Row1_d = ctrl_custom_P.Gain1_Gain * ctrl_custom_B.y_m;
-
   /* Gain: '<S9>/Gain5' */
-  rtb_psi_dot = ctrl_custom_P.Gain5_Gain * ctrl_custom_B.psi_m;
+  rtb_Row1_d = ctrl_custom_P.Gain5_Gain * ctrl_custom_B.psi_m;
 
   /* Saturate: '<S9>/Saturation' */
-  if (rtb_psi_dot > ctrl_custom_P.Saturation_UpperSat) {
-    rtb_psi_dot = ctrl_custom_P.Saturation_UpperSat;
+  if (rtb_Row1_d > ctrl_custom_P.Saturation_UpperSat) {
+    rtb_Row1_d = ctrl_custom_P.Saturation_UpperSat;
   } else {
-    if (rtb_psi_dot < ctrl_custom_P.Saturation_LowerSat) {
-      rtb_psi_dot = ctrl_custom_P.Saturation_LowerSat;
+    if (rtb_Row1_d < ctrl_custom_P.Saturation_LowerSat) {
+      rtb_Row1_d = ctrl_custom_P.Saturation_LowerSat;
     }
   }
 
   /* End of Saturate: '<S9>/Saturation' */
 
   /* Signum: '<S9>/Sign' */
-  if (rtb_psi_dot < 0.0) {
-    Alpha1_idx_4 = -1.0;
-  } else if (rtb_psi_dot > 0.0) {
-    Alpha1_idx_4 = 1.0;
-  } else if (rtb_psi_dot == 0.0) {
-    Alpha1_idx_4 = 0.0;
+  if (rtb_Row1_d < 0.0) {
+    rtb_Row2 = -1.0;
+  } else if (rtb_Row1_d > 0.0) {
+    rtb_Row2 = 1.0;
+  } else if (rtb_Row1_d == 0.0) {
+    rtb_Row2 = 0.0;
   } else {
-    Alpha1_idx_4 = rtb_psi_dot;
+    rtb_Row2 = rtb_Row1_d;
   }
 
   /* End of Signum: '<S9>/Sign' */
 
   /* Gain: '<S9>/Gain6' */
-  rtb_Row1_m = ctrl_custom_P.Gain6_Gain * Alpha1_idx_4;
+  rtb_Sum_e = ctrl_custom_P.Gain6_Gain * rtb_Row2;
 
   /* Sum: '<S9>/Sum1' */
-  rtb_psi_dot += rtb_Row1_m;
+  rtb_Row1_d += rtb_Sum_e;
 
   /* Math: '<S9>/Math Function' incorporates:
    *  Constant: '<S9>/Constant1'
    */
-  rtb_psi_dot = rt_remd_snf(rtb_psi_dot, ctrl_custom_P.Constant1_Value);
+  rtb_Row1_d = rt_remd_snf(rtb_Row1_d, ctrl_custom_P.Constant1_Value);
 
   /* Sum: '<S9>/Sum' */
-  rtb_psi_dot -= rtb_Row1_m;
+  rtb_Row1_d -= rtb_Sum_e;
 
   /* Gain: '<S12>/Gain5' */
-  ctrl_custom_B.Gain5 = ctrl_custom_P.Gain5_Gain_g *
+  ctrl_custom_B.Gain5 = ctrl_custom_P.Gain5_Gain_h *
     ctrl_custom_B.Basin_rotation;
 
+  /* Sum: '<Root>/Sum' */
+  rtb_Sum_e = rtb_Row1_d - ctrl_custom_B.Gain5;
+
   /* Switch: '<Root>/Switch1' incorporates:
-   *  Sum: '<Root>/Sum'
+   *  Gain: '<S9>/Gain'
+   *  Gain: '<S9>/Gain1'
    */
+  ctrl_custom_B.Switch1[0] = ctrl_custom_P.Gain_Gain * ctrl_custom_B.x_m;
+  ctrl_custom_B.Switch1[1] = ctrl_custom_P.Gain1_Gain * ctrl_custom_B.y_m;
   if (ctrl_custom_B.Controllswitch >= ctrl_custom_P.Switch1_Threshold) {
-    ctrl_custom_B.Switch1[0] = rtb_Row2_f;
-    ctrl_custom_B.Switch1[1] = rtb_Row1_d;
-    ctrl_custom_B.Switch1[2] = rtb_psi_dot;
+    ctrl_custom_B.Switch1[2] = rtb_Row1_d;
   } else {
-    ctrl_custom_B.Switch1[0] = rtb_Row2_f;
-    ctrl_custom_B.Switch1[1] = rtb_Row1_d;
-    ctrl_custom_B.Switch1[2] = rtb_psi_dot - ctrl_custom_B.Gain5;
+    ctrl_custom_B.Switch1[2] = rtb_Sum_e;
   }
 
   /* End of Switch: '<Root>/Switch1' */
 
   /* Integrator: '<S5>/Integrator' */
-  if (rtmIsMajorTimeStep(ctrl_custom_M)) {
-    zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE,
-                       (ctrl_custom_B.start));
-
-    /* evaluate zero-crossings */
-    if ((zcEvent != NO_ZCEVENT) || (ctrl_custom_DW.Integrator_IWORK != 0)) {
-      ctrl_custom_X.Integrator_CSTATE[0] = ctrl_custom_B.Switch1[0];
-      ctrl_custom_X.Integrator_CSTATE[1] = ctrl_custom_B.Switch1[1];
-      ctrl_custom_X.Integrator_CSTATE[2] = ctrl_custom_B.Switch1[2];
-    }
+  if (ctrl_custom_DW.Integrator_IWORK != 0) {
+    ctrl_custom_X.Integrator_CSTATE[0] = ctrl_custom_B.Switch1[0];
+    ctrl_custom_X.Integrator_CSTATE[1] = ctrl_custom_B.Switch1[1];
+    ctrl_custom_X.Integrator_CSTATE[2] = ctrl_custom_B.Switch1[2];
   }
 
   ctrl_custom_B.Integrator[0] = ctrl_custom_X.Integrator_CSTATE[0];
@@ -2951,109 +2828,96 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S29>/Saturation' */
   if (ctrl_custom_B.Integrator[2] > ctrl_custom_P.Saturation_UpperSat_p) {
-    rtb_Row1_m = ctrl_custom_P.Saturation_UpperSat_p;
+    rtb_Row1_d = ctrl_custom_P.Saturation_UpperSat_p;
   } else if (ctrl_custom_B.Integrator[2] < ctrl_custom_P.Saturation_LowerSat_k)
   {
-    rtb_Row1_m = ctrl_custom_P.Saturation_LowerSat_k;
+    rtb_Row1_d = ctrl_custom_P.Saturation_LowerSat_k;
   } else {
-    rtb_Row1_m = ctrl_custom_B.Integrator[2];
+    rtb_Row1_d = ctrl_custom_B.Integrator[2];
   }
 
   /* End of Saturate: '<S29>/Saturation' */
 
   /* Signum: '<S29>/Sign' */
-  if (rtb_Row1_m < 0.0) {
-    rtb_psi_dot = -1.0;
-  } else if (rtb_Row1_m > 0.0) {
-    rtb_psi_dot = 1.0;
-  } else if (rtb_Row1_m == 0.0) {
-    rtb_psi_dot = 0.0;
+  if (rtb_Row1_d < 0.0) {
+    rtb_Row2 = -1.0;
+  } else if (rtb_Row1_d > 0.0) {
+    rtb_Row2 = 1.0;
+  } else if (rtb_Row1_d == 0.0) {
+    rtb_Row2 = 0.0;
   } else {
-    rtb_psi_dot = rtb_Row1_m;
+    rtb_Row2 = rtb_Row1_d;
   }
 
   /* End of Signum: '<S29>/Sign' */
 
   /* Gain: '<S29>/Gain' */
-  rtb_psi_dot *= ctrl_custom_P.Gain_Gain_p;
+  rtb_Row2 *= ctrl_custom_P.Gain_Gain_p;
 
   /* Sum: '<S29>/Sum1' */
-  rtb_Row1_m += rtb_psi_dot;
+  rtb_Row1_d += rtb_Row2;
 
   /* Math: '<S29>/Math Function' incorporates:
    *  Constant: '<S29>/Constant'
    */
-  rtb_Row1_m = rt_remd_snf(rtb_Row1_m, ctrl_custom_P.Constant_Value);
+  rtb_Row1_d = rt_remd_snf(rtb_Row1_d, ctrl_custom_P.Constant_Value);
 
   /* Sum: '<S29>/Sum' */
-  ctrl_custom_B.Sum = rtb_Row1_m - rtb_psi_dot;
+  ctrl_custom_B.Sum = rtb_Row1_d - rtb_Row2;
 
   /* Sum: '<S8>/Sum4' incorporates:
    *  TransferFcn: '<S12>/Transfer Fcn2'
    */
-  rtb_Row1_m = ctrl_custom_B.Sum - ctrl_custom_P.TransferFcn2_C *
+  rtb_Row1_d = ctrl_custom_B.Sum - ctrl_custom_P.TransferFcn2_C *
     ctrl_custom_X.TransferFcn2_CSTATE;
 
   /* Saturate: '<S39>/Saturation' */
-  if (rtb_Row1_m > ctrl_custom_P.Saturation_UpperSat_a) {
-    rtb_Row1_m = ctrl_custom_P.Saturation_UpperSat_a;
+  if (rtb_Row1_d > ctrl_custom_P.Saturation_UpperSat_l) {
+    rtb_Row1_d = ctrl_custom_P.Saturation_UpperSat_l;
   } else {
-    if (rtb_Row1_m < ctrl_custom_P.Saturation_LowerSat_b) {
-      rtb_Row1_m = ctrl_custom_P.Saturation_LowerSat_b;
+    if (rtb_Row1_d < ctrl_custom_P.Saturation_LowerSat_i) {
+      rtb_Row1_d = ctrl_custom_P.Saturation_LowerSat_i;
     }
   }
 
   /* End of Saturate: '<S39>/Saturation' */
 
   /* Signum: '<S39>/Sign' */
-  if (rtb_Row1_m < 0.0) {
-    rtb_psi_dot = -1.0;
-  } else if (rtb_Row1_m > 0.0) {
-    rtb_psi_dot = 1.0;
-  } else if (rtb_Row1_m == 0.0) {
-    rtb_psi_dot = 0.0;
+  if (rtb_Row1_d < 0.0) {
+    rtb_Row2 = -1.0;
+  } else if (rtb_Row1_d > 0.0) {
+    rtb_Row2 = 1.0;
+  } else if (rtb_Row1_d == 0.0) {
+    rtb_Row2 = 0.0;
   } else {
-    rtb_psi_dot = rtb_Row1_m;
+    rtb_Row2 = rtb_Row1_d;
   }
 
   /* End of Signum: '<S39>/Sign' */
 
   /* Gain: '<S39>/Gain' */
-  rtb_psi_dot *= ctrl_custom_P.Gain_Gain_e;
+  rtb_Row2 *= ctrl_custom_P.Gain_Gain_o;
 
   /* Sum: '<S39>/Sum1' */
-  rtb_Row1_m += rtb_psi_dot;
+  rtb_Row1_d += rtb_Row2;
 
   /* Math: '<S39>/Math Function' incorporates:
    *  Constant: '<S39>/Constant'
    */
-  rtb_Row1_m = rt_remd_snf(rtb_Row1_m, ctrl_custom_P.Constant_Value_d);
+  rtb_Row1_d = rt_remd_snf(rtb_Row1_d, ctrl_custom_P.Constant_Value_e);
 
   /* Sum: '<S39>/Sum' */
-  ctrl_custom_B.Sum_c = rtb_Row1_m - rtb_psi_dot;
+  ctrl_custom_B.Sum_e = rtb_Row1_d - rtb_Row2;
 
-  /* Integrator: '<S8>/Integrator1' incorporates:
-   *  Integrator: '<S5>/Integrator1'
-   */
+  /* Integrator: '<S8>/Integrator1' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
                        &ctrl_custom_PrevZCX.Integrator1_Reset_ZCE,
-                       (ctrl_custom_B.start));
+                       (ctrl_custom_B.Startbutton));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
       ctrl_custom_X.Integrator1_CSTATE = ctrl_custom_P.Integrator1_IC;
-    }
-
-    zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator1_Reset_ZCE_o,
-                       (ctrl_custom_B.start));
-
-    /* evaluate zero-crossings */
-    if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator1_CSTATE_n[0] = ctrl_custom_P.Integrator1_IC_g[0];
-      ctrl_custom_X.Integrator1_CSTATE_n[1] = ctrl_custom_P.Integrator1_IC_g[1];
-      ctrl_custom_X.Integrator1_CSTATE_n[2] = ctrl_custom_P.Integrator1_IC_g[2];
     }
   }
 
@@ -3064,86 +2928,86 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S38>/Saturation' */
   if (ctrl_custom_B.Sum > ctrl_custom_P.Saturation_UpperSat_i) {
-    rtb_Row1_m = ctrl_custom_P.Saturation_UpperSat_i;
+    rtb_Row1_d = ctrl_custom_P.Saturation_UpperSat_i;
   } else if (ctrl_custom_B.Sum < ctrl_custom_P.Saturation_LowerSat_p) {
-    rtb_Row1_m = ctrl_custom_P.Saturation_LowerSat_p;
+    rtb_Row1_d = ctrl_custom_P.Saturation_LowerSat_p;
   } else {
-    rtb_Row1_m = ctrl_custom_B.Sum;
+    rtb_Row1_d = ctrl_custom_B.Sum;
   }
 
   /* End of Saturate: '<S38>/Saturation' */
 
   /* Signum: '<S38>/Sign' */
-  if (rtb_Row1_m < 0.0) {
-    rtb_psi_dot = -1.0;
-  } else if (rtb_Row1_m > 0.0) {
-    rtb_psi_dot = 1.0;
-  } else if (rtb_Row1_m == 0.0) {
-    rtb_psi_dot = 0.0;
+  if (rtb_Row1_d < 0.0) {
+    rtb_Row2 = -1.0;
+  } else if (rtb_Row1_d > 0.0) {
+    rtb_Row2 = 1.0;
+  } else if (rtb_Row1_d == 0.0) {
+    rtb_Row2 = 0.0;
   } else {
-    rtb_psi_dot = rtb_Row1_m;
+    rtb_Row2 = rtb_Row1_d;
   }
 
   /* End of Signum: '<S38>/Sign' */
 
   /* Gain: '<S38>/Gain' */
-  rtb_psi_dot *= ctrl_custom_P.Gain_Gain_o;
+  rtb_Row2 *= ctrl_custom_P.Gain_Gain_ov;
 
   /* Sum: '<S38>/Sum1' */
-  rtb_Row1_m += rtb_psi_dot;
+  rtb_Row1_d += rtb_Row2;
 
   /* Math: '<S38>/Math Function' incorporates:
    *  Constant: '<S38>/Constant'
    */
-  rtb_Row1_m = rt_remd_snf(rtb_Row1_m, ctrl_custom_P.Constant_Value_p);
+  rtb_Row1_d = rt_remd_snf(rtb_Row1_d, ctrl_custom_P.Constant_Value_p);
 
   /* Sum: '<S38>/Sum' */
-  rtb_Row1_m -= rtb_psi_dot;
+  rtb_Row1_d -= rtb_Row2;
 
   /* Saturate: '<S43>/Saturation' incorporates:
    *  Integrator: '<S11>/Integrator2'
    */
   if (ctrl_custom_X.Integrator2_CSTATE[2] > ctrl_custom_P.Saturation_UpperSat_p4)
   {
-    rtb_psi_dot = ctrl_custom_P.Saturation_UpperSat_p4;
+    rtb_Row2 = ctrl_custom_P.Saturation_UpperSat_p4;
   } else if (ctrl_custom_X.Integrator2_CSTATE[2] <
              ctrl_custom_P.Saturation_LowerSat_c) {
-    rtb_psi_dot = ctrl_custom_P.Saturation_LowerSat_c;
+    rtb_Row2 = ctrl_custom_P.Saturation_LowerSat_c;
   } else {
-    rtb_psi_dot = ctrl_custom_X.Integrator2_CSTATE[2];
+    rtb_Row2 = ctrl_custom_X.Integrator2_CSTATE[2];
   }
 
   /* End of Saturate: '<S43>/Saturation' */
 
   /* Signum: '<S43>/Sign' */
-  if (rtb_psi_dot < 0.0) {
-    Alpha1_idx_4 = -1.0;
-  } else if (rtb_psi_dot > 0.0) {
-    Alpha1_idx_4 = 1.0;
-  } else if (rtb_psi_dot == 0.0) {
-    Alpha1_idx_4 = 0.0;
+  if (rtb_Row2 < 0.0) {
+    rtb_Row3 = -1.0;
+  } else if (rtb_Row2 > 0.0) {
+    rtb_Row3 = 1.0;
+  } else if (rtb_Row2 == 0.0) {
+    rtb_Row3 = 0.0;
   } else {
-    Alpha1_idx_4 = rtb_psi_dot;
+    rtb_Row3 = rtb_Row2;
   }
 
   /* End of Signum: '<S43>/Sign' */
 
   /* Gain: '<S43>/Gain' */
-  rtb_Row1_d = ctrl_custom_P.Gain_Gain_e2 * Alpha1_idx_4;
+  rtb_Row3 *= ctrl_custom_P.Gain_Gain_e;
 
   /* Sum: '<S43>/Sum1' */
-  rtb_psi_dot += rtb_Row1_d;
+  rtb_Row2 += rtb_Row3;
 
   /* Math: '<S43>/Math Function' incorporates:
    *  Constant: '<S43>/Constant'
    */
-  rtb_psi_dot = rt_remd_snf(rtb_psi_dot, ctrl_custom_P.Constant_Value_e);
+  rtb_Row2 = rt_remd_snf(rtb_Row2, ctrl_custom_P.Constant_Value_ey);
 
   /* Sum: '<S43>/Sum' */
-  rtb_psi_dot -= rtb_Row1_d;
+  rtb_Row2 -= rtb_Row3;
 
   /* SignalConversion: '<S11>/TmpSignal ConversionAtMatrix Multiply3Inport2' */
-  rtb_TmpSignalConversionAtMatrix[2] = rtb_psi_dot;
+  rtb_MatrixMultiply4[2] = rtb_Row2;
 
   /* Sum: '<S7>/Sum4' incorporates:
    *  Integrator: '<S11>/Integrator2'
@@ -3154,7 +3018,7 @@ void ctrl_custom_output(void)
   /* SignalConversion: '<S11>/TmpSignal ConversionAtMatrix Multiply3Inport2' incorporates:
    *  Integrator: '<S11>/Integrator2'
    */
-  rtb_TmpSignalConversionAtMatrix[0] = ctrl_custom_X.Integrator2_CSTATE[0];
+  rtb_MatrixMultiply4[0] = ctrl_custom_X.Integrator2_CSTATE[0];
 
   /* Sum: '<S7>/Sum4' incorporates:
    *  Integrator: '<S11>/Integrator2'
@@ -3165,70 +3029,78 @@ void ctrl_custom_output(void)
   /* SignalConversion: '<S11>/TmpSignal ConversionAtMatrix Multiply3Inport2' incorporates:
    *  Integrator: '<S11>/Integrator2'
    */
-  rtb_TmpSignalConversionAtMatrix[1] = ctrl_custom_X.Integrator2_CSTATE[1];
+  rtb_MatrixMultiply4[1] = ctrl_custom_X.Integrator2_CSTATE[1];
 
   /* Sum: '<S7>/Sum4' incorporates:
    *  SignalConversion: '<S11>/TmpSignal ConversionAtMatrix Multiply3Inport2'
    */
-  ctrl_custom_B.regulationerror[2] = ctrl_custom_B.Sum - rtb_psi_dot;
+  ctrl_custom_B.regulationerror[2] = ctrl_custom_B.Sum - rtb_Row2;
 
   /* Saturate: '<S37>/Saturation' */
   if (ctrl_custom_B.regulationerror[2] > ctrl_custom_P.Saturation_UpperSat_ir) {
-    rtb_psi_dot = ctrl_custom_P.Saturation_UpperSat_ir;
+    rtb_Row3 = ctrl_custom_P.Saturation_UpperSat_ir;
   } else if (ctrl_custom_B.regulationerror[2] <
              ctrl_custom_P.Saturation_LowerSat_l) {
-    rtb_psi_dot = ctrl_custom_P.Saturation_LowerSat_l;
+    rtb_Row3 = ctrl_custom_P.Saturation_LowerSat_l;
   } else {
-    rtb_psi_dot = ctrl_custom_B.regulationerror[2];
+    rtb_Row3 = ctrl_custom_B.regulationerror[2];
   }
 
   /* End of Saturate: '<S37>/Saturation' */
 
   /* Signum: '<S37>/Sign' */
-  if (rtb_psi_dot < 0.0) {
-    Alpha1_idx_4 = -1.0;
-  } else if (rtb_psi_dot > 0.0) {
-    Alpha1_idx_4 = 1.0;
-  } else if (rtb_psi_dot == 0.0) {
-    Alpha1_idx_4 = 0.0;
+  if (rtb_Row3 < 0.0) {
+    rtb_psi_dot = -1.0;
+  } else if (rtb_Row3 > 0.0) {
+    rtb_psi_dot = 1.0;
+  } else if (rtb_Row3 == 0.0) {
+    rtb_psi_dot = 0.0;
   } else {
-    Alpha1_idx_4 = rtb_psi_dot;
+    rtb_psi_dot = rtb_Row3;
   }
 
   /* End of Signum: '<S37>/Sign' */
 
   /* Gain: '<S37>/Gain' */
-  rtb_Row1_d = ctrl_custom_P.Gain_Gain_d * Alpha1_idx_4;
+  rtb_psi_dot *= ctrl_custom_P.Gain_Gain_d;
 
   /* Sum: '<S37>/Sum1' */
-  rtb_psi_dot += rtb_Row1_d;
+  rtb_Row3 += rtb_psi_dot;
 
   /* Math: '<S37>/Math Function' incorporates:
    *  Constant: '<S37>/Constant'
    */
-  rtb_psi_dot = rt_remd_snf(rtb_psi_dot, ctrl_custom_P.Constant_Value_a);
+  rtb_Row3 = rt_remd_snf(rtb_Row3, ctrl_custom_P.Constant_Value_a);
 
   /* Sum: '<S37>/Sum' */
-  rtb_psi_dot -= rtb_Row1_d;
+  rtb_Row3 -= rtb_psi_dot;
 
   /* SignalConversion: '<S7>/TmpSignal ConversionAtMatrix MultiplyInport2' incorporates:
    *  Fcn: '<S35>/Row1'
    *  Fcn: '<S35>/Row2'
    *  Fcn: '<S35>/Row3'
    */
-  ctrl_custom_B.TmpSignalConversionAtMatrixMult[0] = cos(rtb_Row1_m) *
-    ctrl_custom_B.regulationerror[0] + sin(rtb_Row1_m) *
+  ctrl_custom_B.TmpSignalConversionAtMatrixMult[0] = cos(rtb_Row1_d) *
+    ctrl_custom_B.regulationerror[0] + sin(rtb_Row1_d) *
     ctrl_custom_B.regulationerror[1];
-  ctrl_custom_B.TmpSignalConversionAtMatrixMult[1] = -sin(rtb_Row1_m) *
-    ctrl_custom_B.regulationerror[0] + cos(rtb_Row1_m) *
+  ctrl_custom_B.TmpSignalConversionAtMatrixMult[1] = -sin(rtb_Row1_d) *
+    ctrl_custom_B.regulationerror[0] + cos(rtb_Row1_d) *
     ctrl_custom_B.regulationerror[1];
-  ctrl_custom_B.TmpSignalConversionAtMatrixMult[2] = rtb_psi_dot;
+  ctrl_custom_B.TmpSignalConversionAtMatrixMult[2] = rtb_Row3;
+
+  /* S-Function (sdspdiag2): '<S18>/Create Diagonal Matrix1' incorporates:
+   *  SignalConversion: '<S18>/TmpSignal ConversionAtCreate Diagonal Matrix1Inport1'
+   */
+  memset(&rtb_CreateDiagonalMatrix5[0], 0, 9U * sizeof(real_T));
+  rtb_CreateDiagonalMatrix5[0] = ctrl_custom_B.K_i_x;
+  rtb_CreateDiagonalMatrix5[4] = ctrl_custom_B.K_i_y;
+  rtb_CreateDiagonalMatrix5[8] = ctrl_custom_B.K_i_psi;
 
   /* Integrator: '<S7>/Integrator1' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
                        &ctrl_custom_PrevZCX.Integrator1_Reset_ZCE_g,
-                       (ctrl_custom_B.start));
+                       (ctrl_custom_B.Startbutton));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
@@ -3238,10 +3110,20 @@ void ctrl_custom_output(void)
     }
   }
 
-  /* Integrator: '<S11>/Integrator1' */
-  ctrl_custom_B.Integrator1_i[0] = ctrl_custom_X.Integrator1_CSTATE_d[0];
-  ctrl_custom_B.Integrator1_i[1] = ctrl_custom_X.Integrator1_CSTATE_d[1];
-  ctrl_custom_B.Integrator1_i[2] = ctrl_custom_X.Integrator1_CSTATE_d[2];
+  /* Product: '<S7>/Matrix Multiply1' incorporates:
+   *  Integrator: '<S7>/Integrator1'
+   */
+  for (i_0 = 0; i_0 < 3; i_0++) {
+    ctrl_custom_B.MatrixMultiply1[i_0] = 0.0;
+    ctrl_custom_B.MatrixMultiply1[i_0] += rtb_CreateDiagonalMatrix5[i_0] *
+      ctrl_custom_X.Integrator1_CSTATE_m[0];
+    ctrl_custom_B.MatrixMultiply1[i_0] += rtb_CreateDiagonalMatrix5[i_0 + 3] *
+      ctrl_custom_X.Integrator1_CSTATE_m[1];
+    ctrl_custom_B.MatrixMultiply1[i_0] += rtb_CreateDiagonalMatrix5[i_0 + 6] *
+      ctrl_custom_X.Integrator1_CSTATE_m[2];
+  }
+
+  /* End of Product: '<S7>/Matrix Multiply1' */
 
   /* Switch: '<Root>/Switch' incorporates:
    *  Constant: '<Root>/Constant'
@@ -3255,78 +3137,46 @@ void ctrl_custom_output(void)
    *  Sum: '<S8>/Sum1'
    */
   if (ctrl_custom_B.Controllswitch >= ctrl_custom_P.Switch_Threshold) {
-    ctrl_custom_B.Switch[0] = ctrl_custom_P.Constant_Value_i;
-    ctrl_custom_B.Switch[1] = ctrl_custom_P.Constant1_Value_k;
+    ctrl_custom_B.Switch[0] = ctrl_custom_P.Constant_Value_j;
+    ctrl_custom_B.Switch[1] = ctrl_custom_P.Constant1_Value_i;
     ctrl_custom_B.Switch[2] = ((0.0 - ctrl_custom_B.K_p_psi *
-      ctrl_custom_B.Sum_c) - ctrl_custom_B.K_i_psi *
+      ctrl_custom_B.Sum_e) - ctrl_custom_B.K_i_psi *
       ctrl_custom_X.Integrator1_CSTATE) - ctrl_custom_B.K_d_psi *
       ctrl_custom_B.Integrator1[2];
   } else {
     /* S-Function (sdspdiag2): '<S18>/Create Diagonal Matrix2' incorporates:
      *  SignalConversion: '<S18>/TmpSignal ConversionAtCreate Diagonal Matrix2Inport1'
      */
-    memset(&rtb_CreateDiagonalMatrix[0], 0, 9U * sizeof(real_T));
-    rtb_CreateDiagonalMatrix[0] = ctrl_custom_B.K_d_x;
-    rtb_CreateDiagonalMatrix[4] = ctrl_custom_B.K_d_y;
-    rtb_CreateDiagonalMatrix[8] = ctrl_custom_B.K_d_psi;
-
-    /* Sum: '<S7>/Sum' incorporates:
-     *  Fcn: '<S36>/Row1'
-     *  Fcn: '<S36>/Row2'
-     *  Fcn: '<S36>/Row3'
-     *  Fcn: '<S7>/yaw angle1'
-     *  Product: '<S7>/Matrix Multiply2'
-     */
-    rtb_Row2_f = ctrl_custom_B.Integrator1[0] - (cos
-      (rtb_TmpSignalConversionAtMatrix[2]) * ctrl_custom_B.Integrator1_i[0] +
-      sin(rtb_TmpSignalConversionAtMatrix[2]) * ctrl_custom_B.Integrator1_i[1]);
-    rtb_Row1_m = ctrl_custom_B.Integrator1[1] - (-sin
-      (rtb_TmpSignalConversionAtMatrix[2]) * ctrl_custom_B.Integrator1_i[0] +
-      cos(rtb_TmpSignalConversionAtMatrix[2]) * ctrl_custom_B.Integrator1_i[1]);
-    rtb_psi_dot = ctrl_custom_B.Integrator1[2] - ctrl_custom_B.Integrator1_i[2];
+    memset(&rtb_CreateDiagonalMatrix5[0], 0, 9U * sizeof(real_T));
+    rtb_CreateDiagonalMatrix5[0] = ctrl_custom_B.K_d_x;
+    rtb_CreateDiagonalMatrix5[4] = ctrl_custom_B.K_d_y;
+    rtb_CreateDiagonalMatrix5[8] = ctrl_custom_B.K_d_psi;
 
     /* Product: '<S7>/Matrix Multiply2' */
     for (i_0 = 0; i_0 < 3; i_0++) {
-      rtb_MatrixMultiply2_j[i_0] = rtb_CreateDiagonalMatrix[i_0 + 6] *
-        rtb_psi_dot + (rtb_CreateDiagonalMatrix[i_0 + 3] * rtb_Row1_m +
-                       rtb_CreateDiagonalMatrix[i_0] * rtb_Row2_f);
+      rtb_MatrixMultiply3[i_0] = rtb_CreateDiagonalMatrix5[i_0 + 6] *
+        ctrl_custom_B.Integrator1[2] + (rtb_CreateDiagonalMatrix5[i_0 + 3] *
+        ctrl_custom_B.Integrator1[1] + rtb_CreateDiagonalMatrix5[i_0] *
+        ctrl_custom_B.Integrator1[0]);
     }
 
-    /* S-Function (sdspdiag2): '<S18>/Create Diagonal Matrix1' incorporates:
-     *  SignalConversion: '<S18>/TmpSignal ConversionAtCreate Diagonal Matrix1Inport1'
-     */
-    memset(&rtb_CreateDiagonalMatrix[0], 0, 9U * sizeof(real_T));
-    rtb_CreateDiagonalMatrix[0] = ctrl_custom_B.K_i_x;
-    rtb_CreateDiagonalMatrix[4] = ctrl_custom_B.K_i_y;
-    rtb_CreateDiagonalMatrix[8] = ctrl_custom_B.K_i_psi;
-
-    /* Product: '<S7>/Matrix Multiply1' incorporates:
-     *  Integrator: '<S7>/Integrator1'
-     */
-    for (i_0 = 0; i_0 < 3; i_0++) {
-      rtb_MatrixMultiply1[i_0] = rtb_CreateDiagonalMatrix[i_0 + 6] *
-        ctrl_custom_X.Integrator1_CSTATE_m[2] + (rtb_CreateDiagonalMatrix[i_0 +
-        3] * ctrl_custom_X.Integrator1_CSTATE_m[1] +
-        rtb_CreateDiagonalMatrix[i_0] * ctrl_custom_X.Integrator1_CSTATE_m[0]);
-    }
-
-    /* End of Product: '<S7>/Matrix Multiply1' */
+    /* End of Product: '<S7>/Matrix Multiply2' */
 
     /* S-Function (sdspdiag2): '<S18>/Create Diagonal Matrix' incorporates:
      *  SignalConversion: '<S18>/TmpSignal ConversionAtCreate Diagonal MatrixInport1'
      */
-    memset(&rtb_CreateDiagonalMatrix[0], 0, 9U * sizeof(real_T));
-    rtb_CreateDiagonalMatrix[0] = ctrl_custom_B.K_p_x;
-    rtb_CreateDiagonalMatrix[4] = ctrl_custom_B.K_p_y;
-    rtb_CreateDiagonalMatrix[8] = ctrl_custom_B.K_p_psi;
+    memset(&rtb_CreateDiagonalMatrix5[0], 0, 9U * sizeof(real_T));
+    rtb_CreateDiagonalMatrix5[0] = ctrl_custom_B.K_p_x;
+    rtb_CreateDiagonalMatrix5[4] = ctrl_custom_B.K_p_y;
+    rtb_CreateDiagonalMatrix5[8] = ctrl_custom_B.K_p_psi;
     for (i_0 = 0; i_0 < 3; i_0++) {
-      ctrl_custom_B.Switch[i_0] = ((0.0 - ((rtb_CreateDiagonalMatrix[i_0 + 3] *
+      ctrl_custom_B.Switch[i_0] = ((0.0 - ((rtb_CreateDiagonalMatrix5[i_0 + 3] *
         ctrl_custom_B.TmpSignalConversionAtMatrixMult[1] +
-        rtb_CreateDiagonalMatrix[i_0] *
+        rtb_CreateDiagonalMatrix5[i_0] *
         ctrl_custom_B.TmpSignalConversionAtMatrixMult[0]) +
-        rtb_CreateDiagonalMatrix[i_0 + 6] *
+        rtb_CreateDiagonalMatrix5[i_0 + 6] *
         ctrl_custom_B.TmpSignalConversionAtMatrixMult[2])) -
-        rtb_MatrixMultiply1[i_0]) - rtb_MatrixMultiply2_j[i_0];
+        ctrl_custom_B.MatrixMultiply1[i_0]) - rtb_MatrixMultiply3[i_0];
     }
   }
 
@@ -3346,12 +3196,12 @@ void ctrl_custom_output(void)
   /* Integrator: '<S67>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_g,
-                       (ctrl_custom_B.start));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE,
+                       (ctrl_custom_B.Startbutton));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_a = ctrl_custom_P.Integrator_IC;
+      ctrl_custom_X.Integrator_CSTATE_p = ctrl_custom_P.Integrator_IC;
     }
   }
 
@@ -3364,9 +3214,9 @@ void ctrl_custom_output(void)
    *  Constant: '<S53>/Losses (placeholder)'
    *  Integrator: '<S67>/Integrator'
    */
-  /* MATLAB Function 'Thruster control /Thruster 1/Propeller Hydrodynamics/Actual Force and Torque': '<S69>:1' */
+  /* MATLAB Function 'Thruster control 1/Thruster 1/Propeller Hydrodynamics/Actual Force and Torque': '<S69>:1' */
   /* '<S69>:1:3' */
-  rtb_psi_dot = tanh(ctrl_custom_P.eps_c * ctrl_custom_X.Integrator_CSTATE_a /
+  rtb_psi_dot = tanh(ctrl_custom_P.eps_c * ctrl_custom_X.Integrator_CSTATE_p /
                      5.0) * 0.5 + 0.5;
 
   /*  Smooth switching between positive and negative thrust. 5 makes switch happen between -5 and 5 */
@@ -3374,39 +3224,39 @@ void ctrl_custom_output(void)
   /* '<S69>:1:5' */
   /* '<S69>:1:7' */
   /* '<S69>:1:8' */
-  if (ctrl_custom_X.Integrator_CSTATE_a < 0.0) {
-    rtb_Row1_m = -1.0;
-  } else if (ctrl_custom_X.Integrator_CSTATE_a > 0.0) {
-    rtb_Row1_m = 1.0;
-  } else if (ctrl_custom_X.Integrator_CSTATE_a == 0.0) {
-    rtb_Row1_m = 0.0;
+  if (ctrl_custom_X.Integrator_CSTATE_p < 0.0) {
+    rtb_Row1_d = -1.0;
+  } else if (ctrl_custom_X.Integrator_CSTATE_p > 0.0) {
+    rtb_Row1_d = 1.0;
+  } else if (ctrl_custom_X.Integrator_CSTATE_p == 0.0) {
+    rtb_Row1_d = 0.0;
   } else {
-    rtb_Row1_m = ctrl_custom_X.Integrator_CSTATE_a;
+    rtb_Row1_d = ctrl_custom_X.Integrator_CSTATE_p;
   }
 
-  rtb_Row2_f = ((1.0 - rtb_psi_dot) * ctrl_custom_P.K_q1r + ctrl_custom_P.K_q1f *
-                rtb_psi_dot) * rtb_Row1_m * ctrl_custom_P.Rho * rt_powd_snf
-    (ctrl_custom_P.D, 5.0) * (ctrl_custom_X.Integrator_CSTATE_a *
-    ctrl_custom_X.Integrator_CSTATE_a) - ctrl_custom_P.Lossesplaceholder_Value;
+  rtb_Row3 = ((1.0 - rtb_psi_dot) * ctrl_custom_P.K_q1r + ctrl_custom_P.K_q1f *
+              rtb_psi_dot) * rtb_Row1_d * ctrl_custom_P.Rho * rt_powd_snf
+    (ctrl_custom_P.D, 5.0) * (ctrl_custom_X.Integrator_CSTATE_p *
+    ctrl_custom_X.Integrator_CSTATE_p) - ctrl_custom_P.Lossesplaceholder_Value;
 
   /* '<S69>:1:9' */
-  ctrl_custom_B.Pa = 6.2831853071795862 * ctrl_custom_X.Integrator_CSTATE_a *
-    rtb_Row2_f;
-  ctrl_custom_B.Qa = rtb_Row2_f;
+  ctrl_custom_B.Pa = 6.2831853071795862 * ctrl_custom_X.Integrator_CSTATE_p *
+    rtb_Row3;
+  ctrl_custom_B.Qa = rtb_Row3;
 
   /* Integrator: '<S76>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_n,
-                       (ctrl_custom_B.start));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_a,
+                       (ctrl_custom_B.Startbutton));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_f = ctrl_custom_P.Integrator_IC_h;
+      ctrl_custom_X.Integrator_CSTATE_g = ctrl_custom_P.Integrator_IC_h;
     }
   }
 
-  rtb_Integrator_n = ctrl_custom_X.Integrator_CSTATE_f;
+  rtb_Integrator_p = ctrl_custom_X.Integrator_CSTATE_g;
 
   /* End of Integrator: '<S76>/Integrator' */
 
@@ -3420,25 +3270,25 @@ void ctrl_custom_output(void)
    *  Constant: '<S14>/Rho'
    *  Constant: '<S54>/Losses (placeholder)'
    */
-  ctrl_custo_ActualForceandTorque(rtb_Integrator_n, ctrl_custom_P.K_q2f,
+  ctrl_custo_ActualForceandTorque(rtb_Integrator_p, ctrl_custom_P.K_q2f,
     ctrl_custom_P.K_T2f, ctrl_custom_P.K_T2r, ctrl_custom_P.K_q2r,
     ctrl_custom_P.Rho, ctrl_custom_P.D, ctrl_custom_P.eps_c,
-    ctrl_custom_P.Lossesplaceholder_Value_e,
-    &ctrl_custom_B.sf_ActualForceandTorque_m);
+    ctrl_custom_P.Lossesplaceholder_Value_n,
+    &ctrl_custom_B.sf_ActualForceandTorque_j);
 
   /* Integrator: '<S85>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_e,
-                       (ctrl_custom_B.start));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_h,
+                       (ctrl_custom_B.Startbutton));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_ao = ctrl_custom_P.Integrator_IC_o;
+      ctrl_custom_X.Integrator_CSTATE_n = ctrl_custom_P.Integrator_IC_e;
     }
   }
 
-  rtb_Integrator_g = ctrl_custom_X.Integrator_CSTATE_ao;
+  rtb_Integrator_n = ctrl_custom_X.Integrator_CSTATE_n;
 
   /* End of Integrator: '<S85>/Integrator' */
 
@@ -3452,25 +3302,25 @@ void ctrl_custom_output(void)
    *  Constant: '<S14>/Rho'
    *  Constant: '<S55>/Losses (placeholder)'
    */
-  ctrl_custo_ActualForceandTorque(rtb_Integrator_g, ctrl_custom_P.K_q3f,
+  ctrl_custo_ActualForceandTorque(rtb_Integrator_n, ctrl_custom_P.K_q3f,
     ctrl_custom_P.K_T3f, ctrl_custom_P.K_T3r, ctrl_custom_P.K_q3r,
     ctrl_custom_P.Rho, ctrl_custom_P.D, ctrl_custom_P.eps_c,
-    ctrl_custom_P.Lossesplaceholder_Value_d,
-    &ctrl_custom_B.sf_ActualForceandTorque_f);
+    ctrl_custom_P.Lossesplaceholder_Value_j,
+    &ctrl_custom_B.sf_ActualForceandTorque_i);
 
   /* Integrator: '<S94>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_l,
-                       (ctrl_custom_B.start));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_j,
+                       (ctrl_custom_B.Startbutton));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_k = ctrl_custom_P.Integrator_IC_hz;
+      ctrl_custom_X.Integrator_CSTATE_b = ctrl_custom_P.Integrator_IC_d;
     }
   }
 
-  rtb_Integrator_l = ctrl_custom_X.Integrator_CSTATE_k;
+  rtb_Integrator_k = ctrl_custom_X.Integrator_CSTATE_b;
 
   /* End of Integrator: '<S94>/Integrator' */
 
@@ -3484,25 +3334,25 @@ void ctrl_custom_output(void)
    *  Constant: '<S14>/Rho'
    *  Constant: '<S56>/Losses (placeholder)'
    */
-  ctrl_custo_ActualForceandTorque(rtb_Integrator_l, ctrl_custom_P.K_q4f,
+  ctrl_custo_ActualForceandTorque(rtb_Integrator_k, ctrl_custom_P.K_q4f,
     ctrl_custom_P.K_T4f, ctrl_custom_P.K_T4r, ctrl_custom_P.K_q4r,
     ctrl_custom_P.Rho, ctrl_custom_P.D, ctrl_custom_P.eps_c,
-    ctrl_custom_P.Lossesplaceholder_Value_n,
-    &ctrl_custom_B.sf_ActualForceandTorque_a);
+    ctrl_custom_P.Lossesplaceholder_Value_c,
+    &ctrl_custom_B.sf_ActualForceandTorque_j3);
 
   /* Integrator: '<S103>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_j,
-                       (ctrl_custom_B.start));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_e,
+                       (ctrl_custom_B.Startbutton));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_k2 = ctrl_custom_P.Integrator_IC_d;
+      ctrl_custom_X.Integrator_CSTATE_c = ctrl_custom_P.Integrator_IC_eb;
     }
   }
 
-  rtb_Integrator_k = ctrl_custom_X.Integrator_CSTATE_k2;
+  rtb_Integrator_h = ctrl_custom_X.Integrator_CSTATE_c;
 
   /* End of Integrator: '<S103>/Integrator' */
 
@@ -3516,25 +3366,25 @@ void ctrl_custom_output(void)
    *  Constant: '<S14>/Rho'
    *  Constant: '<S57>/Losses (placeholder)'
    */
-  ctrl_custo_ActualForceandTorque(rtb_Integrator_k, ctrl_custom_P.K_q5f,
+  ctrl_custo_ActualForceandTorque(rtb_Integrator_h, ctrl_custom_P.K_q5f,
     ctrl_custom_P.K_T5f, ctrl_custom_P.K_T5r, ctrl_custom_P.K_q5r,
     ctrl_custom_P.Rho, ctrl_custom_P.D, ctrl_custom_P.eps_c,
-    ctrl_custom_P.Lossesplaceholder_Value_k,
-    &ctrl_custom_B.sf_ActualForceandTorque_k);
+    ctrl_custom_P.Lossesplaceholder_Value_o,
+    &ctrl_custom_B.sf_ActualForceandTorque_o);
 
   /* Integrator: '<S112>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_m,
-                       (ctrl_custom_B.start));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_i,
+                       (ctrl_custom_B.Startbutton));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_i = ctrl_custom_P.Integrator_IC_b;
+      ctrl_custom_X.Integrator_CSTATE_l = ctrl_custom_P.Integrator_IC_a;
     }
   }
 
-  rtb_Integrator_c = ctrl_custom_X.Integrator_CSTATE_i;
+  rtb_Integrator_c = ctrl_custom_X.Integrator_CSTATE_l;
 
   /* End of Integrator: '<S112>/Integrator' */
 
@@ -3551,20 +3401,20 @@ void ctrl_custom_output(void)
   ctrl_custo_ActualForceandTorque(rtb_Integrator_c, ctrl_custom_P.K_q6f,
     ctrl_custom_P.K_T6f, ctrl_custom_P.K_T6r, ctrl_custom_P.K_q6r,
     ctrl_custom_P.Rho, ctrl_custom_P.D, ctrl_custom_P.eps_c,
-    ctrl_custom_P.Lossesplaceholder_Value_nh,
-    &ctrl_custom_B.sf_ActualForceandTorque_c);
+    ctrl_custom_P.Lossesplaceholder_Value_d,
+    &ctrl_custom_B.sf_ActualForceandTorque_oa);
 
   /* MATLAB Function: '<S66>/Actual Force and Torque' incorporates:
    *  Integrator: '<S67>/Integrator'
    */
-  if (ctrl_custom_X.Integrator_CSTATE_a < 0.0) {
-    rtb_Row1_m = -1.0;
-  } else if (ctrl_custom_X.Integrator_CSTATE_a > 0.0) {
-    rtb_Row1_m = 1.0;
-  } else if (ctrl_custom_X.Integrator_CSTATE_a == 0.0) {
-    rtb_Row1_m = 0.0;
+  if (ctrl_custom_X.Integrator_CSTATE_p < 0.0) {
+    rtb_Row1_d = -1.0;
+  } else if (ctrl_custom_X.Integrator_CSTATE_p > 0.0) {
+    rtb_Row1_d = 1.0;
+  } else if (ctrl_custom_X.Integrator_CSTATE_p == 0.0) {
+    rtb_Row1_d = 0.0;
   } else {
-    rtb_Row1_m = ctrl_custom_X.Integrator_CSTATE_a;
+    rtb_Row1_d = ctrl_custom_X.Integrator_CSTATE_p;
   }
 
   /* SignalConversion: '<S59>/TmpSignal ConversionAt SFunction Inport1' incorporates:
@@ -3578,25 +3428,25 @@ void ctrl_custom_output(void)
    *  MATLAB Function: '<S66>/Actual Force and Torque'
    */
   rtb_TmpSignalConversionAtSFunct[0] = ((1.0 - rtb_psi_dot) *
-    ctrl_custom_P.K_T1r + ctrl_custom_P.K_T1f * rtb_psi_dot) * rtb_Row1_m *
+    ctrl_custom_P.K_T1r + ctrl_custom_P.K_T1f * rtb_psi_dot) * rtb_Row1_d *
     ctrl_custom_P.Rho * rt_powd_snf(ctrl_custom_P.D, 4.0) *
-    (ctrl_custom_X.Integrator_CSTATE_a * ctrl_custom_X.Integrator_CSTATE_a) -
+    (ctrl_custom_X.Integrator_CSTATE_p * ctrl_custom_X.Integrator_CSTATE_p) -
     ctrl_custom_P.Lossesplaceholder_Value;
-  rtb_TmpSignalConversionAtSFunct[1] = ctrl_custom_X.Integrator_CSTATE_a;
+  rtb_TmpSignalConversionAtSFunct[1] = ctrl_custom_X.Integrator_CSTATE_p;
   rtb_TmpSignalConversionAtSFunct[2] =
-    ctrl_custom_B.sf_ActualForceandTorque_m.Ta;
-  rtb_TmpSignalConversionAtSFunct[3] = rtb_Integrator_n;
+    ctrl_custom_B.sf_ActualForceandTorque_j.Ta;
+  rtb_TmpSignalConversionAtSFunct[3] = rtb_Integrator_p;
   rtb_TmpSignalConversionAtSFunct[4] =
-    ctrl_custom_B.sf_ActualForceandTorque_f.Ta;
-  rtb_TmpSignalConversionAtSFunct[5] = rtb_Integrator_g;
+    ctrl_custom_B.sf_ActualForceandTorque_i.Ta;
+  rtb_TmpSignalConversionAtSFunct[5] = rtb_Integrator_n;
   rtb_TmpSignalConversionAtSFunct[6] =
-    ctrl_custom_B.sf_ActualForceandTorque_a.Ta;
-  rtb_TmpSignalConversionAtSFunct[7] = rtb_Integrator_l;
+    ctrl_custom_B.sf_ActualForceandTorque_j3.Ta;
+  rtb_TmpSignalConversionAtSFunct[7] = rtb_Integrator_k;
   rtb_TmpSignalConversionAtSFunct[8] =
-    ctrl_custom_B.sf_ActualForceandTorque_k.Ta;
-  rtb_TmpSignalConversionAtSFunct[9] = rtb_Integrator_k;
+    ctrl_custom_B.sf_ActualForceandTorque_o.Ta;
+  rtb_TmpSignalConversionAtSFunct[9] = rtb_Integrator_h;
   rtb_TmpSignalConversionAtSFunct[10] =
-    ctrl_custom_B.sf_ActualForceandTorque_c.Ta;
+    ctrl_custom_B.sf_ActualForceandTorque_oa.Ta;
   rtb_TmpSignalConversionAtSFunct[11] = rtb_Integrator_c;
 
   /* MATLAB Function: '<S52>/MATLAB Function' incorporates:
@@ -3610,49 +3460,49 @@ void ctrl_custom_output(void)
    *  Integrator: '<S67>/Integrator'
    *  SignalConversion: '<S59>/TmpSignal ConversionAt SFunction Inport1'
    */
-  /* MATLAB Function 'Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function': '<S59>:1' */
+  /* MATLAB Function 'Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function': '<S59>:1' */
   if (ctrl_custom_P.controller_Value == 1.0) {
     /* '<S59>:1:3' */
     /* '<S59>:1:4' */
     ctrl_custom_B.output[0] = rtb_TmpSignalConversionAtSFunct[0];
-    ctrl_custom_B.output[1] = ctrl_custom_P.Gain_Gain_a * ctrl_custom_B.rpm1;
-    ctrl_custom_B.output[2] = ctrl_custom_B.sf_ActualForceandTorque_m.Ta;
-    ctrl_custom_B.output[3] = ctrl_custom_P.Gain1_Gain_i * ctrl_custom_B.rpm2;
-    ctrl_custom_B.output[4] = ctrl_custom_B.sf_ActualForceandTorque_f.Ta;
+    ctrl_custom_B.output[1] = ctrl_custom_P.Gain_Gain_ol * ctrl_custom_B.rpm1;
+    ctrl_custom_B.output[2] = ctrl_custom_B.sf_ActualForceandTorque_j.Ta;
+    ctrl_custom_B.output[3] = ctrl_custom_P.Gain1_Gain_g * ctrl_custom_B.rpm2;
+    ctrl_custom_B.output[4] = ctrl_custom_B.sf_ActualForceandTorque_i.Ta;
     ctrl_custom_B.output[5] = ctrl_custom_P.Gain2_Gain * ctrl_custom_B.rpm3;
-    ctrl_custom_B.output[6] = ctrl_custom_B.sf_ActualForceandTorque_a.Ta;
+    ctrl_custom_B.output[6] = ctrl_custom_B.sf_ActualForceandTorque_j3.Ta;
     ctrl_custom_B.output[7] = ctrl_custom_P.Gain3_Gain * ctrl_custom_B.rpm4;
-    ctrl_custom_B.output[8] = ctrl_custom_B.sf_ActualForceandTorque_k.Ta;
+    ctrl_custom_B.output[8] = ctrl_custom_B.sf_ActualForceandTorque_o.Ta;
     ctrl_custom_B.output[9] = ctrl_custom_P.Gain4_Gain * ctrl_custom_B.rpm5;
-    ctrl_custom_B.output[10] = ctrl_custom_B.sf_ActualForceandTorque_c.Ta;
-    ctrl_custom_B.output[11] = ctrl_custom_P.Gain5_Gain_f * ctrl_custom_B.rpm6;
+    ctrl_custom_B.output[10] = ctrl_custom_B.sf_ActualForceandTorque_oa.Ta;
+    ctrl_custom_B.output[11] = ctrl_custom_P.Gain5_Gain_es * ctrl_custom_B.rpm6;
 
     /*      output = [input(1) input(2) input(3) input(4) input(5) input(6) input(7) input(8) input(9) input(10) input(11) input(12)]'; */
   } else {
     /* '<S59>:1:8' */
     ctrl_custom_B.output[0] = rtb_TmpSignalConversionAtSFunct[0];
-    ctrl_custom_B.output[1] = ctrl_custom_X.Integrator_CSTATE_a;
-    ctrl_custom_B.output[2] = ctrl_custom_B.sf_ActualForceandTorque_m.Ta;
-    ctrl_custom_B.output[3] = rtb_Integrator_n;
-    ctrl_custom_B.output[4] = ctrl_custom_B.sf_ActualForceandTorque_f.Ta;
-    ctrl_custom_B.output[5] = rtb_Integrator_g;
-    ctrl_custom_B.output[6] = ctrl_custom_B.sf_ActualForceandTorque_a.Ta;
-    ctrl_custom_B.output[7] = rtb_Integrator_l;
-    ctrl_custom_B.output[8] = ctrl_custom_B.sf_ActualForceandTorque_k.Ta;
-    ctrl_custom_B.output[9] = rtb_Integrator_k;
-    ctrl_custom_B.output[10] = ctrl_custom_B.sf_ActualForceandTorque_c.Ta;
+    ctrl_custom_B.output[1] = ctrl_custom_X.Integrator_CSTATE_p;
+    ctrl_custom_B.output[2] = ctrl_custom_B.sf_ActualForceandTorque_j.Ta;
+    ctrl_custom_B.output[3] = rtb_Integrator_p;
+    ctrl_custom_B.output[4] = ctrl_custom_B.sf_ActualForceandTorque_i.Ta;
+    ctrl_custom_B.output[5] = rtb_Integrator_n;
+    ctrl_custom_B.output[6] = ctrl_custom_B.sf_ActualForceandTorque_j3.Ta;
+    ctrl_custom_B.output[7] = rtb_Integrator_k;
+    ctrl_custom_B.output[8] = ctrl_custom_B.sf_ActualForceandTorque_o.Ta;
+    ctrl_custom_B.output[9] = rtb_Integrator_h;
+    ctrl_custom_B.output[10] = ctrl_custom_B.sf_ActualForceandTorque_oa.Ta;
     ctrl_custom_B.output[11] = rtb_Integrator_c;
   }
 
   /* SignalConversion: '<S47>/TmpSignal ConversionAt SFunction Inport1' incorporates:
    *  MATLAB Function: '<S13>/angle between  [-180 180]'
    */
-  rtb_TmpSignalConversionAtSFun_d[0] = ctrl_custom_B.thr_angle_1;
-  rtb_TmpSignalConversionAtSFun_d[1] = ctrl_custom_B.thr_angle_2;
-  rtb_TmpSignalConversionAtSFun_d[2] = ctrl_custom_B.thr_angle_3;
-  rtb_TmpSignalConversionAtSFun_d[3] = ctrl_custom_B.thr_angle_4;
-  rtb_TmpSignalConversionAtSFun_d[4] = ctrl_custom_B.thr_angle_5;
-  rtb_TmpSignalConversionAtSFun_d[5] = ctrl_custom_B.thr_angle_6;
+  rtb_TmpSignalConversionAtSFu_e5[0] = ctrl_custom_B.thr_angle_1;
+  rtb_TmpSignalConversionAtSFu_e5[1] = ctrl_custom_B.thr_angle_2;
+  rtb_TmpSignalConversionAtSFu_e5[2] = ctrl_custom_B.thr_angle_3;
+  rtb_TmpSignalConversionAtSFu_e5[3] = ctrl_custom_B.thr_angle_4;
+  rtb_TmpSignalConversionAtSFu_e5[4] = ctrl_custom_B.thr_angle_5;
+  rtb_TmpSignalConversionAtSFu_e5[5] = ctrl_custom_B.thr_angle_6;
 
   /* MATLAB Function: '<S13>/angle between  [-180 180]' */
   /* MATLAB Function 'Thrust allocation/angle between  [-180 180]': '<S47>:1' */
@@ -3694,28 +3544,28 @@ void ctrl_custom_output(void)
   /* '<S47>:1:39' */
   /* '<S47>:1:40' */
   for (i_0 = 0; i_0 < 6; i_0++) {
-    if (rtb_TmpSignalConversionAtSFun_d[i_0] < 0.0) {
-      rtb_psi_dot = -1.0;
-    } else if (rtb_TmpSignalConversionAtSFun_d[i_0] > 0.0) {
-      rtb_psi_dot = 1.0;
-    } else if (rtb_TmpSignalConversionAtSFun_d[i_0] == 0.0) {
-      rtb_psi_dot = 0.0;
+    if (rtb_TmpSignalConversionAtSFu_e5[i_0] < 0.0) {
+      rtb_Row1_d = -1.0;
+    } else if (rtb_TmpSignalConversionAtSFu_e5[i_0] > 0.0) {
+      rtb_Row1_d = 1.0;
+    } else if (rtb_TmpSignalConversionAtSFu_e5[i_0] == 0.0) {
+      rtb_Row1_d = 0.0;
     } else {
-      rtb_psi_dot = rtb_TmpSignalConversionAtSFun_d[i_0];
+      rtb_Row1_d = rtb_TmpSignalConversionAtSFu_e5[i_0];
     }
 
-    rtb_y[i_0] = rt_remd_snf(rtb_psi_dot * 3.1415926535897931 +
-      rtb_TmpSignalConversionAtSFun_d[i_0], 6.2831853071795862);
-    rtb_TmpSignalConversionAtSFu_fw[i_0] = rtb_TmpSignalConversionAtSFun_d[i_0]
+    rtb_y[i_0] = rt_remd_snf(rtb_Row1_d * 3.1415926535897931 +
+      rtb_TmpSignalConversionAtSFu_e5[i_0], 6.2831853071795862);
+    rtb_TmpSignalConversionAtSFun_i[i_0] = rtb_TmpSignalConversionAtSFu_e5[i_0]
       + 3.1415926535897931;
-    if (rtb_TmpSignalConversionAtSFun_d[i_0] < 0.0) {
+    if (rtb_TmpSignalConversionAtSFu_e5[i_0] < 0.0) {
       s[i_0] = -1.0;
-    } else if (rtb_TmpSignalConversionAtSFun_d[i_0] > 0.0) {
+    } else if (rtb_TmpSignalConversionAtSFu_e5[i_0] > 0.0) {
       s[i_0] = 1.0;
-    } else if (rtb_TmpSignalConversionAtSFun_d[i_0] == 0.0) {
+    } else if (rtb_TmpSignalConversionAtSFu_e5[i_0] == 0.0) {
       s[i_0] = 0.0;
     } else {
-      s[i_0] = rtb_TmpSignalConversionAtSFun_d[i_0];
+      s[i_0] = rtb_TmpSignalConversionAtSFu_e5[i_0];
     }
   }
 
@@ -3729,17 +3579,17 @@ void ctrl_custom_output(void)
   rtb_TmpSignalConversionAtSFun_o[2] = ctrl_custom_B.Switch[2];
   for (i_0 = 0; i_0 < 6; i_0++) {
     /* MATLAB Function: '<S13>/angle between  [-180 180]' */
-    rtb_psi_dot = fabs(rt_remd_snf(rtb_TmpSignalConversionAtSFu_fw[i_0],
+    rtb_Row1_d = fabs(rt_remd_snf(rtb_TmpSignalConversionAtSFun_i[i_0],
       6.2831853071795862) / 6.2831853071795862);
-    if (rtb_psi_dot > 0.0) {
-      rtb_psi_dot = 1.0;
+    if (rtb_Row1_d > 0.0) {
+      rtb_Row1_d = 1.0;
     } else {
-      if (rtb_psi_dot == 0.0) {
-        rtb_psi_dot = 0.0;
+      if (rtb_Row1_d == 0.0) {
+        rtb_Row1_d = 0.0;
       }
     }
 
-    s_0 = (rtb_psi_dot - 1.0) * 2.0 + s[i_0];
+    s_0 = (rtb_Row1_d - 1.0) * 2.0 + s[i_0];
     if (s_0 < 0.0) {
       s_0 = -1.0;
     } else if (s_0 > 0.0) {
@@ -3760,984 +3610,488 @@ void ctrl_custom_output(void)
   }
 
   /* MATLAB Function: '<S13>/MATLAB Function' incorporates:
-   *  Constant: '<S13>/C'
    *  Constant: '<S13>/X-position Thruster'
    *  Constant: '<S13>/Y-position Thruster'
    */
   /* MATLAB Function 'Thrust allocation/MATLAB Function': '<S44>:1' */
-  /* '<S44>:1:87' */
-  /* '<S44>:1:86' */
+  /* '<S44>:1:85' */
+  /* '<S44>:1:84' */
+  /* '<S44>:1:70' */
   /*  Complete system goes here! */
   /*  Allocating dimensions for faster computing */
   /*  Parameters thrusters */
   /* '<S44>:1:5' */
-  rtb_MatrixMultiply2_j[0] = rtb_TmpSignalConversionAtSFun_o[0];
-  rtb_MatrixMultiply2_j[1] = rtb_TmpSignalConversionAtSFun_o[1];
-  rtb_MatrixMultiply2_j[2] = rtb_TmpSignalConversionAtSFun_o[2];
+  rtb_MatrixMultiply3[0] = rtb_TmpSignalConversionAtSFun_o[0];
+  rtb_MatrixMultiply3[1] = rtb_TmpSignalConversionAtSFun_o[1];
+  rtb_MatrixMultiply3[2] = rtb_TmpSignalConversionAtSFun_o[2];
 
   /* '<S44>:1:6' */
-  rtb_TmpSignalConversionAtSFu_fw[0] = rtb_TmpSignalConversionAtSFun_o[3];
-  rtb_TmpSignalConversionAtSFu_fw[1] = rtb_TmpSignalConversionAtSFun_o[4];
-  rtb_TmpSignalConversionAtSFu_fw[2] = rtb_TmpSignalConversionAtSFun_o[5];
-  rtb_TmpSignalConversionAtSFu_fw[3] = rtb_TmpSignalConversionAtSFun_o[6];
-  rtb_TmpSignalConversionAtSFu_fw[4] = rtb_TmpSignalConversionAtSFun_o[7];
-  rtb_TmpSignalConversionAtSFu_fw[5] = rtb_TmpSignalConversionAtSFun_o[8];
+  rtb_TmpSignalConversionAtSFun_i[0] = rtb_TmpSignalConversionAtSFun_o[3];
+  rtb_TmpSignalConversionAtSFun_i[1] = rtb_TmpSignalConversionAtSFun_o[4];
+  rtb_TmpSignalConversionAtSFun_i[2] = rtb_TmpSignalConversionAtSFun_o[5];
+  rtb_TmpSignalConversionAtSFun_i[3] = rtb_TmpSignalConversionAtSFun_o[6];
+  rtb_TmpSignalConversionAtSFun_i[4] = rtb_TmpSignalConversionAtSFun_o[7];
+  rtb_TmpSignalConversionAtSFun_i[5] = rtb_TmpSignalConversionAtSFun_o[8];
 
   /*  Constraints for Thruster-Thruster interaction. Can be seen in "Initfile" */
   /*  how they are found */
-  /* '<S44>:1:10' */
-  /* '<S44>:1:11' */
-  /* '<S44>:1:12' */
-  /* '<S44>:1:13' */
-  /* '<S44>:1:14' */
-  /* '<S44>:1:15' */
-  if (((rtb_TmpSignalConversionAtSFun_o[3] < ctrl_custom_P.C[0] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[3] > ctrl_custom_P.C[6] + 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[3] > ctrl_custom_P.C[12] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[3] < ctrl_custom_P.C[18] - 0.1))) {
-    /* '<S44>:1:21' */
-    /* '<S44>:1:22' */
-    K[0] = 0.0;
-  } else {
-    /* '<S44>:1:24' */
-    K[0] = 1.0;
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[4] > ctrl_custom_P.C[1] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[4] < ctrl_custom_P.C[7] + 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[4] > ctrl_custom_P.C[13] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[4] < ctrl_custom_P.C[19] + 0.1))) {
-    /* '<S44>:1:27' */
-    /* '<S44>:1:28' */
-    K[1] = 0.0;
-  } else {
-    /* '<S44>:1:30' */
-    K[1] = 1.0;
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[5] < ctrl_custom_P.C[2] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[5] > ctrl_custom_P.C[8] - 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[5] < ctrl_custom_P.C[14] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[5] > ctrl_custom_P.C[20] - 0.1))) {
-    /* '<S44>:1:33' */
-    /* '<S44>:1:34' */
-    K[2] = 0.0;
-  } else {
-    /* '<S44>:1:36' */
-    K[2] = 1.0;
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[6] > ctrl_custom_P.C[3] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[6] < ctrl_custom_P.C[9] - 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[6] < ctrl_custom_P.C[15] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[6] > ctrl_custom_P.C[21] + 0.1))) {
-    /* '<S44>:1:39' */
-    /* '<S44>:1:40' */
-    K[3] = 0.0;
-  } else {
-    /* '<S44>:1:42' */
-    K[3] = 1.0;
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[7] < ctrl_custom_P.C[4] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[7] > ctrl_custom_P.C[10] + 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[7] < ctrl_custom_P.C[16] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[7] > ctrl_custom_P.C[22] + 0.1))) {
-    /* '<S44>:1:45' */
-    /* '<S44>:1:46' */
-    K[4] = 0.0;
-  } else {
-    /* '<S44>:1:48' */
-    K[4] = 1.0;
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[8] > ctrl_custom_P.C[5] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[8] < ctrl_custom_P.C[11] - 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[8] > ctrl_custom_P.C[17] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[8] < ctrl_custom_P.C[23] - 0.1))) {
-    /* '<S44>:1:51' */
-    /* '<S44>:1:52' */
-    K[5] = 0.0;
-  } else {
-    /* '<S44>:1:54' */
-    K[5] = 1.0;
-  }
-
+  /*  if alpha(1) < C1(1)-0.1  && alpha(1) > C1(2)+0.1 || alpha(1) > C1(3)+0.1 && alpha(1) < C1(4)-0.1 */
+  /*      K(1) = 0; */
+  /*  else  */
+  /*      K(1) = K(1); */
+  /*  end */
+  /*   */
+  /*  if alpha(2) > C2(1)-0.1  && alpha(2) < C2(2)+0.1 || alpha(2) > C2(3)-0.1 && alpha(2) < C2(4)+0.1 */
+  /*      K(2) = 0; */
+  /*  else  */
+  /*      K(2) = K(2); */
+  /*  end */
+  /*   */
+  /*  if alpha(3) < C3(1)+0.1  && alpha(3) > C3(2)-0.1 || alpha(3) < C3(3)+0.1 && alpha(3) > C3(4)-0.1 */
+  /*      K(3) = 0; */
+  /*  else  */
+  /*      K(3) = K(3); */
+  /*  end */
+  /*   */
+  /*  if alpha(4) > C4(1)+0.1  && alpha(4) < C4(2)-0.1 || alpha(4) < C4(3)-0.1 && alpha(4) > C4(4)+0.1 */
+  /*      K(4) = 0; */
+  /*  else  */
+  /*      K(4) = K(4); */
+  /*  end */
+  /*   */
+  /*  if alpha(5) < C5(1)-0.1  && alpha(5) > C5(2)+0.1 || alpha(5) < C5(3)-0.1 && alpha(5) > C5(4)+0.1 */
+  /*      K(5) = 0; */
+  /*  else  */
+  /*      K(5) = K(5); */
+  /*  end */
+  /*   */
+  /*  if alpha(6) > C6(1)+0.1  && alpha(6) < C6(2)-0.1 || alpha(6) > C6(3)+0.1 && alpha(6) < C6(4)-0.1 */
+  /*      K(6) = 0; */
+  /*  else  */
+  /*      K(6) = K(6); */
+  /*  end */
   /*  number of thrusters */
   /*  Shells for faster computing */
+  /* '<S44>:1:58' */
+  /* '<S44>:1:59' */
   /* '<S44>:1:60' */
-  /* '<S44>:1:61' */
   /* '<S44>:1:62' */
-  /* '<S44>:1:64' */
   for (i_0 = 0; i_0 < 6; i_0++) {
-    /* '<S44>:1:64' */
-    /* '<S44>:1:65' */
-    rtb_y[i_0] = rtb_TmpSignalConversionAtSFu_fw[i_0];
+    /* '<S44>:1:62' */
+    /* '<S44>:1:63' */
+    rtb_y[i_0] = rtb_TmpSignalConversionAtSFun_i[i_0];
     ctrl_custom_cosd_m(&rtb_y[i_0]);
 
     /* Thrust in x-direction for cartesian */
-    /* '<S44>:1:66' */
-    s[i_0] = rtb_TmpSignalConversionAtSFu_fw[i_0];
+    /* '<S44>:1:64' */
+    s[i_0] = rtb_TmpSignalConversionAtSFun_i[i_0];
     ctrl_custom_sind_k(&s[i_0]);
 
     /* Thrust in y-direction for cartesian */
-    /* '<S44>:1:67' */
-    rtb_psi_dot = rtb_TmpSignalConversionAtSFu_fw[i_0];
+    /* '<S44>:1:65' */
+    rtb_psi_dot = rtb_TmpSignalConversionAtSFun_i[i_0];
     ctrl_custom_sind_k(&rtb_psi_dot);
-    rtb_Row2_f = rtb_TmpSignalConversionAtSFu_fw[i_0];
-    ctrl_custom_cosd_m(&rtb_Row2_f);
-    rtb_TmpSignalConversionAtSFun_d[i_0] = rtb_psi_dot *
-      ctrl_custom_P.XpositionThruster_Value[i_0] - rtb_Row2_f *
+    rtb_Row3 = rtb_TmpSignalConversionAtSFun_i[i_0];
+    ctrl_custom_cosd_m(&rtb_Row3);
+    rtb_TmpSignalConversionAtSFu_e5[i_0] = rtb_psi_dot *
+      ctrl_custom_P.XpositionThruster_Value[i_0] - rtb_Row3 *
       ctrl_custom_P.YpositionThruster_Value[i_0];
   }
 
-  /* '<S44>:1:71' */
-  /* '<S44>:1:72' */
-  /* '<S44>:1:73' */
-  ctrl_custom_diag(K, b_V_singular);
+  /* '<S44>:1:69' */
+  /* '<S44>:1:70' */
   for (i_0 = 0; i_0 < 6; i_0++) {
-    rtb_y_1[3 * i_0] = rtb_y[i_0];
-    rtb_y_1[1 + 3 * i_0] = s[i_0];
-    rtb_y_1[2 + 3 * i_0] = rtb_TmpSignalConversionAtSFun_d[i_0];
+    rtb_y_0[3 * i_0] = rtb_y[i_0];
+    rtb_y_0[1 + 3 * i_0] = s[i_0];
+    rtb_y_0[2 + 3 * i_0] = rtb_TmpSignalConversionAtSFu_e5[i_0];
   }
 
   for (i_0 = 0; i_0 < 6; i_0++) {
     for (b_i = 0; b_i < 3; b_i++) {
-      rtb_y_0[b_i + 3 * i_0] = 0.0;
+      B[b_i + 3 * i_0] = 0.0;
       for (b_sizes = 0; b_sizes < 6; b_sizes++) {
-        rtb_y_0[b_i + 3 * i_0] += rtb_y_1[3 * b_sizes + b_i] * b_V_singular[6 *
-          i_0 + b_sizes];
+        B[b_i + 3 * i_0] += rtb_y_0[3 * b_sizes + b_i] * (real_T)b_b[6 * i_0 +
+          b_sizes];
       }
     }
   }
 
-  ctrl_custom_svd(rtb_y_0, rtb_CreateDiagonalMatrix, S_singular_cross, rtb_y_1);
-
-  /* '<S44>:1:74' */
-  for (i_0 = 0; i_0 < 9; i_0++) {
-    S_singular_cross[i_0] = 1.0 / S_singular_cross[i_0];
+  /* '<S44>:1:71' */
+  d_p = true;
+  for (i_0 = 0; i_0 < 18; i_0++) {
+    if (d_p && ((!rtIsInf(B[i_0])) && (!rtIsNaN(B[i_0])))) {
+    } else {
+      d_p = false;
+    }
   }
 
-  /* '<S44>:1:75' */
-  ctrl_custom_isfinite(S_singular_cross, tmp);
+  if (d_p) {
+    ctrl_custom_svd(B, rtb_CreateDiagonalMatrix5, S_singular_cross, rtb_y_0);
+  } else {
+    for (i_0 = 0; i_0 < 9; i_0++) {
+      rtb_CreateDiagonalMatrix5[i_0] = (rtNaN);
+      S_singular_cross[i_0] = 0.0;
+    }
+
+    S_singular_cross[0] = (rtNaN);
+    S_singular_cross[4] = (rtNaN);
+    S_singular_cross[8] = (rtNaN);
+    for (i_0 = 0; i_0 < 18; i_0++) {
+      rtb_y_0[i_0] = (rtNaN);
+    }
+  }
+
+  /* '<S44>:1:72' */
+  /* '<S44>:1:73' */
   i_0 = 0;
   for (b_i = 0; b_i < 9; b_i++) {
-    f_1 = !tmp[b_i];
-    if (f_1) {
+    rtb_Row1_d = 1.0 / S_singular_cross[b_i];
+    d_p = !((!rtIsInf(rtb_Row1_d)) && (!rtIsNaN(rtb_Row1_d)));
+    if (d_p) {
       i_0++;
     }
 
-    f[b_i] = f_1;
+    h[b_i] = d_p;
+    S_singular_cross[b_i] = rtb_Row1_d;
   }
 
   b_sizes = i_0;
   i_0 = 0;
   for (b_i = 0; b_i < 9; b_i++) {
-    if (f[b_i]) {
+    if (h[b_i]) {
       b_data[i_0] = b_i + 1;
       i_0++;
     }
   }
 
-  /* '<S44>:1:75' */
+  /* '<S44>:1:73' */
   for (i_0 = 0; i_0 < b_sizes; i_0++) {
     S_singular_cross[b_data[i_0] - 1] = 0.0;
   }
 
   if (S_singular_cross[8] > 10.0 * S_singular_cross[4]) {
-    /* '<S44>:1:76' */
-    /* '<S44>:1:77' */
+    /* '<S44>:1:74' */
+    /* '<S44>:1:75' */
     S_singular_cross[8] = 0.0;
   }
 
+  /* '<S44>:1:78' */
+  for (i_0 = 0; i_0 < 3; i_0++) {
+    for (b_i = 0; b_i < 6; b_i++) {
+      B[b_i + 6 * i_0] = 0.0;
+      B[b_i + 6 * i_0] += S_singular_cross[3 * i_0] * rtb_y_0[b_i];
+      B[b_i + 6 * i_0] += S_singular_cross[3 * i_0 + 1] * rtb_y_0[b_i + 6];
+      B[b_i + 6 * i_0] += S_singular_cross[3 * i_0 + 2] * rtb_y_0[b_i + 12];
+    }
+  }
+
   /* '<S44>:1:80' */
-  /* '<S44>:1:82' */
-  for (i_0 = 0; i_0 < 6; i_0++) {
-    for (b_i = 0; b_i < 3; b_i++) {
-      rtb_y_0[i_0 + 6 * b_i] = 0.0;
-      rtb_y_0[i_0 + 6 * b_i] += S_singular_cross[3 * b_i] * rtb_y_1[i_0];
-      rtb_y_0[i_0 + 6 * b_i] += S_singular_cross[3 * b_i + 1] * rtb_y_1[i_0 + 6];
-      rtb_y_0[i_0 + 6 * b_i] += S_singular_cross[3 * b_i + 2] * rtb_y_1[i_0 + 12];
-    }
-
-    rtb_y[i_0] = 0.0;
-    for (b_i = 0; b_i < 3; b_i++) {
-      V_singular[i_0 + 6 * b_i] = 0.0;
-      V_singular[i_0 + 6 * b_i] += rtb_y_0[i_0] * rtb_CreateDiagonalMatrix[b_i];
-      V_singular[i_0 + 6 * b_i] += rtb_y_0[i_0 + 6] *
-        rtb_CreateDiagonalMatrix[b_i + 3];
-      V_singular[i_0 + 6 * b_i] += rtb_y_0[i_0 + 12] *
-        rtb_CreateDiagonalMatrix[b_i + 6];
-      rtb_y[i_0] += V_singular[6 * b_i + i_0] * rtb_MatrixMultiply2_j[b_i];
-    }
-  }
-
   /*  Optimized Thrust */
-  /* '<S44>:1:86' */
-  /* '<S44>:1:91' */
+  /* '<S44>:1:84' */
   for (i_0 = 0; i_0 < 12; i_0++) {
-    d_0[3 * i_0] = d[i_0];
-    d_0[1 + 3 * i_0] = e[i_0];
+    Te[3 * i_0] = d[i_0];
+    Te[1 + 3 * i_0] = e[i_0];
   }
 
-  d_0[2] = ctrl_custom_P.YpositionThruster_Value[0];
-  d_0[5] = ctrl_custom_P.XpositionThruster_Value[0];
-  d_0[8] = ctrl_custom_P.YpositionThruster_Value[1];
-  d_0[11] = ctrl_custom_P.XpositionThruster_Value[1];
-  d_0[14] = ctrl_custom_P.YpositionThruster_Value[2];
-  d_0[17] = ctrl_custom_P.XpositionThruster_Value[2];
-  d_0[20] = ctrl_custom_P.YpositionThruster_Value[3];
-  d_0[23] = ctrl_custom_P.XpositionThruster_Value[3];
-  d_0[26] = ctrl_custom_P.YpositionThruster_Value[4];
-  d_0[29] = ctrl_custom_P.XpositionThruster_Value[4];
-  d_0[32] = ctrl_custom_P.YpositionThruster_Value[5];
-  d_0[35] = ctrl_custom_P.XpositionThruster_Value[5];
-  ctrl_custom_svd_hb(d_0, rtb_CreateDiagonalMatrix, S_singular_cross,
-                     b_V_singular);
+  Te[2] = ctrl_custom_P.YpositionThruster_Value[0];
+  Te[5] = ctrl_custom_P.XpositionThruster_Value[0];
+  Te[8] = ctrl_custom_P.YpositionThruster_Value[1];
+  Te[11] = ctrl_custom_P.XpositionThruster_Value[1];
+  Te[14] = ctrl_custom_P.YpositionThruster_Value[2];
+  Te[17] = ctrl_custom_P.XpositionThruster_Value[2];
+  Te[20] = ctrl_custom_P.YpositionThruster_Value[3];
+  Te[23] = ctrl_custom_P.XpositionThruster_Value[3];
+  Te[26] = ctrl_custom_P.YpositionThruster_Value[4];
+  Te[29] = ctrl_custom_P.XpositionThruster_Value[4];
+  Te[32] = ctrl_custom_P.YpositionThruster_Value[5];
+  Te[35] = ctrl_custom_P.XpositionThruster_Value[5];
 
-  /* '<S44>:1:92' */
-  for (i_0 = 0; i_0 < 9; i_0++) {
-    S_singular_cross[i_0] = 1.0 / S_singular_cross[i_0];
+  /* '<S44>:1:89' */
+  d_p = true;
+  for (i_0 = 0; i_0 < 36; i_0++) {
+    if (d_p && ((!rtIsInf(Te[i_0])) && (!rtIsNaN(Te[i_0])))) {
+    } else {
+      d_p = false;
+    }
   }
 
-  /* '<S44>:1:93' */
-  ctrl_custom_isfinite(S_singular_cross, tmp);
+  if (d_p) {
+    ctrl_custom_svd_h(Te, b_U, S_singular_cross, b_V);
+  } else {
+    for (i_0 = 0; i_0 < 9; i_0++) {
+      b_U[i_0] = (rtNaN);
+      S_singular_cross[i_0] = 0.0;
+    }
+
+    S_singular_cross[0] = (rtNaN);
+    S_singular_cross[4] = (rtNaN);
+    S_singular_cross[8] = (rtNaN);
+    for (i_0 = 0; i_0 < 36; i_0++) {
+      b_V[i_0] = (rtNaN);
+    }
+  }
+
+  /* '<S44>:1:90' */
+  /* '<S44>:1:91' */
   i_0 = 0;
   for (b_i = 0; b_i < 9; b_i++) {
-    f_1 = !tmp[b_i];
-    if (f_1) {
+    rtb_Row1_d = 1.0 / S_singular_cross[b_i];
+    d_p = !((!rtIsInf(rtb_Row1_d)) && (!rtIsNaN(rtb_Row1_d)));
+    if (d_p) {
       i_0++;
     }
 
-    f[b_i] = f_1;
+    h[b_i] = d_p;
+    S_singular_cross[b_i] = rtb_Row1_d;
   }
 
   b_sizes = i_0;
   i_0 = 0;
   for (b_i = 0; b_i < 9; b_i++) {
-    if (f[b_i]) {
+    if (h[b_i]) {
       c_data[i_0] = b_i + 1;
       i_0++;
     }
   }
 
-  /* '<S44>:1:93' */
+  /* '<S44>:1:91' */
   for (i_0 = 0; i_0 < b_sizes; i_0++) {
     S_singular_cross[c_data[i_0] - 1] = 0.0;
   }
 
   if (S_singular_cross[8] > 2.0 * S_singular_cross[4]) {
-    /* '<S44>:1:94' */
-    /* '<S44>:1:95' */
+    /* '<S44>:1:92' */
+    /* '<S44>:1:93' */
     S_singular_cross[8] = 0.0;
   }
 
-  /* '<S44>:1:97' */
+  /* '<S44>:1:95' */
   for (i_0 = 0; i_0 < 12; i_0++) {
     for (b_i = 0; b_i < 3; b_i++) {
-      d_0[i_0 + 12 * b_i] = 0.0;
-      d_0[i_0 + 12 * b_i] += S_singular_cross[3 * b_i] * b_V_singular[i_0];
-      d_0[i_0 + 12 * b_i] += S_singular_cross[3 * b_i + 1] * b_V_singular[i_0 +
-        12];
-      d_0[i_0 + 12 * b_i] += S_singular_cross[3 * b_i + 2] * b_V_singular[i_0 +
-        24];
+      Te[i_0 + 12 * b_i] = 0.0;
+      Te[i_0 + 12 * b_i] += S_singular_cross[3 * b_i] * b_V[i_0];
+      Te[i_0 + 12 * b_i] += S_singular_cross[3 * b_i + 1] * b_V[i_0 + 12];
+      Te[i_0 + 12 * b_i] += S_singular_cross[3 * b_i + 2] * b_V[i_0 + 24];
     }
 
     rtb_TmpSignalConversionAtSFunct[i_0] = 0.0;
     for (b_i = 0; b_i < 3; b_i++) {
-      b_V_singular_0[i_0 + 12 * b_i] = 0.0;
-      b_V_singular_0[i_0 + 12 * b_i] += d_0[i_0] * rtb_CreateDiagonalMatrix[b_i];
-      b_V_singular_0[i_0 + 12 * b_i] += d_0[i_0 + 12] *
-        rtb_CreateDiagonalMatrix[b_i + 3];
-      b_V_singular_0[i_0 + 12 * b_i] += d_0[i_0 + 24] *
-        rtb_CreateDiagonalMatrix[b_i + 6];
-      rtb_TmpSignalConversionAtSFunct[i_0] += b_V_singular_0[12 * b_i + i_0] *
-        rtb_MatrixMultiply2_j[b_i];
+      b_V_0[i_0 + 12 * b_i] = 0.0;
+      b_V_0[i_0 + 12 * b_i] += Te[i_0] * b_U[b_i];
+      b_V_0[i_0 + 12 * b_i] += Te[i_0 + 12] * b_U[b_i + 3];
+      b_V_0[i_0 + 12 * b_i] += Te[i_0 + 24] * b_U[b_i + 6];
+      rtb_TmpSignalConversionAtSFunct[i_0] += b_V_0[12 * b_i + i_0] *
+        rtb_MatrixMultiply3[b_i];
     }
   }
 
-  /* '<S44>:1:99' */
-  K[0] = 57.295779513082323 * rt_atan2d_snf(rtb_TmpSignalConversionAtSFunct[1],
-    rtb_TmpSignalConversionAtSFunct[0]);
-  K[1] = 57.295779513082323 * rt_atan2d_snf(rtb_TmpSignalConversionAtSFunct[3],
-    rtb_TmpSignalConversionAtSFunct[2]);
-  K[2] = 57.295779513082323 * rt_atan2d_snf(rtb_TmpSignalConversionAtSFunct[5],
-    rtb_TmpSignalConversionAtSFunct[4]);
-  K[3] = 57.295779513082323 * rt_atan2d_snf(rtb_TmpSignalConversionAtSFunct[7],
-    rtb_TmpSignalConversionAtSFunct[6]);
-  K[4] = 57.295779513082323 * rt_atan2d_snf(rtb_TmpSignalConversionAtSFunct[9],
-    rtb_TmpSignalConversionAtSFunct[8]);
-  K[5] = 57.295779513082323 * rt_atan2d_snf(rtb_TmpSignalConversionAtSFunct[11],
-    rtb_TmpSignalConversionAtSFunct[10]);
-
+  /* '<S44>:1:97' */
   /*  Constraints */
   /*  Thruster 1 OK */
   /* C1 = [151 130 -151 -130 ]; */
-  if (((K[0] < ctrl_custom_P.C[0]) && (K[0] > ctrl_custom_P.C[6]) && (rtb_y[0] >
-        0.0)) || ((K[0] < ctrl_custom_P.C[0]) && (K[0] > ctrl_custom_P.C[6]) &&
-                  (rtb_y[0] < 0.0))) {
-    /* '<S44>:1:105' */
-    /* '<S44>:1:106' */
-    c1[0] = ctrl_custom_P.C[0];
-    c1[1] = ctrl_custom_P.C[6];
-
-    /* '<S44>:1:107' */
-    c1_5[0] = ctrl_custom_P.C[0] - K[0];
-    c1_5[1] = ctrl_custom_P.C[6] - K[0];
-    ctrl_custom_abs(c1_5, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg12 = false;
-      while ((!exitg12) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg12 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:108' */
-    rtb_Row2_f = c1[b_i];
-  } else if (((K[0] > ctrl_custom_P.C[12]) && (K[0] < ctrl_custom_P.C[18]) &&
-              (rtb_y[0] > 0.0)) || ((K[0] > ctrl_custom_P.C[12]) && (K[0] <
-               ctrl_custom_P.C[18]) && (rtb_y[0] < 0.0))) {
-    /* '<S44>:1:109' */
-    /* '<S44>:1:110' */
-    c1[0] = ctrl_custom_P.C[12];
-    c1[1] = ctrl_custom_P.C[18];
-
-    /* '<S44>:1:111' */
-    c1_5[0] = ctrl_custom_P.C[12] - K[0];
-    c1_5[1] = ctrl_custom_P.C[18] - K[0];
-    ctrl_custom_abs(c1_5, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg11 = false;
-      while ((!exitg11) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg11 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:112' */
-    rtb_Row2_f = c1[b_i];
-  } else {
-    /* '<S44>:1:114' */
-    rtb_Row2_f = K[0];
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[3] < ctrl_custom_P.C[0] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[3] > ctrl_custom_P.C[6] + 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[3] > ctrl_custom_P.C[12] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[3] < ctrl_custom_P.C[18] - 0.1))) {
-    /* '<S44>:1:116' */
-    /* '<S44>:1:117' */
-    rtb_y[0] = 0.0;
-  } else {
-    /* '<S44>:1:119' */
-  }
-
-  /*  Thruster 2  */
-  /* C2 = [-99.85 -80.15 -50 -29]; */
-  if (((K[1] < ctrl_custom_P.C[1]) && (K[1] > ctrl_custom_P.C[7]) && (rtb_y[1] >
-        0.0)) || ((K[1] < ctrl_custom_P.C[1]) && (K[1] > ctrl_custom_P.C[7]) &&
-                  (rtb_y[1] < 0.0))) {
-    /* '<S44>:1:124' */
-    /* '<S44>:1:125' */
-    c1[0] = ctrl_custom_P.C[1];
-    c1[1] = ctrl_custom_P.C[7];
-
-    /* '<S44>:1:126' */
-    c1_4[0] = ctrl_custom_P.C[1] - K[1];
-    c1_4[1] = ctrl_custom_P.C[7] - K[1];
-    ctrl_custom_abs(c1_4, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg10 = false;
-      while ((!exitg10) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg10 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:127' */
-    rtb_Row1_m = c1[b_i];
-  } else if (((K[1] < ctrl_custom_P.C[13]) && (K[1] > ctrl_custom_P.C[19]) &&
-              (rtb_y[1] > 0.0)) || ((K[1] < ctrl_custom_P.C[13]) && (K[1] >
-               ctrl_custom_P.C[19]) && (rtb_y[1] < 0.0))) {
-    /* '<S44>:1:128' */
-    /* '<S44>:1:129' */
-    c1[0] = ctrl_custom_P.C[13];
-    c1[1] = ctrl_custom_P.C[19];
-
-    /* '<S44>:1:130' */
-    c1_4[0] = ctrl_custom_P.C[13] - K[1];
-    c1_4[1] = ctrl_custom_P.C[19] - K[1];
-    ctrl_custom_abs(c1_4, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg9 = false;
-      while ((!exitg9) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg9 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:131' */
-    rtb_Row1_m = c1[b_i];
-  } else {
-    /* '<S44>:1:133' */
-    rtb_Row1_m = K[1];
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[4] < ctrl_custom_P.C[1] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[4] > ctrl_custom_P.C[7] + 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[4] < ctrl_custom_P.C[13] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[4] > ctrl_custom_P.C[19] + 0.1))) {
-    /* '<S44>:1:135' */
-    /* '<S44>:1:136' */
-    rtb_y[1] = 0.0;
-  } else {
-    /* '<S44>:1:138' */
-  }
-
-  /*  Thruster 3  */
-  /*  C3 = [99.85 80.15 50 29];  */
-  if (((K[2] > ctrl_custom_P.C[2]) && (K[2] < ctrl_custom_P.C[8]) && (rtb_y[2] >
-        0.0)) || ((K[2] > ctrl_custom_P.C[2]) && (K[2] < ctrl_custom_P.C[8]) &&
-                  (rtb_y[2] < 0.0))) {
-    /* '<S44>:1:144' */
-    /* '<S44>:1:145' */
-    c1[0] = ctrl_custom_P.C[2];
-    c1[1] = ctrl_custom_P.C[8];
-
-    /* '<S44>:1:146' */
-    c1_3[0] = ctrl_custom_P.C[2] - K[2];
-    c1_3[1] = ctrl_custom_P.C[8] - K[2];
-    ctrl_custom_abs(c1_3, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg8 = false;
-      while ((!exitg8) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg8 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:147' */
-    rtb_Row1_d = c1[b_i];
-  } else if (((K[2] > ctrl_custom_P.C[14]) && (K[2] < ctrl_custom_P.C[20]) &&
-              (rtb_y[2] > 0.0)) || ((K[2] > ctrl_custom_P.C[14]) && (K[2] <
-               ctrl_custom_P.C[20]) && (rtb_y[2] < 0.0))) {
-    /* '<S44>:1:148' */
-    /* '<S44>:1:149' */
-    c1[0] = ctrl_custom_P.C[14];
-    c1[1] = ctrl_custom_P.C[20];
-
-    /* '<S44>:1:150' */
-    c1_3[0] = ctrl_custom_P.C[14] - K[2];
-    c1_3[1] = ctrl_custom_P.C[20] - K[2];
-    ctrl_custom_abs(c1_3, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg7 = false;
-      while ((!exitg7) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg7 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:151' */
-    rtb_Row1_d = c1[b_i];
-  } else {
-    /* '<S44>:1:153' */
-    rtb_Row1_d = K[2];
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[5] > ctrl_custom_P.C[2] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[5] < ctrl_custom_P.C[8] - 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[5] > ctrl_custom_P.C[14] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[5] < ctrl_custom_P.C[20] - 0.1))) {
-    /* '<S44>:1:155' */
-    /* '<S44>:1:156' */
-    rtb_y[2] = 0.0;
-  } else {
-    /* '<S44>:1:158' */
-  }
-
-  /*  Thruster 4 OK */
-  /* C4 = [-52.8 -34.2 52.8 34.2];  */
-  if (((K[3] > ctrl_custom_P.C[3]) && (K[3] < ctrl_custom_P.C[9]) && (rtb_y[3] >
-        0.0)) || ((K[3] > ctrl_custom_P.C[3]) && (K[3] < ctrl_custom_P.C[9]) &&
-                  (rtb_y[3] < 0.0))) {
-    /* '<S44>:1:163' */
-    /* '<S44>:1:164' */
-    c1[0] = ctrl_custom_P.C[3];
-    c1[1] = ctrl_custom_P.C[9];
-
-    /* '<S44>:1:165' */
-    c1_2[0] = ctrl_custom_P.C[3] - K[3];
-    c1_2[1] = ctrl_custom_P.C[9] - K[3];
-    ctrl_custom_abs(c1_2, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg6 = false;
-      while ((!exitg6) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg6 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:166' */
-    Alpha1_idx_3 = c1[b_i];
-  } else if (((K[3] < ctrl_custom_P.C[15]) && (K[3] > ctrl_custom_P.C[21]) &&
-              (rtb_y[3] > 0.0)) || ((K[3] < ctrl_custom_P.C[15]) && (K[3] >
-               ctrl_custom_P.C[21]) && (rtb_y[3] < 0.0))) {
-    /* '<S44>:1:167' */
-    /* '<S44>:1:168' */
-    c1[0] = ctrl_custom_P.C[15];
-    c1[1] = ctrl_custom_P.C[21];
-
-    /* '<S44>:1:169' */
-    c1_2[0] = ctrl_custom_P.C[15] - K[3];
-    c1_2[1] = ctrl_custom_P.C[21] - K[3];
-    ctrl_custom_abs(c1_2, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg5 = false;
-      while ((!exitg5) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg5 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:170' */
-    Alpha1_idx_3 = c1[b_i];
-  } else {
-    /* '<S44>:1:172' */
-    Alpha1_idx_3 = K[3];
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[6] > ctrl_custom_P.C[3] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[6] < ctrl_custom_P.C[9] - 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[6] < ctrl_custom_P.C[15] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[6] > ctrl_custom_P.C[21] + 0.1))) {
-    /* '<S44>:1:174' */
-    /* '<S44>:1:175' */
-    rtb_y[3] = 0.0;
-  } else {
-    /* '<S44>:1:177' */
-  }
-
-  /*  Thruster 5 */
-  /* C5 = [-98.25 -81.75 -145.8 -127.2]; */
-  if (((K[4] < ctrl_custom_P.C[4]) && (K[4] > ctrl_custom_P.C[10]) && (rtb_y[4] >
-        0.0)) || ((K[4] < ctrl_custom_P.C[4]) && (K[4] > ctrl_custom_P.C[10]) &&
-                  (rtb_y[4] < 0.0))) {
-    /* '<S44>:1:182' */
-    /* '<S44>:1:183' */
-    c1[0] = ctrl_custom_P.C[4];
-    c1[1] = ctrl_custom_P.C[10];
-
-    /* '<S44>:1:184' */
-    c1_1[0] = ctrl_custom_P.C[4] - K[4];
-    c1_1[1] = ctrl_custom_P.C[10] - K[4];
-    ctrl_custom_abs(c1_1, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg4 = false;
-      while ((!exitg4) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg4 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:185' */
-    Alpha1_idx_4 = c1[b_i];
-  } else if (((K[4] < ctrl_custom_P.C[16]) && (K[4] > ctrl_custom_P.C[22]) &&
-              (rtb_y[4] > 0.0)) || ((K[4] < ctrl_custom_P.C[16]) && (K[4] >
-               ctrl_custom_P.C[22]) && (rtb_y[4] < 0.0))) {
-    /* '<S44>:1:186' */
-    /* '<S44>:1:187' */
-    c1[0] = ctrl_custom_P.C[16];
-    c1[1] = ctrl_custom_P.C[22];
-
-    /* '<S44>:1:188' */
-    c1_1[0] = ctrl_custom_P.C[16] - K[4];
-    c1_1[1] = ctrl_custom_P.C[22] - K[4];
-    ctrl_custom_abs(c1_1, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg3 = false;
-      while ((!exitg3) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg3 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:189' */
-    Alpha1_idx_4 = c1[b_i];
-  } else {
-    /* '<S44>:1:191' */
-    Alpha1_idx_4 = K[4];
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[7] < ctrl_custom_P.C[4] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[7] > ctrl_custom_P.C[10] + 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[7] < ctrl_custom_P.C[16] - 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[7] > ctrl_custom_P.C[22] + 0.1))) {
-    /* '<S44>:1:193' */
-    /* '<S44>:1:194' */
-    rtb_y[4] = 0.0;
-  } else {
-    /* '<S44>:1:196' */
-  }
-
-  /*  Thruster 6 */
-  /* C6 = [98.75 81.75 145.8 127.2]; */
-  if (((K[5] > ctrl_custom_P.C[5]) && (K[5] < ctrl_custom_P.C[11]) && (rtb_y[5] >
-        0.0)) || ((K[5] > ctrl_custom_P.C[5]) && (K[5] < ctrl_custom_P.C[11]) &&
-                  (rtb_y[5] < 0.0))) {
-    /* '<S44>:1:201' */
-    /* '<S44>:1:202' */
-    c1[0] = ctrl_custom_P.C[5];
-    c1[1] = ctrl_custom_P.C[11];
-
-    /* '<S44>:1:203' */
-    c1_0[0] = ctrl_custom_P.C[5] - K[5];
-    c1_0[1] = ctrl_custom_P.C[11] - K[5];
-    ctrl_custom_abs(c1_0, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg2 = false;
-      while ((!exitg2) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg2 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:204' */
-    rtb_psi_dot = c1[b_i];
-  } else if (((K[5] > ctrl_custom_P.C[17]) && (K[5] < ctrl_custom_P.C[23]) &&
-              (rtb_y[5] > 0.0)) || ((K[5] > ctrl_custom_P.C[17]) && (K[5] <
-               ctrl_custom_P.C[23]) && (rtb_y[5] < 0.0))) {
-    /* '<S44>:1:205' */
-    /* '<S44>:1:206' */
-    c1[0] = ctrl_custom_P.C[17];
-    c1[1] = ctrl_custom_P.C[23];
-
-    /* '<S44>:1:207' */
-    c1_0[0] = ctrl_custom_P.C[17] - K[5];
-    c1_0[1] = ctrl_custom_P.C[23] - K[5];
-    ctrl_custom_abs(c1_0, varargin_1);
-    i_0 = 1;
-    rtb_psi_dot = varargin_1[0];
-    b_i = 0;
-    if (rtIsNaN(varargin_1[0])) {
-      b_sizes = 2;
-      exitg1 = false;
-      while ((!exitg1) && (b_sizes < 3)) {
-        i_0 = 2;
-        if (!rtIsNaN(varargin_1[1])) {
-          rtb_psi_dot = varargin_1[1];
-          b_i = 1;
-          exitg1 = true;
-        } else {
-          b_sizes = 3;
-        }
-      }
-    }
-
-    if ((i_0 < 2) && (varargin_1[1] < rtb_psi_dot)) {
-      b_i = 1;
-    }
-
-    /* '<S44>:1:208' */
-    rtb_psi_dot = c1[b_i];
-  } else {
-    /* '<S44>:1:210' */
-    rtb_psi_dot = K[5];
-  }
-
-  if (((rtb_TmpSignalConversionAtSFun_o[8] > ctrl_custom_P.C[5] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[8] < ctrl_custom_P.C[11] - 0.1)) ||
-      ((rtb_TmpSignalConversionAtSFun_o[8] > ctrl_custom_P.C[17] + 0.1) &&
-       (rtb_TmpSignalConversionAtSFun_o[8] < ctrl_custom_P.C[23] - 0.1))) {
-    /* '<S44>:1:212' */
-    /* '<S44>:1:213' */
-    rtb_y[5] = 0.0;
-  } else {
-    /* '<S44>:1:215' */
-  }
-
-  /*  Thruster 2&3  */
-  if (rtb_Row1_m == ctrl_custom_P.C[7]) {
-    /* '<S44>:1:219' */
-    /* '<S44>:1:220' */
-    rtb_Row1_d = K[1] - (ctrl_custom_P.C[7] - K[1]);
-  } else if (rtb_Row1_m == ctrl_custom_P.C[1]) {
-    /* '<S44>:1:221' */
-    /* '<S44>:1:222' */
-    rtb_Row1_d = K[1] - (ctrl_custom_P.C[1] - K[1]);
-  } else if (rtb_Row1_m == ctrl_custom_P.C[13]) {
-    /* '<S44>:1:223' */
-    /* '<S44>:1:224' */
-    rtb_Row1_d = K[1] - (ctrl_custom_P.C[13] - K[1]);
-  } else if (rtb_Row1_m == ctrl_custom_P.C[19]) {
-    /* '<S44>:1:225' */
-    /* '<S44>:1:226' */
-    rtb_Row1_d = K[1] - (ctrl_custom_P.C[19] - K[1]);
-  } else if (rtb_Row1_d == ctrl_custom_P.C[8]) {
-    /* '<S44>:1:228' */
-    /* '<S44>:1:229' */
-    rtb_Row1_m = K[2] - (ctrl_custom_P.C[8] - K[2]);
-  } else if (rtb_Row1_d == ctrl_custom_P.C[2]) {
-    /* '<S44>:1:230' */
-    /* '<S44>:1:231' */
-    rtb_Row1_m = K[2] - (ctrl_custom_P.C[2] - K[2]);
-  } else if (rtb_Row1_d == ctrl_custom_P.C[14]) {
-    /* '<S44>:1:232' */
-    /* '<S44>:1:233' */
-    rtb_Row1_m = K[2] - (ctrl_custom_P.C[14] - K[2]);
-  } else {
-    if (rtb_Row1_d == ctrl_custom_P.C[20]) {
-      /* '<S44>:1:234' */
-      /* '<S44>:1:235' */
-      rtb_Row1_m = K[2] - (ctrl_custom_P.C[20] - K[2]);
-    }
-  }
-
-  /*  Thruster 5&6 */
-  if (Alpha1_idx_4 == ctrl_custom_P.C[10]) {
-    /* '<S44>:1:239' */
-    /* '<S44>:1:240' */
-    rtb_psi_dot = K[4] - (ctrl_custom_P.C[10] - K[4]);
-  } else if (Alpha1_idx_4 == ctrl_custom_P.C[4]) {
-    /* '<S44>:1:241' */
-    /* '<S44>:1:242' */
-    rtb_psi_dot = K[4] - (ctrl_custom_P.C[4] - K[4]);
-  } else if (Alpha1_idx_4 == ctrl_custom_P.C[16]) {
-    /* '<S44>:1:243' */
-    /* '<S44>:1:244' */
-    rtb_psi_dot = K[4] - (ctrl_custom_P.C[16] - K[4]);
-  } else if (Alpha1_idx_4 == ctrl_custom_P.C[22]) {
-    /* '<S44>:1:245' */
-    /* '<S44>:1:246' */
-    rtb_psi_dot = K[4] - (ctrl_custom_P.C[22] - K[4]);
-  } else if (rtb_psi_dot == ctrl_custom_P.C[11]) {
-    /* '<S44>:1:248' */
-    /* '<S44>:1:249' */
-    Alpha1_idx_4 = K[5] - (ctrl_custom_P.C[11] - K[5]);
-  } else if (rtb_psi_dot == ctrl_custom_P.C[5]) {
-    /* '<S44>:1:250' */
-    /* '<S44>:1:251' */
-    Alpha1_idx_4 = K[5] - (ctrl_custom_P.C[5] - K[5]);
-  } else if (rtb_psi_dot == ctrl_custom_P.C[17]) {
-    /* '<S44>:1:252' */
-    /* '<S44>:1:253' */
-    Alpha1_idx_4 = K[5] - (ctrl_custom_P.C[17] - K[5]);
-  } else {
-    if (rtb_psi_dot == ctrl_custom_P.C[23]) {
-      /* '<S44>:1:254' */
-      /* '<S44>:1:255' */
-      Alpha1_idx_4 = K[5] - (ctrl_custom_P.C[23] - K[5]);
-    }
-  }
-
-  /*  Thruster 4 & 1 */
-  if (Alpha1_idx_3 == ctrl_custom_P.C[9]) {
-    /* '<S44>:1:258' */
-    /* '<S44>:1:259' */
-    rtb_Row2_f = K[3] - (ctrl_custom_P.C[9] - K[3]);
-  } else if (Alpha1_idx_3 == ctrl_custom_P.C[3]) {
-    /* '<S44>:1:260' */
-    /* '<S44>:1:261' */
-    rtb_Row2_f = K[3] - (ctrl_custom_P.C[3] - K[3]);
-  } else if (Alpha1_idx_3 == ctrl_custom_P.C[15]) {
-    /* '<S44>:1:262' */
-    /* '<S44>:1:263' */
-    rtb_Row2_f = K[3] - (ctrl_custom_P.C[15] - K[3]);
-  } else {
-    if (Alpha1_idx_3 == ctrl_custom_P.C[21]) {
-      /* '<S44>:1:264' */
-      /* '<S44>:1:265' */
-      rtb_Row2_f = K[3] - (ctrl_custom_P.C[21] - K[3]);
-    }
-  }
-
-  if (rtb_Row2_f == ctrl_custom_P.C[6]) {
-    /* '<S44>:1:268' */
-    /* '<S44>:1:269' */
-    Alpha1_idx_3 = K[0] - (ctrl_custom_P.C[6] - K[0]);
-  } else if (rtb_Row2_f == ctrl_custom_P.C[0]) {
-    /* '<S44>:1:270' */
-    /* '<S44>:1:271' */
-    Alpha1_idx_3 = K[0] - (ctrl_custom_P.C[0] - K[0]);
-  } else if (rtb_Row2_f == ctrl_custom_P.C[12]) {
-    /* '<S44>:1:272' */
-    /* '<S44>:1:273' */
-    Alpha1_idx_3 = K[0] - (ctrl_custom_P.C[12] - K[0]);
-  } else {
-    if (rtb_Row2_f == ctrl_custom_P.C[18]) {
-      /* '<S44>:1:274' */
-      /* '<S44>:1:275' */
-      Alpha1_idx_3 = K[0] - (ctrl_custom_P.C[18] - K[0]);
-    }
-  }
-
-  /* '<S44>:1:278' */
+  /*  if alpha1(1) < C1(1)  && alpha1(1) > C1(2) && u_d(1) > 0 || alpha1(1) < C1(1)  && alpha1(1) > C1(2) && u_d(1) < 0 */
+  /*      c1 = [C1(1) C1(2)]; */
+  /*      [C_1,alpha_new1] = min(abs(c1-alpha1(1))); */
+  /*      Alpha1(1) = c1(alpha_new1); */
+  /*  elseif alpha1(1) > C1(3) && alpha1(1) < C1(4) && u_d(1) > 0 || alpha1(1) > C1(3) && alpha1(1) < C1(4) && u_d(1) < 0 */
+  /*      c1 = [C1(3) C1(4)]; */
+  /*      [C_1,alpha_new1] = min(abs(c1-alpha1(1))); */
+  /*      Alpha1(1) = c1(alpha_new1); */
+  /*  else  */
+  /*      Alpha1(1) = alpha1(1); */
+  /*  end */
+  /*  if alpha(1) < C1(1)-0.1  && alpha(1) > C1(2)+0.1 || alpha(1) > C1(3)+0.1 && alpha(1) < C1(4)-0.1 */
+  /*      u_d(1) = 0; */
+  /*  else  */
+  /*      u_d(1) = u_d(1); */
+  /*  end */
+  /*   */
+  /*  % Thruster 2  */
+  /*  %C2 = [-99.85 -80.15 -50 -29]; */
+  /*  if alpha1(2) < C2(1)  && alpha1(2) > C2(2) && u_d(2) > 0 || alpha1(2) < C2(1)  && alpha1(2) > C2(2) && u_d(2) < 0  */
+  /*      c2 = [C2(1) C2(2)]; */
+  /*      [C_2,alpha_new2] = min(abs(c2-alpha1(2))); */
+  /*      Alpha1(2) = c2(alpha_new2); */
+  /*  elseif alpha1(2) < C2(3) && alpha1(2) > C2(4) && u_d(2) > 0 || alpha1(2) < C2(3) && alpha1(2) > C2(4) && u_d(2) < 0 */
+  /*      c2 = [C2(3) C2(4)]; */
+  /*      [C_2,alpha_new2] = min(abs(c2-alpha1(2))); */
+  /*      Alpha1(2) = c2(alpha_new2); */
+  /*  else  */
+  /*      Alpha1(2) = alpha1(2); */
+  /*  end */
+  /*  if alpha(2) < C2(1)-0.1  && alpha(2) > C2(2)+0.1 || alpha(2) < C2(3)-0.1 && alpha(2) > C2(4)+0.1 */
+  /*      u_d(2) = 0; */
+  /*  else  */
+  /*      u_d(2) = u_d(2); */
+  /*  end */
+  /*   */
+  /*  % Thruster 3  */
+  /*  % C3 = [99.85 80.15 50 29];  */
+  /*   */
+  /*  if alpha1(3) > C3(1)  && alpha1(3) < C3(2) && u_d(3) > 0 || alpha1(3) > C3(1)  && alpha1(3) < C3(2) && u_d(3) < 0 */
+  /*      c3 = [C3(1) C3(2)]; */
+  /*      [C_3,alpha_new3] = min(abs(c3-alpha1(3))); */
+  /*      Alpha1(3) = c3(alpha_new3); */
+  /*  elseif alpha1(3) > C3(3) && alpha1(3) < C3(4) && u_d(3) > 0 || alpha1(3) > C3(3) && alpha1(3) < C3(4) && u_d(3) < 0  */
+  /*      c3 = [C3(3) C3(4)]; */
+  /*      [C_3,alpha_new3] = min(abs(c3-alpha1(3))); */
+  /*      Alpha1(3) = c3(alpha_new3); */
+  /*  else  */
+  /*      Alpha1(3) = alpha1(3); */
+  /*  end */
+  /*  if alpha(3) > C3(1)+0.1  && alpha(3) < C3(2)-0.1 || alpha(3) > C3(3)+0.1 && alpha(3) < C3(4)-0.1 */
+  /*      u_d(3) = 0; */
+  /*  else  */
+  /*      u_d(3) = u_d(3); */
+  /*  end */
+  /*   */
+  /*  % Thruster 4 OK */
+  /*  %C4 = [-52.8 -34.2 52.8 34.2];  */
+  /*  if alpha1(4) > C4(1)  && alpha1(4) < C4(2) && u_d(4) > 0 || alpha1(4) > C4(1)  && alpha1(4) < C4(2) && u_d(4) < 0 */
+  /*      c4 = [C4(1) C4(2)]; */
+  /*      [C_4,alpha_new4] = min(abs(c4-alpha1(4))); */
+  /*      Alpha1(4) = c4(alpha_new4); */
+  /*  elseif alpha1(4) < C4(3) && alpha1(4) > C4(4) && u_d(4) > 0 || alpha1(4) < C4(3) && alpha1(4) > C4(4) && u_d(4) < 0  */
+  /*      c4 = [C4(3) C4(4)]; */
+  /*      [C_4,alpha_new4] = min(abs(c4-alpha1(4))); */
+  /*      Alpha1(4) = c4(alpha_new4); */
+  /*  else  */
+  /*      Alpha1(4) = alpha1(4); */
+  /*  end */
+  /*  if alpha(4) > C4(1)+0.1  && alpha(4) < C4(2)-0.1 || alpha(4) < C4(3)-0.1 && alpha(4) > C4(4)+0.1 */
+  /*      u_d(4) = 0; */
+  /*  else  */
+  /*      u_d(4) = u_d(4); */
+  /*  end */
+  /*   */
+  /*  % Thruster 5 */
+  /*  %C5 = [-98.25 -81.75 -145.8 -127.2]; */
+  /*  if alpha1(5) < C5(1)  && alpha1(5) > C5(2) && u_d(5) > 0 || alpha1(5) < C5(1)  && alpha1(5) > C5(2) && u_d(5) < 0 */
+  /*      c5 = [C5(1) C5(2)]; */
+  /*      [C_5,alpha_new5] = min(abs(c5-alpha1(5))); */
+  /*      Alpha1(5) = c5(alpha_new5); */
+  /*  elseif alpha1(5) < C5(3) && alpha1(5) > C5(4) && u_d(5) > 0  || alpha1(5) < C5(3) && alpha1(5) > C5(4) && u_d(5) < 0 */
+  /*      c5 = [C5(3) C5(4)]; */
+  /*      [C_5,alpha_new5] = min(abs(c5-alpha1(5))); */
+  /*      Alpha1(5) = c5(alpha_new5); */
+  /*  else  */
+  /*      Alpha1(5) = alpha1(5); */
+  /*  end */
+  /*  if alpha(5) < C5(1)-0.1  && alpha(5) > C5(2)+0.1 || alpha(5) < C5(3)-0.1 && alpha(5) > C5(4)+0.1 */
+  /*      u_d(5) = 0; */
+  /*  else  */
+  /*      u_d(5) = u_d(5); */
+  /*  end */
+  /*   */
+  /*  % Thruster 6 */
+  /*  %C6 = [98.75 81.75 145.8 127.2]; */
+  /*  if alpha1(6) > C6(1)  && alpha1(6) < C6(2) && u_d(6) > 0 || alpha1(6) > C6(1)  && alpha1(6) < C6(2) && u_d(6) < 0 */
+  /*      c6 = [C6(1) C6(2)]; */
+  /*      [C_6,alpha_new6] = min(abs(c6-alpha1(6))); */
+  /*      Alpha1(6) = c6(alpha_new6); */
+  /*  elseif alpha1(6) > C6(3) && alpha1(6) < C6(4) && u_d(6) > 0 || alpha1(6) > C6(3) && alpha1(6) < C6(4) && u_d(6) < 0 */
+  /*      c6 = [C6(3) C6(4)]; */
+  /*      [C_6,alpha_new6] = min(abs(c6-alpha1(6))); */
+  /*      Alpha1(6) = c6(alpha_new6); */
+  /*  else  */
+  /*      Alpha1(6) = alpha1(6); */
+  /*  end */
+  /*  if alpha(6) > C6(1)+0.1  && alpha(6) < C6(2)-0.1 || alpha(6) > C6(3)+0.1 && alpha(6) < C6(4)-0.1 */
+  /*      u_d(6) = 0; */
+  /*  else  */
+  /*      u_d(6) = u_d(6); */
+  /*  end */
+  /*   */
+  /*  % Thruster 2&3  */
+  /*  if Alpha1(2) == C2(2) */
+  /*      Alpha1(3) = alpha1(2) - (C2(2) - alpha1(2)); */
+  /*  elseif Alpha1(2) == C2(1) */
+  /*      Alpha1(3) = alpha1(2) - (C2(1) - alpha1(2)); */
+  /*  elseif Alpha1(2) == C2(3) */
+  /*      Alpha1(3) = alpha1(2) - (C2(3) - alpha1(2)); */
+  /*  elseif Alpha1(2) == C2(4) */
+  /*      Alpha1(3) = alpha1(2) - (C2(4) - alpha1(2)); */
+  /*       */
+  /*  elseif Alpha1(3) == C3(2) */
+  /*      Alpha1(2) = alpha1(3) - (C3(2) - alpha1(3)); */
+  /*  elseif Alpha1(3) == C3(1) */
+  /*      Alpha1(2) = alpha1(3) - (C3(1) - alpha1(3)); */
+  /*  elseif Alpha1(3) == C3(3) */
+  /*      Alpha1(2) = alpha1(3) - (C3(3) - alpha1(3)); */
+  /*  elseif Alpha1(3) == C3(4) */
+  /*      Alpha1(2) = alpha1(3) - (C3(4) - alpha1(3)); */
+  /*  end */
+  /*   */
+  /*  % Thruster 5&6 */
+  /*  if Alpha1(5) == C5(2) */
+  /*      Alpha1(6) = alpha1(5) - (C5(2) - alpha1(5)); */
+  /*  elseif Alpha1(5) == C5(1) */
+  /*      Alpha1(6) = alpha1(5) - (C5(1) - alpha1(5)); */
+  /*  elseif Alpha1(5) == C5(3) */
+  /*      Alpha1(6) = alpha1(5) - (C5(3) - alpha1(5)); */
+  /*  elseif Alpha1(5) == C5(4) */
+  /*      Alpha1(6) = alpha1(5) - (C5(4) - alpha1(5)); */
+  /*       */
+  /*  elseif Alpha1(6) == C6(2) */
+  /*      Alpha1(5) = alpha1(6) - (C6(2) - alpha1(6)); */
+  /*  elseif Alpha1(6) == C6(1) */
+  /*      Alpha1(5) = alpha1(6) - (C6(1) - alpha1(6)); */
+  /*  elseif Alpha1(6) == C6(3) */
+  /*      Alpha1(5) = alpha1(6) - (C6(3) - alpha1(6)); */
+  /*  elseif Alpha1(6) == C6(4) */
+  /*      Alpha1(5) = alpha1(6) - (C6(4) - alpha1(6)); */
+  /*  end */
+  /*  % Thruster 4 & 1 */
+  /*  if     Alpha1(4) == C4(2) */
+  /*      Alpha1(1) = alpha1(4) - (C4(2) - alpha1(4)); */
+  /*  elseif Alpha1(4) == C4(1) */
+  /*      Alpha1(1) = alpha1(4) - (C4(1) - alpha1(4)); */
+  /*  elseif Alpha1(4) == C4(3) */
+  /*      Alpha1(1) = alpha1(4) - (C4(3) - alpha1(4)); */
+  /*  elseif Alpha1(4) == C4(4) */
+  /*      Alpha1(1) = alpha1(4) - (C4(4) - alpha1(4)); */
+  /*  end */
+  /*   */
+  /*  if     Alpha1(1) == C1(2) */
+  /*      Alpha1(4) = alpha1(1) - (C1(2) - alpha1(1)); */
+  /*  elseif Alpha1(1) == C1(1) */
+  /*      Alpha1(4) = alpha1(1) - (C1(1) - alpha1(1)); */
+  /*  elseif Alpha1(1) == C1(3) */
+  /*      Alpha1(4) = alpha1(1) - (C1(3) - alpha1(1)); */
+  /*  elseif Alpha1(1) == C1(4) */
+  /*      Alpha1(4) = alpha1(1) - (C1(4) - alpha1(1)); */
+  /*  end */
+  /*   */
+  /*  Alpha1 = [Alpha1(1) Alpha1(2) Alpha1(3) Alpha1(4) Alpha1(5) Alpha1(6)]';     */
+  /*  Desired_thrust = [u_d(1) u_d(2) u_d(3) u_d(4) u_d(5) u_d(6)]'; */
+  /*  alpha_desired = Alpha1; */
   /*  u_d = -Desired_thrust; */
   /*  Update outputs */
-  /* '<S44>:1:285' */
-  rtb_sys[0] = rtb_Row2_f;
-  rtb_sys[1] = rtb_Row1_m;
-  rtb_sys[2] = rtb_Row1_d;
-  rtb_sys[3] = Alpha1_idx_3;
-  rtb_sys[4] = Alpha1_idx_4;
-  rtb_sys[5] = rtb_psi_dot;
+  /* '<S44>:1:283' */
+  rtb_sys[0] = 57.295779513082323 * rt_atan2d_snf
+    (rtb_TmpSignalConversionAtSFunct[1], rtb_TmpSignalConversionAtSFunct[0]);
+  rtb_sys[1] = 57.295779513082323 * rt_atan2d_snf
+    (rtb_TmpSignalConversionAtSFunct[3], rtb_TmpSignalConversionAtSFunct[2]);
+  rtb_sys[2] = 57.295779513082323 * rt_atan2d_snf
+    (rtb_TmpSignalConversionAtSFunct[5], rtb_TmpSignalConversionAtSFunct[4]);
+  rtb_sys[3] = 57.295779513082323 * rt_atan2d_snf
+    (rtb_TmpSignalConversionAtSFunct[7], rtb_TmpSignalConversionAtSFunct[6]);
+  rtb_sys[4] = 57.295779513082323 * rt_atan2d_snf
+    (rtb_TmpSignalConversionAtSFunct[9], rtb_TmpSignalConversionAtSFunct[8]);
+  rtb_sys[5] = 57.295779513082323 * rt_atan2d_snf
+    (rtb_TmpSignalConversionAtSFunct[11], rtb_TmpSignalConversionAtSFunct[10]);
   for (i_0 = 0; i_0 < 6; i_0++) {
-    rtb_sys[i_0 + 6] = rtb_y[i_0];
+    rtb_TmpSignalConversionAtSFu_e5[i_0] = 0.0;
+    for (b_i = 0; b_i < 3; b_i++) {
+      rtb_y_0[i_0 + 6 * b_i] = 0.0;
+      rtb_y_0[i_0 + 6 * b_i] += B[i_0] * rtb_CreateDiagonalMatrix5[b_i];
+      rtb_y_0[i_0 + 6 * b_i] += B[i_0 + 6] * rtb_CreateDiagonalMatrix5[b_i + 3];
+      rtb_y_0[i_0 + 6 * b_i] += B[i_0 + 12] * rtb_CreateDiagonalMatrix5[b_i + 6];
+      rtb_TmpSignalConversionAtSFu_e5[i_0] += rtb_y_0[6 * b_i + i_0] *
+        rtb_MatrixMultiply3[b_i];
+    }
+
+    rtb_sys[i_0 + 6] = rtb_TmpSignalConversionAtSFu_e5[i_0];
   }
 
   /* Switch: '<S13>/Choosing Fixed // Azimuth angle' incorporates:
@@ -4760,7 +4114,7 @@ void ctrl_custom_output(void)
    */
   for (ForEach_itr = 0; ForEach_itr < 6; ForEach_itr++) {
     /* ForEachSliceSelector: '<S45>/ImpSel_InsertedFor_reset_at_outport_0' */
-    rtb_ImpSel_InsertedFor_reset_at = ctrl_custom_B.start2[ForEach_itr];
+    rtb_ImpSel_InsertedFor_reset_at = ctrl_custom_B.Startbutton1[ForEach_itr];
     if (rtmIsMajorTimeStep(ctrl_custom_M)) {
       /* DiscreteIntegrator: '<S45>/Discrete-Time Integrator' incorporates:
        *  Constant: '<S13>/constant angle'
@@ -4836,49 +4190,49 @@ void ctrl_custom_output(void)
       /* '<S49>:1:40' */
       /*  s = sign(angle); */
       /* '<S49>:1:43' */
-      Alpha1_idx_3 = fabs(rt_remd_snf(rtb_psi_dot + 3.1415926535897931,
-        6.2831853071795862) / 6.2831853071795862);
+      u = fabs(rt_remd_snf(rtb_psi_dot + 3.1415926535897931, 6.2831853071795862)
+               / 6.2831853071795862);
       if (rtb_psi_dot < 0.0) {
-        Alpha1_idx_4 = -1.0;
+        rtb_Row1_d = -1.0;
       } else if (rtb_psi_dot > 0.0) {
-        Alpha1_idx_4 = 1.0;
+        rtb_Row1_d = 1.0;
       } else if (rtb_psi_dot == 0.0) {
-        Alpha1_idx_4 = 0.0;
+        rtb_Row1_d = 0.0;
       } else {
-        Alpha1_idx_4 = rtb_psi_dot;
+        rtb_Row1_d = rtb_psi_dot;
       }
 
-      if (Alpha1_idx_3 > 0.0) {
-        Alpha1_idx_3 = 1.0;
+      if (u > 0.0) {
+        u = 1.0;
       } else {
-        if (Alpha1_idx_3 == 0.0) {
-          Alpha1_idx_3 = 0.0;
+        if (u == 0.0) {
+          u = 0.0;
         }
       }
 
-      Alpha1_idx_3 = (Alpha1_idx_3 - 1.0) * 2.0 + Alpha1_idx_4;
+      u = (u - 1.0) * 2.0 + rtb_Row1_d;
       if (rtb_psi_dot < 0.0) {
-        Alpha1_idx_4 = -1.0;
+        rtb_Row1_d = -1.0;
       } else if (rtb_psi_dot > 0.0) {
-        Alpha1_idx_4 = 1.0;
+        rtb_Row1_d = 1.0;
       } else if (rtb_psi_dot == 0.0) {
-        Alpha1_idx_4 = 0.0;
+        rtb_Row1_d = 0.0;
       } else {
-        Alpha1_idx_4 = rtb_psi_dot;
+        rtb_Row1_d = rtb_psi_dot;
       }
 
-      if (Alpha1_idx_3 < 0.0) {
-        Alpha1_idx_3 = -1.0;
-      } else if (Alpha1_idx_3 > 0.0) {
-        Alpha1_idx_3 = 1.0;
+      if (u < 0.0) {
+        u = -1.0;
+      } else if (u > 0.0) {
+        u = 1.0;
       } else {
-        if (Alpha1_idx_3 == 0.0) {
-          Alpha1_idx_3 = 0.0;
+        if (u == 0.0) {
+          u = 0.0;
         }
       }
 
-      c_23 = rt_remd_snf(Alpha1_idx_4 * 3.1415926535897931 + rtb_psi_dot,
-                         6.2831853071795862) - Alpha1_idx_3 * 3.1415926535897931;
+      rtb_negativethrust1 = rt_remd_snf(rtb_Row1_d * 3.1415926535897931 +
+        rtb_psi_dot, 6.2831853071795862) - u * 3.1415926535897931;
 
       /* End of MATLAB Function: '<S45>/Ensuring angle is  [-pi pi]' */
     }
@@ -4900,16 +4254,16 @@ void ctrl_custom_output(void)
       /* '<S50>:1:8' */
       /* '<S50>:1:9' */
       if (rtb_psi_dot < 0.0) {
-        Alpha1_idx_4 = -1.0;
+        rtb_Row1_d = -1.0;
       } else if (rtb_psi_dot > 0.0) {
-        Alpha1_idx_4 = 1.0;
+        rtb_Row1_d = 1.0;
       } else if (rtb_psi_dot == 0.0) {
-        Alpha1_idx_4 = 0.0;
+        rtb_Row1_d = 0.0;
       } else {
-        Alpha1_idx_4 = rtb_psi_dot;
+        rtb_Row1_d = rtb_psi_dot;
       }
 
-      rtb_psi_dot -= Alpha1_idx_4 * 360.0;
+      rtb_psi_dot -= rtb_Row1_d * 360.0;
     }
 
     /* End of MATLAB Function: '<S45>/MATLAB Function1' */
@@ -4980,7 +4334,7 @@ void ctrl_custom_output(void)
     /* End of Saturate: '<S45>/Max Rotation Rate' */
     if (rtmIsMajorTimeStep(ctrl_custom_M)) {
       /* ForEachSliceAssignment: '<S45>/ImpAsg_InsertedFor_commanded Angle_at_inport_0' */
-      rtb_ImpAsg_InsertedFor_commande[ForEach_itr] = c_23;
+      rtb_ImpAsg_InsertedFor_commande[ForEach_itr] = rtb_negativethrust1;
     }
   }
 
@@ -5085,20 +4439,20 @@ void ctrl_custom_output(void)
   /* '<S3>:1:5' */
   /* '<S3>:1:6' */
   /* '<S3>:1:10' */
-  c_23 = ctrl_custom_B.Gain_h[0];
-  ctrl_custom_cosd(&c_23);
+  rtb_negativethrust1 = ctrl_custom_B.Gain_h[0];
+  ctrl_custom_cosd(&rtb_negativethrust1);
   rtb_Row1_d = ctrl_custom_B.Gain_h[1];
   ctrl_custom_cosd(&rtb_Row1_d);
-  rtb_Row1_m = ctrl_custom_B.Gain_h[2];
-  ctrl_custom_cosd(&rtb_Row1_m);
-  Alpha1_idx_4 = ctrl_custom_B.Gain_h[3];
-  ctrl_custom_cosd(&Alpha1_idx_4);
-  f_0 = ctrl_custom_B.Gain_h[4];
-  ctrl_custom_cosd(&f_0);
-  rtb_psi_dot = ctrl_custom_B.Gain_h[5];
+  rtb_Row1 = ctrl_custom_B.Gain_h[2];
+  ctrl_custom_cosd(&rtb_Row1);
+  e_0 = ctrl_custom_B.Gain_h[3];
+  ctrl_custom_cosd(&e_0);
+  rtb_psi_dot = ctrl_custom_B.Gain_h[4];
   ctrl_custom_cosd(&rtb_psi_dot);
-  rtb_Row2_f = ctrl_custom_B.Gain_h[0];
-  ctrl_custom_sind(&rtb_Row2_f);
+  rtb_Row3 = ctrl_custom_B.Gain_h[5];
+  ctrl_custom_cosd(&rtb_Row3);
+  h_0 = ctrl_custom_B.Gain_h[0];
+  ctrl_custom_sind(&h_0);
   i = ctrl_custom_B.Gain_h[1];
   ctrl_custom_sind(&i);
   j = ctrl_custom_B.Gain_h[2];
@@ -5123,8 +4477,8 @@ void ctrl_custom_output(void)
   ctrl_custom_cosd(&s_0);
   t = ctrl_custom_B.Gain_h[3];
   ctrl_custom_sind(&t);
-  Alpha1_idx_3 = ctrl_custom_B.Gain_h[3];
-  ctrl_custom_cosd(&Alpha1_idx_3);
+  u = ctrl_custom_B.Gain_h[3];
+  ctrl_custom_cosd(&u);
   v = ctrl_custom_B.Gain_h[4];
   ctrl_custom_sind(&v);
   w = ctrl_custom_B.Gain_h[4];
@@ -5135,52 +4489,52 @@ void ctrl_custom_output(void)
   ctrl_custom_cosd(&y);
 
   /* Saturate: '<S52>/Saturation 7' */
-  tmp_0[0] = ctrl_custom_B.output[0];
-  tmp_0[1] = ctrl_custom_B.output[2];
-  tmp_0[2] = ctrl_custom_B.output[4];
-  tmp_0[3] = ctrl_custom_B.output[6];
-  tmp_0[4] = ctrl_custom_B.output[8];
-  tmp_0[5] = ctrl_custom_B.output[10];
+  tmp[0] = ctrl_custom_B.output[0];
+  tmp[1] = ctrl_custom_B.output[2];
+  tmp[2] = ctrl_custom_B.output[4];
+  tmp[3] = ctrl_custom_B.output[6];
+  tmp[4] = ctrl_custom_B.output[8];
+  tmp[5] = ctrl_custom_B.output[10];
 
   /* MATLAB Function: '<Root>/MATLAB Function' incorporates:
    *  Constant: '<Root>/X-position Thruster'
    *  Constant: '<Root>/Y-position Thruster'
    */
-  c_23_0[0] = c_23;
-  c_23_0[3] = rtb_Row1_d;
-  c_23_0[6] = rtb_Row1_m;
-  c_23_0[9] = Alpha1_idx_4;
-  c_23_0[12] = f_0;
-  c_23_0[15] = rtb_psi_dot;
-  c_23_0[1] = rtb_Row2_f;
-  c_23_0[4] = i;
-  c_23_0[7] = j;
-  c_23_0[10] = k;
-  c_23_0[13] = l;
-  c_23_0[16] = m;
-  c_23_0[2] = n * ctrl_custom_P.XpositionThruster_Value_k[0] - o *
+  rtb_negativethrust1_0[0] = rtb_negativethrust1;
+  rtb_negativethrust1_0[3] = rtb_Row1_d;
+  rtb_negativethrust1_0[6] = rtb_Row1;
+  rtb_negativethrust1_0[9] = e_0;
+  rtb_negativethrust1_0[12] = rtb_psi_dot;
+  rtb_negativethrust1_0[15] = rtb_Row3;
+  rtb_negativethrust1_0[1] = h_0;
+  rtb_negativethrust1_0[4] = i;
+  rtb_negativethrust1_0[7] = j;
+  rtb_negativethrust1_0[10] = k;
+  rtb_negativethrust1_0[13] = l;
+  rtb_negativethrust1_0[16] = m;
+  rtb_negativethrust1_0[2] = n * ctrl_custom_P.XpositionThruster_Value_k[0] - o *
     ctrl_custom_P.YpositionThruster_Value_l[0];
-  c_23_0[5] = p * ctrl_custom_P.XpositionThruster_Value_k[1] - q *
+  rtb_negativethrust1_0[5] = p * ctrl_custom_P.XpositionThruster_Value_k[1] - q *
     ctrl_custom_P.YpositionThruster_Value_l[1];
-  c_23_0[8] = r * ctrl_custom_P.XpositionThruster_Value_k[2] - s_0 *
-    ctrl_custom_P.YpositionThruster_Value_l[2];
-  c_23_0[11] = t * ctrl_custom_P.XpositionThruster_Value_k[3] - Alpha1_idx_3 *
-    ctrl_custom_P.YpositionThruster_Value_l[3];
-  c_23_0[14] = v * ctrl_custom_P.XpositionThruster_Value_k[4] - w *
-    ctrl_custom_P.YpositionThruster_Value_l[4];
-  c_23_0[17] = x * ctrl_custom_P.XpositionThruster_Value_k[5] - y *
-    ctrl_custom_P.YpositionThruster_Value_l[5];
+  rtb_negativethrust1_0[8] = r * ctrl_custom_P.XpositionThruster_Value_k[2] -
+    s_0 * ctrl_custom_P.YpositionThruster_Value_l[2];
+  rtb_negativethrust1_0[11] = t * ctrl_custom_P.XpositionThruster_Value_k[3] - u
+    * ctrl_custom_P.YpositionThruster_Value_l[3];
+  rtb_negativethrust1_0[14] = v * ctrl_custom_P.XpositionThruster_Value_k[4] - w
+    * ctrl_custom_P.YpositionThruster_Value_l[4];
+  rtb_negativethrust1_0[17] = x * ctrl_custom_P.XpositionThruster_Value_k[5] - y
+    * ctrl_custom_P.YpositionThruster_Value_l[5];
 
   /* Saturate: '<S52>/Saturation 7' incorporates:
    *  MATLAB Function: '<Root>/MATLAB Function'
    */
   for (i_0 = 0; i_0 < 6; i_0++) {
-    if (tmp_0[i_0] > ctrl_custom_P.Max_thrust) {
-      rtb_TmpSignalConversionAtSFun_d[i_0] = ctrl_custom_P.Max_thrust;
-    } else if (tmp_0[i_0] < -ctrl_custom_P.Max_thrust) {
-      rtb_TmpSignalConversionAtSFun_d[i_0] = -ctrl_custom_P.Max_thrust;
+    if (tmp[i_0] > ctrl_custom_P.Max_thrust) {
+      rtb_ImpAsg_InsertedFor_commande[i_0] = ctrl_custom_P.Max_thrust;
+    } else if (tmp[i_0] < -ctrl_custom_P.Max_thrust) {
+      rtb_ImpAsg_InsertedFor_commande[i_0] = -ctrl_custom_P.Max_thrust;
     } else {
-      rtb_TmpSignalConversionAtSFun_d[i_0] = tmp_0[i_0];
+      rtb_ImpAsg_InsertedFor_commande[i_0] = tmp[i_0];
     }
   }
 
@@ -5188,68 +4542,68 @@ void ctrl_custom_output(void)
   for (i_0 = 0; i_0 < 3; i_0++) {
     ctrl_custom_B.commanded_tau[i_0] = 0.0;
     for (b_i = 0; b_i < 6; b_i++) {
-      ctrl_custom_B.commanded_tau[i_0] += c_23_0[3 * b_i + i_0] *
-        rtb_TmpSignalConversionAtSFun_d[b_i];
+      ctrl_custom_B.commanded_tau[i_0] += rtb_negativethrust1_0[3 * b_i + i_0] *
+        rtb_ImpAsg_InsertedFor_commande[b_i];
     }
   }
 
+  /* Gain: '<Root>/Gain4' */
+  ctrl_custom_B.Gain4 = ctrl_custom_P.Gain4_Gain_d * rtb_Row2;
+
+  /* Gain: '<Root>/Gain2' incorporates:
+   *  Integrator: '<S11>/Integrator2'
+   */
+  ctrl_custom_B.Gain2 = ctrl_custom_P.Gain2_Gain_d *
+    ctrl_custom_X.Integrator2_CSTATE[0];
+
+  /* Gain: '<Root>/Gain3' incorporates:
+   *  Integrator: '<S11>/Integrator2'
+   */
+  ctrl_custom_B.Gain3 = ctrl_custom_P.Gain3_Gain_f *
+    ctrl_custom_X.Integrator2_CSTATE[1];
+
   /* Saturate: '<S30>/Saturation' */
   if (ctrl_custom_B.Switch1[2] > ctrl_custom_P.Saturation_UpperSat_j) {
-    rtb_Row1_m = ctrl_custom_P.Saturation_UpperSat_j;
+    rtb_Row1 = ctrl_custom_P.Saturation_UpperSat_j;
   } else if (ctrl_custom_B.Switch1[2] < ctrl_custom_P.Saturation_LowerSat_f) {
-    rtb_Row1_m = ctrl_custom_P.Saturation_LowerSat_f;
+    rtb_Row1 = ctrl_custom_P.Saturation_LowerSat_f;
   } else {
-    rtb_Row1_m = ctrl_custom_B.Switch1[2];
+    rtb_Row1 = ctrl_custom_B.Switch1[2];
   }
 
   /* End of Saturate: '<S30>/Saturation' */
 
   /* Signum: '<S30>/Sign' */
-  if (rtb_Row1_m < 0.0) {
-    rtb_psi_dot = -1.0;
-  } else if (rtb_Row1_m > 0.0) {
-    rtb_psi_dot = 1.0;
-  } else if (rtb_Row1_m == 0.0) {
-    rtb_psi_dot = 0.0;
+  if (rtb_Row1 < 0.0) {
+    rtb_Row2 = -1.0;
+  } else if (rtb_Row1 > 0.0) {
+    rtb_Row2 = 1.0;
+  } else if (rtb_Row1 == 0.0) {
+    rtb_Row2 = 0.0;
   } else {
-    rtb_psi_dot = rtb_Row1_m;
+    rtb_Row2 = rtb_Row1;
   }
 
   /* End of Signum: '<S30>/Sign' */
 
   /* Gain: '<S30>/Gain' */
-  rtb_psi_dot *= ctrl_custom_P.Gain_Gain_gg;
+  rtb_psi_dot = ctrl_custom_P.Gain_Gain_gg * rtb_Row2;
 
   /* Sum: '<S30>/Sum1' */
-  rtb_Row1_m += rtb_psi_dot;
+  rtb_Row1 += rtb_psi_dot;
 
   /* Math: '<S30>/Math Function' incorporates:
    *  Constant: '<S30>/Constant'
    */
-  rtb_Row1_m = rt_remd_snf(rtb_Row1_m, ctrl_custom_P.Constant_Value_iq);
+  rtb_Row1 = rt_remd_snf(rtb_Row1, ctrl_custom_P.Constant_Value_i);
 
   /* Sum: '<S30>/Sum' */
-  rtb_Row1_m -= rtb_psi_dot;
+  rtb_Row1 -= rtb_psi_dot;
 
   /* Integrator: '<S5>/Integrator2' */
-  if (rtmIsMajorTimeStep(ctrl_custom_M)) {
-    zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator2_Reset_ZCE,
-                       (ctrl_custom_B.start));
-
-    /* evaluate zero-crossings */
-    if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator2_CSTATE_j[0] = ctrl_custom_P.Integrator2_IC_i[0];
-      ctrl_custom_X.Integrator2_CSTATE_j[1] = ctrl_custom_P.Integrator2_IC_i[1];
-      ctrl_custom_X.Integrator2_CSTATE_j[2] = ctrl_custom_P.Integrator2_IC_i[2];
-    }
-  }
-
   ctrl_custom_B.Integrator2[0] = ctrl_custom_X.Integrator2_CSTATE_j[0];
   ctrl_custom_B.Integrator2[1] = ctrl_custom_X.Integrator2_CSTATE_j[1];
   ctrl_custom_B.Integrator2[2] = ctrl_custom_X.Integrator2_CSTATE_j[2];
-
-  /* End of Integrator: '<S5>/Integrator2' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* S-Function (sdspdiag2): '<S20>/Create Diagonal Matrix2' incorporates:
      *  Constant: '<S20>/Constant6'
@@ -5263,11 +4617,9 @@ void ctrl_custom_output(void)
   }
 
   /* Sum: '<S5>/Sum' */
-  rtb_MatrixMultiply2_j[0] = ctrl_custom_B.Switch1[0] -
-    ctrl_custom_B.Integrator[0];
-  rtb_MatrixMultiply2_j[1] = ctrl_custom_B.Switch1[1] -
-    ctrl_custom_B.Integrator[1];
-  rtb_MatrixMultiply2_j[2] = rtb_Row1_m - ctrl_custom_B.Sum;
+  rtb_MatrixMultiply3[0] = ctrl_custom_B.Switch1[0] - ctrl_custom_B.Integrator[0];
+  rtb_MatrixMultiply3[1] = ctrl_custom_B.Switch1[1] - ctrl_custom_B.Integrator[1];
+  rtb_MatrixMultiply3[2] = rtb_Row1 - ctrl_custom_B.Sum;
 
   /* MATLAB Function: '<S5>/C(nu)*nu' */
   /* MATLAB Function 'Nonlinear Passisve Observer/D(nu)*nu': '<S25>:1' */
@@ -5313,43 +4665,43 @@ void ctrl_custom_output(void)
   /* '<S24>:1:11' */
   /*  Correolis matrix */
   /* '<S24>:1:14' */
-  rtb_Row2_f = -99.03 * ctrl_custom_B.Integrator1[1] - -0.525 *
+  rtb_Row2 = -99.03 * ctrl_custom_B.Integrator1[1] - -0.525 *
     ctrl_custom_B.Integrator1[2];
 
   /* '<S24>:1:15' */
-  c_23 = 124.658 * ctrl_custom_B.Integrator1[0];
+  rtb_Row3 = 124.658 * ctrl_custom_B.Integrator1[0];
 
   /* Fcn: '<S28>/Row1' incorporates:
    *  Fcn: '<S5>/Fcn'
    */
   /* '<S24>:1:17' */
   /* '<S24>:1:24' */
-  rtb_psi_dot_0[0] = rtb_Row1_m;
-  rtb_psi_dot_2[0] = rtb_Row1_m;
+  rtb_psi_dot_0[0] = rtb_Row1;
+  rtb_psi_dot_2[0] = rtb_Row1;
 
   /* Fcn: '<S28>/Row2' incorporates:
    *  Fcn: '<S5>/Fcn'
    */
-  rtb_psi_dot_4[0] = rtb_Row1_m;
-  rtb_psi_dot_6[0] = rtb_Row1_m;
+  rtb_psi_dot_4[0] = rtb_Row1;
+  rtb_psi_dot_6[0] = rtb_Row1;
 
   /* Fcn: '<S27>/Row1' incorporates:
    *  Fcn: '<S5>/Fcn'
    */
-  rtb_psi_dot_9[0] = rtb_Row1_m;
-  rtb_psi_dot_b[0] = rtb_Row1_m;
+  rtb_psi_dot_9[0] = rtb_Row1;
+  rtb_psi_dot_b[0] = rtb_Row1;
 
   /* Fcn: '<S27>/Row2' incorporates:
    *  Fcn: '<S5>/Fcn'
    */
-  rtb_psi_dot_d[0] = rtb_Row1_m;
-  rtb_psi_dot_f[0] = rtb_Row1_m;
+  rtb_psi_dot_d[0] = rtb_Row1;
+  rtb_psi_dot_f[0] = rtb_Row1;
   for (i_0 = 0; i_0 < 3; i_0++) {
     /* Product: '<S5>/Matrix Multiply2' */
-    rtb_psi_dot = ctrl_custom_B.CreateDiagonalMatrix2[i_0 + 6] *
-      rtb_MatrixMultiply2_j[2] + (ctrl_custom_B.CreateDiagonalMatrix2[i_0 + 3] *
-      rtb_MatrixMultiply2_j[1] + ctrl_custom_B.CreateDiagonalMatrix2[i_0] *
-      rtb_MatrixMultiply2_j[0]);
+    rtb_negativethrust1 = ctrl_custom_B.CreateDiagonalMatrix2[i_0 + 6] *
+      rtb_MatrixMultiply3[2] + (ctrl_custom_B.CreateDiagonalMatrix2[i_0 + 3] *
+      rtb_MatrixMultiply3[1] + ctrl_custom_B.CreateDiagonalMatrix2[i_0] *
+      rtb_MatrixMultiply3[0]);
 
     /* Fcn: '<S28>/Row1' */
     rtb_psi_dot_0[i_0 + 1] = ctrl_custom_B.Integrator2[i_0];
@@ -5367,19 +4719,19 @@ void ctrl_custom_output(void)
     rtb_psi_dot_8[i_0 + 1] = ctrl_custom_B.Integrator2[i_0];
 
     /* Fcn: '<S27>/Row1' */
-    rtb_psi_dot_9[i_0 + 1] = rtb_psi_dot;
-    rtb_psi_dot_a[i_0 + 1] = rtb_psi_dot;
-    rtb_psi_dot_b[i_0 + 1] = rtb_psi_dot;
-    rtb_psi_dot_c[i_0 + 1] = rtb_psi_dot;
+    rtb_psi_dot_9[i_0 + 1] = rtb_negativethrust1;
+    rtb_psi_dot_a[i_0 + 1] = rtb_negativethrust1;
+    rtb_psi_dot_b[i_0 + 1] = rtb_negativethrust1;
+    rtb_psi_dot_c[i_0 + 1] = rtb_negativethrust1;
 
     /* Fcn: '<S27>/Row2' */
-    rtb_psi_dot_d[i_0 + 1] = rtb_psi_dot;
-    rtb_psi_dot_e[i_0 + 1] = rtb_psi_dot;
-    rtb_psi_dot_f[i_0 + 1] = rtb_psi_dot;
-    rtb_psi_dot_g[i_0 + 1] = rtb_psi_dot;
+    rtb_psi_dot_d[i_0 + 1] = rtb_negativethrust1;
+    rtb_psi_dot_e[i_0 + 1] = rtb_negativethrust1;
+    rtb_psi_dot_f[i_0 + 1] = rtb_negativethrust1;
+    rtb_psi_dot_g[i_0 + 1] = rtb_negativethrust1;
 
     /* Fcn: '<S27>/Row3' */
-    rtb_psi_dot_h[i_0 + 1] = rtb_psi_dot;
+    rtb_psi_dot_h[i_0 + 1] = rtb_negativethrust1;
   }
 
   /* Sum: '<S5>/Sum2' incorporates:
@@ -5387,52 +4739,52 @@ void ctrl_custom_output(void)
    *  Fcn: '<S27>/Row2'
    *  Fcn: '<S27>/Row3'
    */
-  tmp_1[0] = cos(rtb_psi_dot_9[0]) * rtb_psi_dot_a[1] + sin(rtb_psi_dot_b[0]) *
+  tmp_0[0] = cos(rtb_psi_dot_9[0]) * rtb_psi_dot_a[1] + sin(rtb_psi_dot_b[0]) *
     rtb_psi_dot_c[2];
-  tmp_1[1] = -sin(rtb_psi_dot_d[0]) * rtb_psi_dot_e[1] + cos(rtb_psi_dot_f[0]) *
+  tmp_0[1] = -sin(rtb_psi_dot_d[0]) * rtb_psi_dot_e[1] + cos(rtb_psi_dot_f[0]) *
     rtb_psi_dot_g[2];
-  tmp_1[2] = rtb_psi_dot_h[3];
+  tmp_0[2] = rtb_psi_dot_h[3];
 
   /* Sum: '<S5>/Sum3' incorporates:
    *  Fcn: '<S28>/Row1'
    *  Fcn: '<S28>/Row2'
    *  Fcn: '<S28>/Row3'
    */
-  tmp_2[0] = cos(rtb_psi_dot_0[0]) * rtb_psi_dot_1[1] + sin(rtb_psi_dot_2[0]) *
+  tmp_1[0] = cos(rtb_psi_dot_0[0]) * rtb_psi_dot_1[1] + sin(rtb_psi_dot_2[0]) *
     rtb_psi_dot_3[2];
-  tmp_2[1] = -sin(rtb_psi_dot_4[0]) * rtb_psi_dot_5[1] + cos(rtb_psi_dot_6[0]) *
+  tmp_1[1] = -sin(rtb_psi_dot_4[0]) * rtb_psi_dot_5[1] + cos(rtb_psi_dot_6[0]) *
     rtb_psi_dot_7[2];
-  tmp_2[2] = rtb_psi_dot_8[3];
+  tmp_1[2] = rtb_psi_dot_8[3];
 
   /* MATLAB Function: '<S5>/D(nu)*nu' */
-  tmp_3[0] = (0.0 * fabs(ctrl_custom_B.Integrator1[0]) + -2.332) +
+  tmp_2[0] = (0.0 * fabs(ctrl_custom_B.Integrator1[0]) + -2.332) +
     ctrl_custom_B.Integrator1[0] * ctrl_custom_B.Integrator1[0] * -8.557;
-  tmp_3[3] = 0.0;
-  tmp_3[6] = 0.0;
-  tmp_3[1] = 0.0;
-  tmp_3[4] = (0.3976 * fabs(ctrl_custom_B.Integrator1[1]) + -4.673) +
+  tmp_2[3] = 0.0;
+  tmp_2[6] = 0.0;
+  tmp_2[1] = 0.0;
+  tmp_2[4] = (0.3976 * fabs(ctrl_custom_B.Integrator1[1]) + -4.673) +
     ctrl_custom_B.Integrator1[1] * ctrl_custom_B.Integrator1[1] * -313.3;
-  tmp_3[7] = 0.0;
-  tmp_3[2] = 0.0;
-  tmp_3[5] = 0.0;
-  tmp_3[8] = (-0.01148 * fabs(ctrl_custom_B.Integrator1[2]) + -0.01675) +
+  tmp_2[7] = 0.0;
+  tmp_2[2] = 0.0;
+  tmp_2[5] = 0.0;
+  tmp_2[8] = (-0.01148 * fabs(ctrl_custom_B.Integrator1[2]) + -0.01675) +
     ctrl_custom_B.Integrator1[2] * ctrl_custom_B.Integrator1[2] * -0.0003578;
   for (i_0 = 0; i_0 < 3; i_0++) {
-    rtb_CreateDiagonalMatrix[3 * i_0] = -tmp_3[3 * i_0];
-    rtb_CreateDiagonalMatrix[1 + 3 * i_0] = -tmp_3[3 * i_0 + 1];
-    rtb_CreateDiagonalMatrix[2 + 3 * i_0] = -tmp_3[3 * i_0 + 2];
+    rtb_CreateDiagonalMatrix5[3 * i_0] = -tmp_2[3 * i_0];
+    rtb_CreateDiagonalMatrix5[1 + 3 * i_0] = -tmp_2[3 * i_0 + 1];
+    rtb_CreateDiagonalMatrix5[2 + 3 * i_0] = -tmp_2[3 * i_0 + 2];
   }
 
   /* MATLAB Function: '<S5>/C(nu)*nu' */
-  rtb_CreateDiagonalMatrix5[0] = 0.0;
-  rtb_CreateDiagonalMatrix5[3] = 0.0;
-  rtb_CreateDiagonalMatrix5[6] = rtb_Row2_f;
-  rtb_CreateDiagonalMatrix5[1] = 0.0;
-  rtb_CreateDiagonalMatrix5[4] = 0.0;
-  rtb_CreateDiagonalMatrix5[7] = c_23;
-  rtb_CreateDiagonalMatrix5[2] = -rtb_Row2_f;
-  rtb_CreateDiagonalMatrix5[5] = -c_23;
-  rtb_CreateDiagonalMatrix5[8] = 0.0;
+  tmp_3[0] = 0.0;
+  tmp_3[3] = 0.0;
+  tmp_3[6] = rtb_Row2;
+  tmp_3[1] = 0.0;
+  tmp_3[4] = 0.0;
+  tmp_3[7] = rtb_Row3;
+  tmp_3[2] = -rtb_Row2;
+  tmp_3[5] = -rtb_Row3;
+  tmp_3[8] = 0.0;
   for (i_0 = 0; i_0 < 3; i_0++) {
     /* Sum: '<S5>/Sum3' incorporates:
      *  Gain: '<S5>/M^-1'
@@ -5440,25 +4792,22 @@ void ctrl_custom_output(void)
      *  MATLAB Function: '<S5>/D(nu)*nu'
      *  Sum: '<S5>/Sum2'
      */
-    rtb_MatrixMultiply1[i_0] = (((tmp_1[i_0] + ctrl_custom_B.Switch[i_0]) +
-      tmp_2[i_0]) - ((rtb_CreateDiagonalMatrix[i_0 + 3] *
-                      ctrl_custom_B.Integrator1[1] +
-                      rtb_CreateDiagonalMatrix[i_0] * ctrl_custom_B.Integrator1
-                      [0]) + rtb_CreateDiagonalMatrix[i_0 + 6] *
-                     ctrl_custom_B.Integrator1[2])) -
-      (rtb_CreateDiagonalMatrix5[i_0 + 6] * ctrl_custom_B.Integrator1[2] +
-       (rtb_CreateDiagonalMatrix5[i_0 + 3] * ctrl_custom_B.Integrator1[1] +
-        rtb_CreateDiagonalMatrix5[i_0] * ctrl_custom_B.Integrator1[0]));
+    tmp_4[i_0] = (((tmp_0[i_0] + ctrl_custom_B.Switch[i_0]) + tmp_1[i_0]) -
+                  ((rtb_CreateDiagonalMatrix5[i_0 + 3] *
+                    ctrl_custom_B.Integrator1[1] + rtb_CreateDiagonalMatrix5[i_0]
+                    * ctrl_custom_B.Integrator1[0]) +
+                   rtb_CreateDiagonalMatrix5[i_0 + 6] *
+                   ctrl_custom_B.Integrator1[2])) - (tmp_3[i_0 + 6] *
+      ctrl_custom_B.Integrator1[2] + (tmp_3[i_0 + 3] *
+      ctrl_custom_B.Integrator1[1] + tmp_3[i_0] * ctrl_custom_B.Integrator1[0]));
   }
 
   /* Gain: '<S5>/M^-1' */
   for (i_0 = 0; i_0 < 3; i_0++) {
     ctrl_custom_B.M1[i_0] = 0.0;
-    ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0] * rtb_MatrixMultiply1[0];
-    ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0 + 3] *
-      rtb_MatrixMultiply1[1];
-    ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0 + 6] *
-      rtb_MatrixMultiply1[2];
+    ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0] * tmp_4[0];
+    ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0 + 3] * tmp_4[1];
+    ctrl_custom_B.M1[i_0] += ctrl_custom_P.M1_Gain[i_0 + 6] * tmp_4[2];
   }
 
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
@@ -5466,63 +4815,64 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S52>/Saturation 1' */
   if (ctrl_custom_B.output[0] > ctrl_custom_P.Max_thrust) {
-    c_23 = ctrl_custom_P.Max_thrust;
-  } else if (ctrl_custom_B.output[0] < ctrl_custom_P.Saturation1_LowerSat_p) {
-    c_23 = ctrl_custom_P.Saturation1_LowerSat_p;
+    rtb_Row3 = ctrl_custom_P.Max_thrust;
+  } else if (ctrl_custom_B.output[0] < ctrl_custom_P.Saturation1_LowerSat_k) {
+    rtb_Row3 = ctrl_custom_P.Saturation1_LowerSat_k;
   } else {
-    c_23 = ctrl_custom_B.output[0];
+    rtb_Row3 = ctrl_custom_B.output[0];
   }
 
   /* End of Saturate: '<S52>/Saturation 1' */
 
   /* Polyval: '<S52>/positive thrust 1' */
-  rtb_Row2_f = ctrl_custom_P.pwm_thr1_forward[0];
+  rtb_Row2 = ctrl_custom_P.pwm_thr1_forward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_Row2_f = rtb_Row2_f * c_23 + ctrl_custom_P.pwm_thr1_forward[i_0 + 1];
+    rtb_Row2 = rtb_Row2 * rtb_Row3 + ctrl_custom_P.pwm_thr1_forward[i_0 + 1];
   }
 
   /* End of Polyval: '<S52>/positive thrust 1' */
 
   /* Saturate: '<S52>/Saturation 2' */
   if (ctrl_custom_B.output[0] > ctrl_custom_P.Saturation2_UpperSat_j) {
-    c_23 = ctrl_custom_P.Saturation2_UpperSat_j;
+    rtb_Row3 = ctrl_custom_P.Saturation2_UpperSat_j;
   } else if (ctrl_custom_B.output[0] < ctrl_custom_P.Min_thrust) {
-    c_23 = ctrl_custom_P.Min_thrust;
+    rtb_Row3 = ctrl_custom_P.Min_thrust;
   } else {
-    c_23 = ctrl_custom_B.output[0];
+    rtb_Row3 = ctrl_custom_B.output[0];
   }
 
   /* End of Saturate: '<S52>/Saturation 2' */
 
   /* Polyval: '<S52>/negative thrust 1' */
-  rtb_Row1_d = ctrl_custom_P.pwm_thr1_backward[0];
+  rtb_negativethrust1 = ctrl_custom_P.pwm_thr1_backward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_Row1_d = rtb_Row1_d * c_23 + ctrl_custom_P.pwm_thr1_backward[i_0 + 1];
+    rtb_negativethrust1 = rtb_negativethrust1 * rtb_Row3 +
+      ctrl_custom_P.pwm_thr1_backward[i_0 + 1];
   }
 
   /* End of Polyval: '<S52>/negative thrust 1' */
 
   /* MATLAB Function: '<S52>/MATLAB Function1' */
-  /* MATLAB Function 'Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function1': '<S60>:1' */
+  /* MATLAB Function 'Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function1': '<S60>:1' */
   if (ctrl_custom_B.output[0] >= 0.0) {
     /* '<S60>:1:4' */
     /* '<S60>:1:5' */
-    ctrl_custom_B.Tc_out = rtb_Row2_f;
+    ctrl_custom_B.Tc_out = rtb_Row2;
   } else {
     /* signal < 0 */
     /* '<S60>:1:7' */
-    ctrl_custom_B.Tc_out = rtb_Row1_d;
+    ctrl_custom_B.Tc_out = rtb_negativethrust1;
   }
 
   /* End of MATLAB Function: '<S52>/MATLAB Function1' */
 
   /* Saturate: '<S52>/Saturation 8' */
   if (ctrl_custom_B.output[2] > ctrl_custom_P.Max_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Max_thrust;
+    rtb_Row2 = ctrl_custom_P.Max_thrust;
   } else if (ctrl_custom_B.output[2] < ctrl_custom_P.Saturation8_LowerSat) {
-    rtb_Row2_f = ctrl_custom_P.Saturation8_LowerSat;
+    rtb_Row2 = ctrl_custom_P.Saturation8_LowerSat;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[2];
+    rtb_Row2 = ctrl_custom_B.output[2];
   }
 
   /* End of Saturate: '<S52>/Saturation 8' */
@@ -5530,7 +4880,7 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/positive thrust 2' */
   rtb_positivethrust2 = ctrl_custom_P.pwm_thr2_forward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_positivethrust2 = rtb_positivethrust2 * rtb_Row2_f +
+    rtb_positivethrust2 = rtb_positivethrust2 * rtb_Row2 +
       ctrl_custom_P.pwm_thr2_forward[i_0 + 1];
   }
 
@@ -5538,11 +4888,11 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S52>/Saturation 9' */
   if (ctrl_custom_B.output[2] > ctrl_custom_P.Saturation9_UpperSat) {
-    rtb_Row2_f = ctrl_custom_P.Saturation9_UpperSat;
+    rtb_Row2 = ctrl_custom_P.Saturation9_UpperSat;
   } else if (ctrl_custom_B.output[2] < ctrl_custom_P.Min_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Min_thrust;
+    rtb_Row2 = ctrl_custom_P.Min_thrust;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[2];
+    rtb_Row2 = ctrl_custom_B.output[2];
   }
 
   /* End of Saturate: '<S52>/Saturation 9' */
@@ -5550,7 +4900,7 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/negative thrust 2' */
   rtb_negativethrust2 = ctrl_custom_P.pwm_thr2_backward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_negativethrust2 = rtb_negativethrust2 * rtb_Row2_f +
+    rtb_negativethrust2 = rtb_negativethrust2 * rtb_Row2 +
       ctrl_custom_P.pwm_thr2_backward[i_0 + 1];
   }
 
@@ -5562,11 +4912,11 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S52>/Saturation 10' */
   if (ctrl_custom_B.output[4] > ctrl_custom_P.Max_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Max_thrust;
+    rtb_Row2 = ctrl_custom_P.Max_thrust;
   } else if (ctrl_custom_B.output[4] < ctrl_custom_P.Saturation10_LowerSat) {
-    rtb_Row2_f = ctrl_custom_P.Saturation10_LowerSat;
+    rtb_Row2 = ctrl_custom_P.Saturation10_LowerSat;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[4];
+    rtb_Row2 = ctrl_custom_B.output[4];
   }
 
   /* End of Saturate: '<S52>/Saturation 10' */
@@ -5574,7 +4924,7 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/positive thrust 3' */
   rtb_positivethrust3 = ctrl_custom_P.pwm_thr3_forward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_positivethrust3 = rtb_positivethrust3 * rtb_Row2_f +
+    rtb_positivethrust3 = rtb_positivethrust3 * rtb_Row2 +
       ctrl_custom_P.pwm_thr3_forward[i_0 + 1];
   }
 
@@ -5582,11 +4932,11 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S52>/Saturation 11' */
   if (ctrl_custom_B.output[4] > ctrl_custom_P.Saturation11_UpperSat) {
-    rtb_Row2_f = ctrl_custom_P.Saturation11_UpperSat;
+    rtb_Row2 = ctrl_custom_P.Saturation11_UpperSat;
   } else if (ctrl_custom_B.output[4] < ctrl_custom_P.Min_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Min_thrust;
+    rtb_Row2 = ctrl_custom_P.Min_thrust;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[4];
+    rtb_Row2 = ctrl_custom_B.output[4];
   }
 
   /* End of Saturate: '<S52>/Saturation 11' */
@@ -5594,7 +4944,7 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/negative thrust 3' */
   rtb_negativethrust3 = ctrl_custom_P.pwm_thr3_backward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_negativethrust3 = rtb_negativethrust3 * rtb_Row2_f +
+    rtb_negativethrust3 = rtb_negativethrust3 * rtb_Row2 +
       ctrl_custom_P.pwm_thr3_backward[i_0 + 1];
   }
 
@@ -5606,11 +4956,11 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S52>/Saturation 3' */
   if (ctrl_custom_B.output[6] > ctrl_custom_P.Max_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Max_thrust;
-  } else if (ctrl_custom_B.output[6] < ctrl_custom_P.Saturation3_LowerSat_m) {
-    rtb_Row2_f = ctrl_custom_P.Saturation3_LowerSat_m;
+    rtb_Row2 = ctrl_custom_P.Max_thrust;
+  } else if (ctrl_custom_B.output[6] < ctrl_custom_P.Saturation3_LowerSat_a) {
+    rtb_Row2 = ctrl_custom_P.Saturation3_LowerSat_a;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[6];
+    rtb_Row2 = ctrl_custom_B.output[6];
   }
 
   /* End of Saturate: '<S52>/Saturation 3' */
@@ -5618,19 +4968,19 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/positive thrust 4' */
   rtb_positivethrust4 = ctrl_custom_P.pwm_thr4_forward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_positivethrust4 = rtb_positivethrust4 * rtb_Row2_f +
+    rtb_positivethrust4 = rtb_positivethrust4 * rtb_Row2 +
       ctrl_custom_P.pwm_thr4_forward[i_0 + 1];
   }
 
   /* End of Polyval: '<S52>/positive thrust 4' */
 
   /* Saturate: '<S52>/Saturation 4' */
-  if (ctrl_custom_B.output[6] > ctrl_custom_P.Saturation4_UpperSat_l) {
-    rtb_Row2_f = ctrl_custom_P.Saturation4_UpperSat_l;
+  if (ctrl_custom_B.output[6] > ctrl_custom_P.Saturation4_UpperSat_m) {
+    rtb_Row2 = ctrl_custom_P.Saturation4_UpperSat_m;
   } else if (ctrl_custom_B.output[6] < ctrl_custom_P.Min_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Min_thrust;
+    rtb_Row2 = ctrl_custom_P.Min_thrust;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[6];
+    rtb_Row2 = ctrl_custom_B.output[6];
   }
 
   /* End of Saturate: '<S52>/Saturation 4' */
@@ -5638,7 +4988,7 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/negative thrust 4' */
   rtb_negativethrust4 = ctrl_custom_P.pwm_thr4_backward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_negativethrust4 = rtb_negativethrust4 * rtb_Row2_f +
+    rtb_negativethrust4 = rtb_negativethrust4 * rtb_Row2 +
       ctrl_custom_P.pwm_thr4_backward[i_0 + 1];
   }
 
@@ -5650,11 +5000,11 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S52>/Saturation 5' */
   if (ctrl_custom_B.output[8] > ctrl_custom_P.Max_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Max_thrust;
-  } else if (ctrl_custom_B.output[8] < ctrl_custom_P.Saturation5_LowerSat_j) {
-    rtb_Row2_f = ctrl_custom_P.Saturation5_LowerSat_j;
+    rtb_Row2 = ctrl_custom_P.Max_thrust;
+  } else if (ctrl_custom_B.output[8] < ctrl_custom_P.Saturation5_LowerSat_a) {
+    rtb_Row2 = ctrl_custom_P.Saturation5_LowerSat_a;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[8];
+    rtb_Row2 = ctrl_custom_B.output[8];
   }
 
   /* End of Saturate: '<S52>/Saturation 5' */
@@ -5662,19 +5012,19 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/positive thrust 5' */
   rtb_positivethrust5 = ctrl_custom_P.pwm_thr5_forward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_positivethrust5 = rtb_positivethrust5 * rtb_Row2_f +
+    rtb_positivethrust5 = rtb_positivethrust5 * rtb_Row2 +
       ctrl_custom_P.pwm_thr5_forward[i_0 + 1];
   }
 
   /* End of Polyval: '<S52>/positive thrust 5' */
 
   /* Saturate: '<S52>/Saturation 6' */
-  if (ctrl_custom_B.output[8] > ctrl_custom_P.Saturation6_UpperSat_c) {
-    rtb_Row2_f = ctrl_custom_P.Saturation6_UpperSat_c;
+  if (ctrl_custom_B.output[8] > ctrl_custom_P.Saturation6_UpperSat_j) {
+    rtb_Row2 = ctrl_custom_P.Saturation6_UpperSat_j;
   } else if (ctrl_custom_B.output[8] < ctrl_custom_P.Min_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Min_thrust;
+    rtb_Row2 = ctrl_custom_P.Min_thrust;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[8];
+    rtb_Row2 = ctrl_custom_B.output[8];
   }
 
   /* End of Saturate: '<S52>/Saturation 6' */
@@ -5682,7 +5032,7 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/negative thrust 5' */
   rtb_negativethrust5 = ctrl_custom_P.pwm_thr5_backward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_negativethrust5 = rtb_negativethrust5 * rtb_Row2_f +
+    rtb_negativethrust5 = rtb_negativethrust5 * rtb_Row2 +
       ctrl_custom_P.pwm_thr5_backward[i_0 + 1];
   }
 
@@ -5694,11 +5044,11 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S52>/Saturation 12' */
   if (ctrl_custom_B.output[10] > ctrl_custom_P.Max_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Max_thrust;
+    rtb_Row2 = ctrl_custom_P.Max_thrust;
   } else if (ctrl_custom_B.output[10] < ctrl_custom_P.Saturation12_LowerSat) {
-    rtb_Row2_f = ctrl_custom_P.Saturation12_LowerSat;
+    rtb_Row2 = ctrl_custom_P.Saturation12_LowerSat;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[10];
+    rtb_Row2 = ctrl_custom_B.output[10];
   }
 
   /* End of Saturate: '<S52>/Saturation 12' */
@@ -5706,7 +5056,7 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/positive thrust 6' */
   rtb_positivethrust6 = ctrl_custom_P.pwm_thr6_forward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_positivethrust6 = rtb_positivethrust6 * rtb_Row2_f +
+    rtb_positivethrust6 = rtb_positivethrust6 * rtb_Row2 +
       ctrl_custom_P.pwm_thr6_forward[i_0 + 1];
   }
 
@@ -5714,11 +5064,11 @@ void ctrl_custom_output(void)
 
   /* Saturate: '<S52>/Saturation 13' */
   if (ctrl_custom_B.output[10] > ctrl_custom_P.Saturation13_UpperSat) {
-    rtb_Row2_f = ctrl_custom_P.Saturation13_UpperSat;
+    rtb_Row2 = ctrl_custom_P.Saturation13_UpperSat;
   } else if (ctrl_custom_B.output[10] < ctrl_custom_P.Min_thrust) {
-    rtb_Row2_f = ctrl_custom_P.Min_thrust;
+    rtb_Row2 = ctrl_custom_P.Min_thrust;
   } else {
-    rtb_Row2_f = ctrl_custom_B.output[10];
+    rtb_Row2 = ctrl_custom_B.output[10];
   }
 
   /* End of Saturate: '<S52>/Saturation 13' */
@@ -5726,7 +5076,7 @@ void ctrl_custom_output(void)
   /* Polyval: '<S52>/negative thrust 6' */
   rtb_negativethrust6 = ctrl_custom_P.pwm_thr6_backward[0];
   for (i_0 = 0; i_0 < 5; i_0++) {
-    rtb_negativethrust6 = rtb_negativethrust6 * rtb_Row2_f +
+    rtb_negativethrust6 = rtb_negativethrust6 * rtb_Row2 +
       ctrl_custom_P.pwm_thr6_backward[i_0 + 1];
   }
 
@@ -5735,6 +5085,9 @@ void ctrl_custom_output(void)
   /* MATLAB Function: '<S52>/MATLAB Function6' */
   ctrl_custom_MATLABFunction2(rtb_positivethrust6, ctrl_custom_B.output[10],
     rtb_negativethrust6, &ctrl_custom_B.sf_MATLABFunction6);
+
+  /* Gain: '<Root>/Gain8' */
+  ctrl_custom_B.Gain8 = ctrl_custom_P.Gain8_Gain * rtb_Sum_e;
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* S-Function (sdspdiag2): '<S20>/Create Diagonal Matrix' */
     memset(&ctrl_custom_B.CreateDiagonalMatrix[0], 0, 9U * sizeof(real_T));
@@ -5767,33 +5120,38 @@ void ctrl_custom_output(void)
    *  Fcn: '<S26>/Fcn2'
    *  Fcn: '<S5>/Fcn'
    */
-  rtb_Row2_o[0] = cos(rtb_Row1_m) * ctrl_custom_B.Integrator1[0] - sin
-    (rtb_Row1_m) * ctrl_custom_B.Integrator1[1];
-  rtb_Row2_o[1] = sin(rtb_Row1_m) * ctrl_custom_B.Integrator1[0] + cos
-    (rtb_Row1_m) * ctrl_custom_B.Integrator1[1];
-  rtb_Row2_o[2] = ctrl_custom_B.Integrator1[2];
+  rtb_Sum_a[0] = cos(rtb_Row1) * ctrl_custom_B.Integrator1[0] - sin(rtb_Row1) *
+    ctrl_custom_B.Integrator1[1];
+  rtb_Sum_a[1] = sin(rtb_Row1) * ctrl_custom_B.Integrator1[0] + cos(rtb_Row1) *
+    ctrl_custom_B.Integrator1[1];
+  rtb_Sum_a[2] = ctrl_custom_B.Integrator1[2];
   for (i_0 = 0; i_0 < 3; i_0++) {
     /* Product: '<S5>/Matrix Multiply1' */
-    ctrl_custom_B.MatrixMultiply1[i_0] = 0.0;
-    ctrl_custom_B.MatrixMultiply1[i_0] +=
-      ctrl_custom_B.CreateDiagonalMatrix1[i_0] * rtb_MatrixMultiply2_j[0];
-    ctrl_custom_B.MatrixMultiply1[i_0] +=
-      ctrl_custom_B.CreateDiagonalMatrix1[i_0 + 3] * rtb_MatrixMultiply2_j[1];
-    ctrl_custom_B.MatrixMultiply1[i_0] +=
-      ctrl_custom_B.CreateDiagonalMatrix1[i_0 + 6] * rtb_MatrixMultiply2_j[2];
+    ctrl_custom_B.MatrixMultiply1_j[i_0] = 0.0;
+    ctrl_custom_B.MatrixMultiply1_j[i_0] +=
+      ctrl_custom_B.CreateDiagonalMatrix1[i_0] * rtb_MatrixMultiply3[0];
+    ctrl_custom_B.MatrixMultiply1_j[i_0] +=
+      ctrl_custom_B.CreateDiagonalMatrix1[i_0 + 3] * rtb_MatrixMultiply3[1];
+    ctrl_custom_B.MatrixMultiply1_j[i_0] +=
+      ctrl_custom_B.CreateDiagonalMatrix1[i_0 + 6] * rtb_MatrixMultiply3[2];
 
     /* Sum: '<S5>/Sum1' incorporates:
      *  Product: '<S5>/Matrix Multiply'
      */
     ctrl_custom_B.Sum1[i_0] = (ctrl_custom_B.CreateDiagonalMatrix[i_0 + 6] *
-      rtb_MatrixMultiply2_j[2] + (ctrl_custom_B.CreateDiagonalMatrix[i_0 + 3] *
-      rtb_MatrixMultiply2_j[1] + ctrl_custom_B.CreateDiagonalMatrix[i_0] *
-      rtb_MatrixMultiply2_j[0])) + rtb_Row2_o[i_0];
+      rtb_MatrixMultiply3[2] + (ctrl_custom_B.CreateDiagonalMatrix[i_0 + 3] *
+      rtb_MatrixMultiply3[1] + ctrl_custom_B.CreateDiagonalMatrix[i_0] *
+      rtb_MatrixMultiply3[0])) + rtb_Sum_a[i_0];
   }
 
   /* Gain: '<S7>/Gain5' */
   ctrl_custom_B.Gain5_a = ctrl_custom_P.Gain5_Gain_a *
     ctrl_custom_B.regulationerror[2];
+
+  /* Integrator: '<S11>/Integrator1' */
+  ctrl_custom_B.Integrator1_i[0] = ctrl_custom_X.Integrator1_CSTATE_d[0];
+  ctrl_custom_B.Integrator1_i[1] = ctrl_custom_X.Integrator1_CSTATE_d[1];
+  ctrl_custom_B.Integrator1_i[2] = ctrl_custom_X.Integrator1_CSTATE_d[2];
 
   /* S-Function (sdspdiag2): '<S19>/Create Diagonal Matrix3' */
   memset(&rtb_CreateDiagonalMatrix3[0], 0, 9U * sizeof(real_T));
@@ -5844,7 +5202,7 @@ void ctrl_custom_output(void)
   /* SignalConversion: '<S11>/TmpSignal ConversionAtMatrix MultiplyInport2' incorporates:
    *  Gain: '<S11>/Gain'
    */
-  rtb_psi_dot = ctrl_custom_P.Gain_Gain_b * ctrl_custom_B.Gain5;
+  rtb_Sum_e = ctrl_custom_P.Gain_Gain_f * ctrl_custom_B.Gain5;
   for (i_0 = 0; i_0 < 3; i_0++) {
     /* Sum: '<S11>/Sum' incorporates:
      *  Integrator: '<S11>/Integrator'
@@ -5852,62 +5210,62 @@ void ctrl_custom_output(void)
      *  Product: '<S11>/Matrix Multiply1'
      *  SignalConversion: '<S11>/TmpSignal ConversionAtMatrix MultiplyInport2'
      */
-    ctrl_custom_B.Sum_m[i_0] = (rtb_CreateDiagonalMatrix5[i_0 + 6] * rtb_psi_dot
-      + (rtb_CreateDiagonalMatrix5[i_0 + 3] * ctrl_custom_B.y_ref +
-         rtb_CreateDiagonalMatrix5[i_0] * ctrl_custom_B.x_ref)) -
-      (rtb_CreateDiagonalMatrix5[i_0 + 6] * ctrl_custom_X.Integrator_CSTATE_f5[2]
+    ctrl_custom_B.Sum_m[i_0] = (rtb_CreateDiagonalMatrix5[i_0 + 6] * rtb_Sum_e +
+      (rtb_CreateDiagonalMatrix5[i_0 + 3] * ctrl_custom_B.y_ref +
+       rtb_CreateDiagonalMatrix5[i_0] * ctrl_custom_B.x_ref)) -
+      (rtb_CreateDiagonalMatrix5[i_0 + 6] * ctrl_custom_X.Integrator_CSTATE_f[2]
        + (rtb_CreateDiagonalMatrix5[i_0 + 3] *
-          ctrl_custom_X.Integrator_CSTATE_f5[1] + rtb_CreateDiagonalMatrix5[i_0]
-          * ctrl_custom_X.Integrator_CSTATE_f5[0]));
+          ctrl_custom_X.Integrator_CSTATE_f[1] + rtb_CreateDiagonalMatrix5[i_0] *
+          ctrl_custom_X.Integrator_CSTATE_f[0]));
 
     /* Product: '<S11>/Matrix Multiply2' incorporates:
      *  Sum: '<S11>/Sum1'
      */
-    tmp_1[i_0] = 0.0;
+    tmp_0[i_0] = 0.0;
 
     /* Product: '<S11>/Matrix Multiply3' incorporates:
      *  Sum: '<S11>/Sum1'
      */
-    tmp_2[i_0] = 0.0;
+    tmp_1[i_0] = 0.0;
 
     /* Sum: '<S11>/Sum2' */
-    rtb_Row1_m = 0.0;
+    rtb_Row1_d = 0.0;
     for (b_i = 0; b_i < 3; b_i++) {
       /* MATLAB Function: '<S11>/MATLAB Function2' incorporates:
        *  Product: '<S11>/Matrix Multiply4'
        */
-      tmp_3[i_0 + 3 * b_i] = 0.0;
-      tmp_3[i_0 + 3 * b_i] += rtb_CreateDiagonalMatrix3[3 * b_i] *
+      tmp_2[i_0 + 3 * b_i] = 0.0;
+      tmp_2[i_0 + 3 * b_i] += rtb_CreateDiagonalMatrix3[3 * b_i] *
         rtb_CreateDiagonalMatrix3[i_0];
-      tmp_3[i_0 + 3 * b_i] += rtb_CreateDiagonalMatrix3[3 * b_i + 1] *
+      tmp_2[i_0 + 3 * b_i] += rtb_CreateDiagonalMatrix3[3 * b_i + 1] *
         rtb_CreateDiagonalMatrix3[i_0 + 3];
-      tmp_3[i_0 + 3 * b_i] += rtb_CreateDiagonalMatrix3[3 * b_i + 2] *
+      tmp_2[i_0 + 3 * b_i] += rtb_CreateDiagonalMatrix3[3 * b_i + 2] *
         rtb_CreateDiagonalMatrix3[i_0 + 6];
 
       /* Sum: '<S11>/Sum2' incorporates:
        *  Product: '<S11>/Matrix Multiply4'
        */
-      rtb_Row1_m += tmp_3[3 * b_i + i_0] * ctrl_custom_B.Integrator1_i[b_i];
+      rtb_Row1_d += tmp_2[3 * b_i + i_0] * ctrl_custom_B.Integrator1_i[b_i];
 
       /* Product: '<S11>/Matrix Multiply2' incorporates:
        *  Integrator: '<S11>/Integrator'
        *  Sum: '<S11>/Sum1'
        */
-      tmp_1[i_0] += ctrl_custom_B.sf_MATLABFunction_b.y[3 * b_i + i_0] *
-        ctrl_custom_X.Integrator_CSTATE_f5[b_i];
+      tmp_0[i_0] += ctrl_custom_B.sf_MATLABFunction_b.y[3 * b_i + i_0] *
+        ctrl_custom_X.Integrator_CSTATE_f[b_i];
 
       /* Product: '<S11>/Matrix Multiply3' incorporates:
        *  Sum: '<S11>/Sum1'
        */
-      tmp_2[i_0] += ctrl_custom_B.sf_MATLABFunction1_k.y[3 * b_i + i_0] *
-        rtb_TmpSignalConversionAtMatrix[b_i];
+      tmp_1[i_0] += ctrl_custom_B.sf_MATLABFunction1_k.y[3 * b_i + i_0] *
+        rtb_MatrixMultiply4[b_i];
     }
 
     /* Sum: '<S11>/Sum2' incorporates:
      *  Product: '<S11>/Matrix Multiply4'
      *  Sum: '<S11>/Sum1'
      */
-    ctrl_custom_B.Sum2[i_0] = (tmp_1[i_0] - tmp_2[i_0]) - rtb_Row1_m;
+    ctrl_custom_B.Sum2[i_0] = (tmp_0[i_0] - tmp_1[i_0]) - rtb_Row1_d;
   }
 
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
@@ -5919,10 +5277,10 @@ void ctrl_custom_output(void)
     /* End of Delay: '<S15>/Delay' */
 
     /* Delay: '<S53>/Delay' */
-    ctrl_custom_B.Delay_d = ctrl_custom_DW.Delay_DSTATE_f;
+    ctrl_custom_B.Delay_n = ctrl_custom_DW.Delay_DSTATE_i;
 
     /* Delay: '<S68>/Delay' */
-    ctrl_custom_B.Delay_j = ctrl_custom_DW.Delay_DSTATE_k;
+    ctrl_custom_B.Delay_o = ctrl_custom_DW.Delay_DSTATE_l;
   }
 
   /* MATLAB Function: '<S68>/MATLAB Function' incorporates:
@@ -5932,41 +5290,41 @@ void ctrl_custom_output(void)
    *  Constant: '<S14>/K_Tr1'
    *  Constant: '<S14>/Rho'
    */
-  /* MATLAB Function 'Thruster control /Thruster 1/Thruster control/MATLAB Function': '<S72>:1' */
+  /* MATLAB Function 'Thruster control 1/Thruster 1/Thruster control/MATLAB Function': '<S72>:1' */
   /* '<S72>:1:5' */
   if (rtb_sys[6] < 0.0) {
-    rtb_Row1_m = -1.0;
+    rtb_Row1_d = -1.0;
   } else if (rtb_sys[6] > 0.0) {
-    rtb_Row1_m = 1.0;
+    rtb_Row1_d = 1.0;
   } else if (rtb_sys[6] == 0.0) {
-    rtb_Row1_m = 0.0;
+    rtb_Row1_d = 0.0;
   } else {
-    rtb_Row1_m = rtb_sys[6];
+    rtb_Row1_d = rtb_sys[6];
   }
 
-  rtb_Row2_f = sqrt(fabs(rtb_sys[6]) / (ctrl_custom_P.Rho * rt_powd_snf
-    (ctrl_custom_P.D, 4.0) * ctrl_custom_P.K_T1f)) * rtb_Row1_m;
+  rtb_Sum_e = sqrt(fabs(rtb_sys[6]) / (ctrl_custom_P.Rho * rt_powd_snf
+    (ctrl_custom_P.D, 4.0) * ctrl_custom_P.K_T1f)) * rtb_Row1_d;
 
   /* '<S72>:1:7' */
-  rtb_psi_dot = tanh(ctrl_custom_P.eps_c * rtb_Row2_f / 5.0) * 0.5 + 0.5;
+  rtb_psi_dot = tanh(ctrl_custom_P.eps_c * rtb_Sum_e / 5.0) * 0.5 + 0.5;
 
   /*  Smooth switching between positive and negative thrust. 5 makes switch happen between -5 and 5 */
   /* '<S72>:1:8' */
   /* '<S72>:1:10' */
-  if (ctrl_custom_B.Delay_j < 0.0) {
-    rtb_Row1_m = -1.0;
-  } else if (ctrl_custom_B.Delay_j > 0.0) {
-    rtb_Row1_m = 1.0;
-  } else if (ctrl_custom_B.Delay_j == 0.0) {
-    rtb_Row1_m = 0.0;
+  if (ctrl_custom_B.Delay_o < 0.0) {
+    rtb_Row1_d = -1.0;
+  } else if (ctrl_custom_B.Delay_o > 0.0) {
+    rtb_Row1_d = 1.0;
+  } else if (ctrl_custom_B.Delay_o == 0.0) {
+    rtb_Row1_d = 0.0;
   } else {
-    rtb_Row1_m = ctrl_custom_B.Delay_j;
+    rtb_Row1_d = ctrl_custom_B.Delay_o;
   }
 
-  rtb_T_r_p = ((1.0 - rtb_psi_dot) * ctrl_custom_P.K_T1r + ctrl_custom_P.K_T1f *
-               rtb_psi_dot) * rtb_Row1_m * ctrl_custom_P.Rho * rt_powd_snf
-    (ctrl_custom_P.D, 4.0) * (ctrl_custom_B.Delay_j * ctrl_custom_B.Delay_j);
-  ctrl_custom_B.n_d_k = rtb_Row2_f;
+  rtb_T_r_a = ((1.0 - rtb_psi_dot) * ctrl_custom_P.K_T1r + ctrl_custom_P.K_T1f *
+               rtb_psi_dot) * rtb_Row1_d * ctrl_custom_P.Rho * rt_powd_snf
+    (ctrl_custom_P.D, 4.0) * (ctrl_custom_B.Delay_o * ctrl_custom_B.Delay_o);
+  ctrl_custom_B.n_d_f = rtb_Sum_e;
 
   /* End of MATLAB Function: '<S68>/MATLAB Function' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
@@ -5974,15 +5332,15 @@ void ctrl_custom_output(void)
      *  Constant: '<S68>/Constant1'
      *  Constant: '<S68>/Constant2'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp = (ctrl_custom_B.n_d_k -
-      ctrl_custom_P.Constant2_Value_b[1] *
+    ctrl_custom_DW.DiscreteTransferFcn_tmp = (ctrl_custom_B.n_d_f -
+      ctrl_custom_P.Constant2_Value_p[1] *
       ctrl_custom_DW.DiscreteTransferFcn_states[0]) -
-      ctrl_custom_P.Constant2_Value_b[2] *
+      ctrl_custom_P.Constant2_Value_p[2] *
       ctrl_custom_DW.DiscreteTransferFcn_states[1];
-    ctrl_custom_B.DiscreteTransferFcn = (ctrl_custom_P.Constant1_Value_p[0] *
-      ctrl_custom_DW.DiscreteTransferFcn_tmp + ctrl_custom_P.Constant1_Value_p[1]
-      * ctrl_custom_DW.DiscreteTransferFcn_states[0]) +
-      ctrl_custom_P.Constant1_Value_p[2] *
+    ctrl_custom_B.DiscreteTransferFcn = (ctrl_custom_P.Constant1_Value_i4[0] *
+      ctrl_custom_DW.DiscreteTransferFcn_tmp + ctrl_custom_P.Constant1_Value_i4
+      [1] * ctrl_custom_DW.DiscreteTransferFcn_states[0]) +
+      ctrl_custom_P.Constant1_Value_i4[2] *
       ctrl_custom_DW.DiscreteTransferFcn_states[1];
 
     /* SampleTimeMath: '<S71>/TSamp'
@@ -5996,27 +5354,27 @@ void ctrl_custom_output(void)
     /* Sum: '<S71>/Diff' incorporates:
      *  UnitDelay: '<S71>/UD'
      */
-    rtb_Sum_m = ctrl_custom_B.TSamp - ctrl_custom_DW.UD_DSTATE;
+    rtb_Sum_f = ctrl_custom_B.TSamp - ctrl_custom_DW.UD_DSTATE;
 
     /* RateLimiter: '<S68>/Acceleration Limit' */
-    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY;
-    if (rtb_psi_dot > ctrl_custom_P.AccelerationLimit_RisingLim) {
-      rtb_Sum_m = ctrl_custom_DW.PrevY +
+    rtb_Sum_e = rtb_Sum_f - ctrl_custom_DW.PrevY;
+    if (rtb_Sum_e > ctrl_custom_P.AccelerationLimit_RisingLim) {
+      rtb_Sum_f = ctrl_custom_DW.PrevY +
         ctrl_custom_P.AccelerationLimit_RisingLim;
     } else {
-      if (rtb_psi_dot < ctrl_custom_P.AccelerationLimit_FallingLim) {
-        rtb_Sum_m = ctrl_custom_DW.PrevY +
+      if (rtb_Sum_e < ctrl_custom_P.AccelerationLimit_FallingLim) {
+        rtb_Sum_f = ctrl_custom_DW.PrevY +
           ctrl_custom_P.AccelerationLimit_FallingLim;
       }
     }
 
-    ctrl_custom_DW.PrevY = rtb_Sum_m;
+    ctrl_custom_DW.PrevY = rtb_Sum_f;
 
     /* End of RateLimiter: '<S68>/Acceleration Limit' */
 
     /* Gain: '<S68>/Inertia compensation' */
     ctrl_custom_B.Inertiacompensation = ctrl_custom_P.I_s * 2.0 *
-      3.1415926535897931 * rtb_Sum_m;
+      3.1415926535897931 * rtb_Sum_f;
 
     /* Sum: '<S68>/Sum1' incorporates:
      *  Gain: '<S68>/Qf_0'
@@ -6024,7 +5382,7 @@ void ctrl_custom_output(void)
      *  Gain: '<S68>/Qff_1(nr)'
      *  Trigonometry: '<S68>/Trigonometric Function'
      */
-    ctrl_custom_B.Sum1_b = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
+    ctrl_custom_B.Sum1_i = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
       ctrl_custom_B.DiscreteTransferFcn) * ctrl_custom_P.Q_f0 +
       ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
       ctrl_custom_B.DiscreteTransferFcn;
@@ -6033,21 +5391,21 @@ void ctrl_custom_output(void)
     ctrl_custom_B.Memory = ctrl_custom_DW.Memory_PreviousInput;
 
     /* Sum: '<S70>/Sum' */
-    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn - ctrl_custom_B.Delay[0];
+    rtb_Sum_f = ctrl_custom_B.DiscreteTransferFcn - ctrl_custom_B.Delay[0];
 
     /* Gain: '<S70>/Kp' */
-    ctrl_custom_B.Kp = ctrl_custom_P.Kp * rtb_Sum_m;
+    ctrl_custom_B.Kp = ctrl_custom_P.Kp * rtb_Sum_f;
   }
 
   /* Integrator: '<S70>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_lk,
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_ju,
                        (ctrl_custom_B.reset));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_m = ctrl_custom_P.Integrator_IC_j;
+      ctrl_custom_X.Integrator_CSTATE_ph = ctrl_custom_P.Integrator_IC_p;
     }
   }
 
@@ -6065,7 +5423,7 @@ void ctrl_custom_output(void)
    */
   CorecontrollerTorquePowerandCom(ctrl_custom_P.k_cc, ctrl_custom_P.p_cc,
     ctrl_custom_P.r_cc, ctrl_custom_B.Delay[0], ctrl_custom_P.K_T1f,
-    ctrl_custom_P.K_q1f, ctrl_custom_P.D, rtb_T_r_p, ctrl_custom_P.Rho,
+    ctrl_custom_P.K_q1f, ctrl_custom_P.D, rtb_T_r_a, ctrl_custom_P.Rho,
     ctrl_custom_P.eps_c, ctrl_custom_P.K_T1r, ctrl_custom_P.K_q1r,
     &ctrl_custom_B.sf_CorecontrollerTorquePowerand);
 
@@ -6076,43 +5434,43 @@ void ctrl_custom_output(void)
    */
   switch ((int32_T)ctrl_custom_B.Memory) {
    case 1:
-    rtb_Row2_f = ctrl_custom_B.Kp + ctrl_custom_X.Integrator_CSTATE_m;
+    rtb_Sum_e = ctrl_custom_B.Kp + ctrl_custom_X.Integrator_CSTATE_ph;
     break;
 
    case 2:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowerand.Qcq;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowerand.Qcq;
     break;
 
    case 3:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowerand.Qcp;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowerand.Qcp;
     break;
 
    case 4:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowerand.Qcc;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowerand.Qcc;
     break;
 
    default:
-    rtb_Row2_f = ctrl_custom_P.NaN_Value;
+    rtb_Sum_e = ctrl_custom_P.NaN_Value;
     break;
   }
 
   /* End of MultiPortSwitch: '<S68>/Controller chosen' */
 
   /* Sum: '<S68>/Sum' */
-  ctrl_custom_B.Sum_h = (ctrl_custom_B.Inertiacompensation +
-    ctrl_custom_B.Sum1_b) + rtb_Row2_f;
+  ctrl_custom_B.Sum_j = (ctrl_custom_B.Inertiacompensation +
+    ctrl_custom_B.Sum1_i) + rtb_Sum_e;
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S53>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S53>/Constant'
      *  Constant: '<S53>/Constant1'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp_n = ctrl_custom_B.Sum_h -
-      ctrl_custom_P.Constant_Value_j[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_k;
-    ctrl_custom_B.DiscreteTransferFcn_b = ctrl_custom_P.Constant1_Value_i[0] *
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_n = ctrl_custom_B.Sum_j -
+      ctrl_custom_P.Constant_Value_k[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_h;
+    ctrl_custom_B.DiscreteTransferFcn_b = ctrl_custom_P.Constant1_Value_m[0] *
       ctrl_custom_DW.DiscreteTransferFcn_tmp_n +
-      ctrl_custom_P.Constant1_Value_i[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_k;
+      ctrl_custom_P.Constant1_Value_m[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_h;
   }
 
   /* Gain: '<S67>/Finding rotation speed' incorporates:
@@ -6121,12 +5479,12 @@ void ctrl_custom_output(void)
    *  Sum: '<S67>/Sum'
    */
   ctrl_custom_B.Findingrotationspeed = ((ctrl_custom_B.DiscreteTransferFcn_b -
-    ctrl_custom_B.Delay_d) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-    ctrl_custom_X.Integrator_CSTATE_a) * (1.0 / (6.2831853071795862 *
+    ctrl_custom_B.Delay_n) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
+    ctrl_custom_X.Integrator_CSTATE_p) * (1.0 / (6.2831853071795862 *
     ctrl_custom_P.I_s));
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* Gain: '<S70>/Ki' */
-    ctrl_custom_B.Ki = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+    ctrl_custom_B.Ki = ctrl_custom_P.Kp / 0.05 * rtb_Sum_f;
 
     /* MATLAB Function: '<S68>/Supervisor' incorporates:
      *  Constant: '<S14>/controller'
@@ -6135,10 +5493,10 @@ void ctrl_custom_output(void)
       ctrl_custom_B.Delay[0], &ctrl_custom_B.sf_Supervisor);
 
     /* Delay: '<S54>/Delay' */
-    ctrl_custom_B.Delay_c = ctrl_custom_DW.Delay_DSTATE_c;
+    ctrl_custom_B.Delay_f = ctrl_custom_DW.Delay_DSTATE_f;
 
     /* Delay: '<S77>/Delay' */
-    ctrl_custom_B.Delay_b = ctrl_custom_DW.Delay_DSTATE_j;
+    ctrl_custom_B.Delay_fg = ctrl_custom_DW.Delay_DSTATE_d;
   }
 
   /* MATLAB Function: '<S77>/MATLAB Function' incorporates:
@@ -6150,56 +5508,56 @@ void ctrl_custom_output(void)
    */
   ctrl_custom_MATLABFunction_a(rtb_sys[7], ctrl_custom_P.K_T2f,
     ctrl_custom_P.K_T2r, ctrl_custom_P.Rho, ctrl_custom_P.D, ctrl_custom_P.eps_c,
-    ctrl_custom_B.Delay_b, &ctrl_custom_B.sf_MATLABFunction_a);
+    ctrl_custom_B.Delay_fg, &ctrl_custom_B.sf_MATLABFunction_a);
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S77>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S77>/Constant1'
      *  Constant: '<S77>/Constant2'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp_f =
-      (ctrl_custom_B.sf_MATLABFunction_a.n_d - ctrl_custom_P.Constant2_Value_k[1]
-       * ctrl_custom_DW.DiscreteTransferFcn_states_j[0]) -
-      ctrl_custom_P.Constant2_Value_k[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_j[1];
-    ctrl_custom_B.DiscreteTransferFcn_l = (ctrl_custom_P.Constant1_Value_m[0] *
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_f +
-      ctrl_custom_P.Constant1_Value_m[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_j[0]) +
-      ctrl_custom_P.Constant1_Value_m[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_j[1];
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_h =
+      (ctrl_custom_B.sf_MATLABFunction_a.n_d - ctrl_custom_P.Constant2_Value_e[1]
+       * ctrl_custom_DW.DiscreteTransferFcn_states_d[0]) -
+      ctrl_custom_P.Constant2_Value_e[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_d[1];
+    ctrl_custom_B.DiscreteTransferFcn_h = (ctrl_custom_P.Constant1_Value_e[0] *
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_h +
+      ctrl_custom_P.Constant1_Value_e[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_d[0]) +
+      ctrl_custom_P.Constant1_Value_e[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_d[1];
 
     /* SampleTimeMath: '<S80>/TSamp'
      *
      * About '<S80>/TSamp':
      *  y = u * K where K = 1 / ( w * Ts )
      */
-    ctrl_custom_B.TSamp_m = ctrl_custom_B.DiscreteTransferFcn_l *
-      ctrl_custom_P.TSamp_WtEt_g;
+    ctrl_custom_B.TSamp_g = ctrl_custom_B.DiscreteTransferFcn_h *
+      ctrl_custom_P.TSamp_WtEt_o;
 
     /* Sum: '<S80>/Diff' incorporates:
      *  UnitDelay: '<S80>/UD'
      */
-    rtb_Sum_m = ctrl_custom_B.TSamp_m - ctrl_custom_DW.UD_DSTATE_f;
+    rtb_Sum_f = ctrl_custom_B.TSamp_g - ctrl_custom_DW.UD_DSTATE_i;
 
     /* RateLimiter: '<S77>/Acceleration Limit' */
-    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_p;
-    if (rtb_psi_dot > ctrl_custom_P.AccelerationLimit_RisingLim_p) {
-      rtb_Sum_m = ctrl_custom_DW.PrevY_p +
-        ctrl_custom_P.AccelerationLimit_RisingLim_p;
+    rtb_Sum_e = rtb_Sum_f - ctrl_custom_DW.PrevY_a;
+    if (rtb_Sum_e > ctrl_custom_P.AccelerationLimit_RisingLim_h) {
+      rtb_Sum_f = ctrl_custom_DW.PrevY_a +
+        ctrl_custom_P.AccelerationLimit_RisingLim_h;
     } else {
-      if (rtb_psi_dot < ctrl_custom_P.AccelerationLimit_FallingLim_n) {
-        rtb_Sum_m = ctrl_custom_DW.PrevY_p +
-          ctrl_custom_P.AccelerationLimit_FallingLim_n;
+      if (rtb_Sum_e < ctrl_custom_P.AccelerationLimit_FallingLim_c) {
+        rtb_Sum_f = ctrl_custom_DW.PrevY_a +
+          ctrl_custom_P.AccelerationLimit_FallingLim_c;
       }
     }
 
-    ctrl_custom_DW.PrevY_p = rtb_Sum_m;
+    ctrl_custom_DW.PrevY_a = rtb_Sum_f;
 
     /* End of RateLimiter: '<S77>/Acceleration Limit' */
 
     /* Gain: '<S77>/Inertia compensation' */
-    ctrl_custom_B.Inertiacompensation_b = ctrl_custom_P.I_s * 2.0 *
-      3.1415926535897931 * rtb_Sum_m;
+    ctrl_custom_B.Inertiacompensation_f = ctrl_custom_P.I_s * 2.0 *
+      3.1415926535897931 * rtb_Sum_f;
 
     /* Sum: '<S77>/Sum1' incorporates:
      *  Gain: '<S77>/Qf_0'
@@ -6207,30 +5565,30 @@ void ctrl_custom_output(void)
      *  Gain: '<S77>/Qff_1(nr)'
      *  Trigonometry: '<S77>/Trigonometric Function'
      */
-    ctrl_custom_B.Sum1_l = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
-      ctrl_custom_B.DiscreteTransferFcn_l) * ctrl_custom_P.Q_f0 +
+    ctrl_custom_B.Sum1_c = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
+      ctrl_custom_B.DiscreteTransferFcn_h) * ctrl_custom_P.Q_f0 +
       ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-      ctrl_custom_B.DiscreteTransferFcn_l;
+      ctrl_custom_B.DiscreteTransferFcn_h;
 
     /* Memory: '<S77>/Memory' */
-    ctrl_custom_B.Memory_l = ctrl_custom_DW.Memory_PreviousInput_g;
+    ctrl_custom_B.Memory_a = ctrl_custom_DW.Memory_PreviousInput_c;
 
     /* Sum: '<S79>/Sum' */
-    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_l - ctrl_custom_B.Delay[1];
+    rtb_Sum_f = ctrl_custom_B.DiscreteTransferFcn_h - ctrl_custom_B.Delay[1];
 
     /* Gain: '<S79>/Kp' */
-    ctrl_custom_B.Kp_c = ctrl_custom_P.Kp * rtb_Sum_m;
+    ctrl_custom_B.Kp_c = ctrl_custom_P.Kp * rtb_Sum_f;
   }
 
   /* Integrator: '<S79>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_p,
-                       (ctrl_custom_B.reset_l));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_o,
+                       (ctrl_custom_B.reset_i));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_ko = ctrl_custom_P.Integrator_IC_p;
+      ctrl_custom_X.Integrator_CSTATE_o = ctrl_custom_P.Integrator_IC_k;
     }
   }
 
@@ -6250,77 +5608,77 @@ void ctrl_custom_output(void)
     ctrl_custom_P.r_cc, ctrl_custom_B.Delay[1], ctrl_custom_P.K_T2f,
     ctrl_custom_P.K_q2f, ctrl_custom_P.D, ctrl_custom_B.sf_MATLABFunction_a.T_r,
     ctrl_custom_P.Rho, ctrl_custom_P.eps_c, ctrl_custom_P.K_T2r,
-    ctrl_custom_P.K_q2r, &ctrl_custom_B.sf_CorecontrollerTorquePowera_a);
+    ctrl_custom_P.K_q2r, &ctrl_custom_B.sf_CorecontrollerTorquePowera_c);
 
   /* MultiPortSwitch: '<S77>/Controller chosen' incorporates:
    *  Constant: '<S77>/NaN'
    *  Integrator: '<S79>/Integrator'
    *  Sum: '<S79>/Sum1'
    */
-  switch ((int32_T)ctrl_custom_B.Memory_l) {
+  switch ((int32_T)ctrl_custom_B.Memory_a) {
    case 1:
-    rtb_Row2_f = ctrl_custom_B.Kp_c + ctrl_custom_X.Integrator_CSTATE_ko;
+    rtb_Sum_e = ctrl_custom_B.Kp_c + ctrl_custom_X.Integrator_CSTATE_o;
     break;
 
    case 2:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_a.Qcq;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_c.Qcq;
     break;
 
    case 3:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_a.Qcp;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_c.Qcp;
     break;
 
    case 4:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_a.Qcc;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_c.Qcc;
     break;
 
    default:
-    rtb_Row2_f = ctrl_custom_P.NaN_Value_n;
+    rtb_Sum_e = ctrl_custom_P.NaN_Value_m;
     break;
   }
 
   /* End of MultiPortSwitch: '<S77>/Controller chosen' */
 
   /* Sum: '<S77>/Sum' */
-  ctrl_custom_B.Sum_d = (ctrl_custom_B.Inertiacompensation_b +
-    ctrl_custom_B.Sum1_l) + rtb_Row2_f;
+  ctrl_custom_B.Sum_ms = (ctrl_custom_B.Inertiacompensation_f +
+    ctrl_custom_B.Sum1_c) + rtb_Sum_e;
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S54>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S54>/Constant'
      *  Constant: '<S54>/Constant1'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp_fg = ctrl_custom_B.Sum_d -
-      ctrl_custom_P.Constant_Value_dp[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_j0;
-    ctrl_custom_B.DiscreteTransferFcn_c = ctrl_custom_P.Constant1_Value_b[0] *
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_fg +
-      ctrl_custom_P.Constant1_Value_b[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_j0;
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_a = ctrl_custom_B.Sum_ms -
+      ctrl_custom_P.Constant_Value_m[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_i;
+    ctrl_custom_B.DiscreteTransferFcn_hl = ctrl_custom_P.Constant1_Value_k[0] *
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_a +
+      ctrl_custom_P.Constant1_Value_k[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_i;
   }
 
   /* Gain: '<S76>/Finding rotation speed' incorporates:
    *  Gain: '<S76>/K_omega'
    *  Sum: '<S76>/Sum'
    */
-  ctrl_custom_B.Findingrotationspeed_h = ((ctrl_custom_B.DiscreteTransferFcn_c -
-    ctrl_custom_B.Delay_c) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-    rtb_Integrator_n) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+  ctrl_custom_B.Findingrotationspeed_d = ((ctrl_custom_B.DiscreteTransferFcn_hl
+    - ctrl_custom_B.Delay_f) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
+    rtb_Integrator_p) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* Gain: '<S79>/Ki' */
-    ctrl_custom_B.Ki_c = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+    ctrl_custom_B.Ki_n = ctrl_custom_P.Kp / 0.05 * rtb_Sum_f;
 
     /* MATLAB Function: '<S77>/Supervisor' incorporates:
      *  Constant: '<S14>/controller'
      */
-    ctrl_custom_Supervisor(ctrl_custom_B.Memory_l,
+    ctrl_custom_Supervisor(ctrl_custom_B.Memory_a,
       ctrl_custom_P.controller_Value, ctrl_custom_B.Delay[1],
-      &ctrl_custom_B.sf_Supervisor_c);
+      &ctrl_custom_B.sf_Supervisor_f);
 
     /* Delay: '<S55>/Delay' */
-    ctrl_custom_B.Delay_h = ctrl_custom_DW.Delay_DSTATE_m;
+    ctrl_custom_B.Delay_h = ctrl_custom_DW.Delay_DSTATE_j;
 
     /* Delay: '<S86>/Delay' */
-    ctrl_custom_B.Delay_i = ctrl_custom_DW.Delay_DSTATE_e;
+    ctrl_custom_B.Delay_l = ctrl_custom_DW.Delay_DSTATE_c;
   }
 
   /* MATLAB Function: '<S86>/MATLAB Function' incorporates:
@@ -6329,41 +5687,41 @@ void ctrl_custom_output(void)
    *  Constant: '<S14>/K_Tf3'
    *  Constant: '<S14>/Rho'
    */
-  /* MATLAB Function 'Thruster control /Thruster 3/Thruster control/MATLAB Function': '<S90>:1' */
+  /* MATLAB Function 'Thruster control 1/Thruster 3/Thruster control/MATLAB Function': '<S90>:1' */
   /* '<S90>:1:5' */
   if (rtb_sys[8] < 0.0) {
-    rtb_Row1_m = -1.0;
+    rtb_Row1_d = -1.0;
   } else if (rtb_sys[8] > 0.0) {
-    rtb_Row1_m = 1.0;
+    rtb_Row1_d = 1.0;
   } else if (rtb_sys[8] == 0.0) {
-    rtb_Row1_m = 0.0;
+    rtb_Row1_d = 0.0;
   } else {
-    rtb_Row1_m = rtb_sys[8];
+    rtb_Row1_d = rtb_sys[8];
   }
 
-  rtb_Row2_f = sqrt(fabs(rtb_sys[8]) / (ctrl_custom_P.Rho * rt_powd_snf
-    (ctrl_custom_P.D, 4.0) * ctrl_custom_P.K_T3f)) * rtb_Row1_m;
+  rtb_Sum_e = sqrt(fabs(rtb_sys[8]) / (ctrl_custom_P.Rho * rt_powd_snf
+    (ctrl_custom_P.D, 4.0) * ctrl_custom_P.K_T3f)) * rtb_Row1_d;
 
   /* '<S90>:1:7' */
-  rtb_psi_dot = tanh(ctrl_custom_P.eps_c * rtb_Row2_f / 5.0) * 0.5 + 0.5;
+  rtb_psi_dot = tanh(ctrl_custom_P.eps_c * rtb_Sum_e / 5.0) * 0.5 + 0.5;
 
   /*  Smooth switching between positive and negative thrust */
   /* '<S90>:1:8' */
   /* '<S90>:1:10' */
-  if (ctrl_custom_B.Delay_i < 0.0) {
-    rtb_Row1_m = -1.0;
-  } else if (ctrl_custom_B.Delay_i > 0.0) {
-    rtb_Row1_m = 1.0;
-  } else if (ctrl_custom_B.Delay_i == 0.0) {
-    rtb_Row1_m = 0.0;
+  if (ctrl_custom_B.Delay_l < 0.0) {
+    rtb_Row1_d = -1.0;
+  } else if (ctrl_custom_B.Delay_l > 0.0) {
+    rtb_Row1_d = 1.0;
+  } else if (ctrl_custom_B.Delay_l == 0.0) {
+    rtb_Row1_d = 0.0;
   } else {
-    rtb_Row1_m = ctrl_custom_B.Delay_i;
+    rtb_Row1_d = ctrl_custom_B.Delay_l;
   }
 
-  rtb_T_r_e = ((1.0 - rtb_psi_dot) * ctrl_custom_P.K_T3f + ctrl_custom_P.K_T3f *
-               rtb_psi_dot) * rtb_Row1_m * ctrl_custom_P.Rho * rt_powd_snf
-    (ctrl_custom_P.D, 4.0) * (ctrl_custom_B.Delay_i * ctrl_custom_B.Delay_i);
-  ctrl_custom_B.n_d_m = rtb_Row2_f;
+  rtb_T_r_j = ((1.0 - rtb_psi_dot) * ctrl_custom_P.K_T3f + ctrl_custom_P.K_T3f *
+               rtb_psi_dot) * rtb_Row1_d * ctrl_custom_P.Rho * rt_powd_snf
+    (ctrl_custom_P.D, 4.0) * (ctrl_custom_B.Delay_l * ctrl_custom_B.Delay_l);
+  ctrl_custom_B.n_d_h = rtb_Sum_e;
 
   /* End of MATLAB Function: '<S86>/MATLAB Function' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
@@ -6371,50 +5729,50 @@ void ctrl_custom_output(void)
      *  Constant: '<S86>/Constant1'
      *  Constant: '<S86>/Constant2'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp_k = (ctrl_custom_B.n_d_m -
-      ctrl_custom_P.Constant2_Value_k5[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_f[0]) -
-      ctrl_custom_P.Constant2_Value_k5[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_f[1];
-    ctrl_custom_B.DiscreteTransferFcn_d = (ctrl_custom_P.Constant1_Value_c[0] *
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_k +
-      ctrl_custom_P.Constant1_Value_c[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_f[0]) +
-      ctrl_custom_P.Constant1_Value_c[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_f[1];
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_g = (ctrl_custom_B.n_d_h -
+      ctrl_custom_P.Constant2_Value_f[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_o[0]) -
+      ctrl_custom_P.Constant2_Value_f[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_o[1];
+    ctrl_custom_B.DiscreteTransferFcn_k = (ctrl_custom_P.Constant1_Value_g[0] *
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_g +
+      ctrl_custom_P.Constant1_Value_g[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_o[0]) +
+      ctrl_custom_P.Constant1_Value_g[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_o[1];
 
     /* SampleTimeMath: '<S89>/TSamp'
      *
      * About '<S89>/TSamp':
      *  y = u * K where K = 1 / ( w * Ts )
      */
-    ctrl_custom_B.TSamp_k = ctrl_custom_B.DiscreteTransferFcn_d *
-      ctrl_custom_P.TSamp_WtEt_i;
+    ctrl_custom_B.TSamp_f = ctrl_custom_B.DiscreteTransferFcn_k *
+      ctrl_custom_P.TSamp_WtEt_p;
 
     /* Sum: '<S89>/Diff' incorporates:
      *  UnitDelay: '<S89>/UD'
      */
-    rtb_Sum_m = ctrl_custom_B.TSamp_k - ctrl_custom_DW.UD_DSTATE_p;
+    rtb_Sum_f = ctrl_custom_B.TSamp_f - ctrl_custom_DW.UD_DSTATE_a;
 
     /* RateLimiter: '<S86>/Acceleration limiter' */
-    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_k;
-    if (rtb_psi_dot > ctrl_custom_P.Accelerationlimiter_RisingLim) {
-      rtb_Sum_m = ctrl_custom_DW.PrevY_k +
+    rtb_Sum_e = rtb_Sum_f - ctrl_custom_DW.PrevY_an;
+    if (rtb_Sum_e > ctrl_custom_P.Accelerationlimiter_RisingLim) {
+      rtb_Sum_f = ctrl_custom_DW.PrevY_an +
         ctrl_custom_P.Accelerationlimiter_RisingLim;
     } else {
-      if (rtb_psi_dot < ctrl_custom_P.Accelerationlimiter_FallingLim) {
-        rtb_Sum_m = ctrl_custom_DW.PrevY_k +
+      if (rtb_Sum_e < ctrl_custom_P.Accelerationlimiter_FallingLim) {
+        rtb_Sum_f = ctrl_custom_DW.PrevY_an +
           ctrl_custom_P.Accelerationlimiter_FallingLim;
       }
     }
 
-    ctrl_custom_DW.PrevY_k = rtb_Sum_m;
+    ctrl_custom_DW.PrevY_an = rtb_Sum_f;
 
     /* End of RateLimiter: '<S86>/Acceleration limiter' */
 
     /* Gain: '<S86>/Inertia compensation' */
-    ctrl_custom_B.Inertiacompensation_m = ctrl_custom_P.I_s * 2.0 *
-      3.1415926535897931 * rtb_Sum_m;
+    ctrl_custom_B.Inertiacompensation_k = ctrl_custom_P.I_s * 2.0 *
+      3.1415926535897931 * rtb_Sum_f;
 
     /* Sum: '<S86>/Sum1' incorporates:
      *  Gain: '<S86>/Qf_0'
@@ -6422,30 +5780,30 @@ void ctrl_custom_output(void)
      *  Gain: '<S86>/Qff_1(nr)'
      *  Trigonometry: '<S86>/Trigonometric Function'
      */
-    ctrl_custom_B.Sum1_c = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
-      ctrl_custom_B.DiscreteTransferFcn_d) * ctrl_custom_P.Q_f0 +
+    ctrl_custom_B.Sum1_b = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
+      ctrl_custom_B.DiscreteTransferFcn_k) * ctrl_custom_P.Q_f0 +
       ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-      ctrl_custom_B.DiscreteTransferFcn_d;
+      ctrl_custom_B.DiscreteTransferFcn_k;
 
     /* Memory: '<S86>/Memory' */
-    ctrl_custom_B.Memory_ln = ctrl_custom_DW.Memory_PreviousInput_f;
+    ctrl_custom_B.Memory_i = ctrl_custom_DW.Memory_PreviousInput_b;
 
     /* Sum: '<S88>/Sum' */
-    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_d - ctrl_custom_B.Delay[2];
+    rtb_Sum_f = ctrl_custom_B.DiscreteTransferFcn_k - ctrl_custom_B.Delay[2];
 
     /* Gain: '<S88>/Kp' */
-    ctrl_custom_B.Kp_i = ctrl_custom_P.Kp * rtb_Sum_m;
+    ctrl_custom_B.Kp_h = ctrl_custom_P.Kp * rtb_Sum_f;
   }
 
   /* Integrator: '<S88>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_gm,
-                       (ctrl_custom_B.reset_i));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_l,
+                       (ctrl_custom_B.reset_f));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_c = ctrl_custom_P.Integrator_IC_k;
+      ctrl_custom_X.Integrator_CSTATE_or = ctrl_custom_P.Integrator_IC_hm;
     }
   }
 
@@ -6463,79 +5821,79 @@ void ctrl_custom_output(void)
    */
   CorecontrollerTorquePowerandCom(ctrl_custom_P.k_cc, ctrl_custom_P.p_cc,
     ctrl_custom_P.r_cc, ctrl_custom_B.Delay[2], ctrl_custom_P.K_T3f,
-    ctrl_custom_P.K_q3f, ctrl_custom_P.D, rtb_T_r_e, ctrl_custom_P.Rho,
+    ctrl_custom_P.K_q3f, ctrl_custom_P.D, rtb_T_r_j, ctrl_custom_P.Rho,
     ctrl_custom_P.eps_c, ctrl_custom_P.K_T3r, ctrl_custom_P.K_q3r,
-    &ctrl_custom_B.sf_CorecontrollerTorquePower_ao);
+    &ctrl_custom_B.sf_CorecontrollerTorquePowera_j);
 
   /* MultiPortSwitch: '<S86>/Controller chosen' incorporates:
    *  Constant: '<S86>/NaN'
    *  Integrator: '<S88>/Integrator'
    *  Sum: '<S88>/Sum1'
    */
-  switch ((int32_T)ctrl_custom_B.Memory_ln) {
+  switch ((int32_T)ctrl_custom_B.Memory_i) {
    case 1:
-    rtb_Row2_f = ctrl_custom_B.Kp_i + ctrl_custom_X.Integrator_CSTATE_c;
+    rtb_Sum_e = ctrl_custom_B.Kp_h + ctrl_custom_X.Integrator_CSTATE_or;
     break;
 
    case 2:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePower_ao.Qcq;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_j.Qcq;
     break;
 
    case 3:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePower_ao.Qcp;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_j.Qcp;
     break;
 
    case 4:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePower_ao.Qcc;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_j.Qcc;
     break;
 
    default:
-    rtb_Row2_f = ctrl_custom_P.NaN_Value_k;
+    rtb_Sum_e = ctrl_custom_P.NaN_Value_a;
     break;
   }
 
   /* End of MultiPortSwitch: '<S86>/Controller chosen' */
 
   /* Sum: '<S86>/Sum' */
-  ctrl_custom_B.Sum_n = (ctrl_custom_B.Inertiacompensation_m +
-    ctrl_custom_B.Sum1_c) + rtb_Row2_f;
+  ctrl_custom_B.Sum_l = (ctrl_custom_B.Inertiacompensation_k +
+    ctrl_custom_B.Sum1_b) + rtb_Sum_e;
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S55>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S55>/Constant'
      *  Constant: '<S55>/Constant1'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp_b = ctrl_custom_B.Sum_n -
-      ctrl_custom_P.Constant_Value_gq[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_m;
-    ctrl_custom_B.DiscreteTransferFcn_o = ctrl_custom_P.Constant1_Value_l[0] *
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_b +
-      ctrl_custom_P.Constant1_Value_l[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_m;
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_hw = ctrl_custom_B.Sum_l -
+      ctrl_custom_P.Constant_Value_n[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_c;
+    ctrl_custom_B.DiscreteTransferFcn_ho = ctrl_custom_P.Constant1_Value_mm[0] *
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_hw +
+      ctrl_custom_P.Constant1_Value_mm[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_c;
   }
 
   /* Gain: '<S85>/Finding rotation speed' incorporates:
    *  Gain: '<S85>/K_omega'
    *  Sum: '<S85>/Sum'
    */
-  ctrl_custom_B.Findingrotationspeed_m = ((ctrl_custom_B.DiscreteTransferFcn_o -
-    ctrl_custom_B.Delay_h) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-    rtb_Integrator_g) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+  ctrl_custom_B.Findingrotationspeed_g = ((ctrl_custom_B.DiscreteTransferFcn_ho
+    - ctrl_custom_B.Delay_h) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
+    rtb_Integrator_n) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* Gain: '<S88>/Ki' */
-    ctrl_custom_B.Ki_o = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+    ctrl_custom_B.Ki_f = ctrl_custom_P.Kp / 0.05 * rtb_Sum_f;
 
     /* MATLAB Function: '<S86>/Supervisor' incorporates:
      *  Constant: '<S14>/controller'
      */
-    ctrl_custom_Supervisor(ctrl_custom_B.Memory_ln,
+    ctrl_custom_Supervisor(ctrl_custom_B.Memory_i,
       ctrl_custom_P.controller_Value, ctrl_custom_B.Delay[2],
-      &ctrl_custom_B.sf_Supervisor_j);
+      &ctrl_custom_B.sf_Supervisor_k);
 
     /* Delay: '<S56>/Delay' */
-    ctrl_custom_B.Delay_e = ctrl_custom_DW.Delay_DSTATE_kg;
+    ctrl_custom_B.Delay_g = ctrl_custom_DW.Delay_DSTATE_g;
 
     /* Delay: '<S95>/Delay' */
-    ctrl_custom_B.Delay_m = ctrl_custom_DW.Delay_DSTATE_ki;
+    ctrl_custom_B.Delay_nh = ctrl_custom_DW.Delay_DSTATE_k;
   }
 
   /* MATLAB Function: '<S95>/MATLAB Function' incorporates:
@@ -6547,56 +5905,56 @@ void ctrl_custom_output(void)
    */
   ctrl_custom_MATLABFunction_a(rtb_sys[9], ctrl_custom_P.K_T4f,
     ctrl_custom_P.K_T4r, ctrl_custom_P.Rho, ctrl_custom_P.D, ctrl_custom_P.eps_c,
-    ctrl_custom_B.Delay_m, &ctrl_custom_B.sf_MATLABFunction_d);
+    ctrl_custom_B.Delay_nh, &ctrl_custom_B.sf_MATLABFunction_ai);
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S95>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S95>/Constant1'
      *  Constant: '<S95>/Constant2'
      */
     ctrl_custom_DW.DiscreteTransferFcn_tmp_l =
-      (ctrl_custom_B.sf_MATLABFunction_d.n_d - ctrl_custom_P.Constant2_Value_h[1]
-       * ctrl_custom_DW.DiscreteTransferFcn_states_e[0]) -
-      ctrl_custom_P.Constant2_Value_h[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_e[1];
-    ctrl_custom_B.DiscreteTransferFcn_p = (ctrl_custom_P.Constant1_Value_d[0] *
+      (ctrl_custom_B.sf_MATLABFunction_ai.n_d - ctrl_custom_P.Constant2_Value_j
+       [1] * ctrl_custom_DW.DiscreteTransferFcn_states_cl[0]) -
+      ctrl_custom_P.Constant2_Value_j[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_cl[1];
+    ctrl_custom_B.DiscreteTransferFcn_j = (ctrl_custom_P.Constant1_Value_h[0] *
       ctrl_custom_DW.DiscreteTransferFcn_tmp_l +
-      ctrl_custom_P.Constant1_Value_d[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_e[0]) +
-      ctrl_custom_P.Constant1_Value_d[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_e[1];
+      ctrl_custom_P.Constant1_Value_h[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_cl[0]) +
+      ctrl_custom_P.Constant1_Value_h[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_cl[1];
 
     /* SampleTimeMath: '<S98>/TSamp'
      *
      * About '<S98>/TSamp':
      *  y = u * K where K = 1 / ( w * Ts )
      */
-    ctrl_custom_B.TSamp_d = ctrl_custom_B.DiscreteTransferFcn_p *
-      ctrl_custom_P.TSamp_WtEt_n;
+    ctrl_custom_B.TSamp_a = ctrl_custom_B.DiscreteTransferFcn_j *
+      ctrl_custom_P.TSamp_WtEt_j;
 
     /* Sum: '<S98>/Diff' incorporates:
      *  UnitDelay: '<S98>/UD'
      */
-    rtb_Sum_m = ctrl_custom_B.TSamp_d - ctrl_custom_DW.UD_DSTATE_a;
+    rtb_Sum_f = ctrl_custom_B.TSamp_a - ctrl_custom_DW.UD_DSTATE_g;
 
     /* RateLimiter: '<S95>/Acceleration limiter' */
-    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_m;
-    if (rtb_psi_dot > ctrl_custom_P.Accelerationlimiter_RisingLim_i) {
-      rtb_Sum_m = ctrl_custom_DW.PrevY_m +
-        ctrl_custom_P.Accelerationlimiter_RisingLim_i;
+    rtb_Sum_e = rtb_Sum_f - ctrl_custom_DW.PrevY_e;
+    if (rtb_Sum_e > ctrl_custom_P.Accelerationlimiter_RisingLim_l) {
+      rtb_Sum_f = ctrl_custom_DW.PrevY_e +
+        ctrl_custom_P.Accelerationlimiter_RisingLim_l;
     } else {
-      if (rtb_psi_dot < ctrl_custom_P.Accelerationlimiter_FallingLi_i) {
-        rtb_Sum_m = ctrl_custom_DW.PrevY_m +
-          ctrl_custom_P.Accelerationlimiter_FallingLi_i;
+      if (rtb_Sum_e < ctrl_custom_P.Accelerationlimiter_FallingLi_k) {
+        rtb_Sum_f = ctrl_custom_DW.PrevY_e +
+          ctrl_custom_P.Accelerationlimiter_FallingLi_k;
       }
     }
 
-    ctrl_custom_DW.PrevY_m = rtb_Sum_m;
+    ctrl_custom_DW.PrevY_e = rtb_Sum_f;
 
     /* End of RateLimiter: '<S95>/Acceleration limiter' */
 
     /* Gain: '<S95>/Inertia compensation' */
-    ctrl_custom_B.Inertiacompensation_bn = ctrl_custom_P.I_s * 2.0 *
-      3.1415926535897931 * rtb_Sum_m;
+    ctrl_custom_B.Inertiacompensation_p = ctrl_custom_P.I_s * 2.0 *
+      3.1415926535897931 * rtb_Sum_f;
 
     /* Sum: '<S95>/Sum1' incorporates:
      *  Gain: '<S95>/Qf_0'
@@ -6604,30 +5962,30 @@ void ctrl_custom_output(void)
      *  Gain: '<S95>/Qff_1(nr)'
      *  Trigonometry: '<S95>/Trigonometric Function'
      */
-    ctrl_custom_B.Sum1_cp = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
-      ctrl_custom_B.DiscreteTransferFcn_p) * ctrl_custom_P.Q_f0 +
+    ctrl_custom_B.Sum1_h = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
+      ctrl_custom_B.DiscreteTransferFcn_j) * ctrl_custom_P.Q_f0 +
       ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-      ctrl_custom_B.DiscreteTransferFcn_p;
+      ctrl_custom_B.DiscreteTransferFcn_j;
 
     /* Memory: '<S95>/Memory' */
-    ctrl_custom_B.Memory_j = ctrl_custom_DW.Memory_PreviousInput_d;
+    ctrl_custom_B.Memory_c = ctrl_custom_DW.Memory_PreviousInput_g;
 
     /* Sum: '<S97>/Sum' */
-    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_p - ctrl_custom_B.Delay[3];
+    rtb_Sum_f = ctrl_custom_B.DiscreteTransferFcn_j - ctrl_custom_B.Delay[3];
 
     /* Gain: '<S97>/Kp' */
-    ctrl_custom_B.Kp_o = ctrl_custom_P.Kp * rtb_Sum_m;
+    ctrl_custom_B.Kp_b = ctrl_custom_P.Kp * rtb_Sum_f;
   }
 
   /* Integrator: '<S97>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_ja,
-                       (ctrl_custom_B.reset_h));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_n,
+                       (ctrl_custom_B.reset_im));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_p = ctrl_custom_P.Integrator_IC_l;
+      ctrl_custom_X.Integrator_CSTATE_h = ctrl_custom_P.Integrator_IC_f;
     }
   }
 
@@ -6645,79 +6003,79 @@ void ctrl_custom_output(void)
    */
   CorecontrollerTorquePowerandCom(ctrl_custom_P.k_cc, ctrl_custom_P.p_cc,
     ctrl_custom_P.r_cc, ctrl_custom_B.Delay[3], ctrl_custom_P.K_T4f,
-    ctrl_custom_P.K_q4f, ctrl_custom_P.D, ctrl_custom_B.sf_MATLABFunction_d.T_r,
+    ctrl_custom_P.K_q4f, ctrl_custom_P.D, ctrl_custom_B.sf_MATLABFunction_ai.T_r,
     ctrl_custom_P.Rho, ctrl_custom_P.eps_c, ctrl_custom_P.K_T4r,
-    ctrl_custom_P.K_q4r, &ctrl_custom_B.sf_CorecontrollerTorquePowera_p);
+    ctrl_custom_P.K_q4r, &ctrl_custom_B.sf_CorecontrollerTorquePowera_d);
 
   /* MultiPortSwitch: '<S95>/Controller chosen' incorporates:
    *  Constant: '<S95>/NaN'
    *  Integrator: '<S97>/Integrator'
    *  Sum: '<S97>/Sum1'
    */
-  switch ((int32_T)ctrl_custom_B.Memory_j) {
+  switch ((int32_T)ctrl_custom_B.Memory_c) {
    case 1:
-    rtb_Row2_f = ctrl_custom_B.Kp_o + ctrl_custom_X.Integrator_CSTATE_p;
+    rtb_Sum_e = ctrl_custom_B.Kp_b + ctrl_custom_X.Integrator_CSTATE_h;
     break;
 
    case 2:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_p.Qcq;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_d.Qcq;
     break;
 
    case 3:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_p.Qcp;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_d.Qcp;
     break;
 
    case 4:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_p.Qcc;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_d.Qcc;
     break;
 
    default:
-    rtb_Row2_f = ctrl_custom_P.NaN_Value_ks;
+    rtb_Sum_e = ctrl_custom_P.NaN_Value_j;
     break;
   }
 
   /* End of MultiPortSwitch: '<S95>/Controller chosen' */
 
   /* Sum: '<S95>/Sum' */
-  ctrl_custom_B.Sum_a = (ctrl_custom_B.Inertiacompensation_bn +
-    ctrl_custom_B.Sum1_cp) + rtb_Row2_f;
+  ctrl_custom_B.Sum_mg = (ctrl_custom_B.Inertiacompensation_p +
+    ctrl_custom_B.Sum1_h) + rtb_Sum_e;
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S56>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S56>/Constant'
      *  Constant: '<S56>/Constant1'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp_fg5 = ctrl_custom_B.Sum_a -
-      ctrl_custom_P.Constant_Value_m[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_p;
-    ctrl_custom_B.DiscreteTransferFcn_oy = ctrl_custom_P.Constant1_Value_h[0] *
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_fg5 +
-      ctrl_custom_P.Constant1_Value_h[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_p;
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_hu = ctrl_custom_B.Sum_mg -
+      ctrl_custom_P.Constant_Value_nc[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_m;
+    ctrl_custom_B.DiscreteTransferFcn_p = ctrl_custom_P.Constant1_Value_oy[0] *
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_hu +
+      ctrl_custom_P.Constant1_Value_oy[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_m;
   }
 
   /* Gain: '<S94>/Finding rotation speed' incorporates:
    *  Gain: '<S94>/K_omega'
    *  Sum: '<S94>/Sum'
    */
-  ctrl_custom_B.Findingrotationspeed_p = ((ctrl_custom_B.DiscreteTransferFcn_oy
-    - ctrl_custom_B.Delay_e) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-    rtb_Integrator_l) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+  ctrl_custom_B.Findingrotationspeed_e = ((ctrl_custom_B.DiscreteTransferFcn_p -
+    ctrl_custom_B.Delay_g) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
+    rtb_Integrator_k) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* Gain: '<S97>/Ki' */
-    ctrl_custom_B.Ki_g = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+    ctrl_custom_B.Ki_h = ctrl_custom_P.Kp / 0.05 * rtb_Sum_f;
 
     /* MATLAB Function: '<S95>/Supervisor' incorporates:
      *  Constant: '<S14>/controller'
      */
-    ctrl_custom_Supervisor(ctrl_custom_B.Memory_j,
+    ctrl_custom_Supervisor(ctrl_custom_B.Memory_c,
       ctrl_custom_P.controller_Value, ctrl_custom_B.Delay[3],
-      &ctrl_custom_B.sf_Supervisor_g);
+      &ctrl_custom_B.sf_Supervisor_c);
 
     /* Delay: '<S57>/Delay' */
-    ctrl_custom_B.Delay_jj = ctrl_custom_DW.Delay_DSTATE_p;
+    ctrl_custom_B.Delay_f4 = ctrl_custom_DW.Delay_DSTATE_n;
 
     /* Delay: '<S104>/Delay' */
-    ctrl_custom_B.Delay_n = ctrl_custom_DW.Delay_DSTATE_kf;
+    ctrl_custom_B.Delay_a = ctrl_custom_DW.Delay_DSTATE_jt;
   }
 
   /* MATLAB Function: '<S104>/MATLAB Function' incorporates:
@@ -6729,56 +6087,56 @@ void ctrl_custom_output(void)
    */
   ctrl_custom_MATLABFunction_a(rtb_sys[10], ctrl_custom_P.K_T5f,
     ctrl_custom_P.K_T5r, ctrl_custom_P.Rho, ctrl_custom_P.D, ctrl_custom_P.eps_c,
-    ctrl_custom_B.Delay_n, &ctrl_custom_B.sf_MATLABFunction_o);
+    ctrl_custom_B.Delay_a, &ctrl_custom_B.sf_MATLABFunction_i);
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S104>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S104>/Constant1'
      *  Constant: '<S104>/Constant2'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp_i =
-      (ctrl_custom_B.sf_MATLABFunction_o.n_d - ctrl_custom_P.Constant2_Value_b0
-       [1] * ctrl_custom_DW.DiscreteTransferFcn_states_jn[0]) -
-      ctrl_custom_P.Constant2_Value_b0[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_jn[1];
-    ctrl_custom_B.DiscreteTransferFcn_br = (ctrl_custom_P.Constant1_Value_kj[0] *
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_i +
-      ctrl_custom_P.Constant1_Value_kj[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_jn[0]) +
-      ctrl_custom_P.Constant1_Value_kj[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_jn[1];
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_d =
+      (ctrl_custom_B.sf_MATLABFunction_i.n_d - ctrl_custom_P.Constant2_Value_b[1]
+       * ctrl_custom_DW.DiscreteTransferFcn_states_dh[0]) -
+      ctrl_custom_P.Constant2_Value_b[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_dh[1];
+    ctrl_custom_B.DiscreteTransferFcn_jz = (ctrl_custom_P.Constant1_Value_p[0] *
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_d +
+      ctrl_custom_P.Constant1_Value_p[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_dh[0]) +
+      ctrl_custom_P.Constant1_Value_p[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_dh[1];
 
     /* SampleTimeMath: '<S107>/TSamp'
      *
      * About '<S107>/TSamp':
      *  y = u * K where K = 1 / ( w * Ts )
      */
-    ctrl_custom_B.TSamp_k4 = ctrl_custom_B.DiscreteTransferFcn_br *
-      ctrl_custom_P.TSamp_WtEt_ih;
+    ctrl_custom_B.TSamp_aa = ctrl_custom_B.DiscreteTransferFcn_jz *
+      ctrl_custom_P.TSamp_WtEt_p1;
 
     /* Sum: '<S107>/Diff' incorporates:
      *  UnitDelay: '<S107>/UD'
      */
-    rtb_Sum_m = ctrl_custom_B.TSamp_k4 - ctrl_custom_DW.UD_DSTATE_l;
+    rtb_Sum_f = ctrl_custom_B.TSamp_aa - ctrl_custom_DW.UD_DSTATE_gf;
 
     /* RateLimiter: '<S104>/Acceleration limiter' */
-    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_mo;
-    if (rtb_psi_dot > ctrl_custom_P.Accelerationlimiter_RisingLim_k) {
-      rtb_Sum_m = ctrl_custom_DW.PrevY_mo +
-        ctrl_custom_P.Accelerationlimiter_RisingLim_k;
+    rtb_Sum_e = rtb_Sum_f - ctrl_custom_DW.PrevY_i;
+    if (rtb_Sum_e > ctrl_custom_P.Accelerationlimiter_RisingLim_a) {
+      rtb_Sum_f = ctrl_custom_DW.PrevY_i +
+        ctrl_custom_P.Accelerationlimiter_RisingLim_a;
     } else {
-      if (rtb_psi_dot < ctrl_custom_P.Accelerationlimiter_FallingLi_c) {
-        rtb_Sum_m = ctrl_custom_DW.PrevY_mo +
-          ctrl_custom_P.Accelerationlimiter_FallingLi_c;
+      if (rtb_Sum_e < ctrl_custom_P.Accelerationlimiter_FallingLi_e) {
+        rtb_Sum_f = ctrl_custom_DW.PrevY_i +
+          ctrl_custom_P.Accelerationlimiter_FallingLi_e;
       }
     }
 
-    ctrl_custom_DW.PrevY_mo = rtb_Sum_m;
+    ctrl_custom_DW.PrevY_i = rtb_Sum_f;
 
     /* End of RateLimiter: '<S104>/Acceleration limiter' */
 
     /* Gain: '<S104>/Inertia compensation' */
-    ctrl_custom_B.Inertiacompensation_a = ctrl_custom_P.I_s * 2.0 *
-      3.1415926535897931 * rtb_Sum_m;
+    ctrl_custom_B.Inertiacompensation_d = ctrl_custom_P.I_s * 2.0 *
+      3.1415926535897931 * rtb_Sum_f;
 
     /* Sum: '<S104>/Sum1' incorporates:
      *  Gain: '<S104>/Qf_0'
@@ -6786,30 +6144,30 @@ void ctrl_custom_output(void)
      *  Gain: '<S104>/Qff_1(nr)'
      *  Trigonometry: '<S104>/Trigonometric Function'
      */
-    ctrl_custom_B.Sum1_e = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
-      ctrl_custom_B.DiscreteTransferFcn_br) * ctrl_custom_P.Q_f0 +
+    ctrl_custom_B.Sum1_o = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
+      ctrl_custom_B.DiscreteTransferFcn_jz) * ctrl_custom_P.Q_f0 +
       ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-      ctrl_custom_B.DiscreteTransferFcn_br;
+      ctrl_custom_B.DiscreteTransferFcn_jz;
 
     /* Memory: '<S104>/Memory' */
-    ctrl_custom_B.Memory_d = ctrl_custom_DW.Memory_PreviousInput_l;
+    ctrl_custom_B.Memory_j = ctrl_custom_DW.Memory_PreviousInput_f;
 
     /* Sum: '<S106>/Sum' */
-    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_br - ctrl_custom_B.Delay[4];
+    rtb_Sum_f = ctrl_custom_B.DiscreteTransferFcn_jz - ctrl_custom_B.Delay[4];
 
     /* Gain: '<S106>/Kp' */
-    ctrl_custom_B.Kp_d = ctrl_custom_P.Kp * rtb_Sum_m;
+    ctrl_custom_B.Kp_ht = ctrl_custom_P.Kp * rtb_Sum_f;
   }
 
   /* Integrator: '<S106>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_i,
-                       (ctrl_custom_B.reset_e));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_aa,
+                       (ctrl_custom_B.reset_m));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_n = ctrl_custom_P.Integrator_IC_hh;
+      ctrl_custom_X.Integrator_CSTATE_fm = ctrl_custom_P.Integrator_IC_fh;
     }
   }
 
@@ -6827,79 +6185,79 @@ void ctrl_custom_output(void)
    */
   CorecontrollerTorquePowerandCom(ctrl_custom_P.k_cc, ctrl_custom_P.p_cc,
     ctrl_custom_P.r_cc, ctrl_custom_B.Delay[4], ctrl_custom_P.K_T5f,
-    ctrl_custom_P.K_q5f, ctrl_custom_P.D, ctrl_custom_B.sf_MATLABFunction_o.T_r,
+    ctrl_custom_P.K_q5f, ctrl_custom_P.D, ctrl_custom_B.sf_MATLABFunction_i.T_r,
     ctrl_custom_P.Rho, ctrl_custom_P.eps_c, ctrl_custom_P.K_T5r,
-    ctrl_custom_P.K_q5r, &ctrl_custom_B.sf_CorecontrollerTorquePowera_o);
+    ctrl_custom_P.K_q5r, &ctrl_custom_B.sf_CorecontrollerTorquePowera_h);
 
   /* MultiPortSwitch: '<S104>/Controller chosen' incorporates:
    *  Constant: '<S104>/NaN'
    *  Integrator: '<S106>/Integrator'
    *  Sum: '<S106>/Sum1'
    */
-  switch ((int32_T)ctrl_custom_B.Memory_d) {
+  switch ((int32_T)ctrl_custom_B.Memory_j) {
    case 1:
-    rtb_Row2_f = ctrl_custom_B.Kp_d + ctrl_custom_X.Integrator_CSTATE_n;
+    rtb_Sum_e = ctrl_custom_B.Kp_ht + ctrl_custom_X.Integrator_CSTATE_fm;
     break;
 
    case 2:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_o.Qcq;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_h.Qcq;
     break;
 
    case 3:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_o.Qcp;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_h.Qcp;
     break;
 
    case 4:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_o.Qcc;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_h.Qcc;
     break;
 
    default:
-    rtb_Row2_f = ctrl_custom_P.NaN_Value_ny;
+    rtb_Sum_e = ctrl_custom_P.NaN_Value_n;
     break;
   }
 
   /* End of MultiPortSwitch: '<S104>/Controller chosen' */
 
   /* Sum: '<S104>/Sum' */
-  ctrl_custom_B.Sum_f = (ctrl_custom_B.Inertiacompensation_a +
-    ctrl_custom_B.Sum1_e) + rtb_Row2_f;
+  ctrl_custom_B.Sum_i = (ctrl_custom_B.Inertiacompensation_d +
+    ctrl_custom_B.Sum1_o) + rtb_Sum_e;
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S57>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S57>/Constant'
      *  Constant: '<S57>/Constant1'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp_m = ctrl_custom_B.Sum_f -
-      ctrl_custom_P.Constant_Value_gh[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_g;
-    ctrl_custom_B.DiscreteTransferFcn_m = ctrl_custom_P.Constant1_Value_e[0] *
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_m = ctrl_custom_B.Sum_i -
+      ctrl_custom_P.Constant_Value_jy[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_ho;
+    ctrl_custom_B.DiscreteTransferFcn_ky = ctrl_custom_P.Constant1_Value_hy[0] *
       ctrl_custom_DW.DiscreteTransferFcn_tmp_m +
-      ctrl_custom_P.Constant1_Value_e[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_g;
+      ctrl_custom_P.Constant1_Value_hy[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_ho;
   }
 
   /* Gain: '<S103>/Finding rotation speed' incorporates:
    *  Gain: '<S103>/K_omega'
    *  Sum: '<S103>/Sum'
    */
-  ctrl_custom_B.Findingrotationspeed_j = ((ctrl_custom_B.DiscreteTransferFcn_m -
-    ctrl_custom_B.Delay_jj) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-    rtb_Integrator_k) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
+  ctrl_custom_B.Findingrotationspeed_n = ((ctrl_custom_B.DiscreteTransferFcn_ky
+    - ctrl_custom_B.Delay_f4) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931
+    * rtb_Integrator_h) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* Gain: '<S106>/Ki' */
-    ctrl_custom_B.Ki_m = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+    ctrl_custom_B.Ki_j = ctrl_custom_P.Kp / 0.05 * rtb_Sum_f;
 
     /* MATLAB Function: '<S104>/Supervisor' incorporates:
      *  Constant: '<S14>/controller'
      */
-    ctrl_custom_Supervisor(ctrl_custom_B.Memory_d,
+    ctrl_custom_Supervisor(ctrl_custom_B.Memory_j,
       ctrl_custom_P.controller_Value, ctrl_custom_B.Delay[4],
-      &ctrl_custom_B.sf_Supervisor_p);
+      &ctrl_custom_B.sf_Supervisor_l);
 
     /* Delay: '<S58>/Delay' */
-    ctrl_custom_B.Delay_mu = ctrl_custom_DW.Delay_DSTATE_o;
+    ctrl_custom_B.Delay_j = ctrl_custom_DW.Delay_DSTATE_k2;
 
     /* Delay: '<S113>/Delay' */
-    ctrl_custom_B.Delay_e5 = ctrl_custom_DW.Delay_DSTATE_h;
+    ctrl_custom_B.Delay_hd = ctrl_custom_DW.Delay_DSTATE_kz;
   }
 
   /* MATLAB Function: '<S113>/MATLAB Function' incorporates:
@@ -6909,41 +6267,41 @@ void ctrl_custom_output(void)
    *  Constant: '<S14>/K_Tr6'
    *  Constant: '<S14>/Rho'
    */
-  /* MATLAB Function 'Thruster control /Thruster 6/Thruster control/MATLAB Function': '<S117>:1' */
+  /* MATLAB Function 'Thruster control 1/Thruster 6/Thruster control/MATLAB Function': '<S117>:1' */
   /* '<S117>:1:5' */
   if (rtb_sys[11] < 0.0) {
-    rtb_Row1_m = -1.0;
+    rtb_Row1_d = -1.0;
   } else if (rtb_sys[11] > 0.0) {
-    rtb_Row1_m = 1.0;
+    rtb_Row1_d = 1.0;
   } else if (rtb_sys[11] == 0.0) {
-    rtb_Row1_m = 0.0;
+    rtb_Row1_d = 0.0;
   } else {
-    rtb_Row1_m = rtb_sys[11];
+    rtb_Row1_d = rtb_sys[11];
   }
 
-  rtb_Row2_f = sqrt(fabs(rtb_sys[11]) / (ctrl_custom_P.Rho * rt_powd_snf
-    (ctrl_custom_P.D, 4.0) * ctrl_custom_P.K_T6f)) * rtb_Row1_m;
+  rtb_Sum_e = sqrt(fabs(rtb_sys[11]) / (ctrl_custom_P.Rho * rt_powd_snf
+    (ctrl_custom_P.D, 4.0) * ctrl_custom_P.K_T6f)) * rtb_Row1_d;
 
   /* '<S117>:1:7' */
-  rtb_psi_dot = tanh(ctrl_custom_P.eps_c * rtb_Row2_f / 27.0) * 0.5 + 0.5;
+  rtb_psi_dot = tanh(ctrl_custom_P.eps_c * rtb_Sum_e / 27.0) * 0.5 + 0.5;
 
   /*  Smooth switching between positive and negative thrust */
   /* '<S117>:1:8' */
   /* '<S117>:1:10' */
-  if (ctrl_custom_B.Delay_e5 < 0.0) {
-    rtb_Row1_m = -1.0;
-  } else if (ctrl_custom_B.Delay_e5 > 0.0) {
-    rtb_Row1_m = 1.0;
-  } else if (ctrl_custom_B.Delay_e5 == 0.0) {
-    rtb_Row1_m = 0.0;
+  if (ctrl_custom_B.Delay_hd < 0.0) {
+    rtb_Row1_d = -1.0;
+  } else if (ctrl_custom_B.Delay_hd > 0.0) {
+    rtb_Row1_d = 1.0;
+  } else if (ctrl_custom_B.Delay_hd == 0.0) {
+    rtb_Row1_d = 0.0;
   } else {
-    rtb_Row1_m = ctrl_custom_B.Delay_e5;
+    rtb_Row1_d = ctrl_custom_B.Delay_hd;
   }
 
   rtb_T_r = ((1.0 - rtb_psi_dot) * ctrl_custom_P.K_T6r + ctrl_custom_P.K_T6f *
-             rtb_psi_dot) * rtb_Row1_m * ctrl_custom_P.Rho * rt_powd_snf
-    (ctrl_custom_P.D, 4.0) * (ctrl_custom_B.Delay_e5 * ctrl_custom_B.Delay_e5);
-  ctrl_custom_B.n_d = rtb_Row2_f;
+             rtb_psi_dot) * rtb_Row1_d * ctrl_custom_P.Rho * rt_powd_snf
+    (ctrl_custom_P.D, 4.0) * (ctrl_custom_B.Delay_hd * ctrl_custom_B.Delay_hd);
+  ctrl_custom_B.n_d = rtb_Sum_e;
 
   /* End of MATLAB Function: '<S113>/MATLAB Function' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
@@ -6952,49 +6310,49 @@ void ctrl_custom_output(void)
      *  Constant: '<S113>/Constant2'
      */
     ctrl_custom_DW.DiscreteTransferFcn_tmp_o = (ctrl_custom_B.n_d -
-      ctrl_custom_P.Constant2_Value_p[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_k0[0]) -
-      ctrl_custom_P.Constant2_Value_p[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_k0[1];
-    ctrl_custom_B.DiscreteTransferFcn_lk = (ctrl_custom_P.Constant1_Value_pu[0] *
+      ctrl_custom_P.Constant2_Value_jp[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_e[0]) -
+      ctrl_custom_P.Constant2_Value_jp[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_e[1];
+    ctrl_custom_B.DiscreteTransferFcn_a = (ctrl_custom_P.Constant1_Value_f[0] *
       ctrl_custom_DW.DiscreteTransferFcn_tmp_o +
-      ctrl_custom_P.Constant1_Value_pu[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_k0[0]) +
-      ctrl_custom_P.Constant1_Value_pu[2] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_k0[1];
+      ctrl_custom_P.Constant1_Value_f[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_e[0]) +
+      ctrl_custom_P.Constant1_Value_f[2] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_e[1];
 
     /* SampleTimeMath: '<S116>/TSamp'
      *
      * About '<S116>/TSamp':
      *  y = u * K where K = 1 / ( w * Ts )
      */
-    ctrl_custom_B.TSamp_mr = ctrl_custom_B.DiscreteTransferFcn_lk *
-      ctrl_custom_P.TSamp_WtEt_l;
+    ctrl_custom_B.TSamp_d = ctrl_custom_B.DiscreteTransferFcn_a *
+      ctrl_custom_P.TSamp_WtEt_h;
 
     /* Sum: '<S116>/Diff' incorporates:
      *  UnitDelay: '<S116>/UD'
      */
-    rtb_Sum_m = ctrl_custom_B.TSamp_mr - ctrl_custom_DW.UD_DSTATE_e;
+    rtb_Sum_f = ctrl_custom_B.TSamp_d - ctrl_custom_DW.UD_DSTATE_go;
 
     /* RateLimiter: '<S113>/Acceleration limiter' */
-    rtb_psi_dot = rtb_Sum_m - ctrl_custom_DW.PrevY_k4;
-    if (rtb_psi_dot > ctrl_custom_P.Accelerationlimiter_RisingLim_b) {
-      rtb_Sum_m = ctrl_custom_DW.PrevY_k4 +
-        ctrl_custom_P.Accelerationlimiter_RisingLim_b;
+    rtb_Sum_e = rtb_Sum_f - ctrl_custom_DW.PrevY_n;
+    if (rtb_Sum_e > ctrl_custom_P.Accelerationlimiter_RisingLim_p) {
+      rtb_Sum_f = ctrl_custom_DW.PrevY_n +
+        ctrl_custom_P.Accelerationlimiter_RisingLim_p;
     } else {
-      if (rtb_psi_dot < ctrl_custom_P.Accelerationlimiter_FallingLi_j) {
-        rtb_Sum_m = ctrl_custom_DW.PrevY_k4 +
-          ctrl_custom_P.Accelerationlimiter_FallingLi_j;
+      if (rtb_Sum_e < ctrl_custom_P.Accelerationlimiter_FallingLi_p) {
+        rtb_Sum_f = ctrl_custom_DW.PrevY_n +
+          ctrl_custom_P.Accelerationlimiter_FallingLi_p;
       }
     }
 
-    ctrl_custom_DW.PrevY_k4 = rtb_Sum_m;
+    ctrl_custom_DW.PrevY_n = rtb_Sum_f;
 
     /* End of RateLimiter: '<S113>/Acceleration limiter' */
 
     /* Gain: '<S113>/Inertia compensation' */
-    ctrl_custom_B.Inertiacompensation_b3 = ctrl_custom_P.I_s * 2.0 *
-      3.1415926535897931 * rtb_Sum_m;
+    ctrl_custom_B.Inertiacompensation_a = ctrl_custom_P.I_s * 2.0 *
+      3.1415926535897931 * rtb_Sum_f;
 
     /* Sum: '<S113>/Sum1' incorporates:
      *  Gain: '<S113>/Qf_0'
@@ -7002,30 +6360,30 @@ void ctrl_custom_output(void)
      *  Gain: '<S113>/Qff_1(nr)'
      *  Trigonometry: '<S113>/Trigonometric Function'
      */
-    ctrl_custom_B.Sum1_p = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
-      ctrl_custom_B.DiscreteTransferFcn_lk) * ctrl_custom_P.Q_f0 +
+    ctrl_custom_B.Sum1_ie = tanh(ctrl_custom_P.epsilon / ctrl_custom_P.n_max *
+      ctrl_custom_B.DiscreteTransferFcn_a) * ctrl_custom_P.Q_f0 +
       ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
-      ctrl_custom_B.DiscreteTransferFcn_lk;
+      ctrl_custom_B.DiscreteTransferFcn_a;
 
     /* Memory: '<S113>/Memory' */
-    ctrl_custom_B.Memory_o = ctrl_custom_DW.Memory_PreviousInput_f2;
+    ctrl_custom_B.Memory_g = ctrl_custom_DW.Memory_PreviousInput_o;
 
     /* Sum: '<S115>/Sum' */
-    rtb_Sum_m = ctrl_custom_B.DiscreteTransferFcn_lk - ctrl_custom_B.Delay[5];
+    rtb_Sum_f = ctrl_custom_B.DiscreteTransferFcn_a - ctrl_custom_B.Delay[5];
 
     /* Gain: '<S115>/Kp' */
-    ctrl_custom_B.Kp_k = ctrl_custom_P.Kp * rtb_Sum_m;
+    ctrl_custom_B.Kp_n = ctrl_custom_P.Kp * rtb_Sum_f;
   }
 
   /* Integrator: '<S115>/Integrator' */
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     zcEvent = rt_ZCFcn(ANY_ZERO_CROSSING,
-                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_b,
-                       (ctrl_custom_B.reset_iu));
+                       &ctrl_custom_PrevZCX.Integrator_Reset_ZCE_li,
+                       (ctrl_custom_B.reset_n));
 
     /* evaluate zero-crossings */
     if (zcEvent != NO_ZCEVENT) {
-      ctrl_custom_X.Integrator_CSTATE_ci = ctrl_custom_P.Integrator_IC_pr;
+      ctrl_custom_X.Integrator_CSTATE_m = ctrl_custom_P.Integrator_IC_i;
     }
   }
 
@@ -7045,71 +6403,71 @@ void ctrl_custom_output(void)
     ctrl_custom_P.r_cc, ctrl_custom_B.Delay[5], ctrl_custom_P.K_T6f,
     ctrl_custom_P.K_q6f, ctrl_custom_P.D, rtb_T_r, ctrl_custom_P.Rho,
     ctrl_custom_P.eps_c, ctrl_custom_P.K_T6r, ctrl_custom_P.K_q6r,
-    &ctrl_custom_B.sf_CorecontrollerTorquePowera_g);
+    &ctrl_custom_B.sf_CorecontrollerTorquePowera_i);
 
   /* MultiPortSwitch: '<S113>/Controller chosen' incorporates:
    *  Constant: '<S113>/NaN'
    *  Integrator: '<S115>/Integrator'
    *  Sum: '<S115>/Sum1'
    */
-  switch ((int32_T)ctrl_custom_B.Memory_o) {
+  switch ((int32_T)ctrl_custom_B.Memory_g) {
    case 1:
-    rtb_Row2_f = ctrl_custom_B.Kp_k + ctrl_custom_X.Integrator_CSTATE_ci;
+    rtb_Sum_e = ctrl_custom_B.Kp_n + ctrl_custom_X.Integrator_CSTATE_m;
     break;
 
    case 2:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_g.Qcq;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_i.Qcq;
     break;
 
    case 3:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_g.Qcp;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_i.Qcp;
     break;
 
    case 4:
-    rtb_Row2_f = ctrl_custom_B.sf_CorecontrollerTorquePowera_g.Qcc;
+    rtb_Sum_e = ctrl_custom_B.sf_CorecontrollerTorquePowera_i.Qcc;
     break;
 
    default:
-    rtb_Row2_f = ctrl_custom_P.NaN_Value_m;
+    rtb_Sum_e = ctrl_custom_P.NaN_Value_c;
     break;
   }
 
   /* End of MultiPortSwitch: '<S113>/Controller chosen' */
 
   /* Sum: '<S113>/Sum' */
-  ctrl_custom_B.Sum_g = (ctrl_custom_B.Inertiacompensation_b3 +
-    ctrl_custom_B.Sum1_p) + rtb_Row2_f;
+  ctrl_custom_B.Sum_o = (ctrl_custom_B.Inertiacompensation_a +
+    ctrl_custom_B.Sum1_ie) + rtb_Sum_e;
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* DiscreteTransferFcn: '<S58>/Discrete Transfer Fcn' incorporates:
      *  Constant: '<S58>/Constant'
      *  Constant: '<S58>/Constant1'
      */
-    ctrl_custom_DW.DiscreteTransferFcn_tmp_ir = ctrl_custom_B.Sum_g -
-      ctrl_custom_P.Constant_Value_b[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_pv;
-    ctrl_custom_B.DiscreteTransferFcn_f = ctrl_custom_P.Constant1_Value_oi[0] *
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_ir +
-      ctrl_custom_P.Constant1_Value_oi[1] *
-      ctrl_custom_DW.DiscreteTransferFcn_states_pv;
+    ctrl_custom_DW.DiscreteTransferFcn_tmp_k = ctrl_custom_B.Sum_o -
+      ctrl_custom_P.Constant_Value_j2[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_b;
+    ctrl_custom_B.DiscreteTransferFcn_o = ctrl_custom_P.Constant1_Value_ol[0] *
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_k +
+      ctrl_custom_P.Constant1_Value_ol[1] *
+      ctrl_custom_DW.DiscreteTransferFcn_states_b;
   }
 
   /* Gain: '<S112>/Finding rotation speed' incorporates:
    *  Gain: '<S112>/K_omega'
    *  Sum: '<S112>/Sum'
    */
-  ctrl_custom_B.Findingrotationspeed_c = ((ctrl_custom_B.DiscreteTransferFcn_f -
-    ctrl_custom_B.Delay_mu) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
+  ctrl_custom_B.Findingrotationspeed_p = ((ctrl_custom_B.DiscreteTransferFcn_o -
+    ctrl_custom_B.Delay_j) - ctrl_custom_P.K_omega * 2.0 * 3.1415926535897931 *
     rtb_Integrator_c) * (1.0 / (6.2831853071795862 * ctrl_custom_P.I_s));
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* Gain: '<S115>/Ki' */
-    ctrl_custom_B.Ki_l = ctrl_custom_P.Kp / 0.05 * rtb_Sum_m;
+    ctrl_custom_B.Ki_a = ctrl_custom_P.Kp / 0.05 * rtb_Sum_f;
 
     /* MATLAB Function: '<S113>/Supervisor' incorporates:
      *  Constant: '<S14>/controller'
      */
-    ctrl_custom_Supervisor(ctrl_custom_B.Memory_o,
+    ctrl_custom_Supervisor(ctrl_custom_B.Memory_g,
       ctrl_custom_P.controller_Value, ctrl_custom_B.Delay[5],
-      &ctrl_custom_B.sf_Supervisor_gj);
+      &ctrl_custom_B.sf_Supervisor_h);
 
     /* SignalConversion: '<S15>/TmpSignal ConversionAtDelayInport1' */
     ctrl_custom_B.TmpSignalConversionAtDelayInpor[0] = ctrl_custom_B.output[1];
@@ -7137,7 +6495,7 @@ void ctrl_custom_update(void)
   /* Update for Iterator SubSystem: '<S13>/Optimal angle path and  constraints on rotation speed' */
   for (ForEach_itr = 0; ForEach_itr < 6; ForEach_itr++) {
     /* Update for ForEachSliceSelector: '<S45>/ImpSel_InsertedFor_reset_at_outport_0' */
-    rtb_ImpSel_InsertedFor_reset_at = ctrl_custom_B.start2[ForEach_itr];
+    rtb_ImpSel_InsertedFor_reset_at = ctrl_custom_B.Startbutton1[ForEach_itr];
     if (rtmIsMajorTimeStep(ctrl_custom_M)) {
       /* Update for DiscreteIntegrator: '<S45>/Discrete-Time Integrator' */
       ctrl_custom_DW.CoreSubsys[ForEach_itr].DiscreteTimeIntegrator_IC_LOADI =
@@ -7178,10 +6536,10 @@ void ctrl_custom_update(void)
     /* End of Update for Delay: '<S15>/Delay' */
 
     /* Update for Delay: '<S53>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_f = ctrl_custom_B.Qa;
+    ctrl_custom_DW.Delay_DSTATE_i = ctrl_custom_B.Qa;
 
     /* Update for Delay: '<S68>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_k = ctrl_custom_B.DiscreteTransferFcn;
+    ctrl_custom_DW.Delay_DSTATE_l = ctrl_custom_B.DiscreteTransferFcn;
 
     /* Update for DiscreteTransferFcn: '<S68>/Discrete Transfer Fcn' */
     ctrl_custom_DW.DiscreteTransferFcn_states[1] =
@@ -7196,118 +6554,118 @@ void ctrl_custom_update(void)
     ctrl_custom_DW.Memory_PreviousInput = ctrl_custom_B.sf_Supervisor.u;
 
     /* Update for DiscreteTransferFcn: '<S53>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_k =
+    ctrl_custom_DW.DiscreteTransferFcn_states_h =
       ctrl_custom_DW.DiscreteTransferFcn_tmp_n;
 
     /* Update for Delay: '<S54>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_c = ctrl_custom_B.sf_ActualForceandTorque_m.Qa;
+    ctrl_custom_DW.Delay_DSTATE_f = ctrl_custom_B.sf_ActualForceandTorque_j.Qa;
 
     /* Update for Delay: '<S77>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_j = ctrl_custom_B.DiscreteTransferFcn_l;
+    ctrl_custom_DW.Delay_DSTATE_d = ctrl_custom_B.DiscreteTransferFcn_h;
 
     /* Update for DiscreteTransferFcn: '<S77>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_j[1] =
-      ctrl_custom_DW.DiscreteTransferFcn_states_j[0];
-    ctrl_custom_DW.DiscreteTransferFcn_states_j[0] =
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_f;
+    ctrl_custom_DW.DiscreteTransferFcn_states_d[1] =
+      ctrl_custom_DW.DiscreteTransferFcn_states_d[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_d[0] =
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_h;
 
     /* Update for UnitDelay: '<S80>/UD' */
-    ctrl_custom_DW.UD_DSTATE_f = ctrl_custom_B.TSamp_m;
+    ctrl_custom_DW.UD_DSTATE_i = ctrl_custom_B.TSamp_g;
 
     /* Update for Memory: '<S77>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_g = ctrl_custom_B.sf_Supervisor_c.u;
+    ctrl_custom_DW.Memory_PreviousInput_c = ctrl_custom_B.sf_Supervisor_f.u;
 
     /* Update for DiscreteTransferFcn: '<S54>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_j0 =
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_fg;
+    ctrl_custom_DW.DiscreteTransferFcn_states_i =
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_a;
 
     /* Update for Delay: '<S55>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_m = ctrl_custom_B.sf_ActualForceandTorque_f.Qa;
+    ctrl_custom_DW.Delay_DSTATE_j = ctrl_custom_B.sf_ActualForceandTorque_i.Qa;
 
     /* Update for Delay: '<S86>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_e = ctrl_custom_B.DiscreteTransferFcn_d;
+    ctrl_custom_DW.Delay_DSTATE_c = ctrl_custom_B.DiscreteTransferFcn_k;
 
     /* Update for DiscreteTransferFcn: '<S86>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_f[1] =
-      ctrl_custom_DW.DiscreteTransferFcn_states_f[0];
-    ctrl_custom_DW.DiscreteTransferFcn_states_f[0] =
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_k;
+    ctrl_custom_DW.DiscreteTransferFcn_states_o[1] =
+      ctrl_custom_DW.DiscreteTransferFcn_states_o[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_o[0] =
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_g;
 
     /* Update for UnitDelay: '<S89>/UD' */
-    ctrl_custom_DW.UD_DSTATE_p = ctrl_custom_B.TSamp_k;
+    ctrl_custom_DW.UD_DSTATE_a = ctrl_custom_B.TSamp_f;
 
     /* Update for Memory: '<S86>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_f = ctrl_custom_B.sf_Supervisor_j.u;
+    ctrl_custom_DW.Memory_PreviousInput_b = ctrl_custom_B.sf_Supervisor_k.u;
 
     /* Update for DiscreteTransferFcn: '<S55>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_m =
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_b;
+    ctrl_custom_DW.DiscreteTransferFcn_states_c =
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_hw;
 
     /* Update for Delay: '<S56>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_kg = ctrl_custom_B.sf_ActualForceandTorque_a.Qa;
+    ctrl_custom_DW.Delay_DSTATE_g = ctrl_custom_B.sf_ActualForceandTorque_j3.Qa;
 
     /* Update for Delay: '<S95>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_ki = ctrl_custom_B.DiscreteTransferFcn_p;
+    ctrl_custom_DW.Delay_DSTATE_k = ctrl_custom_B.DiscreteTransferFcn_j;
 
     /* Update for DiscreteTransferFcn: '<S95>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_e[1] =
-      ctrl_custom_DW.DiscreteTransferFcn_states_e[0];
-    ctrl_custom_DW.DiscreteTransferFcn_states_e[0] =
+    ctrl_custom_DW.DiscreteTransferFcn_states_cl[1] =
+      ctrl_custom_DW.DiscreteTransferFcn_states_cl[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_cl[0] =
       ctrl_custom_DW.DiscreteTransferFcn_tmp_l;
 
     /* Update for UnitDelay: '<S98>/UD' */
-    ctrl_custom_DW.UD_DSTATE_a = ctrl_custom_B.TSamp_d;
+    ctrl_custom_DW.UD_DSTATE_g = ctrl_custom_B.TSamp_a;
 
     /* Update for Memory: '<S95>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_d = ctrl_custom_B.sf_Supervisor_g.u;
+    ctrl_custom_DW.Memory_PreviousInput_g = ctrl_custom_B.sf_Supervisor_c.u;
 
     /* Update for DiscreteTransferFcn: '<S56>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_p =
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_fg5;
+    ctrl_custom_DW.DiscreteTransferFcn_states_m =
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_hu;
 
     /* Update for Delay: '<S57>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_p = ctrl_custom_B.sf_ActualForceandTorque_k.Qa;
+    ctrl_custom_DW.Delay_DSTATE_n = ctrl_custom_B.sf_ActualForceandTorque_o.Qa;
 
     /* Update for Delay: '<S104>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_kf = ctrl_custom_B.DiscreteTransferFcn_br;
+    ctrl_custom_DW.Delay_DSTATE_jt = ctrl_custom_B.DiscreteTransferFcn_jz;
 
     /* Update for DiscreteTransferFcn: '<S104>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_jn[1] =
-      ctrl_custom_DW.DiscreteTransferFcn_states_jn[0];
-    ctrl_custom_DW.DiscreteTransferFcn_states_jn[0] =
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_i;
+    ctrl_custom_DW.DiscreteTransferFcn_states_dh[1] =
+      ctrl_custom_DW.DiscreteTransferFcn_states_dh[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_dh[0] =
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_d;
 
     /* Update for UnitDelay: '<S107>/UD' */
-    ctrl_custom_DW.UD_DSTATE_l = ctrl_custom_B.TSamp_k4;
+    ctrl_custom_DW.UD_DSTATE_gf = ctrl_custom_B.TSamp_aa;
 
     /* Update for Memory: '<S104>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_l = ctrl_custom_B.sf_Supervisor_p.u;
+    ctrl_custom_DW.Memory_PreviousInput_f = ctrl_custom_B.sf_Supervisor_l.u;
 
     /* Update for DiscreteTransferFcn: '<S57>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_g =
+    ctrl_custom_DW.DiscreteTransferFcn_states_ho =
       ctrl_custom_DW.DiscreteTransferFcn_tmp_m;
 
     /* Update for Delay: '<S58>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_o = ctrl_custom_B.sf_ActualForceandTorque_c.Qa;
+    ctrl_custom_DW.Delay_DSTATE_k2 = ctrl_custom_B.sf_ActualForceandTorque_oa.Qa;
 
     /* Update for Delay: '<S113>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_h = ctrl_custom_B.DiscreteTransferFcn_lk;
+    ctrl_custom_DW.Delay_DSTATE_kz = ctrl_custom_B.DiscreteTransferFcn_a;
 
     /* Update for DiscreteTransferFcn: '<S113>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_k0[1] =
-      ctrl_custom_DW.DiscreteTransferFcn_states_k0[0];
-    ctrl_custom_DW.DiscreteTransferFcn_states_k0[0] =
+    ctrl_custom_DW.DiscreteTransferFcn_states_e[1] =
+      ctrl_custom_DW.DiscreteTransferFcn_states_e[0];
+    ctrl_custom_DW.DiscreteTransferFcn_states_e[0] =
       ctrl_custom_DW.DiscreteTransferFcn_tmp_o;
 
     /* Update for UnitDelay: '<S116>/UD' */
-    ctrl_custom_DW.UD_DSTATE_e = ctrl_custom_B.TSamp_mr;
+    ctrl_custom_DW.UD_DSTATE_go = ctrl_custom_B.TSamp_d;
 
     /* Update for Memory: '<S113>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_f2 = ctrl_custom_B.sf_Supervisor_gj.u;
+    ctrl_custom_DW.Memory_PreviousInput_o = ctrl_custom_B.sf_Supervisor_h.u;
 
     /* Update for DiscreteTransferFcn: '<S58>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_pv =
-      ctrl_custom_DW.DiscreteTransferFcn_tmp_ir;
+    ctrl_custom_DW.DiscreteTransferFcn_states_b =
+      ctrl_custom_DW.DiscreteTransferFcn_tmp_k;
   }
 
   if (rtmIsMajorTimeStep(ctrl_custom_M)) {
@@ -7362,25 +6720,25 @@ void ctrl_custom_derivatives(void)
   _rtXdot->TransferFcn2_CSTATE += ctrl_custom_B.Gain5;
 
   /* Derivatives for Integrator: '<S8>/Integrator1' */
-  _rtXdot->Integrator1_CSTATE = ctrl_custom_B.Sum_c;
+  _rtXdot->Integrator1_CSTATE = ctrl_custom_B.Sum_e;
 
   /* Derivatives for Integrator: '<S67>/Integrator' */
-  _rtXdot->Integrator_CSTATE_a = ctrl_custom_B.Findingrotationspeed;
+  _rtXdot->Integrator_CSTATE_p = ctrl_custom_B.Findingrotationspeed;
 
   /* Derivatives for Integrator: '<S76>/Integrator' */
-  _rtXdot->Integrator_CSTATE_f = ctrl_custom_B.Findingrotationspeed_h;
+  _rtXdot->Integrator_CSTATE_g = ctrl_custom_B.Findingrotationspeed_d;
 
   /* Derivatives for Integrator: '<S85>/Integrator' */
-  _rtXdot->Integrator_CSTATE_ao = ctrl_custom_B.Findingrotationspeed_m;
+  _rtXdot->Integrator_CSTATE_n = ctrl_custom_B.Findingrotationspeed_g;
 
   /* Derivatives for Integrator: '<S94>/Integrator' */
-  _rtXdot->Integrator_CSTATE_k = ctrl_custom_B.Findingrotationspeed_p;
+  _rtXdot->Integrator_CSTATE_b = ctrl_custom_B.Findingrotationspeed_e;
 
   /* Derivatives for Integrator: '<S103>/Integrator' */
-  _rtXdot->Integrator_CSTATE_k2 = ctrl_custom_B.Findingrotationspeed_j;
+  _rtXdot->Integrator_CSTATE_c = ctrl_custom_B.Findingrotationspeed_n;
 
   /* Derivatives for Integrator: '<S112>/Integrator' */
-  _rtXdot->Integrator_CSTATE_i = ctrl_custom_B.Findingrotationspeed_c;
+  _rtXdot->Integrator_CSTATE_l = ctrl_custom_B.Findingrotationspeed_p;
 
   /* Derivatives for Integrator: '<S5>/Integrator' */
   _rtXdot->Integrator_CSTATE[0] = ctrl_custom_B.Sum1[0];
@@ -7395,14 +6753,14 @@ void ctrl_custom_derivatives(void)
   _rtXdot->Integrator1_CSTATE_m[0] =
     ctrl_custom_B.TmpSignalConversionAtMatrixMult[0];
 
-  /* Derivatives for Integrator: '<S11>/Integrator1' */
-  _rtXdot->Integrator1_CSTATE_d[0] = ctrl_custom_B.Sum2[0];
-
   /* Derivatives for Integrator: '<S5>/Integrator2' */
-  _rtXdot->Integrator2_CSTATE_j[0] = ctrl_custom_B.MatrixMultiply1[0];
+  _rtXdot->Integrator2_CSTATE_j[0] = ctrl_custom_B.MatrixMultiply1_j[0];
 
   /* Derivatives for Integrator: '<S11>/Integrator' */
-  _rtXdot->Integrator_CSTATE_f5[0] = ctrl_custom_B.Sum_m[0];
+  _rtXdot->Integrator_CSTATE_f[0] = ctrl_custom_B.Sum_m[0];
+
+  /* Derivatives for Integrator: '<S11>/Integrator1' */
+  _rtXdot->Integrator1_CSTATE_d[0] = ctrl_custom_B.Sum2[0];
 
   /* Derivatives for Integrator: '<S5>/Integrator' */
   _rtXdot->Integrator_CSTATE[1] = ctrl_custom_B.Sum1[1];
@@ -7417,14 +6775,14 @@ void ctrl_custom_derivatives(void)
   _rtXdot->Integrator1_CSTATE_m[1] =
     ctrl_custom_B.TmpSignalConversionAtMatrixMult[1];
 
-  /* Derivatives for Integrator: '<S11>/Integrator1' */
-  _rtXdot->Integrator1_CSTATE_d[1] = ctrl_custom_B.Sum2[1];
-
   /* Derivatives for Integrator: '<S5>/Integrator2' */
-  _rtXdot->Integrator2_CSTATE_j[1] = ctrl_custom_B.MatrixMultiply1[1];
+  _rtXdot->Integrator2_CSTATE_j[1] = ctrl_custom_B.MatrixMultiply1_j[1];
 
   /* Derivatives for Integrator: '<S11>/Integrator' */
-  _rtXdot->Integrator_CSTATE_f5[1] = ctrl_custom_B.Sum_m[1];
+  _rtXdot->Integrator_CSTATE_f[1] = ctrl_custom_B.Sum_m[1];
+
+  /* Derivatives for Integrator: '<S11>/Integrator1' */
+  _rtXdot->Integrator1_CSTATE_d[1] = ctrl_custom_B.Sum2[1];
 
   /* Derivatives for Integrator: '<S5>/Integrator' */
   _rtXdot->Integrator_CSTATE[2] = ctrl_custom_B.Sum1[2];
@@ -7439,32 +6797,32 @@ void ctrl_custom_derivatives(void)
   _rtXdot->Integrator1_CSTATE_m[2] =
     ctrl_custom_B.TmpSignalConversionAtMatrixMult[2];
 
+  /* Derivatives for Integrator: '<S5>/Integrator2' */
+  _rtXdot->Integrator2_CSTATE_j[2] = ctrl_custom_B.MatrixMultiply1_j[2];
+
+  /* Derivatives for Integrator: '<S11>/Integrator' */
+  _rtXdot->Integrator_CSTATE_f[2] = ctrl_custom_B.Sum_m[2];
+
   /* Derivatives for Integrator: '<S11>/Integrator1' */
   _rtXdot->Integrator1_CSTATE_d[2] = ctrl_custom_B.Sum2[2];
 
-  /* Derivatives for Integrator: '<S5>/Integrator2' */
-  _rtXdot->Integrator2_CSTATE_j[2] = ctrl_custom_B.MatrixMultiply1[2];
-
-  /* Derivatives for Integrator: '<S11>/Integrator' */
-  _rtXdot->Integrator_CSTATE_f5[2] = ctrl_custom_B.Sum_m[2];
-
   /* Derivatives for Integrator: '<S70>/Integrator' */
-  _rtXdot->Integrator_CSTATE_m = ctrl_custom_B.Ki;
+  _rtXdot->Integrator_CSTATE_ph = ctrl_custom_B.Ki;
 
   /* Derivatives for Integrator: '<S79>/Integrator' */
-  _rtXdot->Integrator_CSTATE_ko = ctrl_custom_B.Ki_c;
+  _rtXdot->Integrator_CSTATE_o = ctrl_custom_B.Ki_n;
 
   /* Derivatives for Integrator: '<S88>/Integrator' */
-  _rtXdot->Integrator_CSTATE_c = ctrl_custom_B.Ki_o;
+  _rtXdot->Integrator_CSTATE_or = ctrl_custom_B.Ki_f;
 
   /* Derivatives for Integrator: '<S97>/Integrator' */
-  _rtXdot->Integrator_CSTATE_p = ctrl_custom_B.Ki_g;
+  _rtXdot->Integrator_CSTATE_h = ctrl_custom_B.Ki_h;
 
   /* Derivatives for Integrator: '<S106>/Integrator' */
-  _rtXdot->Integrator_CSTATE_n = ctrl_custom_B.Ki_m;
+  _rtXdot->Integrator_CSTATE_fm = ctrl_custom_B.Ki_j;
 
   /* Derivatives for Integrator: '<S115>/Integrator' */
-  _rtXdot->Integrator_CSTATE_ci = ctrl_custom_B.Ki_l;
+  _rtXdot->Integrator_CSTATE_m = ctrl_custom_B.Ki_a;
 }
 
 /* Model initialize function */
@@ -7486,23 +6844,20 @@ void ctrl_custom_initialize(void)
     /* End of Start for SubSystem: '<S13>/Optimal angle path and  constraints on rotation speed' */
   }
 
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE = UNINITIALIZED_ZCSIG;
   ctrl_custom_PrevZCX.Integrator1_Reset_ZCE = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator1_Reset_ZCE_o = UNINITIALIZED_ZCSIG;
   ctrl_custom_PrevZCX.Integrator1_Reset_ZCE_g = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_g = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_n = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_e = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_l = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_a = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_h = UNINITIALIZED_ZCSIG;
   ctrl_custom_PrevZCX.Integrator_Reset_ZCE_j = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_m = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator2_Reset_ZCE = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_lk = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_p = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_gm = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_ja = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_e = UNINITIALIZED_ZCSIG;
   ctrl_custom_PrevZCX.Integrator_Reset_ZCE_i = UNINITIALIZED_ZCSIG;
-  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_b = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_ju = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_o = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_l = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_n = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_aa = UNINITIALIZED_ZCSIG;
+  ctrl_custom_PrevZCX.Integrator_Reset_ZCE_li = UNINITIALIZED_ZCSIG;
 
   {
     /* local scratch DWork variables */
@@ -7527,22 +6882,22 @@ void ctrl_custom_initialize(void)
     ctrl_custom_X.Integrator1_CSTATE = ctrl_custom_P.Integrator1_IC;
 
     /* InitializeConditions for Integrator: '<S67>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_a = ctrl_custom_P.Integrator_IC;
+    ctrl_custom_X.Integrator_CSTATE_p = ctrl_custom_P.Integrator_IC;
 
     /* InitializeConditions for Integrator: '<S76>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_f = ctrl_custom_P.Integrator_IC_h;
+    ctrl_custom_X.Integrator_CSTATE_g = ctrl_custom_P.Integrator_IC_h;
 
     /* InitializeConditions for Integrator: '<S85>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_ao = ctrl_custom_P.Integrator_IC_o;
+    ctrl_custom_X.Integrator_CSTATE_n = ctrl_custom_P.Integrator_IC_e;
 
     /* InitializeConditions for Integrator: '<S94>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_k = ctrl_custom_P.Integrator_IC_hz;
+    ctrl_custom_X.Integrator_CSTATE_b = ctrl_custom_P.Integrator_IC_d;
 
     /* InitializeConditions for Integrator: '<S103>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_k2 = ctrl_custom_P.Integrator_IC_d;
+    ctrl_custom_X.Integrator_CSTATE_c = ctrl_custom_P.Integrator_IC_eb;
 
     /* InitializeConditions for Integrator: '<S112>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_i = ctrl_custom_P.Integrator_IC_b;
+    ctrl_custom_X.Integrator_CSTATE_l = ctrl_custom_P.Integrator_IC_a;
 
     /* InitializeConditions for Integrator: '<S5>/Integrator1' */
     ctrl_custom_X.Integrator1_CSTATE_n[0] = ctrl_custom_P.Integrator1_IC_g[0];
@@ -7553,14 +6908,14 @@ void ctrl_custom_initialize(void)
     /* InitializeConditions for Integrator: '<S7>/Integrator1' */
     ctrl_custom_X.Integrator1_CSTATE_m[0] = ctrl_custom_P.Integrator1_IC_e;
 
-    /* InitializeConditions for Integrator: '<S11>/Integrator1' */
-    ctrl_custom_X.Integrator1_CSTATE_d[0] = ctrl_custom_P.Integrator1_IC_b;
-
     /* InitializeConditions for Integrator: '<S5>/Integrator2' */
     ctrl_custom_X.Integrator2_CSTATE_j[0] = ctrl_custom_P.Integrator2_IC_i[0];
 
     /* InitializeConditions for Integrator: '<S11>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_f5[0] = ctrl_custom_P.Integrator_IC_m;
+    ctrl_custom_X.Integrator_CSTATE_f[0] = ctrl_custom_P.Integrator_IC_m;
+
+    /* InitializeConditions for Integrator: '<S11>/Integrator1' */
+    ctrl_custom_X.Integrator1_CSTATE_d[0] = ctrl_custom_P.Integrator1_IC_b;
 
     /* InitializeConditions for Integrator: '<S5>/Integrator1' */
     ctrl_custom_X.Integrator1_CSTATE_n[1] = ctrl_custom_P.Integrator1_IC_g[1];
@@ -7571,14 +6926,14 @@ void ctrl_custom_initialize(void)
     /* InitializeConditions for Integrator: '<S7>/Integrator1' */
     ctrl_custom_X.Integrator1_CSTATE_m[1] = ctrl_custom_P.Integrator1_IC_e;
 
-    /* InitializeConditions for Integrator: '<S11>/Integrator1' */
-    ctrl_custom_X.Integrator1_CSTATE_d[1] = ctrl_custom_P.Integrator1_IC_b;
-
     /* InitializeConditions for Integrator: '<S5>/Integrator2' */
     ctrl_custom_X.Integrator2_CSTATE_j[1] = ctrl_custom_P.Integrator2_IC_i[1];
 
     /* InitializeConditions for Integrator: '<S11>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_f5[1] = ctrl_custom_P.Integrator_IC_m;
+    ctrl_custom_X.Integrator_CSTATE_f[1] = ctrl_custom_P.Integrator_IC_m;
+
+    /* InitializeConditions for Integrator: '<S11>/Integrator1' */
+    ctrl_custom_X.Integrator1_CSTATE_d[1] = ctrl_custom_P.Integrator1_IC_b;
 
     /* InitializeConditions for Integrator: '<S5>/Integrator1' */
     ctrl_custom_X.Integrator1_CSTATE_n[2] = ctrl_custom_P.Integrator1_IC_g[2];
@@ -7589,14 +6944,14 @@ void ctrl_custom_initialize(void)
     /* InitializeConditions for Integrator: '<S7>/Integrator1' */
     ctrl_custom_X.Integrator1_CSTATE_m[2] = ctrl_custom_P.Integrator1_IC_e;
 
-    /* InitializeConditions for Integrator: '<S11>/Integrator1' */
-    ctrl_custom_X.Integrator1_CSTATE_d[2] = ctrl_custom_P.Integrator1_IC_b;
-
     /* InitializeConditions for Integrator: '<S5>/Integrator2' */
     ctrl_custom_X.Integrator2_CSTATE_j[2] = ctrl_custom_P.Integrator2_IC_i[2];
 
     /* InitializeConditions for Integrator: '<S11>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_f5[2] = ctrl_custom_P.Integrator_IC_m;
+    ctrl_custom_X.Integrator_CSTATE_f[2] = ctrl_custom_P.Integrator_IC_m;
+
+    /* InitializeConditions for Integrator: '<S11>/Integrator1' */
+    ctrl_custom_X.Integrator1_CSTATE_d[2] = ctrl_custom_P.Integrator1_IC_b;
 
     /* InitializeConditions for Delay: '<S15>/Delay' */
     for (i = 0; i < 6; i++) {
@@ -7606,10 +6961,10 @@ void ctrl_custom_initialize(void)
     /* End of InitializeConditions for Delay: '<S15>/Delay' */
 
     /* InitializeConditions for Delay: '<S53>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_f = ctrl_custom_P.Delay_InitialCondition_m;
+    ctrl_custom_DW.Delay_DSTATE_i = ctrl_custom_P.Delay_InitialCondition_g;
 
     /* InitializeConditions for Delay: '<S68>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_k = ctrl_custom_P.Delay_InitialCondition_a;
+    ctrl_custom_DW.Delay_DSTATE_l = ctrl_custom_P.Delay_InitialCondition_a;
 
     /* InitializeConditions for UnitDelay: '<S71>/UD' */
     ctrl_custom_DW.UD_DSTATE = ctrl_custom_P.DiscreteDerivative_ICPrevScaled;
@@ -7621,169 +6976,169 @@ void ctrl_custom_initialize(void)
     ctrl_custom_DW.Memory_PreviousInput = ctrl_custom_P.Memory_X0;
 
     /* InitializeConditions for Integrator: '<S70>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_m = ctrl_custom_P.Integrator_IC_j;
+    ctrl_custom_X.Integrator_CSTATE_ph = ctrl_custom_P.Integrator_IC_p;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S53>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_k =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_i;
+    ctrl_custom_DW.DiscreteTransferFcn_states_h =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_f;
 
     /* InitializeConditions for Delay: '<S54>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_c = ctrl_custom_P.Delay_InitialCondition_j;
+    ctrl_custom_DW.Delay_DSTATE_f = ctrl_custom_P.Delay_InitialCondition_i;
 
     /* InitializeConditions for Delay: '<S77>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_j = ctrl_custom_P.Delay_InitialCondition_n;
+    ctrl_custom_DW.Delay_DSTATE_d = ctrl_custom_P.Delay_InitialCondition_a0;
 
     /* InitializeConditions for UnitDelay: '<S80>/UD' */
-    ctrl_custom_DW.UD_DSTATE_f = ctrl_custom_P.DiscreteDerivative_ICPrevScal_l;
+    ctrl_custom_DW.UD_DSTATE_i = ctrl_custom_P.DiscreteDerivative_ICPrevScal_k;
 
     /* InitializeConditions for RateLimiter: '<S77>/Acceleration Limit' */
-    ctrl_custom_DW.PrevY_p = ctrl_custom_P.AccelerationLimit_IC_l;
+    ctrl_custom_DW.PrevY_a = ctrl_custom_P.AccelerationLimit_IC_o;
 
     /* InitializeConditions for Memory: '<S77>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_g = ctrl_custom_P.Memory_X0_h;
+    ctrl_custom_DW.Memory_PreviousInput_c = ctrl_custom_P.Memory_X0_e;
 
     /* InitializeConditions for Integrator: '<S79>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_ko = ctrl_custom_P.Integrator_IC_p;
+    ctrl_custom_X.Integrator_CSTATE_o = ctrl_custom_P.Integrator_IC_k;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S54>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_j0 =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_p;
+    ctrl_custom_DW.DiscreteTransferFcn_states_i =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_d;
 
     /* InitializeConditions for Delay: '<S55>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_m = ctrl_custom_P.Delay_InitialCondition_b;
+    ctrl_custom_DW.Delay_DSTATE_j = ctrl_custom_P.Delay_InitialCondition_e;
 
     /* InitializeConditions for Delay: '<S86>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_e = ctrl_custom_P.Delay_InitialCondition_o;
+    ctrl_custom_DW.Delay_DSTATE_c = ctrl_custom_P.Delay_InitialCondition_f;
 
     /* InitializeConditions for UnitDelay: '<S89>/UD' */
-    ctrl_custom_DW.UD_DSTATE_p = ctrl_custom_P.DiscreteDerivative_ICPrevScal_k;
+    ctrl_custom_DW.UD_DSTATE_a = ctrl_custom_P.DiscreteDerivative_ICPrevScal_h;
 
     /* InitializeConditions for RateLimiter: '<S86>/Acceleration limiter' */
-    ctrl_custom_DW.PrevY_k = ctrl_custom_P.Accelerationlimiter_IC;
+    ctrl_custom_DW.PrevY_an = ctrl_custom_P.Accelerationlimiter_IC;
 
     /* InitializeConditions for Memory: '<S86>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_f = ctrl_custom_P.Memory_X0_d;
+    ctrl_custom_DW.Memory_PreviousInput_b = ctrl_custom_P.Memory_X0_d;
 
     /* InitializeConditions for Integrator: '<S88>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_c = ctrl_custom_P.Integrator_IC_k;
+    ctrl_custom_X.Integrator_CSTATE_or = ctrl_custom_P.Integrator_IC_hm;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S55>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_m =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_n;
+    ctrl_custom_DW.DiscreteTransferFcn_states_c =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_e;
 
     /* InitializeConditions for Delay: '<S56>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_kg = ctrl_custom_P.Delay_InitialCondition_d;
+    ctrl_custom_DW.Delay_DSTATE_g = ctrl_custom_P.Delay_InitialCondition_h;
 
     /* InitializeConditions for Delay: '<S95>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_ki = ctrl_custom_P.Delay_InitialCondition_b4;
+    ctrl_custom_DW.Delay_DSTATE_k = ctrl_custom_P.Delay_InitialCondition_o;
 
     /* InitializeConditions for UnitDelay: '<S98>/UD' */
-    ctrl_custom_DW.UD_DSTATE_a = ctrl_custom_P.DiscreteDerivative_ICPrevScal_i;
+    ctrl_custom_DW.UD_DSTATE_g = ctrl_custom_P.DiscreteDerivative_ICPrevSca_kv;
 
     /* InitializeConditions for RateLimiter: '<S95>/Acceleration limiter' */
-    ctrl_custom_DW.PrevY_m = ctrl_custom_P.Accelerationlimiter_IC_i;
+    ctrl_custom_DW.PrevY_e = ctrl_custom_P.Accelerationlimiter_IC_j;
 
     /* InitializeConditions for Memory: '<S95>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_d = ctrl_custom_P.Memory_X0_b;
+    ctrl_custom_DW.Memory_PreviousInput_g = ctrl_custom_P.Memory_X0_l;
 
     /* InitializeConditions for Integrator: '<S97>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_p = ctrl_custom_P.Integrator_IC_l;
+    ctrl_custom_X.Integrator_CSTATE_h = ctrl_custom_P.Integrator_IC_f;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S56>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_p =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_g;
+    ctrl_custom_DW.DiscreteTransferFcn_states_m =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_j;
 
     /* InitializeConditions for Delay: '<S57>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_p = ctrl_custom_P.Delay_InitialCondition_g;
+    ctrl_custom_DW.Delay_DSTATE_n = ctrl_custom_P.Delay_InitialCondition_eo;
 
     /* InitializeConditions for Delay: '<S104>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_kf = ctrl_custom_P.Delay_InitialCondition_p;
+    ctrl_custom_DW.Delay_DSTATE_jt = ctrl_custom_P.Delay_InitialCondition_k;
 
     /* InitializeConditions for UnitDelay: '<S107>/UD' */
-    ctrl_custom_DW.UD_DSTATE_l = ctrl_custom_P.DiscreteDerivative_ICPrevScal_b;
+    ctrl_custom_DW.UD_DSTATE_gf = ctrl_custom_P.DiscreteDerivative_ICPrevScal_c;
 
     /* InitializeConditions for RateLimiter: '<S104>/Acceleration limiter' */
-    ctrl_custom_DW.PrevY_mo = ctrl_custom_P.Accelerationlimiter_IC_d;
+    ctrl_custom_DW.PrevY_i = ctrl_custom_P.Accelerationlimiter_IC_h;
 
     /* InitializeConditions for Memory: '<S104>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_l = ctrl_custom_P.Memory_X0_n;
+    ctrl_custom_DW.Memory_PreviousInput_f = ctrl_custom_P.Memory_X0_c;
 
     /* InitializeConditions for Integrator: '<S106>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_n = ctrl_custom_P.Integrator_IC_hh;
+    ctrl_custom_X.Integrator_CSTATE_fm = ctrl_custom_P.Integrator_IC_fh;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S57>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_g =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_k;
+    ctrl_custom_DW.DiscreteTransferFcn_states_ho =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_o;
 
     /* InitializeConditions for Delay: '<S58>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_o = ctrl_custom_P.Delay_InitialCondition_md;
+    ctrl_custom_DW.Delay_DSTATE_k2 = ctrl_custom_P.Delay_InitialCondition_l;
 
     /* InitializeConditions for Delay: '<S113>/Delay' */
-    ctrl_custom_DW.Delay_DSTATE_h = ctrl_custom_P.Delay_InitialCondition_gp;
+    ctrl_custom_DW.Delay_DSTATE_kz = ctrl_custom_P.Delay_InitialCondition_op;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S68>/Discrete Transfer Fcn' */
     ctrl_custom_DW.DiscreteTransferFcn_states[0] =
       ctrl_custom_P.DiscreteTransferFcn_InitialStat;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S77>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_j[0] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_f;
+    ctrl_custom_DW.DiscreteTransferFcn_states_d[0] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_m;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S86>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_f[0] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_h;
+    ctrl_custom_DW.DiscreteTransferFcn_states_o[0] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_c;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S95>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_e[0] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialS_nq;
+    ctrl_custom_DW.DiscreteTransferFcn_states_cl[0] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_n;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S104>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_jn[0] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialS_il;
+    ctrl_custom_DW.DiscreteTransferFcn_states_dh[0] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_a;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S113>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_k0[0] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialS_fz;
+    ctrl_custom_DW.DiscreteTransferFcn_states_e[0] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialS_ok;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S68>/Discrete Transfer Fcn' */
     ctrl_custom_DW.DiscreteTransferFcn_states[1] =
       ctrl_custom_P.DiscreteTransferFcn_InitialStat;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S77>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_j[1] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_f;
+    ctrl_custom_DW.DiscreteTransferFcn_states_d[1] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_m;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S86>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_f[1] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_h;
+    ctrl_custom_DW.DiscreteTransferFcn_states_o[1] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_c;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S95>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_e[1] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialS_nq;
+    ctrl_custom_DW.DiscreteTransferFcn_states_cl[1] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_n;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S104>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_jn[1] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialS_il;
+    ctrl_custom_DW.DiscreteTransferFcn_states_dh[1] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialSt_a;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S113>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_k0[1] =
-      ctrl_custom_P.DiscreteTransferFcn_InitialS_fz;
+    ctrl_custom_DW.DiscreteTransferFcn_states_e[1] =
+      ctrl_custom_P.DiscreteTransferFcn_InitialS_ok;
 
     /* InitializeConditions for UnitDelay: '<S116>/UD' */
-    ctrl_custom_DW.UD_DSTATE_e = ctrl_custom_P.DiscreteDerivative_ICPrevSca_iv;
+    ctrl_custom_DW.UD_DSTATE_go = ctrl_custom_P.DiscreteDerivative_ICPrevSca_hs;
 
     /* InitializeConditions for RateLimiter: '<S113>/Acceleration limiter' */
-    ctrl_custom_DW.PrevY_k4 = ctrl_custom_P.Accelerationlimiter_IC_g;
+    ctrl_custom_DW.PrevY_n = ctrl_custom_P.Accelerationlimiter_IC_d;
 
     /* InitializeConditions for Memory: '<S113>/Memory' */
-    ctrl_custom_DW.Memory_PreviousInput_f2 = ctrl_custom_P.Memory_X0_m;
+    ctrl_custom_DW.Memory_PreviousInput_o = ctrl_custom_P.Memory_X0_f;
 
     /* InitializeConditions for Integrator: '<S115>/Integrator' */
-    ctrl_custom_X.Integrator_CSTATE_ci = ctrl_custom_P.Integrator_IC_pr;
+    ctrl_custom_X.Integrator_CSTATE_m = ctrl_custom_P.Integrator_IC_i;
 
     /* InitializeConditions for DiscreteTransferFcn: '<S58>/Discrete Transfer Fcn' */
-    ctrl_custom_DW.DiscreteTransferFcn_states_pv =
-      ctrl_custom_P.DiscreteTransferFcn_InitialSt_j;
+    ctrl_custom_DW.DiscreteTransferFcn_states_b =
+      ctrl_custom_P.DiscreteTransferFcn_InitialS_fx;
 
     /* SystemInitialize for Iterator SubSystem: '<S13>/Optimal angle path and  constraints on rotation speed' */
     for (ForEach_itr = 0; ForEach_itr < 6; ForEach_itr++) {
@@ -8007,9 +7362,9 @@ RT_MODEL_ctrl_custom_T *ctrl_custom(void)
   ctrl_custom_M->Sizes.numU = (0);     /* Number of model inputs */
   ctrl_custom_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   ctrl_custom_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  ctrl_custom_M->Sizes.numBlocks = (603);/* Number of blocks */
-  ctrl_custom_M->Sizes.numBlockIO = (216);/* Number of block outputs */
-  ctrl_custom_M->Sizes.numBlockPrms = (981);/* Sum of parameter "widths" */
+  ctrl_custom_M->Sizes.numBlocks = (608);/* Number of blocks */
+  ctrl_custom_M->Sizes.numBlockIO = (221);/* Number of block outputs */
+  ctrl_custom_M->Sizes.numBlockPrms = (1027);/* Sum of parameter "widths" */
   return ctrl_custom_M;
 }
 
@@ -8021,9 +7376,9 @@ RT_MODEL_ctrl_custom_T *ctrl_custom(void)
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.109
+ * Model version : 1.160
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Wed Jul 26 09:02:21 2017
+ * Source generated on : Sat Jul 29 13:11:58 2017
  *========================================================================*/
 
 /* This file contains automatically generated code for functions
@@ -8167,19 +7522,19 @@ double NIRT_GetValueByDataType(void* ptr, int32_t subindex, int32_t type,
     return NIRT_GetValueByDataType(ptr,subindex,0,Complex);
 
    case 42:
-    return NIRT_GetValueByDataType(ptr,subindex,8,Complex);
+    return NIRT_GetValueByDataType(ptr,subindex,0,Complex);
 
    case 43:
-    return NIRT_GetValueByDataType(ptr,subindex,0,Complex);
+    return (( double *)ptr)[subindex];
 
    case 44:
     return (( double *)ptr)[subindex];
 
    case 45:
-    return (( double *)ptr)[subindex];
+    return NIRT_GetValueByDataType(ptr,subindex,44,Complex);
 
    case 46:
-    return NIRT_GetValueByDataType(ptr,subindex,45,Complex);
+    return (( double *)ptr)[subindex];
 
    case 47:
     return (( double *)ptr)[subindex];
@@ -8200,10 +7555,10 @@ double NIRT_GetValueByDataType(void* ptr, int32_t subindex, int32_t type,
     return (( double *)ptr)[subindex];
 
    case 53:
-    return (( double *)ptr)[subindex];
+    return NIRT_GetValueByDataType(ptr,subindex,52,Complex);
 
    case 54:
-    return NIRT_GetValueByDataType(ptr,subindex,53,Complex);
+    return (( double *)ptr)[subindex];
 
    case 55:
     return (( double *)ptr)[subindex];
@@ -8224,18 +7579,15 @@ double NIRT_GetValueByDataType(void* ptr, int32_t subindex, int32_t type,
     return (( double *)ptr)[subindex];
 
    case 61:
-    return (( double *)ptr)[subindex];
+    return NIRT_GetValueByDataType(ptr,subindex,0,Complex);
 
    case 62:
-    return NIRT_GetValueByDataType(ptr,subindex,0,Complex);
-
-   case 63:
     return NIRT_GetValueByDataType(ptr,subindex,7,Complex);
 
-   case 64:
+   case 63:
     return NIRT_GetValueByDataType(ptr,subindex,0,Complex);
 
-   case 65:
+   case 64:
     return NIRT_GetValueByDataType(ptr,subindex,7,Complex);
   }
 
@@ -8407,10 +7759,10 @@ int32_t NIRT_SetValueByDataType(void* ptr, int32_t subindex, double value,
 
    case 42:
     //Type is matrix. Call SetValueByDataType on its contained type
-    return NIRT_SetValueByDataType(ptr, subindex, value, 8, Complex);
+    return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
 
    case 43:
-    //Type is matrix. Call SetValueByDataType on its contained type
+    //Type is struct. Call SetValueByDataType on its contained type
     return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
 
    case 44:
@@ -8418,12 +7770,12 @@ int32_t NIRT_SetValueByDataType(void* ptr, int32_t subindex, double value,
     return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
 
    case 45:
-    //Type is struct. Call SetValueByDataType on its contained type
-    return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
+    //Type is matrix. Call SetValueByDataType on its contained type
+    return NIRT_SetValueByDataType(ptr, subindex, value, 44, Complex);
 
    case 46:
-    //Type is matrix. Call SetValueByDataType on its contained type
-    return NIRT_SetValueByDataType(ptr, subindex, value, 45, Complex);
+    //Type is struct. Call SetValueByDataType on its contained type
+    return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
 
    case 47:
     //Type is struct. Call SetValueByDataType on its contained type
@@ -8450,12 +7802,12 @@ int32_t NIRT_SetValueByDataType(void* ptr, int32_t subindex, double value,
     return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
 
    case 53:
-    //Type is struct. Call SetValueByDataType on its contained type
-    return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
+    //Type is matrix. Call SetValueByDataType on its contained type
+    return NIRT_SetValueByDataType(ptr, subindex, value, 52, Complex);
 
    case 54:
-    //Type is matrix. Call SetValueByDataType on its contained type
-    return NIRT_SetValueByDataType(ptr, subindex, value, 53, Complex);
+    //Type is struct. Call SetValueByDataType on its contained type
+    return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
 
    case 55:
     //Type is struct. Call SetValueByDataType on its contained type
@@ -8482,22 +7834,18 @@ int32_t NIRT_SetValueByDataType(void* ptr, int32_t subindex, double value,
     return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
 
    case 61:
-    //Type is struct. Call SetValueByDataType on its contained type
+    //Type is matrix. Call SetValueByDataType on its contained type
     return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
 
    case 62:
     //Type is matrix. Call SetValueByDataType on its contained type
-    return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
+    return NIRT_SetValueByDataType(ptr, subindex, value, 7, Complex);
 
    case 63:
     //Type is matrix. Call SetValueByDataType on its contained type
-    return NIRT_SetValueByDataType(ptr, subindex, value, 7, Complex);
-
-   case 64:
-    //Type is matrix. Call SetValueByDataType on its contained type
     return NIRT_SetValueByDataType(ptr, subindex, value, 0, Complex);
 
-   case 65:
+   case 64:
     //Type is matrix. Call SetValueByDataType on its contained type
     return NIRT_SetValueByDataType(ptr, subindex, value, 7, Complex);
   }
@@ -8533,9 +7881,9 @@ void SetExternalInputs(double* data, int_T* TaskSampleHit)
     index += 1;
   }
 
-  // ctrl_custom/start
+  // ctrl_custom/Startbutton
   if (TaskSampleHit[0]) {
-    NIRT_SetValueByDataType(&ctrl_custom_B.start, 0, data[index++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_B.Startbutton, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
@@ -8640,51 +7988,52 @@ void SetExternalInputs(double* data, int_T* TaskSampleHit)
     index += 1;
   }
 
-  // ctrl_custom/start2
+  // ctrl_custom/Startbutton1
   if (TaskSampleHit[1]) {
     for (count = 0; count < 6; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_B.start2, count, data[index++], 24, 0);
+      NIRT_SetValueByDataType(&ctrl_custom_B.Startbutton1, count, data[index++],
+        24, 0);
     }
   } else {
     index += 6;
   }
 
-  // ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm1
+  // ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm1
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.rpm1, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm2
+  // ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm2
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.rpm2, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm3
+  // ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm3
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.rpm3, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm4
+  // ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm4
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.rpm4, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm5
+  // ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm5
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.rpm5, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm6
+  // ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm6
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.rpm6, 0, data[index++], 0, 0);
   } else {
@@ -8818,44 +8167,44 @@ void SetExternalInputs(double* data, int_T* TaskSampleHit)
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/reset
+  // ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/reset
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.reset, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/reset
-  if (TaskSampleHit[0]) {
-    NIRT_SetValueByDataType(&ctrl_custom_B.reset_l, 0, data[index++], 0, 0);
-  } else {
-    index += 1;
-  }
-
-  // ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/reset
+  // ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/reset
   if (TaskSampleHit[0]) {
     NIRT_SetValueByDataType(&ctrl_custom_B.reset_i, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/reset
+  // ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/reset
   if (TaskSampleHit[0]) {
-    NIRT_SetValueByDataType(&ctrl_custom_B.reset_h, 0, data[index++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_B.reset_f, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/reset
+  // ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/reset
   if (TaskSampleHit[0]) {
-    NIRT_SetValueByDataType(&ctrl_custom_B.reset_e, 0, data[index++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_B.reset_im, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/reset
+  // ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/reset
   if (TaskSampleHit[0]) {
-    NIRT_SetValueByDataType(&ctrl_custom_B.reset_iu, 0, data[index++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_B.reset_m, 0, data[index++], 0, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/reset
+  if (TaskSampleHit[0]) {
+    NIRT_SetValueByDataType(&ctrl_custom_B.reset_n, 0, data[index++], 0, 0);
   } else {
     index += 1;
   }
@@ -8910,10 +8259,10 @@ int32_t NumInputPorts(void)
 
 int32_t NumOutputPorts(void)
 {
-  return 38;
+  return 45;
 }
 
-double ni_extout[38];
+double ni_extout[45];
 
 /*========================================================================*
  * Function: SetExternalOutputs
@@ -8994,6 +8343,35 @@ void SetExternalOutputs(double* data, int_T* TaskSampleHit)
   if (TaskSampleHit[0]) {              // sample and hold
     ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.commanded_tau, 0,
       23, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/tau_commanded_y: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.commanded_tau, 1,
+      23, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/psi_ref_filter: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Gain4, 0, 0, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/x_ref_filter: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Gain2, 0, 0, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/y_ref_filter: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Gain3, 0, 0, 0);
   } else {
     index += 1;
   }
@@ -9185,10 +8563,9 @@ void SetExternalOutputs(double* data, int_T* TaskSampleHit)
     index += 1;
   }
 
-  // ctrl_custom/tau_commanded_y: Virtual Signal # 0
+  // ctrl_custom/heading: Virtual Signal # 0
   if (TaskSampleHit[0]) {              // sample and hold
-    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.commanded_tau, 1,
-      23, 0);
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Gain8, 0, 0, 0);
   } else {
     index += 1;
   }
@@ -9216,7 +8593,31 @@ void SetExternalOutputs(double* data, int_T* TaskSampleHit)
     index += 1;
   }
 
-  // ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics/Control_test_Pa: Virtual Signal # 0
+  // ctrl_custom/PID controller/Integral_x: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.MatrixMultiply1,
+      0, 23, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/PID controller/Integral_psi: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.MatrixMultiply1,
+      2, 23, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/PID controller/Integral_y: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.MatrixMultiply1,
+      1, 23, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/Thruster control 1/Thruster 1/Propeller Hydrodynamics/Control_test_Pa: Virtual Signal # 0
   if (TaskSampleHit[0]) {              // sample and hold
     ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Pa, 0, 0, 0);
   } else {
@@ -9274,6 +8675,19 @@ int32_t NI_InitExternalOutputs()
   // ctrl_custom/tau_commanded_x: Virtual Signal # 0
   ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.commanded_tau, 0,
     23, 0);
+
+  // ctrl_custom/tau_commanded_y: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.commanded_tau, 1,
+    23, 0);
+
+  // ctrl_custom/psi_ref_filter: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Gain4, 0, 0, 0);
+
+  // ctrl_custom/x_ref_filter: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Gain2, 0, 0, 0);
+
+  // ctrl_custom/y_ref_filter: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Gain3, 0, 0, 0);
 
   // ctrl_custom/Observer output /eta_hat output/x_hat: Virtual Signal # 0
   ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Integrator, 0, 23,
@@ -9366,9 +8780,8 @@ int32_t NI_InitExternalOutputs()
   ni_extout[index++] = NIRT_GetValueByDataType
     (&ctrl_custom_B.sf_MATLABFunction6.Tc_out, 0, 0, 0);
 
-  // ctrl_custom/tau_commanded_y: Virtual Signal # 0
-  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.commanded_tau, 1,
-    23, 0);
+  // ctrl_custom/heading: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Gain8, 0, 0, 0);
 
   // ctrl_custom/PID controller/y_error: Virtual Signal # 0
   ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.regulationerror, 1,
@@ -9381,7 +8794,19 @@ int32_t NI_InitExternalOutputs()
   ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.regulationerror, 0,
     23, 0);
 
-  // ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics/Control_test_Pa: Virtual Signal # 0
+  // ctrl_custom/PID controller/Integral_x: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.MatrixMultiply1, 0,
+    23, 0);
+
+  // ctrl_custom/PID controller/Integral_psi: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.MatrixMultiply1, 2,
+    23, 0);
+
+  // ctrl_custom/PID controller/Integral_y: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.MatrixMultiply1, 1,
+    23, 0);
+
+  // ctrl_custom/Thruster control 1/Thruster 1/Propeller Hydrodynamics/Control_test_Pa: Virtual Signal # 0
   ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Pa, 0, 0, 0);
   UNUSED_PARAMETER(count);
   return NI_OK;
@@ -9399,1221 +8824,1233 @@ static NI_Parameter NI_ParamList[] DataSection(".NIVS.paramlist") =
     27, 24, 2, 0, 0 },
 
   { 1, "ctrl_custom/Thruster Parameters /D/Value", offsetof(P_ctrl_custom_T, D),
-    62, 1, 2, 2, 0 },
+    61, 1, 2, 2, 0 },
 
   { 2,
-    "ctrl_custom/Thruster control /Thruster 1/Shaft dynamics/Finding rotation speed/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 4, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Shaft dynamics/Finding rotation speed/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 4, 0 },
 
   { 3,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Inertia compensation/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 6, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Inertia compensation/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 6, 0 },
 
   { 4,
-    "ctrl_custom/Thruster control /Thruster 2/Shaft dynamics/Finding rotation speed/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 8, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Shaft dynamics/Finding rotation speed/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 8, 0 },
 
   { 5,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Inertia compensation/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 10, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Inertia compensation/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 10, 0 },
 
   { 6,
-    "ctrl_custom/Thruster control /Thruster 3/Shaft dynamics/Finding rotation speed/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 12, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Shaft dynamics/Finding rotation speed/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 12, 0 },
 
   { 7,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Inertia compensation/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 14, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Inertia compensation/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 14, 0 },
 
   { 8,
-    "ctrl_custom/Thruster control /Thruster 4/Shaft dynamics/Finding rotation speed/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 16, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Shaft dynamics/Finding rotation speed/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 16, 0 },
 
   { 9,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Inertia compensation/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 18, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Inertia compensation/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 18, 0 },
 
   { 10,
-    "ctrl_custom/Thruster control /Thruster 5/Shaft dynamics/Finding rotation speed/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 20, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Shaft dynamics/Finding rotation speed/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 20, 0 },
 
   { 11,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Inertia compensation/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 22, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Inertia compensation/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 22, 0 },
 
   { 12,
-    "ctrl_custom/Thruster control /Thruster 6/Shaft dynamics/Finding rotation speed/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 24, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Shaft dynamics/Finding rotation speed/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 24, 0 },
 
   { 13,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Inertia compensation/Gain/I_s",
-    offsetof(P_ctrl_custom_T, I_s), 62, 1, 2, 26, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Inertia compensation/Gain/I_s",
+    offsetof(P_ctrl_custom_T, I_s), 61, 1, 2, 26, 0 },
 
   { 14, "ctrl_custom/Thruster Parameters /K_Tf1/Value", offsetof(P_ctrl_custom_T,
-    K_T1f), 62, 1, 2, 28, 0 },
+    K_T1f), 61, 1, 2, 28, 0 },
 
   { 15, "ctrl_custom/Thruster Parameters /K_Tr1/Value", offsetof(P_ctrl_custom_T,
-    K_T1r), 62, 1, 2, 30, 0 },
+    K_T1r), 61, 1, 2, 30, 0 },
 
   { 16, "ctrl_custom/Thruster Parameters /K_Tf2/Value", offsetof(P_ctrl_custom_T,
-    K_T2f), 62, 1, 2, 32, 0 },
+    K_T2f), 61, 1, 2, 32, 0 },
 
   { 17, "ctrl_custom/Thruster Parameters /K_Tr2/Value", offsetof(P_ctrl_custom_T,
-    K_T2r), 62, 1, 2, 34, 0 },
+    K_T2r), 61, 1, 2, 34, 0 },
 
   { 18, "ctrl_custom/Thruster Parameters /K_Tf3/Value", offsetof(P_ctrl_custom_T,
-    K_T3f), 62, 1, 2, 36, 0 },
+    K_T3f), 61, 1, 2, 36, 0 },
 
   { 19, "ctrl_custom/Thruster Parameters /K_Tr3/Value", offsetof(P_ctrl_custom_T,
-    K_T3r), 62, 1, 2, 38, 0 },
+    K_T3r), 61, 1, 2, 38, 0 },
 
   { 20, "ctrl_custom/Thruster Parameters /K_Tf4/Value", offsetof(P_ctrl_custom_T,
-    K_T4f), 62, 1, 2, 40, 0 },
+    K_T4f), 61, 1, 2, 40, 0 },
 
   { 21, "ctrl_custom/Thruster Parameters /K_Tr4/Value", offsetof(P_ctrl_custom_T,
-    K_T4r), 62, 1, 2, 42, 0 },
+    K_T4r), 61, 1, 2, 42, 0 },
 
   { 22, "ctrl_custom/Thruster Parameters /K_Tf5/Value", offsetof(P_ctrl_custom_T,
-    K_T5f), 62, 1, 2, 44, 0 },
+    K_T5f), 61, 1, 2, 44, 0 },
 
   { 23, "ctrl_custom/Thruster Parameters /K_Tr5/Value", offsetof(P_ctrl_custom_T,
-    K_T5r), 62, 1, 2, 46, 0 },
+    K_T5r), 61, 1, 2, 46, 0 },
 
   { 24, "ctrl_custom/Thruster Parameters /K_Tf6/Value", offsetof(P_ctrl_custom_T,
-    K_T6f), 62, 1, 2, 48, 0 },
+    K_T6f), 61, 1, 2, 48, 0 },
 
   { 25, "ctrl_custom/Thruster Parameters /K_Tr6/Value", offsetof(P_ctrl_custom_T,
-    K_T6r), 62, 1, 2, 50, 0 },
+    K_T6r), 61, 1, 2, 50, 0 },
 
   { 26,
-    "ctrl_custom/Thruster control /Thruster 1/Shaft dynamics/K_omega/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 52, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Shaft dynamics/K_omega/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 52, 0 },
 
   { 27,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Qff_1(nr)/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 54, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Qff_1(nr)/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 54, 0 },
 
   { 28,
-    "ctrl_custom/Thruster control /Thruster 2/Shaft dynamics/K_omega/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 56, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Shaft dynamics/K_omega/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 56, 0 },
 
   { 29,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Qff_1(nr)/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 58, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Qff_1(nr)/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 58, 0 },
 
   { 30,
-    "ctrl_custom/Thruster control /Thruster 3/Shaft dynamics/K_omega/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 60, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Shaft dynamics/K_omega/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 60, 0 },
 
   { 31,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Qff_1(nr)/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 62, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Qff_1(nr)/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 62, 0 },
 
   { 32,
-    "ctrl_custom/Thruster control /Thruster 4/Shaft dynamics/K_omega/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 64, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Shaft dynamics/K_omega/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 64, 0 },
 
   { 33,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Qff_1(nr)/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 66, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Qff_1(nr)/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 66, 0 },
 
   { 34,
-    "ctrl_custom/Thruster control /Thruster 5/Shaft dynamics/K_omega/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 68, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Shaft dynamics/K_omega/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 68, 0 },
 
   { 35,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Qff_1(nr)/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 70, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Qff_1(nr)/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 70, 0 },
 
   { 36,
-    "ctrl_custom/Thruster control /Thruster 6/Shaft dynamics/K_omega/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 72, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Shaft dynamics/K_omega/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 72, 0 },
 
   { 37,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Qff_1(nr)/Gain/K_omega",
-    offsetof(P_ctrl_custom_T, K_omega), 62, 1, 2, 74, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Qff_1(nr)/Gain/K_omega",
+    offsetof(P_ctrl_custom_T, K_omega), 61, 1, 2, 74, 0 },
 
   { 38, "ctrl_custom/Thruster Parameters /K_Qr1/Value", offsetof(P_ctrl_custom_T,
-    K_q1f), 62, 1, 2, 76, 0 },
+    K_q1f), 61, 1, 2, 76, 0 },
 
   { 39, "ctrl_custom/Thruster Parameters /K_Qr7/Value", offsetof(P_ctrl_custom_T,
-    K_q1r), 62, 1, 2, 78, 0 },
+    K_q1r), 61, 1, 2, 78, 0 },
 
   { 40, "ctrl_custom/Thruster Parameters /K_Qr2/Value", offsetof(P_ctrl_custom_T,
-    K_q2f), 62, 1, 2, 80, 0 },
+    K_q2f), 61, 1, 2, 80, 0 },
 
   { 41, "ctrl_custom/Thruster Parameters /K_Qr8/Value", offsetof(P_ctrl_custom_T,
-    K_q2r), 62, 1, 2, 82, 0 },
+    K_q2r), 61, 1, 2, 82, 0 },
 
   { 42, "ctrl_custom/Thruster Parameters /K_Qr3/Value", offsetof(P_ctrl_custom_T,
-    K_q3f), 62, 1, 2, 84, 0 },
+    K_q3f), 61, 1, 2, 84, 0 },
 
   { 43, "ctrl_custom/Thruster Parameters /K_Qr9/Value", offsetof(P_ctrl_custom_T,
-    K_q3r), 62, 1, 2, 86, 0 },
+    K_q3r), 61, 1, 2, 86, 0 },
 
   { 44, "ctrl_custom/Thruster Parameters /K_Qr4/Value", offsetof(P_ctrl_custom_T,
-    K_q4f), 62, 1, 2, 88, 0 },
+    K_q4f), 61, 1, 2, 88, 0 },
 
   { 45, "ctrl_custom/Thruster Parameters /K_Qr10/Value", offsetof
-    (P_ctrl_custom_T, K_q4r), 62, 1, 2, 90, 0 },
+    (P_ctrl_custom_T, K_q4r), 61, 1, 2, 90, 0 },
 
   { 46, "ctrl_custom/Thruster Parameters /K_Qr5/Value", offsetof(P_ctrl_custom_T,
-    K_q5f), 62, 1, 2, 92, 0 },
+    K_q5f), 61, 1, 2, 92, 0 },
 
   { 47, "ctrl_custom/Thruster Parameters /K_Qr11/Value", offsetof
-    (P_ctrl_custom_T, K_q5r), 62, 1, 2, 94, 0 },
+    (P_ctrl_custom_T, K_q5r), 61, 1, 2, 94, 0 },
 
   { 48, "ctrl_custom/Thruster Parameters /K_Qr6/Value", offsetof(P_ctrl_custom_T,
-    K_q6f), 62, 1, 2, 96, 0 },
+    K_q6f), 61, 1, 2, 96, 0 },
 
   { 49, "ctrl_custom/Thruster Parameters /K_Qr12/Value", offsetof
-    (P_ctrl_custom_T, K_q6r), 62, 1, 2, 98, 0 },
+    (P_ctrl_custom_T, K_q6r), 61, 1, 2, 98, 0 },
 
   { 50,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Ki/Gain/Kp",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 100, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/Ki/Gain/Kp",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 100, 0 },
 
   { 51,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Kp/Gain",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 102, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/Kp/Gain",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 102, 0 },
 
   { 52,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Ki/Gain/Kp",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 104, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/Ki/Gain/Kp",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 104, 0 },
 
   { 53,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Kp/Gain",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 106, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/Kp/Gain",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 106, 0 },
 
   { 54,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Ki/Gain/Kp",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 108, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/Ki/Gain/Kp",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 108, 0 },
 
   { 55,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Kp/Gain",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 110, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/Kp/Gain",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 110, 0 },
 
   { 56,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Ki/Gain/Kp",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 112, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/Ki/Gain/Kp",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 112, 0 },
 
   { 57,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Kp/Gain",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 114, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/Kp/Gain",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 114, 0 },
 
   { 58,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Ki/Gain/Kp",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 116, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/Ki/Gain/Kp",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 116, 0 },
 
   { 59,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Kp/Gain",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 118, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/Kp/Gain",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 118, 0 },
 
   { 60,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Ki/Gain/Kp",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 120, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/Ki/Gain/Kp",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 120, 0 },
 
   { 61,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Kp/Gain",
-    offsetof(P_ctrl_custom_T, Kp), 62, 1, 2, 122, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/Kp/Gain",
+    offsetof(P_ctrl_custom_T, Kp), 61, 1, 2, 122, 0 },
 
   { 62,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Max Rotation Rate/UpperLimit",
-    offsetof(P_ctrl_custom_T, Max_rotation), 62, 1, 2, 124, 0 },
+    offsetof(P_ctrl_custom_T, Max_rotation), 61, 1, 2, 124, 0 },
 
   { 63,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Max Rotation Rate/LowerLimit",
-    offsetof(P_ctrl_custom_T, Max_rotation), 62, 1, 2, 126, 0 },
+    offsetof(P_ctrl_custom_T, Max_rotation), 61, 1, 2, 126, 0 },
 
   { 64,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 1/UpperLimit",
-    offsetof(P_ctrl_custom_T, Max_thrust), 62, 1, 2, 128, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 1/UpperLimit",
+    offsetof(P_ctrl_custom_T, Max_thrust), 61, 1, 2, 128, 0 },
 
   { 65,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 10/UpperLimit",
-    offsetof(P_ctrl_custom_T, Max_thrust), 62, 1, 2, 130, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 10/UpperLimit",
+    offsetof(P_ctrl_custom_T, Max_thrust), 61, 1, 2, 130, 0 },
 
   { 66,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 12/UpperLimit",
-    offsetof(P_ctrl_custom_T, Max_thrust), 62, 1, 2, 132, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 12/UpperLimit",
+    offsetof(P_ctrl_custom_T, Max_thrust), 61, 1, 2, 132, 0 },
 
   { 67,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 3/UpperLimit",
-    offsetof(P_ctrl_custom_T, Max_thrust), 62, 1, 2, 134, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 3/UpperLimit",
+    offsetof(P_ctrl_custom_T, Max_thrust), 61, 1, 2, 134, 0 },
 
   { 68,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 5/UpperLimit",
-    offsetof(P_ctrl_custom_T, Max_thrust), 62, 1, 2, 136, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 5/UpperLimit",
+    offsetof(P_ctrl_custom_T, Max_thrust), 61, 1, 2, 136, 0 },
 
   { 69,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 7/UpperLimit",
-    offsetof(P_ctrl_custom_T, Max_thrust), 62, 1, 2, 138, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 7/UpperLimit",
+    offsetof(P_ctrl_custom_T, Max_thrust), 61, 1, 2, 138, 0 },
 
   { 70,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 7/LowerLimit",
-    offsetof(P_ctrl_custom_T, Max_thrust), 62, 1, 2, 140, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 7/LowerLimit",
+    offsetof(P_ctrl_custom_T, Max_thrust), 61, 1, 2, 140, 0 },
 
   { 71,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 8/UpperLimit",
-    offsetof(P_ctrl_custom_T, Max_thrust), 62, 1, 2, 142, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 8/UpperLimit",
+    offsetof(P_ctrl_custom_T, Max_thrust), 61, 1, 2, 142, 0 },
 
   { 72,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 11/LowerLimit",
-    offsetof(P_ctrl_custom_T, Min_thrust), 62, 1, 2, 144, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 11/LowerLimit",
+    offsetof(P_ctrl_custom_T, Min_thrust), 61, 1, 2, 144, 0 },
 
   { 73,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 13/LowerLimit",
-    offsetof(P_ctrl_custom_T, Min_thrust), 62, 1, 2, 146, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 13/LowerLimit",
+    offsetof(P_ctrl_custom_T, Min_thrust), 61, 1, 2, 146, 0 },
 
   { 74,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 2/LowerLimit",
-    offsetof(P_ctrl_custom_T, Min_thrust), 62, 1, 2, 148, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 2/LowerLimit",
+    offsetof(P_ctrl_custom_T, Min_thrust), 61, 1, 2, 148, 0 },
 
   { 75,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 4/LowerLimit",
-    offsetof(P_ctrl_custom_T, Min_thrust), 62, 1, 2, 150, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 4/LowerLimit",
+    offsetof(P_ctrl_custom_T, Min_thrust), 61, 1, 2, 150, 0 },
 
   { 76,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 6/LowerLimit",
-    offsetof(P_ctrl_custom_T, Min_thrust), 62, 1, 2, 152, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 6/LowerLimit",
+    offsetof(P_ctrl_custom_T, Min_thrust), 61, 1, 2, 152, 0 },
 
   { 77,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 9/LowerLimit",
-    offsetof(P_ctrl_custom_T, Min_thrust), 62, 1, 2, 154, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 9/LowerLimit",
+    offsetof(P_ctrl_custom_T, Min_thrust), 61, 1, 2, 154, 0 },
 
-  { 78, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Qf_0/Gain",
-    offsetof(P_ctrl_custom_T, Q_f0), 62, 1, 2, 156, 0 },
+  { 78, "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Qf_0/Gain",
+    offsetof(P_ctrl_custom_T, Q_f0), 61, 1, 2, 156, 0 },
 
-  { 79, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Qf_0/Gain",
-    offsetof(P_ctrl_custom_T, Q_f0), 62, 1, 2, 158, 0 },
+  { 79, "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Qf_0/Gain",
+    offsetof(P_ctrl_custom_T, Q_f0), 61, 1, 2, 158, 0 },
 
-  { 80, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Qf_0/Gain",
-    offsetof(P_ctrl_custom_T, Q_f0), 62, 1, 2, 160, 0 },
+  { 80, "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Qf_0/Gain",
+    offsetof(P_ctrl_custom_T, Q_f0), 61, 1, 2, 160, 0 },
 
-  { 81, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Qf_0/Gain",
-    offsetof(P_ctrl_custom_T, Q_f0), 62, 1, 2, 162, 0 },
+  { 81, "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Qf_0/Gain",
+    offsetof(P_ctrl_custom_T, Q_f0), 61, 1, 2, 162, 0 },
 
-  { 82, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Qf_0/Gain",
-    offsetof(P_ctrl_custom_T, Q_f0), 62, 1, 2, 164, 0 },
+  { 82, "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Qf_0/Gain",
+    offsetof(P_ctrl_custom_T, Q_f0), 61, 1, 2, 164, 0 },
 
-  { 83, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Qf_0/Gain",
-    offsetof(P_ctrl_custom_T, Q_f0), 62, 1, 2, 166, 0 },
+  { 83, "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Qf_0/Gain",
+    offsetof(P_ctrl_custom_T, Q_f0), 61, 1, 2, 166, 0 },
 
   { 84, "ctrl_custom/Thruster Parameters /Rho/Value", offsetof(P_ctrl_custom_T,
-    Rho), 62, 1, 2, 168, 0 },
+    Rho), 61, 1, 2, 168, 0 },
 
   { 85, "ctrl_custom/Thrust allocation/Constant to avoid singularities/Value",
-    offsetof(P_ctrl_custom_T, eps), 62, 1, 2, 170, 0 },
+    offsetof(P_ctrl_custom_T, eps), 61, 1, 2, 170, 0 },
 
   { 86, "ctrl_custom/Thruster Parameters /Constant/Value", offsetof
-    (P_ctrl_custom_T, eps_c), 62, 1, 2, 172, 0 },
+    (P_ctrl_custom_T, eps_c), 61, 1, 2, 172, 0 },
 
   { 87,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Qff_0(nr)/Gain/epsilon",
-    offsetof(P_ctrl_custom_T, epsilon), 62, 1, 2, 174, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Qff_0(nr)/Gain/epsilon",
+    offsetof(P_ctrl_custom_T, epsilon), 61, 1, 2, 174, 0 },
 
   { 88,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Qff_0(nr)/Gain/n_max",
-    offsetof(P_ctrl_custom_T, n_max), 62, 1, 2, 176, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Qff_0(nr)/Gain/n_max",
+    offsetof(P_ctrl_custom_T, n_max), 61, 1, 2, 176, 0 },
 
   { 89,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Qff_0(nr)/Gain/epsilon",
-    offsetof(P_ctrl_custom_T, epsilon), 62, 1, 2, 178, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Qff_0(nr)/Gain/epsilon",
+    offsetof(P_ctrl_custom_T, epsilon), 61, 1, 2, 178, 0 },
 
   { 90,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Qff_0(nr)/Gain/n_max",
-    offsetof(P_ctrl_custom_T, n_max), 62, 1, 2, 180, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Qff_0(nr)/Gain/n_max",
+    offsetof(P_ctrl_custom_T, n_max), 61, 1, 2, 180, 0 },
 
   { 91,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Qff_0(nr)/Gain/epsilon",
-    offsetof(P_ctrl_custom_T, epsilon), 62, 1, 2, 182, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Qff_0(nr)/Gain/epsilon",
+    offsetof(P_ctrl_custom_T, epsilon), 61, 1, 2, 182, 0 },
 
   { 92,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Qff_0(nr)/Gain/n_max",
-    offsetof(P_ctrl_custom_T, n_max), 62, 1, 2, 184, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Qff_0(nr)/Gain/n_max",
+    offsetof(P_ctrl_custom_T, n_max), 61, 1, 2, 184, 0 },
 
   { 93,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Qff_0(nr)/Gain/epsilon",
-    offsetof(P_ctrl_custom_T, epsilon), 62, 1, 2, 186, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Qff_0(nr)/Gain/epsilon",
+    offsetof(P_ctrl_custom_T, epsilon), 61, 1, 2, 186, 0 },
 
   { 94,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Qff_0(nr)/Gain/n_max",
-    offsetof(P_ctrl_custom_T, n_max), 62, 1, 2, 188, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Qff_0(nr)/Gain/n_max",
+    offsetof(P_ctrl_custom_T, n_max), 61, 1, 2, 188, 0 },
 
   { 95,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Qff_0(nr)/Gain/epsilon",
-    offsetof(P_ctrl_custom_T, epsilon), 62, 1, 2, 190, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Qff_0(nr)/Gain/epsilon",
+    offsetof(P_ctrl_custom_T, epsilon), 61, 1, 2, 190, 0 },
 
   { 96,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Qff_0(nr)/Gain/n_max",
-    offsetof(P_ctrl_custom_T, n_max), 62, 1, 2, 192, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Qff_0(nr)/Gain/n_max",
+    offsetof(P_ctrl_custom_T, n_max), 61, 1, 2, 192, 0 },
 
   { 97,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Qff_0(nr)/Gain/epsilon",
-    offsetof(P_ctrl_custom_T, epsilon), 62, 1, 2, 194, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Qff_0(nr)/Gain/epsilon",
+    offsetof(P_ctrl_custom_T, epsilon), 61, 1, 2, 194, 0 },
 
   { 98,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Qff_0(nr)/Gain/n_max",
-    offsetof(P_ctrl_custom_T, n_max), 62, 1, 2, 196, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Qff_0(nr)/Gain/n_max",
+    offsetof(P_ctrl_custom_T, n_max), 61, 1, 2, 196, 0 },
 
   { 99, "ctrl_custom/Thruster Parameters /Constant1/Value", offsetof
-    (P_ctrl_custom_T, k_cc), 62, 1, 2, 198, 0 },
+    (P_ctrl_custom_T, k_cc), 61, 1, 2, 198, 0 },
 
   { 100, "ctrl_custom/Thruster Parameters /Constant5/Value", offsetof
-    (P_ctrl_custom_T, n_c), 62, 1, 2, 200, 0 },
+    (P_ctrl_custom_T, n_c), 61, 1, 2, 200, 0 },
 
   { 101, "ctrl_custom/Thruster Parameters /Constant2/Value", offsetof
-    (P_ctrl_custom_T, p_cc), 62, 1, 2, 202, 0 },
+    (P_ctrl_custom_T, p_cc), 61, 1, 2, 202, 0 },
 
   { 102,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/negative thrust 1/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/negative thrust 1/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr1_backward), 35, 6, 2, 204, 0 },
 
   { 103,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/positive thrust 1/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/positive thrust 1/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr1_forward), 35, 6, 2, 206, 0 },
 
   { 104,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/negative thrust 2/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/negative thrust 2/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr2_backward), 35, 6, 2, 208, 0 },
 
   { 105,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/positive thrust 2/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/positive thrust 2/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr2_forward), 35, 6, 2, 210, 0 },
 
   { 106,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/negative thrust 3/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/negative thrust 3/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr3_backward), 35, 6, 2, 212, 0 },
 
   { 107,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/positive thrust 3/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/positive thrust 3/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr3_forward), 35, 6, 2, 214, 0 },
 
   { 108,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/negative thrust 4/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/negative thrust 4/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr4_backward), 35, 6, 2, 216, 0 },
 
   { 109,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/positive thrust 4/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/positive thrust 4/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr4_forward), 35, 6, 2, 218, 0 },
 
   { 110,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/negative thrust 5/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/negative thrust 5/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr5_backward), 35, 6, 2, 220, 0 },
 
   { 111,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/positive thrust 5/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/positive thrust 5/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr5_forward), 35, 6, 2, 222, 0 },
 
   { 112,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/negative thrust 6/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/negative thrust 6/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr6_backward), 35, 6, 2, 224, 0 },
 
   { 113,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/positive thrust 6/Coefs",
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/positive thrust 6/Coefs",
     offsetof(P_ctrl_custom_T, pwm_thr6_forward), 35, 6, 2, 226, 0 },
 
   { 114, "ctrl_custom/Thruster Parameters /Constant3/Value", offsetof
-    (P_ctrl_custom_T, r_cc), 62, 1, 2, 228, 0 },
+    (P_ctrl_custom_T, r_cc), 61, 1, 2, 228, 0 },
 
-  { 115, "ctrl_custom/Pose/Gain/Gain", offsetof(P_ctrl_custom_T, Gain_Gain), 62,
+  { 115, "ctrl_custom/Pose/Gain/Gain", offsetof(P_ctrl_custom_T, Gain_Gain), 61,
     1, 2, 230, 0 },
 
   { 116, "ctrl_custom/Pose/Gain1/Gain", offsetof(P_ctrl_custom_T, Gain1_Gain),
-    62, 1, 2, 232, 0 },
+    61, 1, 2, 232, 0 },
 
   { 117, "ctrl_custom/Pose/Gain5/Gain", offsetof(P_ctrl_custom_T, Gain5_Gain),
-    62, 1, 2, 234, 0 },
+    61, 1, 2, 234, 0 },
 
   { 118, "ctrl_custom/Pose/Saturation/UpperLimit", offsetof(P_ctrl_custom_T,
-    Saturation_UpperSat), 62, 1, 2, 236, 0 },
+    Saturation_UpperSat), 61, 1, 2, 236, 0 },
 
   { 119, "ctrl_custom/Pose/Saturation/LowerLimit", offsetof(P_ctrl_custom_T,
-    Saturation_LowerSat), 62, 1, 2, 238, 0 },
+    Saturation_LowerSat), 61, 1, 2, 238, 0 },
 
   { 120, "ctrl_custom/Pose/Gain6/Gain", offsetof(P_ctrl_custom_T, Gain6_Gain),
-    62, 1, 2, 240, 0 },
+    61, 1, 2, 240, 0 },
 
   { 121, "ctrl_custom/Pose/Constant1/Value", offsetof(P_ctrl_custom_T,
-    Constant1_Value), 62, 1, 2, 242, 0 },
+    Constant1_Value), 61, 1, 2, 242, 0 },
 
   { 122, "ctrl_custom/Reference basin/Gain5/Gain", offsetof(P_ctrl_custom_T,
-    Gain5_Gain_g), 62, 1, 2, 244, 0 },
+    Gain5_Gain_h), 61, 1, 2, 244, 0 },
 
   { 123, "ctrl_custom/Switch1/Threshold", offsetof(P_ctrl_custom_T,
-    Switch1_Threshold), 62, 1, 2, 246, 0 },
+    Switch1_Threshold), 61, 1, 2, 246, 0 },
 
   { 124,
     "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]/Saturation/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation_UpperSat_p), 62, 1, 2, 248, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_UpperSat_p), 61, 1, 2, 248, 0 },
 
   { 125,
     "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]/Saturation/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation_LowerSat_k), 62, 1, 2, 250, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_LowerSat_k), 61, 1, 2, 250, 0 },
 
   { 126,
     "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]/Gain/Gain",
-    offsetof(P_ctrl_custom_T, Gain_Gain_p), 62, 1, 2, 252, 0 },
+    offsetof(P_ctrl_custom_T, Gain_Gain_p), 61, 1, 2, 252, 0 },
 
   { 127,
     "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]/Constant/Value",
-    offsetof(P_ctrl_custom_T, Constant_Value), 62, 1, 2, 254, 0 },
+    offsetof(P_ctrl_custom_T, Constant_Value), 61, 1, 2, 254, 0 },
 
   { 128, "ctrl_custom/Reference basin/Transfer Fcn2/A", offsetof(P_ctrl_custom_T,
-    TransferFcn2_A), 62, 1, 2, 256, 0 },
+    TransferFcn2_A), 61, 1, 2, 256, 0 },
 
   { 129, "ctrl_custom/Reference basin/Transfer Fcn2/C", offsetof(P_ctrl_custom_T,
-    TransferFcn2_C), 62, 1, 2, 258, 0 },
+    TransferFcn2_C), 61, 1, 2, 258, 0 },
 
   { 130,
     "ctrl_custom/PID controller1/[-inf inf] to [-pi pi]/Saturation/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation_UpperSat_a), 62, 1, 2, 260, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_UpperSat_l), 61, 1, 2, 260, 0 },
 
   { 131,
     "ctrl_custom/PID controller1/[-inf inf] to [-pi pi]/Saturation/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation_LowerSat_b), 62, 1, 2, 262, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_LowerSat_i), 61, 1, 2, 262, 0 },
 
   { 132, "ctrl_custom/PID controller1/[-inf inf] to [-pi pi]/Gain/Gain",
-    offsetof(P_ctrl_custom_T, Gain_Gain_e), 62, 1, 2, 264, 0 },
+    offsetof(P_ctrl_custom_T, Gain_Gain_o), 61, 1, 2, 264, 0 },
 
   { 133, "ctrl_custom/PID controller1/[-inf inf] to [-pi pi]/Constant/Value",
-    offsetof(P_ctrl_custom_T, Constant_Value_d), 62, 1, 2, 266, 0 },
+    offsetof(P_ctrl_custom_T, Constant_Value_e), 61, 1, 2, 266, 0 },
 
   { 134, "ctrl_custom/PID controller1/Integrator1/InitialCondition", offsetof
-    (P_ctrl_custom_T, Integrator1_IC), 62, 1, 2, 268, 0 },
+    (P_ctrl_custom_T, Integrator1_IC), 61, 1, 2, 268, 0 },
 
   { 135, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/InitialCondition",
     offsetof(P_ctrl_custom_T, Integrator1_IC_g), 36, 3, 2, 270, 0 },
 
   { 136,
     "ctrl_custom/PID controller/[-inf inf] to [-pi pi]1/Saturation/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation_UpperSat_i), 62, 1, 2, 272, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_UpperSat_i), 61, 1, 2, 272, 0 },
 
   { 137,
     "ctrl_custom/PID controller/[-inf inf] to [-pi pi]1/Saturation/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation_LowerSat_p), 62, 1, 2, 274, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_LowerSat_p), 61, 1, 2, 274, 0 },
 
   { 138, "ctrl_custom/PID controller/[-inf inf] to [-pi pi]1/Gain/Gain",
-    offsetof(P_ctrl_custom_T, Gain_Gain_o), 62, 1, 2, 276, 0 },
+    offsetof(P_ctrl_custom_T, Gain_Gain_ov), 61, 1, 2, 276, 0 },
 
   { 139, "ctrl_custom/PID controller/[-inf inf] to [-pi pi]1/Constant/Value",
-    offsetof(P_ctrl_custom_T, Constant_Value_p), 62, 1, 2, 278, 0 },
+    offsetof(P_ctrl_custom_T, Constant_Value_p), 61, 1, 2, 278, 0 },
 
   { 140, "ctrl_custom/Referance/Integrator2/InitialCondition", offsetof
-    (P_ctrl_custom_T, Integrator2_IC), 62, 1, 2, 280, 0 },
+    (P_ctrl_custom_T, Integrator2_IC), 61, 1, 2, 280, 0 },
 
   { 141, "ctrl_custom/Referance/[-inf inf] to [-pi pi]/Saturation/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation_UpperSat_p4), 62, 1, 2, 282, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_UpperSat_p4), 61, 1, 2, 282, 0 },
 
   { 142, "ctrl_custom/Referance/[-inf inf] to [-pi pi]/Saturation/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation_LowerSat_c), 62, 1, 2, 284, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_LowerSat_c), 61, 1, 2, 284, 0 },
 
   { 143, "ctrl_custom/Referance/[-inf inf] to [-pi pi]/Gain/Gain", offsetof
-    (P_ctrl_custom_T, Gain_Gain_e2), 62, 1, 2, 286, 0 },
+    (P_ctrl_custom_T, Gain_Gain_e), 61, 1, 2, 286, 0 },
 
   { 144, "ctrl_custom/Referance/[-inf inf] to [-pi pi]/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_e), 62, 1, 2, 288, 0 },
+    (P_ctrl_custom_T, Constant_Value_ey), 61, 1, 2, 288, 0 },
 
   { 145,
     "ctrl_custom/PID controller/[-inf inf] to [-pi pi]/Saturation/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation_UpperSat_ir), 62, 1, 2, 290, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_UpperSat_ir), 61, 1, 2, 290, 0 },
 
   { 146,
     "ctrl_custom/PID controller/[-inf inf] to [-pi pi]/Saturation/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation_LowerSat_l), 62, 1, 2, 292, 0 },
+    offsetof(P_ctrl_custom_T, Saturation_LowerSat_l), 61, 1, 2, 292, 0 },
 
   { 147, "ctrl_custom/PID controller/[-inf inf] to [-pi pi]/Gain/Gain", offsetof
-    (P_ctrl_custom_T, Gain_Gain_d), 62, 1, 2, 294, 0 },
+    (P_ctrl_custom_T, Gain_Gain_d), 61, 1, 2, 294, 0 },
 
   { 148, "ctrl_custom/PID controller/[-inf inf] to [-pi pi]/Constant/Value",
-    offsetof(P_ctrl_custom_T, Constant_Value_a), 62, 1, 2, 296, 0 },
+    offsetof(P_ctrl_custom_T, Constant_Value_a), 61, 1, 2, 296, 0 },
 
   { 149, "ctrl_custom/PID controller/Integrator1/InitialCondition", offsetof
-    (P_ctrl_custom_T, Integrator1_IC_e), 62, 1, 2, 298, 0 },
+    (P_ctrl_custom_T, Integrator1_IC_e), 61, 1, 2, 298, 0 },
 
-  { 150, "ctrl_custom/Referance/Integrator1/InitialCondition", offsetof
-    (P_ctrl_custom_T, Integrator1_IC_b), 62, 1, 2, 300, 0 },
+  { 150, "ctrl_custom/Constant/Value", offsetof(P_ctrl_custom_T,
+    Constant_Value_j), 61, 1, 2, 300, 0 },
 
-  { 151, "ctrl_custom/Constant/Value", offsetof(P_ctrl_custom_T,
-    Constant_Value_i), 62, 1, 2, 302, 0 },
+  { 151, "ctrl_custom/Constant1/Value", offsetof(P_ctrl_custom_T,
+    Constant1_Value_i), 61, 1, 2, 302, 0 },
 
-  { 152, "ctrl_custom/Constant1/Value", offsetof(P_ctrl_custom_T,
-    Constant1_Value_k), 62, 1, 2, 304, 0 },
+  { 152, "ctrl_custom/Switch/Threshold", offsetof(P_ctrl_custom_T,
+    Switch_Threshold), 61, 1, 2, 304, 0 },
 
-  { 153, "ctrl_custom/Switch/Threshold", offsetof(P_ctrl_custom_T,
-    Switch_Threshold), 62, 1, 2, 306, 0 },
+  { 153, "ctrl_custom/Gain5/Gain", offsetof(P_ctrl_custom_T, Gain5_Gain_e), 61,
+    1, 2, 306, 0 },
 
-  { 154, "ctrl_custom/Gain5/Gain", offsetof(P_ctrl_custom_T, Gain5_Gain_e), 62,
-    1, 2, 308, 0 },
+  { 154, "ctrl_custom/Gain/Gain", offsetof(P_ctrl_custom_T, Gain_Gain_g), 61, 1,
+    2, 308, 0 },
 
-  { 155, "ctrl_custom/Gain/Gain", offsetof(P_ctrl_custom_T, Gain_Gain_g), 62, 1,
-    2, 310, 0 },
+  { 155, "ctrl_custom/Gain1/Gain", offsetof(P_ctrl_custom_T, Gain1_Gain_l), 61,
+    1, 2, 310, 0 },
 
-  { 156, "ctrl_custom/Gain1/Gain", offsetof(P_ctrl_custom_T, Gain1_Gain_l), 62,
-    1, 2, 312, 0 },
+  { 156,
+    "ctrl_custom/Thruster control 1/Thruster 1/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC), 61, 1, 2, 312, 0 },
 
-  { 157,
-    "ctrl_custom/Thruster control /Thruster 1/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC), 62, 1, 2, 314, 0 },
+  { 157, "ctrl_custom/Thruster control 1/Thruster 1/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value), 61, 1, 2, 314, 0 },
 
-  { 158, "ctrl_custom/Thruster control /Thruster 1/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value), 62, 1, 2, 316, 0 },
+  { 158,
+    "ctrl_custom/Thruster control 1/Thruster 2/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_h), 61, 1, 2, 316, 0 },
 
-  { 159,
-    "ctrl_custom/Thruster control /Thruster 2/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_h), 62, 1, 2, 318, 0 },
+  { 159, "ctrl_custom/Thruster control 1/Thruster 2/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_n), 61, 1, 2, 318, 0 },
 
-  { 160, "ctrl_custom/Thruster control /Thruster 2/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_e), 62, 1, 2, 320, 0 },
+  { 160,
+    "ctrl_custom/Thruster control 1/Thruster 3/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_e), 61, 1, 2, 320, 0 },
 
-  { 161,
-    "ctrl_custom/Thruster control /Thruster 3/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_o), 62, 1, 2, 322, 0 },
+  { 161, "ctrl_custom/Thruster control 1/Thruster 3/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_j), 61, 1, 2, 322, 0 },
 
-  { 162, "ctrl_custom/Thruster control /Thruster 3/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_d), 62, 1, 2, 324, 0 },
+  { 162,
+    "ctrl_custom/Thruster control 1/Thruster 4/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_d), 61, 1, 2, 324, 0 },
 
-  { 163,
-    "ctrl_custom/Thruster control /Thruster 4/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_hz), 62, 1, 2, 326, 0 },
+  { 163, "ctrl_custom/Thruster control 1/Thruster 4/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_c), 61, 1, 2, 326, 0 },
 
-  { 164, "ctrl_custom/Thruster control /Thruster 4/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_n), 62, 1, 2, 328, 0 },
+  { 164,
+    "ctrl_custom/Thruster control 1/Thruster 5/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_eb), 61, 1, 2, 328, 0 },
 
-  { 165,
-    "ctrl_custom/Thruster control /Thruster 5/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_d), 62, 1, 2, 330, 0 },
+  { 165, "ctrl_custom/Thruster control 1/Thruster 5/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_o), 61, 1, 2, 330, 0 },
 
-  { 166, "ctrl_custom/Thruster control /Thruster 5/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_k), 62, 1, 2, 332, 0 },
+  { 166,
+    "ctrl_custom/Thruster control 1/Thruster 6/Shaft dynamics/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_a), 61, 1, 2, 332, 0 },
 
-  { 167,
-    "ctrl_custom/Thruster control /Thruster 6/Shaft dynamics/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_b), 62, 1, 2, 334, 0 },
+  { 167, "ctrl_custom/Thruster control 1/Thruster 6/Losses (placeholder)/Value",
+    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_d), 61, 1, 2, 334, 0 },
 
-  { 168, "ctrl_custom/Thruster control /Thruster 6/Losses (placeholder)/Value",
-    offsetof(P_ctrl_custom_T, Lossesplaceholder_Value_nh), 62, 1, 2, 336, 0 },
+  { 168, "ctrl_custom/Thruster Parameters /controller/Value", offsetof
+    (P_ctrl_custom_T, controller_Value), 61, 1, 2, 336, 0 },
 
-  { 169, "ctrl_custom/Thruster Parameters /controller/Value", offsetof
-    (P_ctrl_custom_T, controller_Value), 62, 1, 2, 338, 0 },
+  { 169,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Gain/Gain",
+    offsetof(P_ctrl_custom_T, Gain_Gain_ol), 61, 1, 2, 338, 0 },
 
   { 170,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain/Gain",
-    offsetof(P_ctrl_custom_T, Gain_Gain_a), 62, 1, 2, 340, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Gain1/Gain",
+    offsetof(P_ctrl_custom_T, Gain1_Gain_g), 61, 1, 2, 340, 0 },
 
   { 171,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain1/Gain",
-    offsetof(P_ctrl_custom_T, Gain1_Gain_i), 62, 1, 2, 342, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Gain2/Gain",
+    offsetof(P_ctrl_custom_T, Gain2_Gain), 61, 1, 2, 342, 0 },
 
   { 172,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain2/Gain",
-    offsetof(P_ctrl_custom_T, Gain2_Gain), 62, 1, 2, 344, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Gain3/Gain",
+    offsetof(P_ctrl_custom_T, Gain3_Gain), 61, 1, 2, 344, 0 },
 
   { 173,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain3/Gain",
-    offsetof(P_ctrl_custom_T, Gain3_Gain), 62, 1, 2, 346, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Gain4/Gain",
+    offsetof(P_ctrl_custom_T, Gain4_Gain), 61, 1, 2, 346, 0 },
 
   { 174,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain4/Gain",
-    offsetof(P_ctrl_custom_T, Gain4_Gain), 62, 1, 2, 348, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Gain5/Gain",
+    offsetof(P_ctrl_custom_T, Gain5_Gain_es), 61, 1, 2, 348, 0 },
 
-  { 175,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Gain5/Gain",
-    offsetof(P_ctrl_custom_T, Gain5_Gain_f), 62, 1, 2, 350, 0 },
+  { 175, "ctrl_custom/Thrust allocation/Radians to Degrees/Gain/Gain", offsetof
+    (P_ctrl_custom_T, Gain_Gain_i), 61, 1, 2, 350, 0 },
 
-  { 176, "ctrl_custom/Thrust allocation/Radians to Degrees/Gain/Gain", offsetof
-    (P_ctrl_custom_T, Gain_Gain_i), 62, 1, 2, 352, 0 },
+  { 176, "ctrl_custom/Thrust allocation/X-position Thruster/Value", offsetof
+    (P_ctrl_custom_T, XpositionThruster_Value[0]), 35, 6, 2, 352, 0 },
 
-  { 177, "ctrl_custom/Thrust allocation/X-position Thruster/Value", offsetof
-    (P_ctrl_custom_T, XpositionThruster_Value[0]), 35, 6, 2, 354, 0 },
+  { 177, "ctrl_custom/Thrust allocation/Y-position Thruster/Value", offsetof
+    (P_ctrl_custom_T, YpositionThruster_Value[0]), 35, 6, 2, 354, 0 },
 
-  { 178, "ctrl_custom/Thrust allocation/Y-position Thruster/Value", offsetof
-    (P_ctrl_custom_T, YpositionThruster_Value[0]), 35, 6, 2, 356, 0 },
+  { 178, "ctrl_custom/Thrust allocation/constant angle/Value", offsetof
+    (P_ctrl_custom_T, constantangle_Value[0]), 35, 6, 2, 356, 0 },
 
-  { 179, "ctrl_custom/Thrust allocation/constant angle/Value", offsetof
-    (P_ctrl_custom_T, constantangle_Value[0]), 35, 6, 2, 358, 0 },
-
-  { 180,
+  { 179,
     "ctrl_custom/Thrust allocation/Choosing Fixed // Azimuth angle/Threshold",
-    offsetof(P_ctrl_custom_T, ChoosingFixedAzimuthangle_Thres), 62, 1, 2, 360, 0
+    offsetof(P_ctrl_custom_T, ChoosingFixedAzimuthangle_Thres), 61, 1, 2, 358, 0
   },
 
-  { 181, "ctrl_custom/Thruster control /Subsystem1/Saturation 1/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation1_UpperSat), 62, 1, 2, 362, 0 },
+  { 180, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 1/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation1_UpperSat), 61, 1, 2, 360, 0 },
 
-  { 182, "ctrl_custom/Thruster control /Subsystem1/Saturation 1/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation1_LowerSat), 62, 1, 2, 364, 0 },
+  { 181, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 1/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation1_LowerSat), 61, 1, 2, 362, 0 },
 
-  { 183, "ctrl_custom/Thruster control /Subsystem1/Saturation 2/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation2_UpperSat), 62, 1, 2, 366, 0 },
+  { 182, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 2/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation2_UpperSat), 61, 1, 2, 364, 0 },
 
-  { 184, "ctrl_custom/Thruster control /Subsystem1/Saturation 2/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation2_LowerSat), 62, 1, 2, 368, 0 },
+  { 183, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 2/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation2_LowerSat), 61, 1, 2, 366, 0 },
 
-  { 185, "ctrl_custom/Thruster control /Subsystem1/Saturation 3/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation3_UpperSat), 62, 1, 2, 370, 0 },
+  { 184, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 3/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation3_UpperSat), 61, 1, 2, 368, 0 },
 
-  { 186, "ctrl_custom/Thruster control /Subsystem1/Saturation 3/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation3_LowerSat), 62, 1, 2, 372, 0 },
+  { 185, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 3/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation3_LowerSat), 61, 1, 2, 370, 0 },
 
-  { 187, "ctrl_custom/Thruster control /Subsystem1/Saturation 4/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation4_UpperSat), 62, 1, 2, 374, 0 },
+  { 186, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 4/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation4_UpperSat), 61, 1, 2, 372, 0 },
 
-  { 188, "ctrl_custom/Thruster control /Subsystem1/Saturation 4/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation4_LowerSat), 62, 1, 2, 376, 0 },
+  { 187, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 4/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation4_LowerSat), 61, 1, 2, 374, 0 },
 
-  { 189, "ctrl_custom/Thruster control /Subsystem1/Saturation 5/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation5_UpperSat), 62, 1, 2, 378, 0 },
+  { 188, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 5/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation5_UpperSat), 61, 1, 2, 376, 0 },
 
-  { 190, "ctrl_custom/Thruster control /Subsystem1/Saturation 5/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation5_LowerSat), 62, 1, 2, 380, 0 },
+  { 189, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 5/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation5_LowerSat), 61, 1, 2, 378, 0 },
 
-  { 191, "ctrl_custom/Thruster control /Subsystem1/Saturation 6/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation6_UpperSat), 62, 1, 2, 382, 0 },
+  { 190, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 6/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation6_UpperSat), 61, 1, 2, 380, 0 },
 
-  { 192, "ctrl_custom/Thruster control /Subsystem1/Saturation 6/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation6_LowerSat), 62, 1, 2, 384, 0 },
+  { 191, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 6/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation6_LowerSat), 61, 1, 2, 382, 0 },
 
-  { 193, "ctrl_custom/Radians to Degrees/Gain/Gain", offsetof(P_ctrl_custom_T,
-    Gain_Gain_oe), 62, 1, 2, 386, 0 },
+  { 192, "ctrl_custom/Radians to Degrees/Gain/Gain", offsetof(P_ctrl_custom_T,
+    Gain_Gain_oe), 61, 1, 2, 384, 0 },
 
-  { 194, "ctrl_custom/X-position Thruster/Value", offsetof(P_ctrl_custom_T,
-    XpositionThruster_Value_k[0]), 35, 6, 2, 388, 0 },
+  { 193, "ctrl_custom/X-position Thruster/Value", offsetof(P_ctrl_custom_T,
+    XpositionThruster_Value_k[0]), 35, 6, 2, 386, 0 },
 
-  { 195, "ctrl_custom/Y-position Thruster/Value", offsetof(P_ctrl_custom_T,
-    YpositionThruster_Value_l[0]), 35, 6, 2, 390, 0 },
+  { 194, "ctrl_custom/Y-position Thruster/Value", offsetof(P_ctrl_custom_T,
+    YpositionThruster_Value_l[0]), 35, 6, 2, 388, 0 },
 
-  { 196,
-    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Saturation/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation_UpperSat_j), 62, 1, 2, 392, 0 },
+  { 195, "ctrl_custom/Gain4/Gain", offsetof(P_ctrl_custom_T, Gain4_Gain_d), 61,
+    1, 2, 390, 0 },
 
-  { 197,
-    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Saturation/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation_LowerSat_f), 62, 1, 2, 394, 0 },
+  { 196, "ctrl_custom/Gain2/Gain", offsetof(P_ctrl_custom_T, Gain2_Gain_d), 61,
+    1, 2, 392, 0 },
+
+  { 197, "ctrl_custom/Gain3/Gain", offsetof(P_ctrl_custom_T, Gain3_Gain_f), 61,
+    1, 2, 394, 0 },
 
   { 198,
-    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Gain/Gain",
-    offsetof(P_ctrl_custom_T, Gain_Gain_gg), 62, 1, 2, 396, 0 },
+    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Saturation/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation_UpperSat_j), 61, 1, 2, 396, 0 },
 
   { 199,
-    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Constant/Value",
-    offsetof(P_ctrl_custom_T, Constant_Value_iq), 62, 1, 2, 398, 0 },
+    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Saturation/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation_LowerSat_f), 61, 1, 2, 398, 0 },
 
-  { 200, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator2_IC_i), 36, 3, 2, 400, 0 },
+  { 200,
+    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Gain/Gain",
+    offsetof(P_ctrl_custom_T, Gain_Gain_gg), 61, 1, 2, 400, 0 },
 
   { 201,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant6/Value",
-    offsetof(P_ctrl_custom_T, Constant6_Value), 62, 1, 2, 402, 0 },
+    "ctrl_custom/Nonlinear Passisve Observer/[-inf inf] to [-pi pi]1/Constant/Value",
+    offsetof(P_ctrl_custom_T, Constant_Value_i), 61, 1, 2, 402, 0 },
 
-  { 202,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant7/Value",
-    offsetof(P_ctrl_custom_T, Constant7_Value), 62, 1, 2, 404, 0 },
+  { 202, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator2_IC_i), 36, 3, 2, 404, 0 },
 
   { 203,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant8/Value",
-    offsetof(P_ctrl_custom_T, Constant8_Value), 62, 1, 2, 406, 0 },
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant6/Value",
+    offsetof(P_ctrl_custom_T, Constant6_Value), 61, 1, 2, 406, 0 },
 
-  { 204, "ctrl_custom/Nonlinear Passisve Observer/M^-1/Gain", offsetof
-    (P_ctrl_custom_T, M1_Gain), 25, 9, 2, 408, 0 },
+  { 204,
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant7/Value",
+    offsetof(P_ctrl_custom_T, Constant7_Value), 61, 1, 2, 408, 0 },
 
   { 205,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 1/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation1_LowerSat_p), 62, 1, 2, 410, 0 },
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant8/Value",
+    offsetof(P_ctrl_custom_T, Constant8_Value), 61, 1, 2, 410, 0 },
 
-  { 206,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 2/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation2_UpperSat_j), 62, 1, 2, 412, 0 },
+  { 206, "ctrl_custom/Nonlinear Passisve Observer/M^-1/Gain", offsetof
+    (P_ctrl_custom_T, M1_Gain), 25, 9, 2, 412, 0 },
 
   { 207,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 8/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation8_LowerSat), 62, 1, 2, 414, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 1/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation1_LowerSat_k), 61, 1, 2, 414, 0 },
 
   { 208,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 9/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation9_UpperSat), 62, 1, 2, 416, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 2/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation2_UpperSat_j), 61, 1, 2, 416, 0 },
 
   { 209,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 10/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation10_LowerSat), 62, 1, 2, 418, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 8/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation8_LowerSat), 61, 1, 2, 418, 0 },
 
   { 210,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 11/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation11_UpperSat), 62, 1, 2, 420, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 9/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation9_UpperSat), 61, 1, 2, 420, 0 },
 
   { 211,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 3/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation3_LowerSat_m), 62, 1, 2, 422, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 10/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation10_LowerSat), 61, 1, 2, 422, 0 },
 
   { 212,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 4/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation4_UpperSat_l), 62, 1, 2, 424, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 11/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation11_UpperSat), 61, 1, 2, 424, 0 },
 
   { 213,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 5/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation5_LowerSat_j), 62, 1, 2, 426, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 3/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation3_LowerSat_a), 61, 1, 2, 426, 0 },
 
   { 214,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 6/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation6_UpperSat_c), 62, 1, 2, 428, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 4/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation4_UpperSat_m), 61, 1, 2, 428, 0 },
 
   { 215,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 12/LowerLimit",
-    offsetof(P_ctrl_custom_T, Saturation12_LowerSat), 62, 1, 2, 430, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 5/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation5_LowerSat_a), 61, 1, 2, 430, 0 },
 
   { 216,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/Saturation 13/UpperLimit",
-    offsetof(P_ctrl_custom_T, Saturation13_UpperSat), 62, 1, 2, 432, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 6/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation6_UpperSat_j), 61, 1, 2, 432, 0 },
 
   { 217,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant/Value",
-    offsetof(P_ctrl_custom_T, Constant_Value_g), 62, 1, 2, 434, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 12/LowerLimit",
+    offsetof(P_ctrl_custom_T, Saturation12_LowerSat), 61, 1, 2, 434, 0 },
 
   { 218,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_o), 62, 1, 2, 436, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/Saturation 13/UpperLimit",
+    offsetof(P_ctrl_custom_T, Saturation13_UpperSat), 61, 1, 2, 436, 0 },
 
-  { 219,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value), 62, 1, 2, 438, 0 },
+  { 219, "ctrl_custom/Gain8/Gain", offsetof(P_ctrl_custom_T, Gain8_Gain), 61, 1,
+    2, 438, 0 },
 
   { 220,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant3/Value",
-    offsetof(P_ctrl_custom_T, Constant3_Value), 62, 1, 2, 440, 0 },
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant/Value",
+    offsetof(P_ctrl_custom_T, Constant_Value_g), 61, 1, 2, 440, 0 },
 
   { 221,
-    "ctrl_custom/Initialization of parameters/Observer Gains/Constant4/Value",
-    offsetof(P_ctrl_custom_T, Constant4_Value), 62, 1, 2, 442, 0 },
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_o), 61, 1, 2, 442, 0 },
 
   { 222,
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value), 61, 1, 2, 444, 0 },
+
+  { 223,
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant3/Value",
+    offsetof(P_ctrl_custom_T, Constant3_Value), 61, 1, 2, 446, 0 },
+
+  { 224,
+    "ctrl_custom/Initialization of parameters/Observer Gains/Constant4/Value",
+    offsetof(P_ctrl_custom_T, Constant4_Value), 61, 1, 2, 448, 0 },
+
+  { 225,
     "ctrl_custom/Initialization of parameters/Observer Gains/Constant5/Value",
-    offsetof(P_ctrl_custom_T, Constant5_Value), 62, 1, 2, 444, 0 },
+    offsetof(P_ctrl_custom_T, Constant5_Value), 61, 1, 2, 450, 0 },
 
-  { 223, "ctrl_custom/PID controller/Gain5/Gain", offsetof(P_ctrl_custom_T,
-    Gain5_Gain_a), 62, 1, 2, 446, 0 },
+  { 226, "ctrl_custom/PID controller/Gain5/Gain", offsetof(P_ctrl_custom_T,
+    Gain5_Gain_a), 61, 1, 2, 452, 0 },
 
-  { 224, "ctrl_custom/Referance/Gain/Gain", offsetof(P_ctrl_custom_T,
-    Gain_Gain_b), 62, 1, 2, 448, 0 },
+  { 227, "ctrl_custom/Referance/Gain/Gain", offsetof(P_ctrl_custom_T,
+    Gain_Gain_f), 61, 1, 2, 454, 0 },
 
-  { 225, "ctrl_custom/Referance/Integrator/InitialCondition", offsetof
-    (P_ctrl_custom_T, Integrator_IC_m), 62, 1, 2, 450, 0 },
+  { 228, "ctrl_custom/Referance/Integrator/InitialCondition", offsetof
+    (P_ctrl_custom_T, Integrator_IC_m), 61, 1, 2, 456, 0 },
 
-  { 226, "ctrl_custom/Thruster control /Delay/InitialCondition", offsetof
-    (P_ctrl_custom_T, Delay_InitialCondition), 62, 1, 2, 452, 0 },
+  { 229, "ctrl_custom/Referance/Integrator1/InitialCondition", offsetof
+    (P_ctrl_custom_T, Integrator1_IC_b), 61, 1, 2, 458, 0 },
 
-  { 227, "ctrl_custom/Thruster control /Thruster 1/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_j[0]), 37, 2, 2, 454, 0 },
+  { 230, "ctrl_custom/Thruster control 1/Delay/InitialCondition", offsetof
+    (P_ctrl_custom_T, Delay_InitialCondition), 61, 1, 2, 460, 0 },
 
-  { 228, "ctrl_custom/Thruster control /Thruster 1/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_i[0]), 37, 2, 2, 456, 0 },
+  { 231, "ctrl_custom/Thruster control 1/Thruster 1/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_k[0]), 37, 2, 2, 462, 0 },
 
-  { 229, "ctrl_custom/Thruster control /Thruster 1/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_m), 62, 1, 2, 458, 0 },
+  { 232, "ctrl_custom/Thruster control 1/Thruster 1/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_m[0]), 37, 2, 2, 464, 0 },
 
-  { 230,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_a), 62, 1, 2, 460, 0 },
-
-  { 231,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_p[0]), 30, 3, 2, 462, 0 },
-
-  { 232,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_b[0]), 30, 3, 2, 464, 0 },
-
-  { 233,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialStat), 62, 1, 2, 466, 0
-  },
+  { 233, "ctrl_custom/Thruster control 1/Thruster 1/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_g), 61, 1, 2, 466, 0 },
 
   { 234,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt), 0, 1, 2, 468, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_a), 61, 1, 2, 468, 0 },
 
   { 235,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_RisingLim), 0, 1, 2, 470, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_i4[0]), 30, 3, 2, 470, 0 },
 
   { 236,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_FallingLim), 0, 1, 2, 472, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_p[0]), 30, 3, 2, 472, 0 },
 
   { 237,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Acceleration Limit/InitialCondition",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_IC), 62, 1, 2, 474, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialStat), 61, 1, 2, 474, 0
+  },
 
-  { 238, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0), 62, 1, 2, 476, 0 },
+  { 238,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt), 0, 1, 2, 476, 0 },
 
   { 239,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_j), 62, 1, 2, 478, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Acceleration Limit/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_RisingLim), 0, 1, 2, 478, 0 },
 
-  { 240, "ctrl_custom/Thruster control /Thruster 1/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value), 62, 1, 2, 480, 0 },
+  { 240,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Acceleration Limit/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_FallingLim), 0, 1, 2, 480, 0 },
 
   { 241,
-    "ctrl_custom/Thruster control /Thruster 1/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_i), 62, 1, 2, 482, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Acceleration Limit/InitialCondition",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_IC), 61, 1, 2, 482, 0 },
 
-  { 242, "ctrl_custom/Thruster control /Thruster 2/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_dp[0]), 37, 2, 2, 484, 0 },
+  { 242, "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0), 61, 1, 2, 484, 0 },
 
-  { 243, "ctrl_custom/Thruster control /Thruster 2/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_b[0]), 37, 2, 2, 486, 0 },
+  { 243,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_p), 61, 1, 2, 486, 0 },
 
-  { 244, "ctrl_custom/Thruster control /Thruster 2/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_j), 62, 1, 2, 488, 0 },
+  { 244, "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value), 61, 1, 2, 488, 0 },
 
   { 245,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_n), 62, 1, 2, 490, 0 },
-
-  { 246,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_m[0]), 30, 3, 2, 492, 0 },
-
-  { 247,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_k[0]), 30, 3, 2, 494, 0 },
-
-  { 248,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_f), 62, 1, 2, 496, 0
+    "ctrl_custom/Thruster control 1/Thruster 1/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_f), 61, 1, 2, 490, 0
   },
+
+  { 246, "ctrl_custom/Thruster control 1/Thruster 2/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_m[0]), 37, 2, 2, 492, 0 },
+
+  { 247, "ctrl_custom/Thruster control 1/Thruster 2/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_k[0]), 37, 2, 2, 494, 0 },
+
+  { 248, "ctrl_custom/Thruster control 1/Thruster 2/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_i), 61, 1, 2, 496, 0 },
 
   { 249,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_g), 0, 1, 2, 498, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_a0), 61, 1, 2, 498, 0 },
 
   { 250,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_RisingLim_p), 0, 1, 2, 500, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_e[0]), 30, 3, 2, 500, 0 },
 
   { 251,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_FallingLim_n), 0, 1, 2, 502, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_e[0]), 30, 3, 2, 502, 0 },
 
   { 252,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Acceleration Limit/InitialCondition",
-    offsetof(P_ctrl_custom_T, AccelerationLimit_IC_l), 62, 1, 2, 504, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_m), 61, 1, 2, 504, 0
+  },
 
-  { 253, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_h), 62, 1, 2, 506, 0 },
+  { 253,
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_o), 0, 1, 2, 506, 0 },
 
   { 254,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_p), 62, 1, 2, 508, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Acceleration Limit/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_RisingLim_h), 0, 1, 2, 508, 0 },
 
-  { 255, "ctrl_custom/Thruster control /Thruster 2/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_n), 62, 1, 2, 510, 0 },
+  { 255,
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Acceleration Limit/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_FallingLim_c), 0, 1, 2, 510, 0 },
 
   { 256,
-    "ctrl_custom/Thruster control /Thruster 2/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_p), 62, 1, 2, 512, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Acceleration Limit/InitialCondition",
+    offsetof(P_ctrl_custom_T, AccelerationLimit_IC_o), 61, 1, 2, 512, 0 },
 
-  { 257, "ctrl_custom/Thruster control /Thruster 3/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_gq[0]), 37, 2, 2, 514, 0 },
+  { 257, "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_e), 61, 1, 2, 514, 0 },
 
-  { 258, "ctrl_custom/Thruster control /Thruster 3/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_l[0]), 37, 2, 2, 516, 0 },
+  { 258,
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_k), 61, 1, 2, 516, 0 },
 
-  { 259, "ctrl_custom/Thruster control /Thruster 3/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_b), 62, 1, 2, 518, 0 },
+  { 259, "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_m), 61, 1, 2, 518, 0 },
 
   { 260,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_o), 62, 1, 2, 520, 0 },
-
-  { 261,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_c[0]), 30, 3, 2, 522, 0 },
-
-  { 262,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_k5[0]), 30, 3, 2, 524, 0 },
-
-  { 263,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_h), 62, 1, 2, 526, 0
+    "ctrl_custom/Thruster control 1/Thruster 2/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_d), 61, 1, 2, 520, 0
   },
+
+  { 261, "ctrl_custom/Thruster control 1/Thruster 3/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_n[0]), 37, 2, 2, 522, 0 },
+
+  { 262, "ctrl_custom/Thruster control 1/Thruster 3/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_mm[0]), 37, 2, 2, 524, 0 },
+
+  { 263, "ctrl_custom/Thruster control 1/Thruster 3/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_e), 61, 1, 2, 526, 0 },
 
   { 264,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_i), 0, 1, 2, 528, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_f), 61, 1, 2, 528, 0 },
 
   { 265,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim), 0, 1, 2, 530, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_g[0]), 30, 3, 2, 530, 0 },
 
   { 266,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLim), 0, 1, 2, 532, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_f[0]), 30, 3, 2, 532, 0 },
 
   { 267,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Acceleration limiter/InitialCondition",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC), 62, 1, 2, 534, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_c), 61, 1, 2, 534, 0
+  },
 
-  { 268, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_d), 62, 1, 2, 536, 0 },
+  { 268,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_p), 0, 1, 2, 536, 0 },
 
   { 269,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_k), 62, 1, 2, 538, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Acceleration limiter/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim), 0, 1, 2, 538, 0 },
 
-  { 270, "ctrl_custom/Thruster control /Thruster 3/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_k), 62, 1, 2, 540, 0 },
+  { 270,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Acceleration limiter/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLim), 0, 1, 2, 540, 0 },
 
   { 271,
-    "ctrl_custom/Thruster control /Thruster 3/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_n), 62, 1, 2, 542, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Acceleration limiter/InitialCondition",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC), 61, 1, 2, 542, 0 },
 
-  { 272, "ctrl_custom/Thruster control /Thruster 4/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_m[0]), 37, 2, 2, 544, 0 },
+  { 272, "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_d), 61, 1, 2, 544, 0 },
 
-  { 273, "ctrl_custom/Thruster control /Thruster 4/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_h[0]), 37, 2, 2, 546, 0 },
+  { 273,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_hm), 61, 1, 2, 546, 0 },
 
-  { 274, "ctrl_custom/Thruster control /Thruster 4/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_d), 62, 1, 2, 548, 0 },
+  { 274, "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_a), 61, 1, 2, 548, 0 },
 
   { 275,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_b4), 62, 1, 2, 550, 0 },
-
-  { 276,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_d[0]), 30, 3, 2, 552, 0 },
-
-  { 277,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_h[0]), 30, 3, 2, 554, 0 },
-
-  { 278,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_nq), 62, 1, 2, 556, 0
+    "ctrl_custom/Thruster control 1/Thruster 3/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_e), 61, 1, 2, 550, 0
   },
+
+  { 276, "ctrl_custom/Thruster control 1/Thruster 4/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_nc[0]), 37, 2, 2, 552, 0 },
+
+  { 277, "ctrl_custom/Thruster control 1/Thruster 4/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_oy[0]), 37, 2, 2, 554, 0 },
+
+  { 278, "ctrl_custom/Thruster control 1/Thruster 4/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_h), 61, 1, 2, 556, 0 },
 
   { 279,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_n), 0, 1, 2, 558, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_o), 61, 1, 2, 558, 0 },
 
   { 280,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_i), 0, 1, 2, 560, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_h[0]), 30, 3, 2, 560, 0 },
 
   { 281,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_i), 0, 1, 2, 562, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_j[0]), 30, 3, 2, 562, 0 },
 
   { 282,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Acceleration limiter/InitialCondition",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_i), 62, 1, 2, 564, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_n), 61, 1, 2, 564, 0
+  },
 
-  { 283, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_b), 62, 1, 2, 566, 0 },
+  { 283,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_j), 0, 1, 2, 566, 0 },
 
   { 284,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_l), 62, 1, 2, 568, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Acceleration limiter/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_l), 0, 1, 2, 568, 0
+  },
 
-  { 285, "ctrl_custom/Thruster control /Thruster 4/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_ks), 62, 1, 2, 570, 0 },
+  { 285,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Acceleration limiter/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_k), 0, 1, 2, 570, 0
+  },
 
   { 286,
-    "ctrl_custom/Thruster control /Thruster 4/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_g), 62, 1, 2, 572, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Acceleration limiter/InitialCondition",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_j), 61, 1, 2, 572, 0 },
 
-  { 287, "ctrl_custom/Thruster control /Thruster 5/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_gh[0]), 37, 2, 2, 574, 0 },
+  { 287, "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_l), 61, 1, 2, 574, 0 },
 
-  { 288, "ctrl_custom/Thruster control /Thruster 5/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_e[0]), 37, 2, 2, 576, 0 },
+  { 288,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_f), 61, 1, 2, 576, 0 },
 
-  { 289, "ctrl_custom/Thruster control /Thruster 5/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_g), 62, 1, 2, 578, 0 },
+  { 289, "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_j), 61, 1, 2, 578, 0 },
 
   { 290,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_p), 62, 1, 2, 580, 0 },
-
-  { 291,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_kj[0]), 30, 3, 2, 582, 0 },
-
-  { 292,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_b0[0]), 30, 3, 2, 584, 0 },
-
-  { 293,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_il), 62, 1, 2, 586, 0
+    "ctrl_custom/Thruster control 1/Thruster 4/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_j), 61, 1, 2, 580, 0
   },
+
+  { 291, "ctrl_custom/Thruster control 1/Thruster 5/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_jy[0]), 37, 2, 2, 582, 0 },
+
+  { 292, "ctrl_custom/Thruster control 1/Thruster 5/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_hy[0]), 37, 2, 2, 584, 0 },
+
+  { 293, "ctrl_custom/Thruster control 1/Thruster 5/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_eo), 61, 1, 2, 586, 0 },
 
   { 294,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_ih), 0, 1, 2, 588, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_k), 61, 1, 2, 588, 0 },
 
   { 295,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_k), 0, 1, 2, 590, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_p[0]), 30, 3, 2, 590, 0 },
 
   { 296,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_c), 0, 1, 2, 592, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_b[0]), 30, 3, 2, 592, 0 },
 
   { 297,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Acceleration limiter/InitialCondition",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_d), 62, 1, 2, 594, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_a), 61, 1, 2, 594, 0
+  },
 
-  { 298, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_n), 62, 1, 2, 596, 0 },
+  { 298,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_p1), 0, 1, 2, 596, 0 },
 
   { 299,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_hh), 62, 1, 2, 598, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Acceleration limiter/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_a), 0, 1, 2, 598, 0
+  },
 
-  { 300, "ctrl_custom/Thruster control /Thruster 5/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_ny), 62, 1, 2, 600, 0 },
+  { 300,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Acceleration limiter/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_e), 0, 1, 2, 600, 0
+  },
 
   { 301,
-    "ctrl_custom/Thruster control /Thruster 5/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_k), 62, 1, 2, 602, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Acceleration limiter/InitialCondition",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_h), 61, 1, 2, 602, 0 },
 
-  { 302, "ctrl_custom/Thruster control /Thruster 6/Constant/Value", offsetof
-    (P_ctrl_custom_T, Constant_Value_b[0]), 37, 2, 2, 604, 0 },
+  { 302, "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_c), 61, 1, 2, 604, 0 },
 
-  { 303, "ctrl_custom/Thruster control /Thruster 6/Constant1/Value", offsetof
-    (P_ctrl_custom_T, Constant1_Value_oi[0]), 37, 2, 2, 606, 0 },
+  { 303,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_fh), 61, 1, 2, 606, 0 },
 
-  { 304, "ctrl_custom/Thruster control /Thruster 6/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_md), 62, 1, 2, 608, 0 },
+  { 304, "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_n), 61, 1, 2, 608, 0 },
 
   { 305,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, Delay_InitialCondition_gp), 62, 1, 2, 610, 0 },
-
-  { 306,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant1/Value",
-    offsetof(P_ctrl_custom_T, Constant1_Value_pu[0]), 30, 3, 2, 612, 0 },
-
-  { 307,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Constant2/Value",
-    offsetof(P_ctrl_custom_T, Constant2_Value_p[0]), 30, 3, 2, 614, 0 },
-
-  { 308,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_fz), 62, 1, 2, 616, 0
+    "ctrl_custom/Thruster control 1/Thruster 5/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_o), 61, 1, 2, 610, 0
   },
+
+  { 306, "ctrl_custom/Thruster control 1/Thruster 6/Constant/Value", offsetof
+    (P_ctrl_custom_T, Constant_Value_j2[0]), 37, 2, 2, 612, 0 },
+
+  { 307, "ctrl_custom/Thruster control 1/Thruster 6/Constant1/Value", offsetof
+    (P_ctrl_custom_T, Constant1_Value_ol[0]), 37, 2, 2, 614, 0 },
+
+  { 308, "ctrl_custom/Thruster control 1/Thruster 6/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_l), 61, 1, 2, 616, 0 },
 
   { 309,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Derivative/TSamp/WtEt",
-    offsetof(P_ctrl_custom_T, TSamp_WtEt_l), 0, 1, 2, 618, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, Delay_InitialCondition_op), 61, 1, 2, 618, 0 },
 
   { 310,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/RisingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_b), 0, 1, 2, 620, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Constant1/Value",
+    offsetof(P_ctrl_custom_T, Constant1_Value_f[0]), 30, 3, 2, 620, 0 },
 
   { 311,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/FallingSlewLimit",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_j), 0, 1, 2, 622, 0
-  },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Constant2/Value",
+    offsetof(P_ctrl_custom_T, Constant2_Value_jp[0]), 30, 3, 2, 622, 0 },
 
   { 312,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Acceleration limiter/InitialCondition",
-    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_g), 62, 1, 2, 624, 0 },
-
-  { 313, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Memory/X0",
-    offsetof(P_ctrl_custom_T, Memory_X0_m), 62, 1, 2, 626, 0 },
-
-  { 314,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Integrator/InitialCondition",
-    offsetof(P_ctrl_custom_T, Integrator_IC_pr), 62, 1, 2, 628, 0 },
-
-  { 315, "ctrl_custom/Thruster control /Thruster 6/Thruster control/NaN/Value",
-    offsetof(P_ctrl_custom_T, NaN_Value_m), 62, 1, 2, 630, 0 },
-
-  { 316,
-    "ctrl_custom/Thruster control /Thruster 6/Discrete Transfer Fcn/Numerator",
-    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialSt_j), 62, 1, 2, 632, 0
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_ok), 61, 1, 2, 624, 0
   },
 
-  { 317, "ctrl_custom/Thruster control /Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength), 63, 1, 2, 634, 0 },
+  { 313,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Discrete Derivative/TSamp/WtEt",
+    offsetof(P_ctrl_custom_T, TSamp_WtEt_h), 0, 1, 2, 626, 0 },
 
-  { 318, "ctrl_custom/Thruster control /Thruster 1/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_a), 63, 1, 2, 636, 0 },
+  { 314,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Acceleration limiter/RisingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_RisingLim_p), 0, 1, 2, 628, 0
+  },
 
-  { 319,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_h), 63, 1, 2, 638, 0 },
+  { 315,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Acceleration limiter/FallingSlewLimit",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_FallingLi_p), 0, 1, 2, 630, 0
+  },
 
-  { 320, "ctrl_custom/Thruster control /Thruster 2/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_f), 63, 1, 2, 640, 0 },
+  { 316,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Acceleration limiter/InitialCondition",
+    offsetof(P_ctrl_custom_T, Accelerationlimiter_IC_d), 61, 1, 2, 632, 0 },
 
-  { 321,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_o), 63, 1, 2, 642, 0 },
+  { 317, "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Memory/X0",
+    offsetof(P_ctrl_custom_T, Memory_X0_f), 61, 1, 2, 634, 0 },
 
-  { 322, "ctrl_custom/Thruster control /Thruster 3/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_e), 63, 1, 2, 644, 0 },
+  { 318,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/Integrator/InitialCondition",
+    offsetof(P_ctrl_custom_T, Integrator_IC_i), 61, 1, 2, 636, 0 },
+
+  { 319, "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/NaN/Value",
+    offsetof(P_ctrl_custom_T, NaN_Value_c), 61, 1, 2, 638, 0 },
+
+  { 320,
+    "ctrl_custom/Thruster control 1/Thruster 6/Discrete Transfer Fcn/Numerator",
+    offsetof(P_ctrl_custom_T, DiscreteTransferFcn_InitialS_fx), 61, 1, 2, 640, 0
+  },
+
+  { 321, "ctrl_custom/Thruster control 1/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength), 62, 1, 2, 642, 0 },
+
+  { 322, "ctrl_custom/Thruster control 1/Thruster 1/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_n), 62, 1, 2, 644, 0 },
 
   { 323,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_o2), 63, 1, 2, 646, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Delay/DelayLength",
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_g), 62, 1, 2, 646, 0 },
 
-  { 324, "ctrl_custom/Thruster control /Thruster 4/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_k), 63, 1, 2, 648, 0 },
+  { 324, "ctrl_custom/Thruster control 1/Thruster 2/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_e), 62, 1, 2, 648, 0 },
 
   { 325,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_kr), 63, 1, 2, 650, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Delay/DelayLength",
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_f), 62, 1, 2, 650, 0 },
 
-  { 326, "ctrl_custom/Thruster control /Thruster 5/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_n), 63, 1, 2, 652, 0 },
+  { 326, "ctrl_custom/Thruster control 1/Thruster 3/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_c), 62, 1, 2, 652, 0 },
 
   { 327,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_n4), 63, 1, 2, 654, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Delay/DelayLength",
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_i), 62, 1, 2, 654, 0 },
 
-  { 328, "ctrl_custom/Thruster control /Thruster 6/Delay/DelayLength", offsetof
-    (P_ctrl_custom_T, Delay_DelayLength_ho), 63, 1, 2, 656, 0 },
+  { 328, "ctrl_custom/Thruster control 1/Thruster 4/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_o), 62, 1, 2, 656, 0 },
 
   { 329,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, Delay_DelayLength_hw), 63, 1, 2, 658, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Delay/DelayLength",
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_j), 62, 1, 2, 658, 0 },
 
-  { 330,
-    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Discrete-Time Integrator/gainval",
-    offsetof(P_ctrl_custom_T, CoreSubsys.DiscreteTimeIntegrator_gainval), 0, 1,
-    2, 660, 0 },
+  { 330, "ctrl_custom/Thruster control 1/Thruster 5/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_a), 62, 1, 2, 660, 0 },
 
   { 331,
-    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Degrees to Radians/Gain1/Gain",
-    offsetof(P_ctrl_custom_T, CoreSubsys.Gain1_Gain), 62, 1, 2, 662, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Delay/DelayLength",
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_l), 62, 1, 2, 662, 0 },
 
-  { 332,
-    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/InitialCondition",
-    offsetof(P_ctrl_custom_T, CoreSubsys.Delay_InitialCondition), 62, 1, 2, 664,
-    0 },
+  { 332, "ctrl_custom/Thruster control 1/Thruster 6/Delay/DelayLength", offsetof
+    (P_ctrl_custom_T, Delay_DelayLength_ni), 62, 1, 2, 664, 0 },
 
   { 333,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Delay/DelayLength",
+    offsetof(P_ctrl_custom_T, Delay_DelayLength_jx), 62, 1, 2, 666, 0 },
+
+  { 334,
+    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Discrete-Time Integrator/gainval",
+    offsetof(P_ctrl_custom_T, CoreSubsys.DiscreteTimeIntegrator_gainval), 0, 1,
+    2, 668, 0 },
+
+  { 335,
+    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Degrees to Radians/Gain1/Gain",
+    offsetof(P_ctrl_custom_T, CoreSubsys.Gain1_Gain), 61, 1, 2, 670, 0 },
+
+  { 336,
+    "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/InitialCondition",
+    offsetof(P_ctrl_custom_T, CoreSubsys.Delay_InitialCondition), 61, 1, 2, 672,
+    0 },
+
+  { 337,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay/DelayLength",
-    offsetof(P_ctrl_custom_T, CoreSubsys.Delay_DelayLength), 63, 1, 2, 666, 0 },
+    offsetof(P_ctrl_custom_T, CoreSubsys.Delay_DelayLength), 62, 1, 2, 674, 0 },
 };
 
-static int32_t NI_ParamListSize DataSection(".NIVS.paramlistsize") = 334;
+static int32_t NI_ParamListSize DataSection(".NIVS.paramlistsize") = 338;
 static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
 {
   6, 4,                                /* Parameter at index 0 */
@@ -10792,10 +10229,10 @@ static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
   1, 1,                                /* Parameter at index 173 */
   1, 1,                                /* Parameter at index 174 */
   1, 1,                                /* Parameter at index 175 */
-  1, 1,                                /* Parameter at index 176 */
+  1, 6,                                /* Parameter at index 176 */
   1, 6,                                /* Parameter at index 177 */
   1, 6,                                /* Parameter at index 178 */
-  1, 6,                                /* Parameter at index 179 */
+  1, 1,                                /* Parameter at index 179 */
   1, 1,                                /* Parameter at index 180 */
   1, 1,                                /* Parameter at index 181 */
   1, 1,                                /* Parameter at index 182 */
@@ -10809,20 +10246,20 @@ static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
   1, 1,                                /* Parameter at index 190 */
   1, 1,                                /* Parameter at index 191 */
   1, 1,                                /* Parameter at index 192 */
-  1, 1,                                /* Parameter at index 193 */
+  1, 6,                                /* Parameter at index 193 */
   1, 6,                                /* Parameter at index 194 */
-  1, 6,                                /* Parameter at index 195 */
+  1, 1,                                /* Parameter at index 195 */
   1, 1,                                /* Parameter at index 196 */
   1, 1,                                /* Parameter at index 197 */
   1, 1,                                /* Parameter at index 198 */
   1, 1,                                /* Parameter at index 199 */
-  3, 1,                                /* Parameter at index 200 */
+  1, 1,                                /* Parameter at index 200 */
   1, 1,                                /* Parameter at index 201 */
-  1, 1,                                /* Parameter at index 202 */
+  3, 1,                                /* Parameter at index 202 */
   1, 1,                                /* Parameter at index 203 */
-  3, 3,                                /* Parameter at index 204 */
+  1, 1,                                /* Parameter at index 204 */
   1, 1,                                /* Parameter at index 205 */
-  1, 1,                                /* Parameter at index 206 */
+  3, 3,                                /* Parameter at index 206 */
   1, 1,                                /* Parameter at index 207 */
   1, 1,                                /* Parameter at index 208 */
   1, 1,                                /* Parameter at index 209 */
@@ -10843,91 +10280,91 @@ static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
   1, 1,                                /* Parameter at index 224 */
   1, 1,                                /* Parameter at index 225 */
   1, 1,                                /* Parameter at index 226 */
-  1, 2,                                /* Parameter at index 227 */
-  1, 2,                                /* Parameter at index 228 */
+  1, 1,                                /* Parameter at index 227 */
+  1, 1,                                /* Parameter at index 228 */
   1, 1,                                /* Parameter at index 229 */
   1, 1,                                /* Parameter at index 230 */
-  1, 3,                                /* Parameter at index 231 */
-  1, 3,                                /* Parameter at index 232 */
+  1, 2,                                /* Parameter at index 231 */
+  1, 2,                                /* Parameter at index 232 */
   1, 1,                                /* Parameter at index 233 */
   1, 1,                                /* Parameter at index 234 */
-  1, 1,                                /* Parameter at index 235 */
-  1, 1,                                /* Parameter at index 236 */
+  1, 3,                                /* Parameter at index 235 */
+  1, 3,                                /* Parameter at index 236 */
   1, 1,                                /* Parameter at index 237 */
   1, 1,                                /* Parameter at index 238 */
   1, 1,                                /* Parameter at index 239 */
   1, 1,                                /* Parameter at index 240 */
   1, 1,                                /* Parameter at index 241 */
-  1, 2,                                /* Parameter at index 242 */
-  1, 2,                                /* Parameter at index 243 */
+  1, 1,                                /* Parameter at index 242 */
+  1, 1,                                /* Parameter at index 243 */
   1, 1,                                /* Parameter at index 244 */
   1, 1,                                /* Parameter at index 245 */
-  1, 3,                                /* Parameter at index 246 */
-  1, 3,                                /* Parameter at index 247 */
+  1, 2,                                /* Parameter at index 246 */
+  1, 2,                                /* Parameter at index 247 */
   1, 1,                                /* Parameter at index 248 */
   1, 1,                                /* Parameter at index 249 */
-  1, 1,                                /* Parameter at index 250 */
-  1, 1,                                /* Parameter at index 251 */
+  1, 3,                                /* Parameter at index 250 */
+  1, 3,                                /* Parameter at index 251 */
   1, 1,                                /* Parameter at index 252 */
   1, 1,                                /* Parameter at index 253 */
   1, 1,                                /* Parameter at index 254 */
   1, 1,                                /* Parameter at index 255 */
   1, 1,                                /* Parameter at index 256 */
-  1, 2,                                /* Parameter at index 257 */
-  1, 2,                                /* Parameter at index 258 */
+  1, 1,                                /* Parameter at index 257 */
+  1, 1,                                /* Parameter at index 258 */
   1, 1,                                /* Parameter at index 259 */
   1, 1,                                /* Parameter at index 260 */
-  1, 3,                                /* Parameter at index 261 */
-  1, 3,                                /* Parameter at index 262 */
+  1, 2,                                /* Parameter at index 261 */
+  1, 2,                                /* Parameter at index 262 */
   1, 1,                                /* Parameter at index 263 */
   1, 1,                                /* Parameter at index 264 */
-  1, 1,                                /* Parameter at index 265 */
-  1, 1,                                /* Parameter at index 266 */
+  1, 3,                                /* Parameter at index 265 */
+  1, 3,                                /* Parameter at index 266 */
   1, 1,                                /* Parameter at index 267 */
   1, 1,                                /* Parameter at index 268 */
   1, 1,                                /* Parameter at index 269 */
   1, 1,                                /* Parameter at index 270 */
   1, 1,                                /* Parameter at index 271 */
-  1, 2,                                /* Parameter at index 272 */
-  1, 2,                                /* Parameter at index 273 */
+  1, 1,                                /* Parameter at index 272 */
+  1, 1,                                /* Parameter at index 273 */
   1, 1,                                /* Parameter at index 274 */
   1, 1,                                /* Parameter at index 275 */
-  1, 3,                                /* Parameter at index 276 */
-  1, 3,                                /* Parameter at index 277 */
+  1, 2,                                /* Parameter at index 276 */
+  1, 2,                                /* Parameter at index 277 */
   1, 1,                                /* Parameter at index 278 */
   1, 1,                                /* Parameter at index 279 */
-  1, 1,                                /* Parameter at index 280 */
-  1, 1,                                /* Parameter at index 281 */
+  1, 3,                                /* Parameter at index 280 */
+  1, 3,                                /* Parameter at index 281 */
   1, 1,                                /* Parameter at index 282 */
   1, 1,                                /* Parameter at index 283 */
   1, 1,                                /* Parameter at index 284 */
   1, 1,                                /* Parameter at index 285 */
   1, 1,                                /* Parameter at index 286 */
-  1, 2,                                /* Parameter at index 287 */
-  1, 2,                                /* Parameter at index 288 */
+  1, 1,                                /* Parameter at index 287 */
+  1, 1,                                /* Parameter at index 288 */
   1, 1,                                /* Parameter at index 289 */
   1, 1,                                /* Parameter at index 290 */
-  1, 3,                                /* Parameter at index 291 */
-  1, 3,                                /* Parameter at index 292 */
+  1, 2,                                /* Parameter at index 291 */
+  1, 2,                                /* Parameter at index 292 */
   1, 1,                                /* Parameter at index 293 */
   1, 1,                                /* Parameter at index 294 */
-  1, 1,                                /* Parameter at index 295 */
-  1, 1,                                /* Parameter at index 296 */
+  1, 3,                                /* Parameter at index 295 */
+  1, 3,                                /* Parameter at index 296 */
   1, 1,                                /* Parameter at index 297 */
   1, 1,                                /* Parameter at index 298 */
   1, 1,                                /* Parameter at index 299 */
   1, 1,                                /* Parameter at index 300 */
   1, 1,                                /* Parameter at index 301 */
-  1, 2,                                /* Parameter at index 302 */
-  1, 2,                                /* Parameter at index 303 */
+  1, 1,                                /* Parameter at index 302 */
+  1, 1,                                /* Parameter at index 303 */
   1, 1,                                /* Parameter at index 304 */
   1, 1,                                /* Parameter at index 305 */
-  1, 3,                                /* Parameter at index 306 */
-  1, 3,                                /* Parameter at index 307 */
+  1, 2,                                /* Parameter at index 306 */
+  1, 2,                                /* Parameter at index 307 */
   1, 1,                                /* Parameter at index 308 */
   1, 1,                                /* Parameter at index 309 */
-  1, 1,                                /* Parameter at index 310 */
-  1, 1,                                /* Parameter at index 311 */
+  1, 3,                                /* Parameter at index 310 */
+  1, 3,                                /* Parameter at index 311 */
   1, 1,                                /* Parameter at index 312 */
   1, 1,                                /* Parameter at index 313 */
   1, 1,                                /* Parameter at index 314 */
@@ -10950,6 +10387,10 @@ static int32_t NI_ParamDimList[] DataSection(".NIVS.paramdimlist") =
   1, 1,                                /* Parameter at index 331 */
   1, 1,                                /* Parameter at index 332 */
   1, 1,                                /* Parameter at index 333 */
+  1, 1,                                /* Parameter at index 334 */
+  1, 1,                                /* Parameter at index 335 */
+  1, 1,                                /* Parameter at index 336 */
+  1, 1,                                /* Parameter at index 337 */
 };
 
 static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
@@ -10957,8 +10398,8 @@ static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
   { 0, "ctrl_custom/Input to model", 0, "", offsetof(B_ctrl_custom_T,
     Inputtomodel) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 1, "ctrl_custom/start", 0, "", offsetof(B_ctrl_custom_T, start) + (0*sizeof
-    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+  { 1, "ctrl_custom/Startbutton", 0, "", offsetof(B_ctrl_custom_T, Startbutton)
+    + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 2, "ctrl_custom/Initialization of parameters/Control Gains/K_p_x", 0, "",
     offsetof(B_ctrl_custom_T, K_p_x) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
@@ -11041,7 +10482,7 @@ static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
     2, 0, 0 },
 
   { 24, "ctrl_custom/PID controller1/[-inf inf] to [-pi pi]/Sum", 0, "",
-    offsetof(B_ctrl_custom_T, Sum_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
+    offsetof(B_ctrl_custom_T, Sum_e) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
   { 25, "ctrl_custom/Nonlinear Passisve Observer/Integrator1/(1, 1)", 0, "",
@@ -11068,17 +10509,17 @@ static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
     (B_ctrl_custom_T, regulationerror) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1,
     2, 0, 0 },
 
-  { 31, "ctrl_custom/Referance/Integrator1/(1, 1)", 0, "", offsetof
-    (B_ctrl_custom_T, Integrator1_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2,
-    0, 0 },
+  { 31, "ctrl_custom/PID controller/Matrix Multiply1/(1, 1)", 0, "", offsetof
+    (B_ctrl_custom_T, MatrixMultiply1) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1,
+    2, 0, 0 },
 
-  { 32, "ctrl_custom/Referance/Integrator1/(1, 2)", 0, "", offsetof
-    (B_ctrl_custom_T, Integrator1_i) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2,
-    0, 0 },
+  { 32, "ctrl_custom/PID controller/Matrix Multiply1/(1, 2)", 0, "", offsetof
+    (B_ctrl_custom_T, MatrixMultiply1) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1,
+    2, 0, 0 },
 
-  { 33, "ctrl_custom/Referance/Integrator1/(1, 3)", 0, "", offsetof
-    (B_ctrl_custom_T, Integrator1_i) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2,
-    0, 0 },
+  { 33, "ctrl_custom/PID controller/Matrix Multiply1/(1, 3)", 0, "", offsetof
+    (B_ctrl_custom_T, MatrixMultiply1) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1,
+    2, 0, 0 },
 
   { 34, "ctrl_custom/Switch/(1, 1)", 0, "", offsetof(B_ctrl_custom_T, Switch) +
     (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
@@ -11089,23 +10530,23 @@ static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
   { 36, "ctrl_custom/Switch/(1, 3)", 0, "", offsetof(B_ctrl_custom_T, Switch) +
     (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 37, "ctrl_custom/start2/(1, 1)", 0, "", offsetof(B_ctrl_custom_T, start2) +
-    (0*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
+  { 37, "ctrl_custom/Startbutton1/(1, 1)", 0, "", offsetof(B_ctrl_custom_T,
+    Startbutton1) + (0*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 38, "ctrl_custom/start2/(1, 2)", 0, "", offsetof(B_ctrl_custom_T, start2) +
-    (1*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
+  { 38, "ctrl_custom/Startbutton1/(1, 2)", 0, "", offsetof(B_ctrl_custom_T,
+    Startbutton1) + (1*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 39, "ctrl_custom/start2/(1, 3)", 0, "", offsetof(B_ctrl_custom_T, start2) +
-    (2*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
+  { 39, "ctrl_custom/Startbutton1/(1, 3)", 0, "", offsetof(B_ctrl_custom_T,
+    Startbutton1) + (2*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 40, "ctrl_custom/start2/(1, 4)", 0, "", offsetof(B_ctrl_custom_T, start2) +
-    (3*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
+  { 40, "ctrl_custom/Startbutton1/(1, 4)", 0, "", offsetof(B_ctrl_custom_T,
+    Startbutton1) + (3*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 41, "ctrl_custom/start2/(1, 5)", 0, "", offsetof(B_ctrl_custom_T, start2) +
-    (4*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
+  { 41, "ctrl_custom/Startbutton1/(1, 5)", 0, "", offsetof(B_ctrl_custom_T,
+    Startbutton1) + (4*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 42, "ctrl_custom/start2/(1, 6)", 0, "", offsetof(B_ctrl_custom_T, start2) +
-    (5*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
+  { 42, "ctrl_custom/Startbutton1/(1, 6)", 0, "", offsetof(B_ctrl_custom_T,
+    Startbutton1) + (5*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
   { 43, "ctrl_custom/Gain5", 0, "", offsetof(B_ctrl_custom_T, Gain5_n) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
@@ -11117,34 +10558,34 @@ static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 46,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm1", 0,
-    "", offsetof(B_ctrl_custom_T, rpm1) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
-    2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm1",
+    0, "", offsetof(B_ctrl_custom_T, rpm1) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
   { 47,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm2", 0,
-    "", offsetof(B_ctrl_custom_T, rpm2) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
-    2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm2",
+    0, "", offsetof(B_ctrl_custom_T, rpm2) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
   { 48,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm3", 0,
-    "", offsetof(B_ctrl_custom_T, rpm3) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
-    2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm3",
+    0, "", offsetof(B_ctrl_custom_T, rpm3) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
   { 49,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm4", 0,
-    "", offsetof(B_ctrl_custom_T, rpm4) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
-    2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm4",
+    0, "", offsetof(B_ctrl_custom_T, rpm4) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
   { 50,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm5", 0,
-    "", offsetof(B_ctrl_custom_T, rpm5) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
-    2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm5",
+    0, "", offsetof(B_ctrl_custom_T, rpm5) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
   { 51,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/rpm6", 0,
-    "", offsetof(B_ctrl_custom_T, rpm6) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
-    2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm6",
+    0, "", offsetof(B_ctrl_custom_T, rpm6) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
   { 52, "ctrl_custom/Thruster measurment/thr_angle_1", 0, "", offsetof
     (B_ctrl_custom_T, thr_angle_1) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
@@ -11198,29 +10639,29 @@ static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
     0, "", offsetof(B_ctrl_custom_T, ChoosingFixedAzimuthangle) + (5*sizeof
     (real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 65, "ctrl_custom/Thruster control /Subsystem1/Saturation 1", 0, "", offsetof
-    (B_ctrl_custom_T, Saturation1) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
-    0 },
+  { 65, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 1", 0, "",
+    offsetof(B_ctrl_custom_T, Saturation1) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
-  { 66, "ctrl_custom/Thruster control /Subsystem1/Saturation 2", 0, "", offsetof
-    (B_ctrl_custom_T, Saturation2) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
-    0 },
+  { 66, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 2", 0, "",
+    offsetof(B_ctrl_custom_T, Saturation2) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
-  { 67, "ctrl_custom/Thruster control /Subsystem1/Saturation 3", 0, "", offsetof
-    (B_ctrl_custom_T, Saturation3) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
-    0 },
+  { 67, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 3", 0, "",
+    offsetof(B_ctrl_custom_T, Saturation3) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
-  { 68, "ctrl_custom/Thruster control /Subsystem1/Saturation 4", 0, "", offsetof
-    (B_ctrl_custom_T, Saturation4) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
-    0 },
+  { 68, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 4", 0, "",
+    offsetof(B_ctrl_custom_T, Saturation4) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
-  { 69, "ctrl_custom/Thruster control /Subsystem1/Saturation 5", 0, "", offsetof
-    (B_ctrl_custom_T, Saturation5) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
-    0 },
+  { 69, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 5", 0, "",
+    offsetof(B_ctrl_custom_T, Saturation5) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
-  { 70, "ctrl_custom/Thruster control /Subsystem1/Saturation 6", 0, "", offsetof
-    (B_ctrl_custom_T, Saturation6) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
-    0 },
+  { 70, "ctrl_custom/Thruster control 1/Subsystem1/Saturation 6", 0, "",
+    offsetof(B_ctrl_custom_T, Saturation6) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
   { 71, "ctrl_custom/Radians to Degrees/Gain/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, Gain_h) + (0*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0
@@ -11246,1056 +10687,1080 @@ static NI_Signal NI_SigList[] DataSection(".NIVS.siglist") =
     (B_ctrl_custom_T, Gain_h) + (5*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0
   },
 
-  { 77, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 1)", 0, "",
+  { 77, "ctrl_custom/Gain4", 0, "", offsetof(B_ctrl_custom_T, Gain4) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 78, "ctrl_custom/Gain2", 0, "", offsetof(B_ctrl_custom_T, Gain2) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 79, "ctrl_custom/Gain3", 0, "", offsetof(B_ctrl_custom_T, Gain3) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 80, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 1)", 0, "",
     offsetof(B_ctrl_custom_T, Integrator2) + (0*sizeof(real_T)), BLOCKIO_SIG, 23,
     1, 2, 0, 0 },
 
-  { 78, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 2)", 0, "",
+  { 81, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 2)", 0, "",
     offsetof(B_ctrl_custom_T, Integrator2) + (1*sizeof(real_T)), BLOCKIO_SIG, 23,
     1, 2, 0, 0 },
 
-  { 79, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 3)", 0, "",
+  { 82, "ctrl_custom/Nonlinear Passisve Observer/Integrator2/(1, 3)", 0, "",
     offsetof(B_ctrl_custom_T, Integrator2) + (2*sizeof(real_T)), BLOCKIO_SIG, 23,
     1, 2, 0, 0 },
 
-  { 80,
+  { 83,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(1, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 81,
+  { 84,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(2, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 82,
+  { 85,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(3, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 83,
+  { 86,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(1, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (3*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 84,
+  { 87,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(2, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (4*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 85,
+  { 88,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(3, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (5*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 86,
+  { 89,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(1, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (6*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 87,
+  { 90,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(2, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (7*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 88,
+  { 91,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix2/(3, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix2) + (8*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 89, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 1)", 0, "", offsetof
+  { 92, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, M1) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 90, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 2)", 0, "", offsetof
+  { 93, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 2)", 0, "", offsetof
     (B_ctrl_custom_T, M1) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 91, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 3)", 0, "", offsetof
+  { 94, "ctrl_custom/Nonlinear Passisve Observer/M^-1/(1, 3)", 0, "", offsetof
     (B_ctrl_custom_T, M1) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 92,
+  { 95, "ctrl_custom/Gain8", 0, "", offsetof(B_ctrl_custom_T, Gain8) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 96,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(1, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 93,
+  { 97,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(2, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 94,
+  { 98,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(3, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 95,
+  { 99,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(1, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (3*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 96,
+  { 100,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(2, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (4*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 97,
+  { 101,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(3, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (5*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 98,
+  { 102,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(1, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (6*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 99,
+  { 103,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(2, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (7*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 100,
+  { 104,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix/(3, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix) + (8*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 101,
+  { 105,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(1, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 102,
+  { 106,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(2, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 103,
+  { 107,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(3, 1)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 104,
+  { 108,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(1, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (3*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 105,
+  { 109,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(2, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (4*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 106,
+  { 110,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(3, 2)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (5*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 107,
+  { 111,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(1, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (6*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 108,
+  { 112,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(2, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (7*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 109,
+  { 113,
     "ctrl_custom/Initialization of parameters/Observer Gains/Create Diagonal Matrix1/(3, 3)",
     0, "", offsetof(B_ctrl_custom_T, CreateDiagonalMatrix1) + (8*sizeof(real_T)),
     BLOCKIO_SIG, 25, 1, 2, 0, 0 },
 
-  { 110, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 1)", 0,
-    "", offsetof(B_ctrl_custom_T, MatrixMultiply1) + (0*sizeof(real_T)),
+  { 114, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 1)", 0,
+    "", offsetof(B_ctrl_custom_T, MatrixMultiply1_j) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 111, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 2)", 0,
-    "", offsetof(B_ctrl_custom_T, MatrixMultiply1) + (1*sizeof(real_T)),
+  { 115, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 2)", 0,
+    "", offsetof(B_ctrl_custom_T, MatrixMultiply1_j) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 112, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 3)", 0,
-    "", offsetof(B_ctrl_custom_T, MatrixMultiply1) + (2*sizeof(real_T)),
+  { 116, "ctrl_custom/Nonlinear Passisve Observer/Matrix Multiply1/(1, 3)", 0,
+    "", offsetof(B_ctrl_custom_T, MatrixMultiply1_j) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 113, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 1)", 0, "", offsetof
+  { 117, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, Sum1) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 114, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 2)", 0, "", offsetof
+  { 118, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 2)", 0, "", offsetof
     (B_ctrl_custom_T, Sum1) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 115, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 3)", 0, "", offsetof
+  { 119, "ctrl_custom/Nonlinear Passisve Observer/Sum1/(1, 3)", 0, "", offsetof
     (B_ctrl_custom_T, Sum1) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 116, "ctrl_custom/PID controller/Gain5", 0, "", offsetof(B_ctrl_custom_T,
+  { 120, "ctrl_custom/PID controller/Gain5", 0, "", offsetof(B_ctrl_custom_T,
     Gain5_a) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 117, "ctrl_custom/Referance/x_ref", 0, "", offsetof(B_ctrl_custom_T, x_ref)
+  { 121, "ctrl_custom/Referance/x_ref", 0, "", offsetof(B_ctrl_custom_T, x_ref)
     + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 118, "ctrl_custom/Initialization of parameters/Guidance Gains/w_x", 0, "",
+  { 122, "ctrl_custom/Referance/Integrator1/(1, 1)", 0, "", offsetof
+    (B_ctrl_custom_T, Integrator1_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2,
+    0, 0 },
+
+  { 123, "ctrl_custom/Referance/Integrator1/(1, 2)", 0, "", offsetof
+    (B_ctrl_custom_T, Integrator1_i) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2,
+    0, 0 },
+
+  { 124, "ctrl_custom/Referance/Integrator1/(1, 3)", 0, "", offsetof
+    (B_ctrl_custom_T, Integrator1_i) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2,
+    0, 0 },
+
+  { 125, "ctrl_custom/Initialization of parameters/Guidance Gains/w_x", 0, "",
     offsetof(B_ctrl_custom_T, w_x) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 119, "ctrl_custom/Initialization of parameters/Guidance Gains/w_y", 0, "",
+  { 126, "ctrl_custom/Initialization of parameters/Guidance Gains/w_y", 0, "",
     offsetof(B_ctrl_custom_T, w_y) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 120, "ctrl_custom/Initialization of parameters/Guidance Gains/w_psi", 0, "",
+  { 127, "ctrl_custom/Initialization of parameters/Guidance Gains/w_psi", 0, "",
     offsetof(B_ctrl_custom_T, w_psi) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 121, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_psi", 0,
+  { 128, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_psi", 0,
     "", offsetof(B_ctrl_custom_T, zeta_psi) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 122, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_x", 0, "",
+  { 129, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_x", 0, "",
     offsetof(B_ctrl_custom_T, zeta_x) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 123, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_y", 0, "",
+  { 130, "ctrl_custom/Initialization of parameters/Guidance Gains/zeta_y", 0, "",
     offsetof(B_ctrl_custom_T, zeta_y) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 124, "ctrl_custom/Initialization of parameters/Guidance Gains/T_psi", 0, "",
+  { 131, "ctrl_custom/Initialization of parameters/Guidance Gains/T_psi", 0, "",
     offsetof(B_ctrl_custom_T, T_psi) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 125, "ctrl_custom/Initialization of parameters/Guidance Gains/T_x", 0, "",
+  { 132, "ctrl_custom/Initialization of parameters/Guidance Gains/T_x", 0, "",
     offsetof(B_ctrl_custom_T, T_x) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 126, "ctrl_custom/Initialization of parameters/Guidance Gains/T_y", 0, "",
+  { 133, "ctrl_custom/Initialization of parameters/Guidance Gains/T_y", 0, "",
     offsetof(B_ctrl_custom_T, T_y) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0,
     0 },
 
-  { 127, "ctrl_custom/Referance/y_ref", 0, "", offsetof(B_ctrl_custom_T, y_ref)
+  { 134, "ctrl_custom/Referance/y_ref", 0, "", offsetof(B_ctrl_custom_T, y_ref)
     + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 128, "ctrl_custom/Referance/Sum/(1, 1)", 0, "", offsetof(B_ctrl_custom_T,
+  { 135, "ctrl_custom/Referance/Sum/(1, 1)", 0, "", offsetof(B_ctrl_custom_T,
     Sum_m) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 129, "ctrl_custom/Referance/Sum/(1, 2)", 0, "", offsetof(B_ctrl_custom_T,
+  { 136, "ctrl_custom/Referance/Sum/(1, 2)", 0, "", offsetof(B_ctrl_custom_T,
     Sum_m) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 130, "ctrl_custom/Referance/Sum/(1, 3)", 0, "", offsetof(B_ctrl_custom_T,
+  { 137, "ctrl_custom/Referance/Sum/(1, 3)", 0, "", offsetof(B_ctrl_custom_T,
     Sum_m) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 131, "ctrl_custom/Referance/Sum2/(1, 1)", 0, "", offsetof(B_ctrl_custom_T,
+  { 138, "ctrl_custom/Referance/Sum2/(1, 1)", 0, "", offsetof(B_ctrl_custom_T,
     Sum2) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 132, "ctrl_custom/Referance/Sum2/(1, 2)", 0, "", offsetof(B_ctrl_custom_T,
+  { 139, "ctrl_custom/Referance/Sum2/(1, 2)", 0, "", offsetof(B_ctrl_custom_T,
     Sum2) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 133, "ctrl_custom/Referance/Sum2/(1, 3)", 0, "", offsetof(B_ctrl_custom_T,
+  { 140, "ctrl_custom/Referance/Sum2/(1, 3)", 0, "", offsetof(B_ctrl_custom_T,
     Sum2) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 134, "ctrl_custom/Thruster control /Delay/(1, 1)", 0, "", offsetof
+  { 141, "ctrl_custom/Thruster control 1/Delay/(1, 1)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (0*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 135, "ctrl_custom/Thruster control /Delay/(1, 2)", 0, "", offsetof
+  { 142, "ctrl_custom/Thruster control 1/Delay/(1, 2)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (1*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 136, "ctrl_custom/Thruster control /Delay/(1, 3)", 0, "", offsetof
+  { 143, "ctrl_custom/Thruster control 1/Delay/(1, 3)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (2*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 137, "ctrl_custom/Thruster control /Delay/(1, 4)", 0, "", offsetof
+  { 144, "ctrl_custom/Thruster control 1/Delay/(1, 4)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (3*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 138, "ctrl_custom/Thruster control /Delay/(1, 5)", 0, "", offsetof
+  { 145, "ctrl_custom/Thruster control 1/Delay/(1, 5)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (4*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 139, "ctrl_custom/Thruster control /Delay/(1, 6)", 0, "", offsetof
+  { 146, "ctrl_custom/Thruster control 1/Delay/(1, 6)", 0, "", offsetof
     (B_ctrl_custom_T, Delay) + (5*sizeof(real_T)), BLOCKIO_SIG, 24, 1, 2, 0, 0 },
 
-  { 140, "ctrl_custom/Thruster control /Thruster 1/Delay", 0, "", offsetof
-    (B_ctrl_custom_T, Delay_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
+  { 147, "ctrl_custom/Thruster control 1/Thruster 1/Delay", 0, "", offsetof
+    (B_ctrl_custom_T, Delay_n) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 141, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Delay", 0,
-    "", offsetof(B_ctrl_custom_T, Delay_j) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 148, "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Delay", 0,
+    "", offsetof(B_ctrl_custom_T, Delay_o) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 142,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Transfer Fcn",
+  { 149,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Discrete Transfer Fcn",
     0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 143,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Discrete Derivative/TSamp",
+  { 150,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Discrete Derivative/TSamp",
     0, "", offsetof(B_ctrl_custom_T, TSamp) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 144,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Inertia compensation",
+  { 151,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Inertia compensation",
     0, "", offsetof(B_ctrl_custom_T, Inertiacompensation) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 145, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Sum1", 0, "",
-    offsetof(B_ctrl_custom_T, Sum1_b) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
-    0, 0 },
+  { 152, "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Sum1", 0,
+    "", offsetof(B_ctrl_custom_T, Sum1_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
-  { 146, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Memory", 0,
+  { 153, "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Memory", 0,
     "", offsetof(B_ctrl_custom_T, Memory) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 147,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Kp",
+  { 154,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/Kp",
     0, "", offsetof(B_ctrl_custom_T, Kp) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 148,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/reset",
+  { 155,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/reset",
     0, "", offsetof(B_ctrl_custom_T, reset) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 149, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Sum", 0, "",
-    offsetof(B_ctrl_custom_T, Sum_h) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
+  { 156, "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Sum", 0, "",
+    offsetof(B_ctrl_custom_T, Sum_j) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 150, "ctrl_custom/Thruster control /Thruster 1/Discrete Transfer Fcn", 0, "",
-    offsetof(B_ctrl_custom_T, DiscreteTransferFcn_b) + (0*sizeof(real_T)),
+  { 157, "ctrl_custom/Thruster control 1/Thruster 1/Discrete Transfer Fcn", 0,
+    "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_b) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 151,
-    "ctrl_custom/Thruster control /Thruster 1/Shaft dynamics/Finding rotation speed",
+  { 158,
+    "ctrl_custom/Thruster control 1/Thruster 1/Shaft dynamics/Finding rotation speed",
     0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 152,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Ki",
+  { 159,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/Ki",
     0, "", offsetof(B_ctrl_custom_T, Ki) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 153, "ctrl_custom/Thruster control /Thruster 2/Delay", 0, "", offsetof
-    (B_ctrl_custom_T, Delay_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
+  { 160, "ctrl_custom/Thruster control 1/Thruster 2/Delay", 0, "", offsetof
+    (B_ctrl_custom_T, Delay_f) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 154, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Delay", 0,
-    "", offsetof(B_ctrl_custom_T, Delay_b) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 161, "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Delay", 0,
+    "", offsetof(B_ctrl_custom_T, Delay_fg) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 155,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Transfer Fcn",
-    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_l) + (0*sizeof(real_T)),
+  { 162,
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Discrete Transfer Fcn",
+    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_h) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 156,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Discrete Derivative/TSamp",
-    0, "", offsetof(B_ctrl_custom_T, TSamp_m) + (0*sizeof(real_T)), BLOCKIO_SIG,
+  { 163,
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Discrete Derivative/TSamp",
+    0, "", offsetof(B_ctrl_custom_T, TSamp_g) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 157,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Inertia compensation",
-    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_b) + (0*sizeof(real_T)),
+  { 164,
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Inertia compensation",
+    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_f) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 158, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Sum1", 0, "",
-    offsetof(B_ctrl_custom_T, Sum1_l) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
-    0, 0 },
-
-  { 159, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Memory", 0,
-    "", offsetof(B_ctrl_custom_T, Memory_l) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 165, "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Sum1", 0,
+    "", offsetof(B_ctrl_custom_T, Sum1_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 160,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Kp",
+  { 166, "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Memory", 0,
+    "", offsetof(B_ctrl_custom_T, Memory_a) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 167,
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/Kp",
     0, "", offsetof(B_ctrl_custom_T, Kp_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 161,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/reset",
-    0, "", offsetof(B_ctrl_custom_T, reset_l) + (0*sizeof(real_T)), BLOCKIO_SIG,
-    0, 1, 2, 0, 0 },
-
-  { 162, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Sum", 0, "",
-    offsetof(B_ctrl_custom_T, Sum_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
-    0, 0 },
-
-  { 163, "ctrl_custom/Thruster control /Thruster 2/Discrete Transfer Fcn", 0, "",
-    offsetof(B_ctrl_custom_T, DiscreteTransferFcn_c) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 164,
-    "ctrl_custom/Thruster control /Thruster 2/Shaft dynamics/Finding rotation speed",
-    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_h) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 165,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Ki",
-    0, "", offsetof(B_ctrl_custom_T, Ki_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
-    1, 2, 0, 0 },
-
-  { 166, "ctrl_custom/Thruster control /Thruster 3/Delay", 0, "", offsetof
-    (B_ctrl_custom_T, Delay_h) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
-  },
-
-  { 167, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Delay", 0,
-    "", offsetof(B_ctrl_custom_T, Delay_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
-    1, 2, 0, 0 },
-
   { 168,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Transfer Fcn",
-    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_d) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 169,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Discrete Derivative/TSamp",
-    0, "", offsetof(B_ctrl_custom_T, TSamp_k) + (0*sizeof(real_T)), BLOCKIO_SIG,
-    0, 1, 2, 0, 0 },
-
-  { 170,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Inertia compensation",
-    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_m) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 171, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Sum1", 0, "",
-    offsetof(B_ctrl_custom_T, Sum1_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
-    0, 0 },
-
-  { 172, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Memory", 0,
-    "", offsetof(B_ctrl_custom_T, Memory_ln) + (0*sizeof(real_T)), BLOCKIO_SIG,
-    0, 1, 2, 0, 0 },
-
-  { 173,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Kp",
-    0, "", offsetof(B_ctrl_custom_T, Kp_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
-    1, 2, 0, 0 },
-
-  { 174,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/reset",
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/reset",
     0, "", offsetof(B_ctrl_custom_T, reset_i) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 175, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Sum", 0, "",
-    offsetof(B_ctrl_custom_T, Sum_n) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
+  { 169, "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Sum", 0, "",
+    offsetof(B_ctrl_custom_T, Sum_ms) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 176, "ctrl_custom/Thruster control /Thruster 3/Discrete Transfer Fcn", 0, "",
-    offsetof(B_ctrl_custom_T, DiscreteTransferFcn_o) + (0*sizeof(real_T)),
+  { 170, "ctrl_custom/Thruster control 1/Thruster 2/Discrete Transfer Fcn", 0,
+    "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_hl) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 177,
-    "ctrl_custom/Thruster control /Thruster 3/Shaft dynamics/Finding rotation speed",
-    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_m) + (0*sizeof(real_T)),
+  { 171,
+    "ctrl_custom/Thruster control 1/Thruster 2/Shaft dynamics/Finding rotation speed",
+    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_d) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 178,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Ki",
-    0, "", offsetof(B_ctrl_custom_T, Ki_o) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 172,
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/Ki",
+    0, "", offsetof(B_ctrl_custom_T, Ki_n) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 179, "ctrl_custom/Thruster control /Thruster 4/Delay", 0, "", offsetof
-    (B_ctrl_custom_T, Delay_e) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
+  { 173, "ctrl_custom/Thruster control 1/Thruster 3/Delay", 0, "", offsetof
+    (B_ctrl_custom_T, Delay_h) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 180, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Delay", 0,
-    "", offsetof(B_ctrl_custom_T, Delay_m) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 174, "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Delay", 0,
+    "", offsetof(B_ctrl_custom_T, Delay_l) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 175,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Discrete Transfer Fcn",
+    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_k) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 176,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Discrete Derivative/TSamp",
+    0, "", offsetof(B_ctrl_custom_T, TSamp_f) + (0*sizeof(real_T)), BLOCKIO_SIG,
+    0, 1, 2, 0, 0 },
+
+  { 177,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Inertia compensation",
+    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_k) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 178, "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Sum1", 0,
+    "", offsetof(B_ctrl_custom_T, Sum1_b) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 179, "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Memory", 0,
+    "", offsetof(B_ctrl_custom_T, Memory_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 180,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/Kp",
+    0, "", offsetof(B_ctrl_custom_T, Kp_h) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
   { 181,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Transfer Fcn",
-    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_p) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 182,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Discrete Derivative/TSamp",
-    0, "", offsetof(B_ctrl_custom_T, TSamp_d) + (0*sizeof(real_T)), BLOCKIO_SIG,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/reset",
+    0, "", offsetof(B_ctrl_custom_T, reset_f) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 183,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Inertia compensation",
-    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_bn) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 184, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Sum1", 0, "",
-    offsetof(B_ctrl_custom_T, Sum1_cp) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
-    2, 0, 0 },
-
-  { 185, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Memory", 0,
-    "", offsetof(B_ctrl_custom_T, Memory_j) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
-    1, 2, 0, 0 },
-
-  { 186,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Kp",
-    0, "", offsetof(B_ctrl_custom_T, Kp_o) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
-    1, 2, 0, 0 },
-
-  { 187,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/reset",
-    0, "", offsetof(B_ctrl_custom_T, reset_h) + (0*sizeof(real_T)), BLOCKIO_SIG,
-    0, 1, 2, 0, 0 },
-
-  { 188, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Sum", 0, "",
-    offsetof(B_ctrl_custom_T, Sum_a) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
+  { 182, "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Sum", 0, "",
+    offsetof(B_ctrl_custom_T, Sum_l) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 189, "ctrl_custom/Thruster control /Thruster 4/Discrete Transfer Fcn", 0, "",
-    offsetof(B_ctrl_custom_T, DiscreteTransferFcn_oy) + (0*sizeof(real_T)),
+  { 183, "ctrl_custom/Thruster control 1/Thruster 3/Discrete Transfer Fcn", 0,
+    "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_ho) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 190,
-    "ctrl_custom/Thruster control /Thruster 4/Shaft dynamics/Finding rotation speed",
-    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_p) + (0*sizeof(real_T)),
+  { 184,
+    "ctrl_custom/Thruster control 1/Thruster 3/Shaft dynamics/Finding rotation speed",
+    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_g) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 191,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Ki",
-    0, "", offsetof(B_ctrl_custom_T, Ki_g) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 185,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/Ki",
+    0, "", offsetof(B_ctrl_custom_T, Ki_f) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 192, "ctrl_custom/Thruster control /Thruster 5/Delay", 0, "", offsetof
-    (B_ctrl_custom_T, Delay_jj) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
+  { 186, "ctrl_custom/Thruster control 1/Thruster 4/Delay", 0, "", offsetof
+    (B_ctrl_custom_T, Delay_g) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 193, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Delay", 0,
-    "", offsetof(B_ctrl_custom_T, Delay_n) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 187, "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Delay", 0,
+    "", offsetof(B_ctrl_custom_T, Delay_nh) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 188,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Discrete Transfer Fcn",
+    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_j) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 189,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Discrete Derivative/TSamp",
+    0, "", offsetof(B_ctrl_custom_T, TSamp_a) + (0*sizeof(real_T)), BLOCKIO_SIG,
+    0, 1, 2, 0, 0 },
+
+  { 190,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Inertia compensation",
+    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_p) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 191, "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Sum1", 0,
+    "", offsetof(B_ctrl_custom_T, Sum1_h) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 192, "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Memory", 0,
+    "", offsetof(B_ctrl_custom_T, Memory_c) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 193,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/Kp",
+    0, "", offsetof(B_ctrl_custom_T, Kp_b) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
   { 194,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Transfer Fcn",
-    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_br) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 195,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Discrete Derivative/TSamp",
-    0, "", offsetof(B_ctrl_custom_T, TSamp_k4) + (0*sizeof(real_T)), BLOCKIO_SIG,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/reset",
+    0, "", offsetof(B_ctrl_custom_T, reset_im) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 196,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Inertia compensation",
-    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_a) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 197, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Sum1", 0, "",
-    offsetof(B_ctrl_custom_T, Sum1_e) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
+  { 195, "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Sum", 0, "",
+    offsetof(B_ctrl_custom_T, Sum_mg) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 198, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Memory", 0,
-    "", offsetof(B_ctrl_custom_T, Memory_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
-    1, 2, 0, 0 },
-
-  { 199,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Kp",
-    0, "", offsetof(B_ctrl_custom_T, Kp_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
-    1, 2, 0, 0 },
-
-  { 200,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/reset",
-    0, "", offsetof(B_ctrl_custom_T, reset_e) + (0*sizeof(real_T)), BLOCKIO_SIG,
-    0, 1, 2, 0, 0 },
-
-  { 201, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Sum", 0, "",
-    offsetof(B_ctrl_custom_T, Sum_f) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
-    0, 0 },
-
-  { 202, "ctrl_custom/Thruster control /Thruster 5/Discrete Transfer Fcn", 0, "",
-    offsetof(B_ctrl_custom_T, DiscreteTransferFcn_m) + (0*sizeof(real_T)),
+  { 196, "ctrl_custom/Thruster control 1/Thruster 4/Discrete Transfer Fcn", 0,
+    "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_p) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 203,
-    "ctrl_custom/Thruster control /Thruster 5/Shaft dynamics/Finding rotation speed",
-    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_j) + (0*sizeof(real_T)),
+  { 197,
+    "ctrl_custom/Thruster control 1/Thruster 4/Shaft dynamics/Finding rotation speed",
+    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_e) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 204,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Ki",
-    0, "", offsetof(B_ctrl_custom_T, Ki_m) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 198,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/Ki",
+    0, "", offsetof(B_ctrl_custom_T, Ki_h) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 205, "ctrl_custom/Thruster control /Thruster 6/Delay", 0, "", offsetof
-    (B_ctrl_custom_T, Delay_mu) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
+  { 199, "ctrl_custom/Thruster control 1/Thruster 5/Delay", 0, "", offsetof
+    (B_ctrl_custom_T, Delay_f4) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
   },
 
-  { 206, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Delay", 0,
-    "", offsetof(B_ctrl_custom_T, Delay_e5) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 200, "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Delay", 0,
+    "", offsetof(B_ctrl_custom_T, Delay_a) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 201,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Discrete Transfer Fcn",
+    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_jz) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 202,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Discrete Derivative/TSamp",
+    0, "", offsetof(B_ctrl_custom_T, TSamp_aa) + (0*sizeof(real_T)), BLOCKIO_SIG,
+    0, 1, 2, 0, 0 },
+
+  { 203,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Inertia compensation",
+    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_d) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 204, "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Sum1", 0,
+    "", offsetof(B_ctrl_custom_T, Sum1_o) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 205, "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Memory", 0,
+    "", offsetof(B_ctrl_custom_T, Memory_j) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 206,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/Kp",
+    0, "", offsetof(B_ctrl_custom_T, Kp_ht) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
   { 207,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Transfer Fcn",
-    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_lk) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 208,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Discrete Derivative/TSamp",
-    0, "", offsetof(B_ctrl_custom_T, TSamp_mr) + (0*sizeof(real_T)), BLOCKIO_SIG,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/reset",
+    0, "", offsetof(B_ctrl_custom_T, reset_m) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 209,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Inertia compensation",
-    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_b3) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 210, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Sum1", 0, "",
-    offsetof(B_ctrl_custom_T, Sum1_p) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
+  { 208, "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Sum", 0, "",
+    offsetof(B_ctrl_custom_T, Sum_i) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
     0, 0 },
 
-  { 211, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Memory", 0,
-    "", offsetof(B_ctrl_custom_T, Memory_o) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 209, "ctrl_custom/Thruster control 1/Thruster 5/Discrete Transfer Fcn", 0,
+    "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_ky) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 210,
+    "ctrl_custom/Thruster control 1/Thruster 5/Shaft dynamics/Finding rotation speed",
+    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_n) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 211,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/Ki",
+    0, "", offsetof(B_ctrl_custom_T, Ki_j) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 212,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Kp",
-    0, "", offsetof(B_ctrl_custom_T, Kp_k) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 212, "ctrl_custom/Thruster control 1/Thruster 6/Delay", 0, "", offsetof
+    (B_ctrl_custom_T, Delay_j) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0
+  },
+
+  { 213, "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Delay", 0,
+    "", offsetof(B_ctrl_custom_T, Delay_hd) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 213,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/reset",
-    0, "", offsetof(B_ctrl_custom_T, reset_iu) + (0*sizeof(real_T)), BLOCKIO_SIG,
+  { 214,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Discrete Transfer Fcn",
+    0, "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_a) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 215,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Discrete Derivative/TSamp",
+    0, "", offsetof(B_ctrl_custom_T, TSamp_d) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
-
-  { 214, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Sum", 0, "",
-    offsetof(B_ctrl_custom_T, Sum_g) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
-    0, 0 },
-
-  { 215, "ctrl_custom/Thruster control /Thruster 6/Discrete Transfer Fcn", 0, "",
-    offsetof(B_ctrl_custom_T, DiscreteTransferFcn_f) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 216,
-    "ctrl_custom/Thruster control /Thruster 6/Shaft dynamics/Finding rotation speed",
-    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_c) + (0*sizeof(real_T)),
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Inertia compensation",
+    0, "", offsetof(B_ctrl_custom_T, Inertiacompensation_a) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 217,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Ki",
-    0, "", offsetof(B_ctrl_custom_T, Ki_l) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 217, "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Sum1", 0,
+    "", offsetof(B_ctrl_custom_T, Sum1_ie) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 218, "ctrl_custom/IMU/Acc_x", 0, "", offsetof(B_ctrl_custom_T, Acc_x) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+  { 218, "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Memory", 0,
+    "", offsetof(B_ctrl_custom_T, Memory_g) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
-  { 219, "ctrl_custom/IMU/Acc_y", 0, "", offsetof(B_ctrl_custom_T, Acc_y) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+  { 219,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/Kp",
+    0, "", offsetof(B_ctrl_custom_T, Kp_n) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
 
-  { 220, "ctrl_custom/IMU/Acc_z", 0, "", offsetof(B_ctrl_custom_T, Acc_z) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+  { 220,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/reset",
+    0, "", offsetof(B_ctrl_custom_T, reset_n) + (0*sizeof(real_T)), BLOCKIO_SIG,
+    0, 1, 2, 0, 0 },
 
-  { 221, "ctrl_custom/IMU/Gyro_x", 0, "", offsetof(B_ctrl_custom_T, Gyro_x) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+  { 221, "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Sum", 0, "",
+    offsetof(B_ctrl_custom_T, Sum_o) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2,
+    0, 0 },
 
-  { 222, "ctrl_custom/IMU/Gyro_y", 0, "", offsetof(B_ctrl_custom_T, Gyro_y) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+  { 222, "ctrl_custom/Thruster control 1/Thruster 6/Discrete Transfer Fcn", 0,
+    "", offsetof(B_ctrl_custom_T, DiscreteTransferFcn_o) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 223, "ctrl_custom/IMU/Gyro_z", 0, "", offsetof(B_ctrl_custom_T, Gyro_z) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+  { 223,
+    "ctrl_custom/Thruster control 1/Thruster 6/Shaft dynamics/Finding rotation speed",
+    0, "", offsetof(B_ctrl_custom_T, Findingrotationspeed_p) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 224,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/MATLAB Function",
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/Ki",
+    0, "", offsetof(B_ctrl_custom_T, Ki_a) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+    1, 2, 0, 0 },
+
+  { 225, "ctrl_custom/IMU/Acc_x", 0, "", offsetof(B_ctrl_custom_T, Acc_x) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 226, "ctrl_custom/IMU/Acc_y", 0, "", offsetof(B_ctrl_custom_T, Acc_y) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 227, "ctrl_custom/IMU/Acc_z", 0, "", offsetof(B_ctrl_custom_T, Acc_z) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 228, "ctrl_custom/IMU/Gyro_x", 0, "", offsetof(B_ctrl_custom_T, Gyro_x) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 229, "ctrl_custom/IMU/Gyro_y", 0, "", offsetof(B_ctrl_custom_T, Gyro_y) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 230, "ctrl_custom/IMU/Gyro_z", 0, "", offsetof(B_ctrl_custom_T, Gyro_z) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 231,
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/MATLAB Function",
     0, "", offsetof(B_ctrl_custom_T, n_d) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 225,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/MATLAB Function",
-    0, "", offsetof(B_ctrl_custom_T, n_d_m) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 232,
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/MATLAB Function",
+    0, "", offsetof(B_ctrl_custom_T, n_d_h) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 226,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/MATLAB Function",
-    0, "", offsetof(B_ctrl_custom_T, n_d_k) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
+  { 233,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/MATLAB Function",
+    0, "", offsetof(B_ctrl_custom_T, n_d_f) + (0*sizeof(real_T)), BLOCKIO_SIG, 0,
     1, 2, 0, 0 },
 
-  { 227,
-    "ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics/Actual Force and Torque",
+  { 234,
+    "ctrl_custom/Thruster control 1/Thruster 1/Propeller Hydrodynamics/Actual Force and Torque",
     1, "", offsetof(B_ctrl_custom_T, Qa) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 228,
-    "ctrl_custom/Thruster control /Thruster 1/Propeller Hydrodynamics/Actual Force and Torque",
+  { 235,
+    "ctrl_custom/Thruster control 1/Thruster 1/Propeller Hydrodynamics/Actual Force and Torque",
     2, "", offsetof(B_ctrl_custom_T, Pa) + (0*sizeof(real_T)), BLOCKIO_SIG, 0, 1,
     2, 0, 0 },
 
-  { 229,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function1",
+  { 236,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function1",
     0, "", offsetof(B_ctrl_custom_T, Tc_out) + (0*sizeof(real_T)), BLOCKIO_SIG,
     0, 1, 2, 0, 0 },
 
-  { 230,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 237,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 1)", offsetof(B_ctrl_custom_T, output) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 231,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 238,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 2)", offsetof(B_ctrl_custom_T, output) + (1*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 232,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 239,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 3)", offsetof(B_ctrl_custom_T, output) + (2*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 233,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 240,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 4)", offsetof(B_ctrl_custom_T, output) + (3*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 234,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 241,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 5)", offsetof(B_ctrl_custom_T, output) + (4*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 235,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 242,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 6)", offsetof(B_ctrl_custom_T, output) + (5*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 236,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 243,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 7)", offsetof(B_ctrl_custom_T, output) + (6*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 237,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 244,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 8)", offsetof(B_ctrl_custom_T, output) + (7*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 238,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 245,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 9)", offsetof(B_ctrl_custom_T, output) + (8*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 239,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 246,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 10)", offsetof(B_ctrl_custom_T, output) + (9*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 240,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 247,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 11)", offsetof(B_ctrl_custom_T, output) + (10*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 241,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function",
+  { 248,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function",
     0, "(1, 12)", offsetof(B_ctrl_custom_T, output) + (11*sizeof(real_T)),
     BLOCKIO_SIG, 26, 1, 2, 0, 0 },
 
-  { 242, "ctrl_custom/MATLAB Function", 0, "(1, 1)", offsetof(B_ctrl_custom_T,
+  { 249, "ctrl_custom/MATLAB Function", 0, "(1, 1)", offsetof(B_ctrl_custom_T,
     commanded_tau) + (0*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 243, "ctrl_custom/MATLAB Function", 0, "(1, 2)", offsetof(B_ctrl_custom_T,
+  { 250, "ctrl_custom/MATLAB Function", 0, "(1, 2)", offsetof(B_ctrl_custom_T,
     commanded_tau) + (1*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 244, "ctrl_custom/MATLAB Function", 0, "(1, 3)", offsetof(B_ctrl_custom_T,
+  { 251, "ctrl_custom/MATLAB Function", 0, "(1, 3)", offsetof(B_ctrl_custom_T,
     commanded_tau) + (2*sizeof(real_T)), BLOCKIO_SIG, 23, 1, 2, 0, 0 },
 
-  { 245, "ctrl_custom/Thruster control /Thruster 6/Thruster control/Supervisor",
-    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_gj.u) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 246,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_g.Qcq) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 247,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_g.Qcp) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 248,
-    "ctrl_custom/Thruster control /Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_g.Qcc) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 249,
-    "ctrl_custom/Thruster control /Thruster 6/Propeller Hydrodynamics/Actual Force and Torque",
-    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_c.Ta) + (0*sizeof
-    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 250,
-    "ctrl_custom/Thruster control /Thruster 6/Propeller Hydrodynamics/Actual Force and Torque",
-    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_c.Qa) + (0*sizeof
-    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 251, "ctrl_custom/Thruster control /Thruster 5/Thruster control/Supervisor",
-    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_p.u) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 252,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/MATLAB Function",
-    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_o.n_d) + (0*sizeof(real_T)),
+  { 252, "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Supervisor",
+    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_h.u) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 253,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/MATLAB Function",
-    1, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_o.T_r) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_i.Qcq) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 254,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_o.Qcq) + (0*
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_i.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 255,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_o.Qcp) + (0*
+    "ctrl_custom/Thruster control 1/Thruster 6/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_i.Qcc) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 256,
-    "ctrl_custom/Thruster control /Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_o.Qcc) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 6/Propeller Hydrodynamics/Actual Force and Torque",
+    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_oa.Ta) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 257,
-    "ctrl_custom/Thruster control /Thruster 5/Propeller Hydrodynamics/Actual Force and Torque",
-    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_k.Ta) + (0*sizeof
+    "ctrl_custom/Thruster control 1/Thruster 6/Propeller Hydrodynamics/Actual Force and Torque",
+    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_oa.Qa) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 258,
-    "ctrl_custom/Thruster control /Thruster 5/Propeller Hydrodynamics/Actual Force and Torque",
-    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_k.Qa) + (0*sizeof
-    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+  { 258, "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Supervisor",
+    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_l.u) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 259, "ctrl_custom/Thruster control /Thruster 4/Thruster control/Supervisor",
-    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_g.u) + (0*sizeof(real_T)),
+  { 259,
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/MATLAB Function",
+    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_i.n_d) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 260,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/MATLAB Function",
-    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_d.n_d) + (0*sizeof(real_T)),
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/MATLAB Function",
+    1, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_i.T_r) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 261,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/MATLAB Function",
-    1, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_d.T_r) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_h.Qcq) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 262,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_p.Qcq) + (0*
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_h.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 263,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_p.Qcp) + (0*
+    "ctrl_custom/Thruster control 1/Thruster 5/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_h.Qcc) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 264,
-    "ctrl_custom/Thruster control /Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_p.Qcc) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 5/Propeller Hydrodynamics/Actual Force and Torque",
+    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_o.Ta) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 265,
-    "ctrl_custom/Thruster control /Thruster 4/Propeller Hydrodynamics/Actual Force and Torque",
-    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_a.Ta) + (0*sizeof
+    "ctrl_custom/Thruster control 1/Thruster 5/Propeller Hydrodynamics/Actual Force and Torque",
+    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_o.Qa) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 266,
-    "ctrl_custom/Thruster control /Thruster 4/Propeller Hydrodynamics/Actual Force and Torque",
-    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_a.Qa) + (0*sizeof
-    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 267, "ctrl_custom/Thruster control /Thruster 3/Thruster control/Supervisor",
-    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_j.u) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 268,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePower_ao.Qcq) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 269,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePower_ao.Qcp) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 270,
-    "ctrl_custom/Thruster control /Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePower_ao.Qcc) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 271,
-    "ctrl_custom/Thruster control /Thruster 3/Propeller Hydrodynamics/Actual Force and Torque",
-    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_f.Ta) + (0*sizeof
-    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 272,
-    "ctrl_custom/Thruster control /Thruster 3/Propeller Hydrodynamics/Actual Force and Torque",
-    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_f.Qa) + (0*sizeof
-    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
-
-  { 273, "ctrl_custom/Thruster control /Thruster 2/Thruster control/Supervisor",
+  { 266, "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Supervisor",
     0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_c.u) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 274,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/MATLAB Function",
-    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_a.n_d) + (0*sizeof(real_T)),
+  { 267,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/MATLAB Function",
+    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_ai.n_d) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 268,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/MATLAB Function",
+    1, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_ai.T_r) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 269,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_d.Qcq) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 270,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_d.Qcp) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 271,
+    "ctrl_custom/Thruster control 1/Thruster 4/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_d.Qcc) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 272,
+    "ctrl_custom/Thruster control 1/Thruster 4/Propeller Hydrodynamics/Actual Force and Torque",
+    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_j3.Ta) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 273,
+    "ctrl_custom/Thruster control 1/Thruster 4/Propeller Hydrodynamics/Actual Force and Torque",
+    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_j3.Qa) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 274, "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Supervisor",
+    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_k.u) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 275,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/MATLAB Function",
-    1, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_a.T_r) + (0*sizeof(real_T)),
-    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_j.Qcq) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 276,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_a.Qcq) + (0*
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_j.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 277,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_a.Qcp) + (0*
+    "ctrl_custom/Thruster control 1/Thruster 3/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_j.Qcc) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 278,
-    "ctrl_custom/Thruster control /Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_a.Qcc) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 3/Propeller Hydrodynamics/Actual Force and Torque",
+    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_i.Ta) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 279,
-    "ctrl_custom/Thruster control /Thruster 2/Propeller Hydrodynamics/Actual Force and Torque",
-    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_m.Ta) + (0*sizeof
+    "ctrl_custom/Thruster control 1/Thruster 3/Propeller Hydrodynamics/Actual Force and Torque",
+    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_i.Qa) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 280,
-    "ctrl_custom/Thruster control /Thruster 2/Propeller Hydrodynamics/Actual Force and Torque",
-    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_m.Qa) + (0*sizeof
-    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+  { 280, "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Supervisor",
+    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor_f.u) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 281, "ctrl_custom/Thruster control /Thruster 1/Thruster control/Supervisor",
-    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor.u) + (0*sizeof(real_T)),
+  { 281,
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/MATLAB Function",
+    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_a.n_d) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 282,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowerand.Qcq) + (0*
-    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/MATLAB Function",
+    1, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction_a.T_r) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 283,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowerand.Qcp) + (0*
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_c.Qcq) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 284,
-    "ctrl_custom/Thruster control /Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
-    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowerand.Qcc) + (0*
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_c.Qcp) + (0*
     sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 285,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function6",
-    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction6.Tc_out) + (0*sizeof
-    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+    "ctrl_custom/Thruster control 1/Thruster 2/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowera_c.Qcc) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 286,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function5",
-    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction5.Tc_out) + (0*sizeof
+    "ctrl_custom/Thruster control 1/Thruster 2/Propeller Hydrodynamics/Actual Force and Torque",
+    0, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_j.Ta) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
   { 287,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function4",
+    "ctrl_custom/Thruster control 1/Thruster 2/Propeller Hydrodynamics/Actual Force and Torque",
+    1, "", offsetof(B_ctrl_custom_T, sf_ActualForceandTorque_j.Qa) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 288, "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Supervisor",
+    0, "", offsetof(B_ctrl_custom_T, sf_Supervisor.u) + (0*sizeof(real_T)),
+    BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 289,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    0, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowerand.Qcq) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 290,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    1, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowerand.Qcp) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 291,
+    "ctrl_custom/Thruster control 1/Thruster 1/Thruster control/Core controller/Core controller: Torque,Power and Combined Torque//Power",
+    2, "", offsetof(B_ctrl_custom_T, sf_CorecontrollerTorquePowerand.Qcc) + (0*
+    sizeof(real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 292,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function6",
+    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction6.Tc_out) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 293,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function5",
+    0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction5.Tc_out) + (0*sizeof
+    (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
+
+  { 294,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function4",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction4.Tc_out) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 288,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function3",
+  { 295,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function3",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction3.Tc_out) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 289,
-    "ctrl_custom/Thruster control /Thrust and Shaft speed mapped to PWM/MATLAB Function2",
+  { 296,
+    "ctrl_custom/Thruster control 1/Thrust and Shaft speed mapped to PWM/MATLAB Function2",
     0, "", offsetof(B_ctrl_custom_T, sf_MATLABFunction2.Tc_out) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 290,
+  { 297,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Discrete-Time Integrator",
     0, "angle", offsetof(B_ctrl_custom_T, CoreSubsys[5].angle) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 291,
+  { 298,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Delay",
     0, "", offsetof(B_ctrl_custom_T, CoreSubsys[5].Delay) + (0*sizeof(real_T)),
     BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 292,
+  { 299,
     "ctrl_custom/Thrust allocation/Optimal angle path and  constraints on rotation speed/Max Rotation Rate",
     0, "", offsetof(B_ctrl_custom_T, CoreSubsys[5].MaxRotationRate) + (0*sizeof
     (real_T)), BLOCKIO_SIG, 0, 1, 2, 0, 0 },
 
-  { 293, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 1)", offsetof
+  { 300, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (0*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 294, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 1)", offsetof
+  { 301, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (1*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 295, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 1)", offsetof
+  { 302, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (2*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 296, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 2)", offsetof
+  { 303, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (3*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 297, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 2)", offsetof
+  { 304, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (4*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 298, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 2)", offsetof
+  { 305, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (5*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 299, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 3)", offsetof
+  { 306, "ctrl_custom/Referance/MATLAB Function1", 0, "(1, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (6*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 300, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 3)", offsetof
+  { 307, "ctrl_custom/Referance/MATLAB Function1", 0, "(2, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (7*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 301, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 3)", offsetof
+  { 308, "ctrl_custom/Referance/MATLAB Function1", 0, "(3, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction1_k.y) + (8*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 302, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 1)", offsetof
+  { 309, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (0*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 303, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 1)", offsetof
+  { 310, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (1*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 304, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 1)", offsetof
+  { 311, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 1)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (2*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 305, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 2)", offsetof
+  { 312, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (3*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 306, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 2)", offsetof
+  { 313, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (4*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 307, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 2)", offsetof
+  { 314, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 2)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (5*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 308, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 3)", offsetof
+  { 315, "ctrl_custom/Referance/MATLAB Function", 0, "(1, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (6*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 309, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 3)", offsetof
+  { 316, "ctrl_custom/Referance/MATLAB Function", 0, "(2, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (7*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
-  { 310, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 3)", offsetof
+  { 317, "ctrl_custom/Referance/MATLAB Function", 0, "(3, 3)", offsetof
     (B_ctrl_custom_T, sf_MATLABFunction_b.y) + (8*sizeof(real_T)), BLOCKIO_SIG,
     25, 1, 2, 0, 0 },
 
   { -1, "", -1, "", 0, 0, 0 }
 };
 
-static int32_t NI_SigListSize DataSection(".NIVS.siglistsize") = 311;
+static int32_t NI_SigListSize DataSection(".NIVS.siglistsize") = 318;
 static int32_t NI_VirtualBlockSources[1];
 static int32_t NI_SigDimList[] DataSection(".NIVS.sigdimlist") =
 { 1, 1
 };
 
-static int32_t NI_ExtListSize DataSection(".NIVS.extlistsize") = 91;
+static int32_t NI_ExtListSize DataSection(".NIVS.extlistsize") = 98;
 static NI_ExternalIO NI_ExtList[] DataSection(".NIVS.extlist") =
 {
   { 1, "Input to model", 1, EXT_IN, 1, 1, 1 },
 
-  { 2, "start", 0, EXT_IN, 1, 1, 1 },
+  { 2, "Startbutton", 0, EXT_IN, 1, 1, 1 },
 
   { 3, "Initialization of parameters/Control Gains/K_p_x", 0, EXT_IN, 1, 1, 1 },
 
@@ -12328,25 +11793,25 @@ static NI_ExternalIO NI_ExtList[] DataSection(".NIVS.extlist") =
 
   { 16, "Controll switch", 0, EXT_IN, 1, 1, 1 },
 
-  { 17, "start2", 1, EXT_IN, 6, 6, 1 },
+  { 17, "Startbutton1", 1, EXT_IN, 6, 6, 1 },
 
-  { 18, "Thruster control /Thrust and Shaft speed mapped to PWM/rpm1 ", 0,
+  { 18, "Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm1 ", 0,
     EXT_IN, 1, 1, 1 },
 
-  { 19, "Thruster control /Thrust and Shaft speed mapped to PWM/rpm2", 0, EXT_IN,
-    1, 1, 1 },
+  { 19, "Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm2", 0,
+    EXT_IN, 1, 1, 1 },
 
-  { 20, "Thruster control /Thrust and Shaft speed mapped to PWM/rpm3", 0, EXT_IN,
-    1, 1, 1 },
+  { 20, "Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm3", 0,
+    EXT_IN, 1, 1, 1 },
 
-  { 21, "Thruster control /Thrust and Shaft speed mapped to PWM/rpm4", 0, EXT_IN,
-    1, 1, 1 },
+  { 21, "Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm4", 0,
+    EXT_IN, 1, 1, 1 },
 
-  { 22, "Thruster control /Thrust and Shaft speed mapped to PWM/rpm5", 0, EXT_IN,
-    1, 1, 1 },
+  { 22, "Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm5", 0,
+    EXT_IN, 1, 1, 1 },
 
-  { 23, "Thruster control /Thrust and Shaft speed mapped to PWM/rpm6", 0, EXT_IN,
-    1, 1, 1 },
+  { 23, "Thruster control 1/Thrust and Shaft speed mapped to PWM/rpm6", 0,
+    EXT_IN, 1, 1, 1 },
 
   { 24, "Thruster measurment/thr_angle_1", 0, EXT_IN, 1, 1, 1 },
 
@@ -12389,23 +11854,23 @@ static NI_ExternalIO NI_ExtList[] DataSection(".NIVS.extlist") =
 
   { 41, "Referance/y_ref", 0, EXT_IN, 1, 1, 1 },
 
-  { 42, "Thruster control /Thruster 1/Thruster control/Core controller/reset", 0,
-    EXT_IN, 1, 1, 1 },
+  { 42, "Thruster control 1/Thruster 1/Thruster control/Core controller/reset",
+    0, EXT_IN, 1, 1, 1 },
 
-  { 43, "Thruster control /Thruster 2/Thruster control/Core controller/reset", 0,
-    EXT_IN, 1, 1, 1 },
+  { 43, "Thruster control 1/Thruster 2/Thruster control/Core controller/reset",
+    0, EXT_IN, 1, 1, 1 },
 
-  { 44, "Thruster control /Thruster 3/Thruster control/Core controller/reset", 0,
-    EXT_IN, 1, 1, 1 },
+  { 44, "Thruster control 1/Thruster 3/Thruster control/Core controller/reset",
+    0, EXT_IN, 1, 1, 1 },
 
-  { 45, "Thruster control /Thruster 4/Thruster control/Core controller/reset", 0,
-    EXT_IN, 1, 1, 1 },
+  { 45, "Thruster control 1/Thruster 4/Thruster control/Core controller/reset",
+    0, EXT_IN, 1, 1, 1 },
 
-  { 46, "Thruster control /Thruster 5/Thruster control/Core controller/reset", 0,
-    EXT_IN, 1, 1, 1 },
+  { 46, "Thruster control 1/Thruster 5/Thruster control/Core controller/reset",
+    0, EXT_IN, 1, 1, 1 },
 
-  { 47, "Thruster control /Thruster 6/Thruster control/Core controller/reset", 0,
-    EXT_IN, 1, 1, 1 },
+  { 47, "Thruster control 1/Thruster 6/Thruster control/Core controller/reset",
+    0, EXT_IN, 1, 1, 1 },
 
   { 48, "IMU/Acc_x", 1, EXT_IN, 1, 1, 1 },
 
@@ -12437,63 +11902,77 @@ static NI_ExternalIO NI_ExtList[] DataSection(".NIVS.extlist") =
 
   { 9, "tau_commanded_x", 0, EXT_OUT, 1, 1, 1 },
 
-  { 10, "Observer output /eta_hat output/x_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 10, "tau_commanded_y", 0, EXT_OUT, 1, 1, 1 },
 
-  { 11, "Observer output /eta_hat output/y_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 11, "psi_ref_filter", 0, EXT_OUT, 1, 1, 1 },
 
-  { 12, "Observer output /eta_hat output/psi_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 12, "x_ref_filter", 0, EXT_OUT, 1, 1, 1 },
 
-  { 13, "Observer output /nu_hat output/u_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 13, "y_ref_filter", 0, EXT_OUT, 1, 1, 1 },
 
-  { 14, "Observer output /nu_hat output/v_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 14, "Observer output /eta_hat output/x_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 15, "Observer output /nu_hat output/r_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 15, "Observer output /eta_hat output/y_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 16, "Observer output /nu_dot_hat output/u_dot_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 16, "Observer output /eta_hat output/psi_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 17, "Observer output /nu_dot_hat output/v_dot_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 17, "Observer output /nu_hat output/u_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 18, "Observer output /nu_dot_hat output/r_dot_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 18, "Observer output /nu_hat output/v_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 19, "Observer output /b_hat output/b_x_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 19, "Observer output /nu_hat output/r_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 20, "Observer output /b_hat output/b_y_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 20, "Observer output /nu_dot_hat output/u_dot_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 21, "Observer output /b_hat output/b_psi_hat", 0, EXT_OUT, 1, 1, 1 },
+  { 21, "Observer output /nu_dot_hat output/v_dot_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 22, "gain/alpha1", 1, EXT_OUT, 1, 1, 1 },
+  { 22, "Observer output /nu_dot_hat output/r_dot_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 23, "gain/alpha2", 1, EXT_OUT, 1, 1, 1 },
+  { 23, "Observer output /b_hat output/b_x_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 24, "gain/alpha3", 1, EXT_OUT, 1, 1, 1 },
+  { 24, "Observer output /b_hat output/b_y_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 25, "gain/alpha4", 1, EXT_OUT, 1, 1, 1 },
+  { 25, "Observer output /b_hat output/b_psi_hat", 0, EXT_OUT, 1, 1, 1 },
 
-  { 26, "gain/alpha5", 1, EXT_OUT, 1, 1, 1 },
+  { 26, "gain/alpha1", 1, EXT_OUT, 1, 1, 1 },
 
-  { 27, "gain/alpha6", 1, EXT_OUT, 1, 1, 1 },
+  { 27, "gain/alpha2", 1, EXT_OUT, 1, 1, 1 },
 
-  { 28, "gain/u1", 0, EXT_OUT, 1, 1, 1 },
+  { 28, "gain/alpha3", 1, EXT_OUT, 1, 1, 1 },
 
-  { 29, "gain/u2", 0, EXT_OUT, 1, 1, 1 },
+  { 29, "gain/alpha4", 1, EXT_OUT, 1, 1, 1 },
 
-  { 30, "gain/u3", 0, EXT_OUT, 1, 1, 1 },
+  { 30, "gain/alpha5", 1, EXT_OUT, 1, 1, 1 },
 
-  { 31, "gain/u4", 0, EXT_OUT, 1, 1, 1 },
+  { 31, "gain/alpha6", 1, EXT_OUT, 1, 1, 1 },
 
-  { 32, "gain/u5", 0, EXT_OUT, 1, 1, 1 },
+  { 32, "gain/u1", 0, EXT_OUT, 1, 1, 1 },
 
-  { 33, "gain/u6", 0, EXT_OUT, 1, 1, 1 },
+  { 33, "gain/u2", 0, EXT_OUT, 1, 1, 1 },
 
-  { 34, "tau_commanded_y", 0, EXT_OUT, 1, 1, 1 },
+  { 34, "gain/u3", 0, EXT_OUT, 1, 1, 1 },
 
-  { 35, "PID controller/y_error", 0, EXT_OUT, 1, 1, 1 },
+  { 35, "gain/u4", 0, EXT_OUT, 1, 1, 1 },
 
-  { 36, "PID controller/psi_error", 0, EXT_OUT, 1, 1, 1 },
+  { 36, "gain/u5", 0, EXT_OUT, 1, 1, 1 },
 
-  { 37, "PID controller/x_error", 0, EXT_OUT, 1, 1, 1 },
+  { 37, "gain/u6", 0, EXT_OUT, 1, 1, 1 },
 
-  { 38, "Thruster control /Thruster 1/Propeller Hydrodynamics/Control_test_Pa",
+  { 38, "heading", 0, EXT_OUT, 1, 1, 1 },
+
+  { 39, "PID controller/y_error", 0, EXT_OUT, 1, 1, 1 },
+
+  { 40, "PID controller/psi_error", 0, EXT_OUT, 1, 1, 1 },
+
+  { 41, "PID controller/x_error", 0, EXT_OUT, 1, 1, 1 },
+
+  { 42, "PID controller/Integral_x", 0, EXT_OUT, 1, 1, 1 },
+
+  { 43, "PID controller/Integral_psi", 0, EXT_OUT, 1, 1, 1 },
+
+  { 44, "PID controller/Integral_y", 0, EXT_OUT, 1, 1, 1 },
+
+  { 45, "Thruster control 1/Thruster 1/Propeller Hydrodynamics/Control_test_Pa",
     0, EXT_OUT, 1, 1, 1 },
 
   { -1, "", 0, 0, 0, 0, 0 }
@@ -12512,8 +11991,8 @@ NI_Task NI_TaskList[] DataSection(".NIVS.tasklist") =
 int32_t NI_NumTasks DataSection(".NIVS.numtasks") = 1;
 static const char* NI_CompiledModelName DataSection(".NIVS.compiledmodelname") =
   "ctrl_custom";
-static const char* NI_CompiledModelVersion = "1.109";
-static const char* NI_CompiledModelDateTime = "Wed Jul 26 09:02:21 2017";
+static const char* NI_CompiledModelVersion = "1.160";
+static const char* NI_CompiledModelDateTime = "Sat Jul 29 13:11:58 2017";
 static const char* NI_builder DataSection(".NIVS.builder") =
   "NI Model Framework 2017.0.0.143 (2017) for Simulink Coder 8.11 (R2016b)";
 static const char* NI_BuilderVersion DataSection(".NIVS.builderversion") =
@@ -13325,7 +12804,7 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
        NULL)) {
     if (*numContStates < 0 || *numDiscStates < 0 || *numClockTicks < 0) {
       *numContStates = 35;
-      *numDiscStates = 1278.0;
+      *numDiscStates = 1369.0;
       *numClockTicks = NUMST - TID01EQ;
       return NI_OK;
     }
@@ -13376,32 +12855,23 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       (&(ctrl_custom_X.Integrator1_CSTATE_m), 2, 0, 0);
     strcpy(contStatesNames + (idx++ * 100), "Integrator1_CSTATE_m");
     contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator1_CSTATE_d), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator1_CSTATE_d");
+      (&(ctrl_custom_X.Integrator_CSTATE_p), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_p");
     contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator1_CSTATE_d), 1, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator1_CSTATE_d");
+      (&(ctrl_custom_X.Integrator_CSTATE_g), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_g");
     contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator1_CSTATE_d), 2, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator1_CSTATE_d");
+      (&(ctrl_custom_X.Integrator_CSTATE_n), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_n");
     contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_a), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_a");
+      (&(ctrl_custom_X.Integrator_CSTATE_b), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_b");
     contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_f), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_f");
+      (&(ctrl_custom_X.Integrator_CSTATE_c), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_c");
     contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_ao), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_ao");
-    contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_k), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_k");
-    contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_k2), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_k2");
-    contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_i), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_i");
+      (&(ctrl_custom_X.Integrator_CSTATE_l), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_l");
     contStates[idx] = NIRT_GetValueByDataType
       (&(ctrl_custom_X.Integrator2_CSTATE_j), 0, 0, 0);
     strcpy(contStatesNames + (idx++ * 100), "Integrator2_CSTATE_j");
@@ -13412,32 +12882,41 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       (&(ctrl_custom_X.Integrator2_CSTATE_j), 2, 0, 0);
     strcpy(contStatesNames + (idx++ * 100), "Integrator2_CSTATE_j");
     contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_f5), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_f5");
+      (&(ctrl_custom_X.Integrator_CSTATE_f), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_f");
     contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_f5), 1, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_f5");
+      (&(ctrl_custom_X.Integrator_CSTATE_f), 1, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_f");
     contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_f5), 2, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_f5");
+      (&(ctrl_custom_X.Integrator_CSTATE_f), 2, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_f");
+    contStates[idx] = NIRT_GetValueByDataType
+      (&(ctrl_custom_X.Integrator1_CSTATE_d), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator1_CSTATE_d");
+    contStates[idx] = NIRT_GetValueByDataType
+      (&(ctrl_custom_X.Integrator1_CSTATE_d), 1, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator1_CSTATE_d");
+    contStates[idx] = NIRT_GetValueByDataType
+      (&(ctrl_custom_X.Integrator1_CSTATE_d), 2, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator1_CSTATE_d");
+    contStates[idx] = NIRT_GetValueByDataType
+      (&(ctrl_custom_X.Integrator_CSTATE_ph), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_ph");
+    contStates[idx] = NIRT_GetValueByDataType
+      (&(ctrl_custom_X.Integrator_CSTATE_o), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_o");
+    contStates[idx] = NIRT_GetValueByDataType
+      (&(ctrl_custom_X.Integrator_CSTATE_or), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_or");
+    contStates[idx] = NIRT_GetValueByDataType
+      (&(ctrl_custom_X.Integrator_CSTATE_h), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_h");
+    contStates[idx] = NIRT_GetValueByDataType
+      (&(ctrl_custom_X.Integrator_CSTATE_fm), 0, 0, 0);
+    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_fm");
     contStates[idx] = NIRT_GetValueByDataType
       (&(ctrl_custom_X.Integrator_CSTATE_m), 0, 0, 0);
     strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_m");
-    contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_ko), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_ko");
-    contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_c), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_c");
-    contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_p), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_p");
-    contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_n), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_n");
-    contStates[idx] = NIRT_GetValueByDataType
-      (&(ctrl_custom_X.Integrator_CSTATE_ci), 0, 0, 0);
-    strcpy(contStatesNames + (idx++ * 100), "Integrator_CSTATE_ci");
   }
 
   if ((discStates != NULL) && (discStatesNames != NULL)) {
@@ -13448,12 +12927,12 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE");
     }
 
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_f, 0,
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_i, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_f");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_k, 0,
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_i");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_l, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_k");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_l");
     discStates[idx] = NIRT_GetValueByDataType
       (&ctrl_custom_DW.DiscreteTransferFcn_states, 0, 29, 0);
     strcpy(discStatesNames + (idx++ * 100),
@@ -13465,57 +12944,99 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_k, 0, 0, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_h, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_k");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_c, 0,
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_h");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_f, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_c");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_f");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_d, 0,
+      0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_d");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_d, 0, 29, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_d");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_d, 1, 29, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_d");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_i, 0, 0,
+      0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_i");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_i, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_i");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_j, 0,
       0, 0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_j");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_j, 0, 29, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_j");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_j, 1, 29, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_j");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_f, 0, 0,
-      0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_f");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_j0, 0, 0, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_j0");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_m, 0,
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_c, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_m");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_e, 0,
-      0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_e");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_c");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_f, 0, 29, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_o, 0, 29, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_f");
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_o");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_f, 1, 29, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_o, 1, 29, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_f");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_p, 0, 0,
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_o");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_a, 0, 0,
       0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_p");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_a");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_c, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_c");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_g, 0,
+      0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_g");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_k, 0,
+      0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_k");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_cl, 0, 29, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_cl");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_cl, 1, 29, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_cl");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_g, 0, 0,
+      0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_g");
     discStates[idx] = NIRT_GetValueByDataType
       (&ctrl_custom_DW.DiscreteTransferFcn_states_m, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
            "&ctrl_custom_DW.DiscreteTransferFcn_states_m");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_kg, 0,
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_n, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_kg");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_ki, 0,
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_n");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_jt, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_ki");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_jt");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_dh, 0, 29, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_dh");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_dh, 1, 29, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_dh");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_gf, 0, 0,
+      0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_gf");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_ho, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_ho");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_k2, 0,
+      0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_k2");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_kz, 0,
+      0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_kz");
     discStates[idx] = NIRT_GetValueByDataType
       (&ctrl_custom_DW.DiscreteTransferFcn_states_e, 0, 29, 0);
     strcpy(discStatesNames + (idx++ * 100),
@@ -13524,55 +13045,13 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       (&ctrl_custom_DW.DiscreteTransferFcn_states_e, 1, 29, 0);
     strcpy(discStatesNames + (idx++ * 100),
            "&ctrl_custom_DW.DiscreteTransferFcn_states_e");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_a, 0, 0,
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_go, 0, 0,
       0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_a");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_go");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_p, 0, 0, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_states_b, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_p");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_p, 0,
-      0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_p");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_kf, 0,
-      0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_kf");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_jn, 0, 29, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_jn");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_jn, 1, 29, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_jn");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_l, 0, 0,
-      0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_l");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_g, 0, 0, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_g");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_o, 0,
-      0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_o");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_h, 0,
-      0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Delay_DSTATE_h");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_k0, 0, 29, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_k0");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_k0, 1, 29, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_k0");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.UD_DSTATE_e, 0, 0,
-      0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.UD_DSTATE_e");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_states_pv, 0, 0, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_states_pv");
+           "&ctrl_custom_DW.DiscreteTransferFcn_states_b");
     discStates[idx] = NIRT_GetValueByDataType
       (&ctrl_custom_DW.Inputtomodel_DWORK1, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
@@ -13581,9 +13060,9 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       (&ctrl_custom_DW.OutputtoWorkspace_DWORK1, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
            "&ctrl_custom_DW.OutputtoWorkspace_DWORK1");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.start_DWORK1, 0, 0,
-      0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.start_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Startbutton_DWORK1,
+      0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Startbutton_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.K_p_x_DWORK1, 0, 0,
       0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.K_p_x_DWORK1");
@@ -13635,9 +13114,10 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       0, 0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.tau_sway_DWORK1");
     for (count = 0; count < 6; count++) {
-      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.start2_DWORK1,
-        count, 24, 0);
-      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.start2_DWORK1");
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.Startbutton1_DWORK1, count, 24, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.Startbutton1_DWORK1");
     }
 
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.tau_psi_DWORK1, 0,
@@ -13700,6 +13180,22 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       (&ctrl_custom_DW.tau_commanded_x_DWORK1, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
            "&ctrl_custom_DW.tau_commanded_x_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.tau_commanded_y_DWORK1, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.tau_commanded_y_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.psi_ref_filter_DWORK1, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.psi_ref_filter_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.x_ref_filter_DWORK1, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.x_ref_filter_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.y_ref_filter_DWORK1, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.y_ref_filter_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.x_hat_DWORK1_o, 0,
       0, 0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.x_hat_DWORK1_o");
@@ -13766,10 +13262,9 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.u5_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.u6_DWORK1, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.u6_DWORK1");
-    discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.tau_commanded_y_DWORK1, 0, 0, 0);
-    strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.tau_commanded_y_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.heading_DWORK1, 0,
+      0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.heading_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.y_error_DWORK1, 0,
       0, 0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.y_error_DWORK1");
@@ -13779,6 +13274,16 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.x_error_DWORK1, 0,
       0, 0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.x_error_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Integral_x_DWORK1,
+      0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Integral_x_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType
+      (&ctrl_custom_DW.Integral_psi_DWORK1, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100),
+           "&ctrl_custom_DW.Integral_psi_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Integral_y_DWORK1,
+      0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Integral_y_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.x_ref_DWORK1, 0, 0,
       0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.x_ref_DWORK1");
@@ -13834,69 +13339,69 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     strcpy(discStatesNames + (idx++ * 100),
            "&ctrl_custom_DW.Control_test_Pa_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_f, 0, 0, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_h, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_f");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_p, 0, 0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_p");
+           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_h");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_a, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_a");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.Memory_PreviousInput_g, 0, 0, 0);
+      (&ctrl_custom_DW.Memory_PreviousInput_c, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.Memory_PreviousInput_g");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_d, 0,
+           "&ctrl_custom_DW.Memory_PreviousInput_c");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_a, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_d");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_a");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_fg, 0, 0, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_a, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_fg");
+           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_a");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_k, 0, 0, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_g, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_k");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_k, 0, 0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_k");
+           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_g");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_an, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_an");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.Memory_PreviousInput_f, 0, 0, 0);
+      (&ctrl_custom_DW.Memory_PreviousInput_b, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.Memory_PreviousInput_f");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_o, 0,
+           "&ctrl_custom_DW.Memory_PreviousInput_b");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_e, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_o");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_e");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_b, 0, 0, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_hw, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_b");
+           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_hw");
     discStates[idx] = NIRT_GetValueByDataType
       (&ctrl_custom_DW.DiscreteTransferFcn_tmp_l, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
            "&ctrl_custom_DW.DiscreteTransferFcn_tmp_l");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_m, 0, 0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_m");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_e, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_e");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.Memory_PreviousInput_d, 0, 0, 0);
+      (&ctrl_custom_DW.Memory_PreviousInput_g, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.Memory_PreviousInput_d");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_l, 0,
+           "&ctrl_custom_DW.Memory_PreviousInput_g");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_aw, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_l");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_aw");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_fg5, 0, 0, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_hu, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_fg5");
+           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_hu");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_i, 0, 0, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_d, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_i");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_mo, 0, 0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_mo");
+           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_d");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_i, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_i");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.Memory_PreviousInput_l, 0, 0, 0);
+      (&ctrl_custom_DW.Memory_PreviousInput_f, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.Memory_PreviousInput_l");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_dp, 0,
+           "&ctrl_custom_DW.Memory_PreviousInput_f");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_f, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_dp");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_f");
     discStates[idx] = NIRT_GetValueByDataType
       (&ctrl_custom_DW.DiscreteTransferFcn_tmp_m, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
@@ -13905,19 +13410,19 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       (&ctrl_custom_DW.DiscreteTransferFcn_tmp_o, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
            "&ctrl_custom_DW.DiscreteTransferFcn_tmp_o");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_k4, 0, 0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_k4");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.PrevY_n, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.PrevY_n");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.Memory_PreviousInput_f2, 0, 0, 0);
+      (&ctrl_custom_DW.Memory_PreviousInput_o, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.Memory_PreviousInput_f2");
-    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_dy, 0,
+           "&ctrl_custom_DW.Memory_PreviousInput_o");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK1_m, 0,
       0, 0);
-    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_dy");
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK1_m");
     discStates[idx] = NIRT_GetValueByDataType
-      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_ir, 0, 0, 0);
+      (&ctrl_custom_DW.DiscreteTransferFcn_tmp_k, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100),
-           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_ir");
+           "&ctrl_custom_DW.DiscreteTransferFcn_tmp_k");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Acc_x_DWORK1, 0, 0,
       0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Acc_x_DWORK1");
@@ -13951,9 +13456,10 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     }
 
     for (count = 0; count < 12; count++) {
-      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.start_DWORK2,
-        count, 22, 0);
-      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.start_DWORK2");
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.Startbutton_DWORK2, count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.Startbutton_DWORK2");
     }
 
     for (count = 0; count < 12; count++) {
@@ -14055,9 +13561,10 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     }
 
     for (count = 0; count < 12; count++) {
-      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.start2_DWORK2,
-        count, 22, 0);
-      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.start2_DWORK2");
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.Startbutton1_DWORK2, count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.Startbutton1_DWORK2");
     }
 
     for (count = 0; count < 12; count++) {
@@ -14181,6 +13688,34 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
         (&ctrl_custom_DW.tau_commanded_x_DWORK2, count, 22, 0);
       strcpy(discStatesNames + (idx++ * 100),
              "&ctrl_custom_DW.tau_commanded_x_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.tau_commanded_y_DWORK2, count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.tau_commanded_y_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.psi_ref_filter_DWORK2, count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.psi_ref_filter_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.x_ref_filter_DWORK2, count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.x_ref_filter_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.y_ref_filter_DWORK2, count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.y_ref_filter_DWORK2");
     }
 
     for (count = 0; count < 12; count++) {
@@ -14328,10 +13863,9 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     }
 
     for (count = 0; count < 12; count++) {
-      discStates[idx] = NIRT_GetValueByDataType
-        (&ctrl_custom_DW.tau_commanded_y_DWORK2, count, 22, 0);
-      strcpy(discStatesNames + (idx++ * 100),
-             "&ctrl_custom_DW.tau_commanded_y_DWORK2");
+      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.heading_DWORK2,
+        count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.heading_DWORK2");
     }
 
     for (count = 0; count < 12; count++) {
@@ -14350,6 +13884,27 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
       discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.x_error_DWORK2,
         count, 22, 0);
       strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.x_error_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.Integral_x_DWORK2, count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.Integral_x_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.Integral_psi_DWORK2, count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.Integral_psi_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType
+        (&ctrl_custom_DW.Integral_y_DWORK2, count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100),
+             "&ctrl_custom_DW.Integral_y_DWORK2");
     }
 
     for (count = 0; count < 12; count++) {
@@ -14432,9 +13987,21 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     }
 
     for (count = 0; count < 12; count++) {
-      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK2_k,
+      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK2_l,
         count, 22, 0);
-      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK2_k");
+      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK2_l");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK2_d,
+        count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK2_d");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK2_df,
+        count, 22, 0);
+      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK2_df");
     }
 
     for (count = 0; count < 12; count++) {
@@ -14444,21 +14011,9 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     }
 
     for (count = 0; count < 12; count++) {
-      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK2_m,
+      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK2_g,
         count, 22, 0);
-      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK2_m");
-    }
-
-    for (count = 0; count < 12; count++) {
-      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK2_i,
-        count, 22, 0);
-      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK2_i");
-    }
-
-    for (count = 0; count < 12; count++) {
-      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.reset_DWORK2_j,
-        count, 22, 0);
-      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK2_j");
+      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.reset_DWORK2_g");
     }
 
     for (count = 0; count < 12; count++) {
@@ -14581,23 +14136,17 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
       contStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator1_CSTATE_m), 2,
       contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator1_CSTATE_d), 0,
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_p), 0,
       contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator1_CSTATE_d), 1,
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_g), 0,
       contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator1_CSTATE_d), 2,
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_n), 0,
       contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_a), 0,
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_b), 0,
       contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_f), 0,
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_c), 0,
       contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_ao), 0,
-      contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_k), 0,
-      contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_k2), 0,
-      contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_i), 0,
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_l), 0,
       contStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator2_CSTATE_j), 0,
       contStates[idx++], 0, 0);
@@ -14605,23 +14154,29 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
       contStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator2_CSTATE_j), 2,
       contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_f5), 0,
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_f), 0,
       contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_f5), 1,
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_f), 1,
       contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_f5), 2,
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_f), 2,
+      contStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator1_CSTATE_d), 0,
+      contStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator1_CSTATE_d), 1,
+      contStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator1_CSTATE_d), 2,
+      contStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_ph), 0,
+      contStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_o), 0,
+      contStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_or), 0,
+      contStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_h), 0,
+      contStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_fm), 0,
       contStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_m), 0,
-      contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_ko), 0,
-      contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_c), 0,
-      contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_p), 0,
-      contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_n), 0,
-      contStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&(ctrl_custom_X.Integrator_CSTATE_ci), 0,
       contStates[idx++], 0, 0);
   }
 
@@ -14632,9 +14187,9 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
         discStates[idx++], 24, 0);
     }
 
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_f, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_i, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_k, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_l, 0, discStates[idx++],
       0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states, 0,
       discStates[idx++], 29, 0);
@@ -14642,74 +14197,74 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
       discStates[idx++], 29, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE, 0, discStates[idx++], 0,
       0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_k, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_h, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_c, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_f, 0, discStates[idx++],
       0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_d, 0, discStates[idx++],
+      0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_d, 0,
+      discStates[idx++], 29, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_d, 1,
+      discStates[idx++], 29, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_i, 0, discStates[idx++], 0,
+      0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_i, 0,
+      discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_j, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_j, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_c, 0, discStates[idx++],
+      0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_o, 0,
       discStates[idx++], 29, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_j, 1,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_o, 1,
       discStates[idx++], 29, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_f, 0, discStates[idx++], 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_a, 0, discStates[idx++], 0,
       0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_j0, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_c, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_m, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_g, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_e, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_k, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_f, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_cl, 0,
       discStates[idx++], 29, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_f, 1,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_cl, 1,
       discStates[idx++], 29, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_p, 0, discStates[idx++], 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_g, 0, discStates[idx++], 0,
       0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_m, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_kg, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_n, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_ki, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_jt, 0, discStates[idx++],
+      0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_dh, 0,
+      discStates[idx++], 29, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_dh, 1,
+      discStates[idx++], 29, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_gf, 0, discStates[idx++],
+      0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_ho, 0,
+      discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_k2, 0, discStates[idx++],
+      0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_kz, 0, discStates[idx++],
       0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_e, 0,
       discStates[idx++], 29, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_e, 1,
       discStates[idx++], 29, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_a, 0, discStates[idx++], 0,
-      0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_p, 0,
-      discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_p, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_go, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_kf, 0, discStates[idx++],
-      0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_jn, 0,
-      discStates[idx++], 29, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_jn, 1,
-      discStates[idx++], 29, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_l, 0, discStates[idx++], 0,
-      0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_g, 0,
-      discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_o, 0, discStates[idx++],
-      0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Delay_DSTATE_h, 0, discStates[idx++],
-      0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_k0, 0,
-      discStates[idx++], 29, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_k0, 1,
-      discStates[idx++], 29, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.UD_DSTATE_e, 0, discStates[idx++], 0,
-      0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_pv, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_states_b, 0,
       discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.Inputtomodel_DWORK1, 0,
       discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.OutputtoWorkspace_DWORK1, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.start_DWORK1, 0, discStates[idx++],
-      0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Startbutton_DWORK1, 0,
+      discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.K_p_x_DWORK1, 0, discStates[idx++],
       0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.K_p_y_DWORK1, 0, discStates[idx++],
@@ -14743,7 +14298,7 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
     NIRT_SetValueByDataType(&ctrl_custom_DW.tau_sway_DWORK1, 0, discStates[idx++],
       0, 0);
     for (count = 0; count < 6; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_DW.start2_DWORK1, count,
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Startbutton1_DWORK1, count,
         discStates[idx++], 24, 0);
     }
 
@@ -14784,6 +14339,14 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
     NIRT_SetValueByDataType(&ctrl_custom_DW.tau_commanded_psi_DWORK1, 0,
       discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.tau_commanded_x_DWORK1, 0,
+      discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.tau_commanded_y_DWORK1, 0,
+      discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.psi_ref_filter_DWORK1, 0,
+      discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.x_ref_filter_DWORK1, 0,
+      discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.y_ref_filter_DWORK1, 0,
       discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.x_hat_DWORK1_o, 0, discStates[idx++],
       0, 0);
@@ -14833,14 +14396,20 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
       0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.u6_DWORK1, 0, discStates[idx++], 0,
       0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.tau_commanded_y_DWORK1, 0,
-      discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.heading_DWORK1, 0, discStates[idx++],
+      0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.y_error_DWORK1, 0, discStates[idx++],
       0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.psi_error_DWORK1, 0, discStates[idx
       ++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.x_error_DWORK1, 0, discStates[idx++],
       0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_x_DWORK1, 0, discStates[idx
+      ++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_psi_DWORK1, 0,
+      discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_y_DWORK1, 0, discStates[idx
+      ++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.x_ref_DWORK1, 0, discStates[idx++],
       0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.w_x_DWORK1, 0, discStates[idx++], 0,
@@ -14874,50 +14443,50 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
       discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.Control_test_Pa_DWORK1, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_f, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_h, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_p, 0, discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_g, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_a, 0, discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_c, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_d, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_a, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_fg, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_a, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_k, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_g, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_k, 0, discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_f, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_an, 0, discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_b, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_o, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_e, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_b, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_hw, 0,
       discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_l, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_m, 0, discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_d, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_e, 0, discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_g, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_l, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_aw, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_fg5, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_hu, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_i, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_d, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_mo, 0, discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_l, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_i, 0, discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_f, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_dp, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_f, 0, discStates[idx++],
       0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_m, 0,
       discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_o, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_k4, 0, discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_f2, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.PrevY_n, 0, discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Memory_PreviousInput_o, 0,
       discStates[idx++], 0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_dy, 0, discStates[idx++],
+    NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK1_m, 0, discStates[idx++],
       0, 0);
-    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_ir, 0,
+    NIRT_SetValueByDataType(&ctrl_custom_DW.DiscreteTransferFcn_tmp_k, 0,
       discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.Acc_x_DWORK1, 0, discStates[idx++],
       0, 0);
@@ -14942,7 +14511,7 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
     }
 
     for (count = 0; count < 12; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_DW.start_DWORK2, count,
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Startbutton_DWORK2, count,
         discStates[idx++], 22, 0);
     }
 
@@ -15027,7 +14596,7 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
     }
 
     for (count = 0; count < 12; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_DW.start2_DWORK2, count,
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Startbutton1_DWORK2, count,
         discStates[idx++], 22, 0);
     }
 
@@ -15123,6 +14692,26 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
 
     for (count = 0; count < 12; count++) {
       NIRT_SetValueByDataType(&ctrl_custom_DW.tau_commanded_x_DWORK2, count,
+        discStates[idx++], 22, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.tau_commanded_y_DWORK2, count,
+        discStates[idx++], 22, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.psi_ref_filter_DWORK2, count,
+        discStates[idx++], 22, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.x_ref_filter_DWORK2, count,
+        discStates[idx++], 22, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.y_ref_filter_DWORK2, count,
         discStates[idx++], 22, 0);
     }
 
@@ -15247,7 +14836,7 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
     }
 
     for (count = 0; count < 12; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_DW.tau_commanded_y_DWORK2, count,
+      NIRT_SetValueByDataType(&ctrl_custom_DW.heading_DWORK2, count,
         discStates[idx++], 22, 0);
     }
 
@@ -15263,6 +14852,21 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
 
     for (count = 0; count < 12; count++) {
       NIRT_SetValueByDataType(&ctrl_custom_DW.x_error_DWORK2, count,
+        discStates[idx++], 22, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_x_DWORK2, count,
+        discStates[idx++], 22, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_psi_DWORK2, count,
+        discStates[idx++], 22, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Integral_y_DWORK2, count,
         discStates[idx++], 22, 0);
     }
 
@@ -15332,7 +14936,17 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
     }
 
     for (count = 0; count < 12; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK2_k, count,
+      NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK2_l, count,
+        discStates[idx++], 22, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK2_d, count,
+        discStates[idx++], 22, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK2_df, count,
         discStates[idx++], 22, 0);
     }
 
@@ -15342,17 +14956,7 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
     }
 
     for (count = 0; count < 12; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK2_m, count,
-        discStates[idx++], 22, 0);
-    }
-
-    for (count = 0; count < 12; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK2_i, count,
-        discStates[idx++], 22, 0);
-    }
-
-    for (count = 0; count < 12; count++) {
-      NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK2_j, count,
+      NIRT_SetValueByDataType(&ctrl_custom_DW.reset_DWORK2_g, count,
         discStates[idx++], 22, 0);
     }
 
