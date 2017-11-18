@@ -10,7 +10,7 @@
 				<String>CSAD</String>
 			</Property>
 			<Property Name="Version">
-				<String>1.0.0.104</String>
+				<String>1.0.0.106</String>
 			</Property>
 			<Property Name="Creator">
 				<String />
@@ -4335,10 +4335,10 @@
 									<Double>10000</Double>
 								</Property>
 								<Property Name="DLL Size">
-									<I32>250546</I32>
+									<I32>255954</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3587299154.9230142</Double>
+									<Double>3593863731.3187389</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -4371,7 +4371,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>98360a619fdc630b45927a3a6d9ec663</String>
+									<String>c7bbb8340c6e76acf49a5b4d5c37b5b2</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -4385,7 +4385,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\ctrl_custom.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>98360a619fdc630b45927a3a6d9ec663</MD5>
+										<MD5>c7bbb8340c6e76acf49a5b4d5c37b5b2</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">
@@ -4475,7 +4475,7 @@
 												<String>IMU/Acc_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>28</I32>
+												<I32>34</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4490,7 +4490,7 @@
 												<String>IMU/Acc_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>29</I32>
+												<I32>35</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Acc_y" />
@@ -4508,7 +4508,7 @@
 												<String>IMU/Acc_z</String>
 											</Property>
 											<Property Name="Index">
-												<I32>30</I32>
+												<I32>36</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Acc_z" />
@@ -4526,7 +4526,7 @@
 												<String>IMU/Gyro_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>31</I32>
+												<I32>37</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Gyro_x" />
@@ -4544,7 +4544,7 @@
 												<String>IMU/Gyro_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>32</I32>
+												<I32>38</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Gyro_y" />
@@ -4562,7 +4562,7 @@
 												<String>IMU/Gyro_z</String>
 											</Property>
 											<Property Name="Index">
-												<I32>33</I32>
+												<I32>39</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Gyro_z" />
@@ -4755,7 +4755,7 @@
 												<String>eta_QTM/x_m</String>
 											</Property>
 											<Property Name="Index">
-												<I32>11</I32>
+												<I32>17</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Custom Devices/Oqus/X" />
@@ -4773,7 +4773,7 @@
 												<String>eta_QTM/y_m</String>
 											</Property>
 											<Property Name="Index">
-												<I32>12</I32>
+												<I32>18</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Custom Devices/Oqus/Y" />
@@ -4791,7 +4791,7 @@
 												<String>eta_QTM/psi_m</String>
 											</Property>
 											<Property Name="Index">
-												<I32>13</I32>
+												<I32>19</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Custom Devices/Oqus/Yaw" />
@@ -4819,7 +4819,7 @@
 												<String>Regulator 2 psi/sigma_psi</String>
 											</Property>
 											<Property Name="Index">
-												<I32>21</I32>
+												<I32>27</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4834,7 +4834,7 @@
 												<String>Regulator 2 psi/k1_psi</String>
 											</Property>
 											<Property Name="Index">
-												<I32>22</I32>
+												<I32>28</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4849,7 +4849,7 @@
 												<String>Regulator 2 psi/k2_psi</String>
 											</Property>
 											<Property Name="Index">
-												<I32>23</I32>
+												<I32>29</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4864,7 +4864,7 @@
 												<String>Regulator 2 psi/nu_psi</String>
 											</Property>
 											<Property Name="Index">
-												<I32>25</I32>
+												<I32>31</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4879,7 +4879,7 @@
 												<String>Regulator 2 psi/k0_psi</String>
 											</Property>
 											<Property Name="Index">
-												<I32>24</I32>
+												<I32>30</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4894,7 +4894,7 @@
 												<String>Regulator 2 psi/gamma_psi</String>
 											</Property>
 											<Property Name="Index">
-												<I32>26</I32>
+												<I32>32</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4909,7 +4909,7 @@
 												<String>Regulator 2 psi/reset</String>
 											</Property>
 											<Property Name="Index">
-												<I32>27</I32>
+												<I32>33</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4929,7 +4929,7 @@
 												<String>Regulator 2 x/sigma_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>3</I32>
+												<I32>9</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4944,7 +4944,7 @@
 												<String>Regulator 2 x/k1_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>4</I32>
+												<I32>10</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4959,7 +4959,7 @@
 												<String>Regulator 2 x/k2_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>5</I32>
+												<I32>11</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4974,7 +4974,7 @@
 												<String>Regulator 2 x/k0_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>6</I32>
+												<I32>12</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4989,7 +4989,7 @@
 												<String>Regulator 2 x/nu_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>7</I32>
+												<I32>13</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5004,7 +5004,7 @@
 												<String>Regulator 2 x/gamma_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>8</I32>
+												<I32>14</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5019,7 +5019,7 @@
 												<String>Regulator 2 x/reset</String>
 											</Property>
 											<Property Name="Index">
-												<I32>9</I32>
+												<I32>15</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5039,7 +5039,7 @@
 												<String>Regulator 2 y/sigma_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>14</I32>
+												<I32>20</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5054,7 +5054,7 @@
 												<String>Regulator 2 y/k1_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>15</I32>
+												<I32>21</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5069,7 +5069,7 @@
 												<String>Regulator 2 y/k2_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>16</I32>
+												<I32>22</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5084,7 +5084,7 @@
 												<String>Regulator 2 y/k0_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>17</I32>
+												<I32>23</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5099,7 +5099,7 @@
 												<String>Regulator 2 y/nu_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>18</I32>
+												<I32>24</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5114,7 +5114,7 @@
 												<String>Regulator 2 y/gamma_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>19</I32>
+												<I32>25</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5129,7 +5129,117 @@
 												<String>Regulator 2 y/reset</String>
 											</Property>
 											<Property Name="Index">
-												<I32>20</I32>
+												<I32>26</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+								</Section>
+								<Section Name="alpha_m" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+									<Description />
+									<Properties />
+									<Errors />
+									<Channel Name="alpha1_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha1_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>3</I32>
+											</Property>
+											<Property Name="DataSource">
+												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_1" />
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha2_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha2_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>4</I32>
+											</Property>
+											<Property Name="DataSource">
+												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_2" />
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha3_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha3_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>5</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha4_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha4_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>6</I32>
+											</Property>
+											<Property Name="DataSource">
+												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_4" />
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha5_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha5_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>7</I32>
+											</Property>
+											<Property Name="DataSource">
+												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_5" />
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha6_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha6_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>8</I32>
+											</Property>
+											<Property Name="DataSource">
+												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_6" />
 											</Property>
 										</Properties>
 										<Errors />
@@ -5190,7 +5300,7 @@
 											<String>psi_ref [deg]</String>
 										</Property>
 										<Property Name="Index">
-											<I32>10</I32>
+											<I32>16</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -5264,7 +5374,7 @@
 												<String>Output/alpha1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>35</I32>
+												<I32>41</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5279,7 +5389,7 @@
 												<String>Output/alpha2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>36</I32>
+												<I32>42</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5294,7 +5404,7 @@
 												<String>Output/alpha3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>37</I32>
+												<I32>43</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5309,7 +5419,7 @@
 												<String>Output/alpha4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>38</I32>
+												<I32>44</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5324,7 +5434,7 @@
 												<String>Output/alpha5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>39</I32>
+												<I32>45</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5339,7 +5449,7 @@
 												<String>Output/alpha6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>40</I32>
+												<I32>46</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5354,7 +5464,7 @@
 												<String>Output/u1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>41</I32>
+												<I32>47</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5369,7 +5479,7 @@
 												<String>Output/u2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>42</I32>
+												<I32>48</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5384,7 +5494,7 @@
 												<String>Output/u3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>43</I32>
+												<I32>49</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5399,7 +5509,7 @@
 												<String>Output/u4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>44</I32>
+												<I32>50</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5414,7 +5524,7 @@
 												<String>Output/u5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>45</I32>
+												<I32>51</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5429,7 +5539,7 @@
 												<String>Output/u6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>46</I32>
+												<I32>52</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5450,7 +5560,7 @@
 											<String>Output to Workspace</String>
 										</Property>
 										<Property Name="Index">
-											<I32>34</I32>
+											<I32>40</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -5477,10 +5587,10 @@
 									<Double>10000</Double>
 								</Property>
 								<Property Name="DLL Size">
-									<I32>272517</I32>
+									<I32>274525</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3586959167.6830158</Double>
+									<Double>3593863834.7845244</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -5513,7 +5623,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>e69480f967f84d2128b92066e64fc443</String>
+									<String>470e9cb463f7d2e008ff1230b1a48ee5</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -5527,7 +5637,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\u2pwm.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>e69480f967f84d2128b92066e64fc443</MD5>
+										<MD5>470e9cb463f7d2e008ff1230b1a48ee5</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">
@@ -5621,7 +5731,7 @@
 													<String>angle centering/manual alpha/man_alpha_5</String>
 												</Property>
 												<Property Name="Index">
-													<I32>0</I32>
+													<I32>41</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -5636,7 +5746,7 @@
 													<String>angle centering/manual alpha/man_alpha_4</String>
 												</Property>
 												<Property Name="Index">
-													<I32>1</I32>
+													<I32>42</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -5651,7 +5761,7 @@
 													<String>angle centering/manual alpha/man_alpha_1</String>
 												</Property>
 												<Property Name="Index">
-													<I32>2</I32>
+													<I32>43</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -5666,7 +5776,7 @@
 													<String>angle centering/manual alpha/man_alpha_2</String>
 												</Property>
 												<Property Name="Index">
-													<I32>3</I32>
+													<I32>44</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -5681,7 +5791,7 @@
 													<String>angle centering/manual alpha/man_alpha_3</String>
 												</Property>
 												<Property Name="Index">
-													<I32>4</I32>
+													<I32>45</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -5696,7 +5806,7 @@
 													<String>angle centering/manual alpha/man_alpha_6</String>
 												</Property>
 												<Property Name="Index">
-													<I32>5</I32>
+													<I32>46</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -5712,7 +5822,7 @@
 												<String>angle centering/manual override alpha</String>
 											</Property>
 											<Property Name="Index">
-												<I32>6</I32>
+												<I32>48</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5732,7 +5842,7 @@
 												<String>Switch_subsystem/Cross1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>9</I32>
+												<I32>2</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/X" />
@@ -5750,7 +5860,7 @@
 												<String>Switch_subsystem/Square1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>10</I32>
+												<I32>3</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/Square" />
@@ -5768,7 +5878,7 @@
 												<String>Switch_subsystem/Circle1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>8</I32>
+												<I32>1</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/Circle" />
@@ -5786,7 +5896,7 @@
 												<String>Switch_subsystem/Triangle1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>7</I32>
+												<I32>0</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/Triangle" />
@@ -5809,7 +5919,7 @@
 												<String>ctrl_custom/u_1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>11</I32>
+												<I32>4</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/u1" />
@@ -5827,7 +5937,7 @@
 												<String>ctrl_custom/u_2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>15</I32>
+												<I32>8</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/u2" />
@@ -5845,7 +5955,7 @@
 												<String>ctrl_custom/u_3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>12</I32>
+												<I32>5</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/u3" />
@@ -5863,7 +5973,7 @@
 												<String>ctrl_custom/u_4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>16</I32>
+												<I32>9</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/u4" />
@@ -5881,7 +5991,7 @@
 												<String>ctrl_custom/u_5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>17</I32>
+												<I32>10</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/u5" />
@@ -5899,7 +6009,7 @@
 												<String>ctrl_custom/u_6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>13</I32>
+												<I32>6</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/u6" />
@@ -5917,7 +6027,7 @@
 												<String>ctrl_custom/alpha_1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>14</I32>
+												<I32>7</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/alpha1" />
@@ -5935,7 +6045,7 @@
 												<String>ctrl_custom/alpha_2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>18</I32>
+												<I32>11</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/alpha2" />
@@ -5953,7 +6063,7 @@
 												<String>ctrl_custom/alpha_3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>19</I32>
+												<I32>12</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/alpha3" />
@@ -5971,7 +6081,7 @@
 												<String>ctrl_custom/alpha_4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>20</I32>
+												<I32>13</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/alpha4" />
@@ -5989,7 +6099,7 @@
 												<String>ctrl_custom/alpha_5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>21</I32>
+												<I32>14</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/alpha5" />
@@ -6007,7 +6117,7 @@
 												<String>ctrl_custom/alpha_6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>22</I32>
+												<I32>15</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_custom/Outports/Output/alpha6" />
@@ -6030,7 +6140,7 @@
 												<String>ctrl_DP/u_1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>23</I32>
+												<I32>16</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/u1" />
@@ -6048,7 +6158,7 @@
 												<String>ctrl_DP/u_2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>27</I32>
+												<I32>20</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/u2" />
@@ -6066,7 +6176,7 @@
 												<String>ctrl_DP/u_3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>24</I32>
+												<I32>17</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/u3" />
@@ -6084,7 +6194,7 @@
 												<String>ctrl_DP/u_4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>28</I32>
+												<I32>21</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/u4" />
@@ -6102,7 +6212,7 @@
 												<String>ctrl_DP/u_5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>29</I32>
+												<I32>22</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/u5" />
@@ -6120,7 +6230,7 @@
 												<String>ctrl_DP/u_6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>25</I32>
+												<I32>18</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/u6" />
@@ -6138,7 +6248,7 @@
 												<String>ctrl_DP/alpha_1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>26</I32>
+												<I32>19</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/alpha1" />
@@ -6156,7 +6266,7 @@
 												<String>ctrl_DP/alpha_2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>30</I32>
+												<I32>23</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/alpha2" />
@@ -6174,7 +6284,7 @@
 												<String>ctrl_DP/alpha_3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>31</I32>
+												<I32>24</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/alpha3" />
@@ -6192,7 +6302,7 @@
 												<String>ctrl_DP/alpha_4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>32</I32>
+												<I32>25</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/alpha4" />
@@ -6210,7 +6320,7 @@
 												<String>ctrl_DP/alpha_5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>33</I32>
+												<I32>26</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/alpha5" />
@@ -6228,7 +6338,7 @@
 												<String>ctrl_DP/alpha_6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>34</I32>
+												<I32>27</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_DP/Outports/Output/alpha6" />
@@ -6251,7 +6361,7 @@
 												<String>ctrl_sixaxis2thruster/u_1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>35</I32>
+												<I32>28</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/u_1" />
@@ -6269,7 +6379,7 @@
 												<String>ctrl_sixaxis2thruster/u_2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>39</I32>
+												<I32>32</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/u_2" />
@@ -6287,7 +6397,7 @@
 												<String>ctrl_sixaxis2thruster/u_3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>36</I32>
+												<I32>29</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/u_3" />
@@ -6305,7 +6415,7 @@
 												<String>ctrl_sixaxis2thruster/u_4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>40</I32>
+												<I32>33</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/u_4" />
@@ -6323,7 +6433,7 @@
 												<String>ctrl_sixaxis2thruster/u_5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>41</I32>
+												<I32>34</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/u_5" />
@@ -6341,7 +6451,7 @@
 												<String>ctrl_sixaxis2thruster/u_6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>37</I32>
+												<I32>30</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/u_6" />
@@ -6359,7 +6469,7 @@
 												<String>ctrl_sixaxis2thruster/alpha_1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>38</I32>
+												<I32>31</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/alpha_1" />
@@ -6377,7 +6487,7 @@
 												<String>ctrl_sixaxis2thruster/alpha_2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>42</I32>
+												<I32>35</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/alpha_2" />
@@ -6395,7 +6505,7 @@
 												<String>ctrl_sixaxis2thruster/alpha_3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>43</I32>
+												<I32>36</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/alpha_3" />
@@ -6413,7 +6523,7 @@
 												<String>ctrl_sixaxis2thruster/alpha_4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>44</I32>
+												<I32>37</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/alpha_4" />
@@ -6431,7 +6541,7 @@
 												<String>ctrl_sixaxis2thruster/alpha_5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>45</I32>
+												<I32>38</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/alpha_5" />
@@ -6449,7 +6559,7 @@
 												<String>ctrl_sixaxis2thruster/alpha_6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>46</I32>
+												<I32>39</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/ctrl_sixaxis2thruster/Outports/alpha_6" />
@@ -6481,7 +6591,7 @@
 													<String>pwm centering/manual pwm/pwm_u_5</String>
 												</Property>
 												<Property Name="Index">
-													<I32>47</I32>
+													<I32>49</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -6496,7 +6606,7 @@
 													<String>pwm centering/manual pwm/pwm_u_4</String>
 												</Property>
 												<Property Name="Index">
-													<I32>48</I32>
+													<I32>50</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -6511,7 +6621,7 @@
 													<String>pwm centering/manual pwm/pwm_u_1</String>
 												</Property>
 												<Property Name="Index">
-													<I32>49</I32>
+													<I32>51</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -6526,7 +6636,7 @@
 													<String>pwm centering/manual pwm/pwm_u_6</String>
 												</Property>
 												<Property Name="Index">
-													<I32>50</I32>
+													<I32>52</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -6541,7 +6651,7 @@
 													<String>pwm centering/manual pwm/pwm_u_2</String>
 												</Property>
 												<Property Name="Index">
-													<I32>51</I32>
+													<I32>53</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -6556,7 +6666,7 @@
 													<String>pwm centering/manual pwm/pwm_u_3</String>
 												</Property>
 												<Property Name="Index">
-													<I32>52</I32>
+													<I32>54</I32>
 												</Property>
 											</Properties>
 											<Errors />
@@ -6572,7 +6682,7 @@
 												<String>pwm centering/manual override pwm</String>
 											</Property>
 											<Property Name="Index">
-												<I32>53</I32>
+												<I32>55</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6592,7 +6702,7 @@
 												<String>alpha_m [step]/alpha_2_step</String>
 											</Property>
 											<Property Name="Index">
-												<I32>55</I32>
+												<I32>56</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/Thruster/Position 2" />
@@ -6610,7 +6720,7 @@
 												<String>alpha_m [step]/alpha_3_step</String>
 											</Property>
 											<Property Name="Index">
-												<I32>56</I32>
+												<I32>57</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/Thruster/Position 3" />
@@ -6628,7 +6738,7 @@
 												<String>alpha_m [step]/alpha_4_step</String>
 											</Property>
 											<Property Name="Index">
-												<I32>57</I32>
+												<I32>58</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/Thruster/Position 4" />
@@ -6646,7 +6756,7 @@
 												<String>alpha_m [step]/alpha_5_step</String>
 											</Property>
 											<Property Name="Index">
-												<I32>58</I32>
+												<I32>59</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/Thruster/Position 5" />
@@ -6664,7 +6774,7 @@
 												<String>alpha_m [step]/alpha_6_step</String>
 											</Property>
 											<Property Name="Index">
-												<I32>59</I32>
+												<I32>60</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/Thruster/Position 6" />
@@ -6682,7 +6792,7 @@
 												<String>alpha_m [step]/alpha_1_step</String>
 											</Property>
 											<Property Name="Index">
-												<I32>60</I32>
+												<I32>61</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/Thruster/Position 1" />
@@ -6701,7 +6811,22 @@
 											<String>mech elec enable</String>
 										</Property>
 										<Property Name="Index">
-											<I32>54</I32>
+											<I32>40</I32>
+										</Property>
+									</Properties>
+									<Errors />
+									<DefaultValue>
+										<Elem>0</Elem>
+									</DefaultValue>
+								</Channel>
+								<Channel Name="azimuth rate disable" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+									<Description />
+									<Properties>
+										<Property Name="Model Path">
+											<String>azimuth rate disable</String>
+										</Property>
+										<Property Name="Index">
+											<I32>47</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -6725,7 +6850,7 @@
 												<String>angle centering/Need unwrapping thrusters</String>
 											</Property>
 											<Property Name="Index">
-												<I32>61</I32>
+												<I32>63</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6745,7 +6870,7 @@
 												<String>alpha_output/alpha_2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>62</I32>
+												<I32>64</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6760,7 +6885,7 @@
 												<String>alpha_output/alpha_3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>63</I32>
+												<I32>65</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6775,7 +6900,7 @@
 												<String>alpha_output/alpha_1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>64</I32>
+												<I32>66</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6790,7 +6915,7 @@
 												<String>alpha_output/alpha_6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>65</I32>
+												<I32>67</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6805,7 +6930,7 @@
 												<String>alpha_output/alpha_4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>66</I32>
+												<I32>68</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6820,7 +6945,7 @@
 												<String>alpha_output/alpha_5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>67</I32>
+												<I32>69</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6840,7 +6965,7 @@
 												<String>indicator/STOP</String>
 											</Property>
 											<Property Name="Index">
-												<I32>69</I32>
+												<I32>70</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6855,7 +6980,7 @@
 												<String>indicator/ctrl_DP</String>
 											</Property>
 											<Property Name="Index">
-												<I32>70</I32>
+												<I32>71</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6870,7 +6995,7 @@
 												<String>indicator/ctrl_sixaxis2thruster</String>
 											</Property>
 											<Property Name="Index">
-												<I32>71</I32>
+												<I32>72</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6885,7 +7010,7 @@
 												<String>indicator/ctrl_custom</String>
 											</Property>
 											<Property Name="Index">
-												<I32>72</I32>
+												<I32>73</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6905,7 +7030,7 @@
 												<String>pwm_output u/pwm_u_2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>73</I32>
+												<I32>74</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6920,7 +7045,7 @@
 												<String>pwm_output u/pwm_u_3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>74</I32>
+												<I32>75</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6935,7 +7060,7 @@
 												<String>pwm_output u/pwm_u_1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>75</I32>
+												<I32>76</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6950,7 +7075,7 @@
 												<String>pwm_output u/pwm_u_6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>76</I32>
+												<I32>77</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6965,7 +7090,7 @@
 												<String>pwm_output u/pwm_u_4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>77</I32>
+												<I32>78</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -6980,7 +7105,7 @@
 												<String>pwm_output u/pwm_u_5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>78</I32>
+												<I32>79</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7000,7 +7125,7 @@
 												<String>alpha_m/alpha_m_2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>79</I32>
+												<I32>80</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7015,7 +7140,7 @@
 												<String>alpha_m/alpha_m_3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>80</I32>
+												<I32>81</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7030,7 +7155,7 @@
 												<String>alpha_m/alpha_m_4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>81</I32>
+												<I32>82</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7045,7 +7170,7 @@
 												<String>alpha_m/alpha_m_5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>82</I32>
+												<I32>83</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7060,7 +7185,7 @@
 												<String>alpha_m/alpha_m_6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>83</I32>
+												<I32>84</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7075,7 +7200,7 @@
 												<String>alpha_m/alpha_m_1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>84</I32>
+												<I32>85</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -7091,7 +7216,7 @@
 											<String>control input u exceeds bounds</String>
 										</Property>
 										<Property Name="Index">
-											<I32>68</I32>
+											<I32>62</I32>
 										</Property>
 									</Properties>
 									<Errors />

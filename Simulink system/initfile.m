@@ -224,8 +224,14 @@ n_max = 152;
 % C/S Inocean Cat I Drillship, 2016 master thesis, Sec 2.1
 % Fullscale 2 rpm
 alpha_max_rate = 0.012;                            % deg/s
+
 ctrl_frequency = 100;                           % Hz
 alpha_max_step = alpha_max_rate/ctrl_frequency; % deg/step
+
+% Thruster azimuth turning rate, limited to 2rpm full scale
+% Frederich, Constrained Optimal Thrust Allocation for CS Drillship, Table 2.1
+s_scaled = 1/sqrt(lambda); % Assuming Froude scaling, one second fullscale corresponds to s_scaled on the vessel
+alpha_rate_limit = 2*360/(60*s_scaled); % deg/sec
 
 % Thruster - motor
 min_pwm     = 5;
@@ -233,13 +239,14 @@ max_pwm     = 10;
 u2pwm_gain  = (max_pwm-min_pwm)/2;
 zero_pwm    = min_pwm + u2pwm_gain;
 
-% Thruster - servo
+% Thruster - azimuth zero trim
 zero_alpha_1  = -90; 
 zero_alpha_2  = -40; 
 zero_alpha_3  = 5; 
-zero_alpha_4  = -17;
+zero_alpha_4  = -25;
 zero_alpha_5  = 127;
-zero_alpha_6  = -36;
+zero_alpha_6  = -34;
+
 
 
 %% ctrl_custom

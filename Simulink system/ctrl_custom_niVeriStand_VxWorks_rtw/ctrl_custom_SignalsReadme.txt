@@ -2,12 +2,12 @@
 <signal> Id = "0" Name = "ctrl_custom/Input to model" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "1" Name = "ctrl_custom/x_ref" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "2" Name = "ctrl_custom/y_ref" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "3" Name = "ctrl_custom/Projection [-pi,pi] to [-inf,inf] + shortest rotation/Memory4/(1, 1)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "4" Name = "ctrl_custom/Projection [-pi,pi] to [-inf,inf] + shortest rotation/Memory4/(1, 2)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "5" Name = "ctrl_custom/Projection [-pi,pi] to [-inf,inf] + shortest rotation/Memory4/(1, 3)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "6" Name = "ctrl_custom/Projection [-pi,pi] to [-inf,inf] + shortest rotation/Memory4/(1, 4)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "7" Name = "ctrl_custom/Projection [-pi,pi] to [-inf,inf] + shortest rotation/Memory4/(1, 5)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
-<signal> Id = "8" Name = "ctrl_custom/Projection [-pi,pi] to [-inf,inf] + shortest rotation/Memory4/(1, 6)" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "3" Name = "ctrl_custom/alpha_m/alpha1_rad" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "4" Name = "ctrl_custom/alpha_m/alpha2_rad" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "5" Name = "ctrl_custom/alpha_m/alpha3_rad" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "6" Name = "ctrl_custom/alpha_m/alpha4_rad" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "7" Name = "ctrl_custom/alpha_m/alpha5_rad" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
+<signal> Id = "8" Name = "ctrl_custom/alpha_m/alpha6_rad" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "9" Name = "ctrl_custom/Regulator 2 x/sigma_x" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "10" Name = "ctrl_custom/Regulator 2 x/k1_x" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
 <signal> Id = "11" Name = "ctrl_custom/Regulator 2 x/k2_x" SignalName = "" PortNum = "0" Width = "1" DataType = "real_T" </signal>
