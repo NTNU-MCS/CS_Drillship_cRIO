@@ -12,23 +12,17 @@
 <parameter> Id = "10" Inline = "0" Name = "ctrl_custom/Regulator 2 x/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
 <parameter> Id = "11" Inline = "0" Name = "ctrl_custom/Regulator 2 x/Integrator2/InitialCondition" Width = "1" DataType = "real_T" </parameter>
 <parameter> Id = "12" Inline = "0" Name = "ctrl_custom/Regulator 2 x/Integrator1/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "13" Inline = "0" Name = "ctrl_custom/Regulator 2 x/Saturation/UpperLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "14" Inline = "0" Name = "ctrl_custom/Regulator 2 x/Saturation/LowerLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "15" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "16" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Integrator2/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "17" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Integrator1/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "18" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Saturation/UpperLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "19" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Saturation/LowerLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "20" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "21" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Integrator2/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "22" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Integrator1/InitialCondition" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "23" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Saturation/UpperLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "24" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Saturation/LowerLimit" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "25" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Gain1/Gain" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "26" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Gain2/Gain" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "27" Inline = "0" Name = "ctrl_custom/Regulator 2 x/Gain1/Gain" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "28" Inline = "0" Name = "ctrl_custom/Regulator 2 x/Gain2/Gain" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "29" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Gain1/Gain" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "30" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Gain2/Gain" Width = "1" DataType = "real_T" </parameter>
-<parameter> Id = "31" Inline = "0" Name = "ctrl_custom/current emulator/Memory/X0" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "13" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "14" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Integrator2/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "15" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Integrator1/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "16" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Integrator/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "17" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Integrator2/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "18" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Integrator1/InitialCondition" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "19" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Gain1/Gain" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "20" Inline = "0" Name = "ctrl_custom/Regulator 2 psi/Gain2/Gain" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "21" Inline = "0" Name = "ctrl_custom/Regulator 2 x/Gain1/Gain" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "22" Inline = "0" Name = "ctrl_custom/Regulator 2 x/Gain2/Gain" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "23" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Gain1/Gain" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "24" Inline = "0" Name = "ctrl_custom/Regulator 2 y/Gain2/Gain" Width = "1" DataType = "real_T" </parameter>
+<parameter> Id = "25" Inline = "0" Name = "ctrl_custom/current emulator/Memory/X0" Width = "1" DataType = "real_T" </parameter>
 </parameterlist>

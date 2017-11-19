@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.88
+ * Model version              : 1.89
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Sun Nov 19 16:45:51 2017
+ * C source code generated on : Sun Nov 19 18:27:47 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping

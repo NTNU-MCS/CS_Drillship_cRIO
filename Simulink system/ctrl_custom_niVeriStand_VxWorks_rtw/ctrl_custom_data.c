@@ -12,9 +12,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.88
+ * Model version              : 1.89
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Sun Nov 19 16:45:51 2017
+ * C source code generated on : Sun Nov 19 18:27:47 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -283,58 +283,22 @@ P_ctrl_custom_T ctrl_custom_P = {
                                         * Referenced by: '<S11>/alpha6_rad'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S8>/sigma_x'
+                                        * Referenced by: '<S8>/X_limit'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S8>/sigma_x'
+                                        * Referenced by: '<S8>/X_limit'
                                         */
-  1.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S8>/sigma_x'
-                                        */
-  -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S8>/sigma_x'
-                                        */
-  1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S8>/sigma_x'
-                                        */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S8>/sigma_x'
-                                        */
-  -1.0,                                /* Expression: width
-                                        * Referenced by: '<S8>/k1_x'
-                                        */
-  1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S8>/k1_x'
-                                        */
-  2.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S8>/k1_x'
+  8.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S8>/X_limit'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S8>/k1_x'
+                                        * Referenced by: '<S8>/X_limit'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S8>/k1_x'
+                                        * Referenced by: '<S8>/X_limit'
                                         */
   1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S8>/k1_x'
-                                        */
-  -1.0,                                /* Expression: width
-                                        * Referenced by: '<S8>/k2_x'
-                                        */
-  1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S8>/k2_x'
-                                        */
-  3.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S8>/k2_x'
-                                        */
-  -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S8>/k2_x'
-                                        */
-  1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S8>/k2_x'
-                                        */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S8>/k2_x'
+                                        * Referenced by: '<S8>/X_limit'
                                         */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<S8>/k0_x'
@@ -353,60 +317,6 @@ P_ctrl_custom_T ctrl_custom_P = {
                                         */
   1.0,                                 /* Expression: btype
                                         * Referenced by: '<S8>/k0_x'
-                                        */
-  -1.0,                                /* Expression: width
-                                        * Referenced by: '<S8>/nu_x'
-                                        */
-  1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S8>/nu_x'
-                                        */
-  5.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S8>/nu_x'
-                                        */
-  -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S8>/nu_x'
-                                        */
-  1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S8>/nu_x'
-                                        */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S8>/nu_x'
-                                        */
-  -1.0,                                /* Expression: width
-                                        * Referenced by: '<S8>/gamma_x'
-                                        */
-  1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S8>/gamma_x'
-                                        */
-  6.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S8>/gamma_x'
-                                        */
-  -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S8>/gamma_x'
-                                        */
-  1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S8>/gamma_x'
-                                        */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S8>/gamma_x'
-                                        */
-  -1.0,                                /* Expression: width
-                                        * Referenced by: '<S8>/reset'
-                                        */
-  1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S8>/reset'
-                                        */
-  7.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S8>/reset'
-                                        */
-  -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S8>/reset'
-                                        */
-  1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S8>/reset'
-                                        */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S8>/reset'
                                         */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<Root>/psi_ref [deg]'
@@ -483,74 +393,176 @@ P_ctrl_custom_T ctrl_custom_P = {
   6.2831853071795862,                  /* Expression: 2*pi
                                         * Referenced by: '<S13>/Constant1'
                                         */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S8>/k2_x'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S8>/k2_x'
+                                        */
+  3.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S8>/k2_x'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S8>/k2_x'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S8>/k2_x'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S8>/k2_x'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S8>/reset'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S8>/reset'
+                                        */
+  7.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S8>/reset'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S8>/reset'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S8>/reset'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S8>/reset'
+                                        */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S8>/Integrator'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S8>/k1_x'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S8>/k1_x'
+                                        */
+  2.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S8>/k1_x'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S8>/k1_x'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S8>/k1_x'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S8>/k1_x'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S8>/Integrator2'
                                         */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S8>/gamma_x'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S8>/gamma_x'
+                                        */
+  6.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S8>/gamma_x'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S8>/gamma_x'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S8>/gamma_x'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S8>/gamma_x'
+                                        */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S8>/Integrator1'
                                         */
-  0.2,                                 /* Expression: .2
-                                        * Referenced by: '<S8>/Saturation'
-                                        */
-  -0.2,                                /* Expression: -.2
-                                        * Referenced by: '<S8>/Saturation'
-                                        */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S9>/sigma_y'
+                                        * Referenced by: '<S8>/X_saturated'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S9>/sigma_y'
+                                        * Referenced by: '<S8>/X_saturated'
                                         */
   1.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S9>/sigma_y'
+                                        * Referenced by: '<S8>/X_saturated'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S9>/sigma_y'
+                                        * Referenced by: '<S8>/X_saturated'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S9>/sigma_y'
+                                        * Referenced by: '<S8>/X_saturated'
                                         */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S9>/sigma_y'
+  0.0,                                 /* Expression: btype
+                                        * Referenced by: '<S8>/X_saturated'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S9>/k1_y'
+                                        * Referenced by: '<S8>/sigma_x'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S9>/k1_y'
+                                        * Referenced by: '<S8>/sigma_x'
+                                        */
+  1.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S8>/sigma_x'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S8>/sigma_x'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S8>/sigma_x'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S8>/sigma_x'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S8>/X_unsaturated'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S8>/X_unsaturated'
                                         */
   2.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S9>/k1_y'
+                                        * Referenced by: '<S8>/X_unsaturated'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S9>/k1_y'
+                                        * Referenced by: '<S8>/X_unsaturated'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S9>/k1_y'
+                                        * Referenced by: '<S8>/X_unsaturated'
                                         */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S9>/k1_y'
+  0.0,                                 /* Expression: btype
+                                        * Referenced by: '<S8>/X_unsaturated'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S9>/k2_y'
+                                        * Referenced by: '<S8>/nu_x'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S9>/k2_y'
+                                        * Referenced by: '<S8>/nu_x'
                                         */
-  3.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S9>/k2_y'
+  5.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S8>/nu_x'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S9>/k2_y'
+                                        * Referenced by: '<S8>/nu_x'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S9>/k2_y'
+                                        * Referenced by: '<S8>/nu_x'
                                         */
   1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S9>/k2_y'
+                                        * Referenced by: '<S8>/nu_x'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S9>/Y_limit'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S9>/Y_limit'
+                                        */
+  8.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S9>/Y_limit'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S9>/Y_limit'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S9>/Y_limit'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S9>/Y_limit'
                                         */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<S9>/k0_y'
@@ -571,40 +583,22 @@ P_ctrl_custom_T ctrl_custom_P = {
                                         * Referenced by: '<S9>/k0_y'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S9>/nu_y'
+                                        * Referenced by: '<S9>/k2_y'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S9>/nu_y'
+                                        * Referenced by: '<S9>/k2_y'
                                         */
-  5.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S9>/nu_y'
-                                        */
-  -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S9>/nu_y'
-                                        */
-  1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S9>/nu_y'
-                                        */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S9>/nu_y'
-                                        */
-  -1.0,                                /* Expression: width
-                                        * Referenced by: '<S9>/gamma_y'
-                                        */
-  1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S9>/gamma_y'
-                                        */
-  6.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S9>/gamma_y'
+  3.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S9>/k2_y'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S9>/gamma_y'
+                                        * Referenced by: '<S9>/k2_y'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S9>/gamma_y'
+                                        * Referenced by: '<S9>/k2_y'
                                         */
   1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S9>/gamma_y'
+                                        * Referenced by: '<S9>/k2_y'
                                         */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<S9>/reset'
@@ -627,71 +621,137 @@ P_ctrl_custom_T ctrl_custom_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S9>/Integrator'
                                         */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S9>/k1_y'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S9>/k1_y'
+                                        */
+  2.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S9>/k1_y'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S9>/k1_y'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S9>/k1_y'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S9>/k1_y'
+                                        */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S9>/Integrator2'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S9>/gamma_y'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S9>/gamma_y'
+                                        */
+  6.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S9>/gamma_y'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S9>/gamma_y'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S9>/gamma_y'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S9>/gamma_y'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S9>/Integrator1'
                                         */
-  0.2,                                 /* Expression: .2
-                                        * Referenced by: '<S9>/Saturation'
-                                        */
-  -0.2,                                /* Expression: -.2
-                                        * Referenced by: '<S9>/Saturation'
-                                        */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S7>/sigma_psi'
+                                        * Referenced by: '<S9>/Y_saturated'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S7>/sigma_psi'
+                                        * Referenced by: '<S9>/Y_saturated'
                                         */
   1.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S7>/sigma_psi'
+                                        * Referenced by: '<S9>/Y_saturated'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S7>/sigma_psi'
+                                        * Referenced by: '<S9>/Y_saturated'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S7>/sigma_psi'
+                                        * Referenced by: '<S9>/Y_saturated'
                                         */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S7>/sigma_psi'
+  0.0,                                 /* Expression: btype
+                                        * Referenced by: '<S9>/Y_saturated'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S7>/k1_psi'
+                                        * Referenced by: '<S9>/sigma_y'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S7>/k1_psi'
+                                        * Referenced by: '<S9>/sigma_y'
+                                        */
+  1.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S9>/sigma_y'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S9>/sigma_y'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S9>/sigma_y'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S9>/sigma_y'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S9>/Y_unsaturated'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S9>/Y_unsaturated'
                                         */
   2.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S7>/k1_psi'
+                                        * Referenced by: '<S9>/Y_unsaturated'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S7>/k1_psi'
+                                        * Referenced by: '<S9>/Y_unsaturated'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S7>/k1_psi'
+                                        * Referenced by: '<S9>/Y_unsaturated'
                                         */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S7>/k1_psi'
+  0.0,                                 /* Expression: btype
+                                        * Referenced by: '<S9>/Y_unsaturated'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S7>/k2_psi'
+                                        * Referenced by: '<S9>/nu_y'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S7>/k2_psi'
+                                        * Referenced by: '<S9>/nu_y'
                                         */
-  3.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S7>/k2_psi'
+  5.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S9>/nu_y'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S7>/k2_psi'
+                                        * Referenced by: '<S9>/nu_y'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S7>/k2_psi'
+                                        * Referenced by: '<S9>/nu_y'
                                         */
   1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S7>/k2_psi'
+                                        * Referenced by: '<S9>/nu_y'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S7>/N_limit'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S7>/N_limit'
+                                        */
+  8.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S7>/N_limit'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S7>/N_limit'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S7>/N_limit'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S7>/N_limit'
                                         */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<S7>/k0_psi'
@@ -712,40 +772,22 @@ P_ctrl_custom_T ctrl_custom_P = {
                                         * Referenced by: '<S7>/k0_psi'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S7>/nu_psi'
+                                        * Referenced by: '<S7>/k2_psi'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S7>/nu_psi'
+                                        * Referenced by: '<S7>/k2_psi'
                                         */
-  5.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S7>/nu_psi'
-                                        */
-  -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S7>/nu_psi'
-                                        */
-  1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S7>/nu_psi'
-                                        */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S7>/nu_psi'
-                                        */
-  -1.0,                                /* Expression: width
-                                        * Referenced by: '<S7>/gamma_psi'
-                                        */
-  1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S7>/gamma_psi'
-                                        */
-  6.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S7>/gamma_psi'
+  3.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S7>/k2_psi'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S7>/gamma_psi'
+                                        * Referenced by: '<S7>/k2_psi'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S7>/gamma_psi'
+                                        * Referenced by: '<S7>/k2_psi'
                                         */
   1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S7>/gamma_psi'
+                                        * Referenced by: '<S7>/k2_psi'
                                         */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<S7>/reset'
@@ -768,17 +810,119 @@ P_ctrl_custom_T ctrl_custom_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S7>/Integrator'
                                         */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S7>/k1_psi'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S7>/k1_psi'
+                                        */
+  2.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S7>/k1_psi'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S7>/k1_psi'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S7>/k1_psi'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S7>/k1_psi'
+                                        */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S7>/Integrator2'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S7>/gamma_psi'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S7>/gamma_psi'
+                                        */
+  6.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S7>/gamma_psi'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S7>/gamma_psi'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S7>/gamma_psi'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S7>/gamma_psi'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S7>/Integrator1'
                                         */
-  0.2,                                 /* Expression: .2
-                                        * Referenced by: '<S7>/Saturation'
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S7>/N_saturated'
                                         */
-  -0.2,                                /* Expression: -0.2
-                                        * Referenced by: '<S7>/Saturation'
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S7>/N_saturated'
+                                        */
+  1.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S7>/N_saturated'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S7>/N_saturated'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S7>/N_saturated'
+                                        */
+  0.0,                                 /* Expression: btype
+                                        * Referenced by: '<S7>/N_saturated'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S7>/sigma_psi'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S7>/sigma_psi'
+                                        */
+  1.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S7>/sigma_psi'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S7>/sigma_psi'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S7>/sigma_psi'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S7>/sigma_psi'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S7>/N_unsaturated'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S7>/N_unsaturated'
+                                        */
+  2.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S7>/N_unsaturated'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S7>/N_unsaturated'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S7>/N_unsaturated'
+                                        */
+  0.0,                                 /* Expression: btype
+                                        * Referenced by: '<S7>/N_unsaturated'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S7>/nu_psi'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S7>/nu_psi'
+                                        */
+  5.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S7>/nu_psi'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S7>/nu_psi'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S7>/nu_psi'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S7>/nu_psi'
                                         */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<S5>/alpha1'
@@ -1239,9 +1383,9 @@ P_ctrl_custom_T ctrl_custom_P = {
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.88
+ * Model version : 1.89
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Sun Nov 19 16:45:51 2017
+ * Source generated on : Sun Nov 19 18:27:46 2017
  *========================================================================*/
 #if defined VXWORKS || defined kNIOSLinux
 
@@ -1256,6 +1400,102 @@ NI_ParamSizeWidth P_ctrl_custom_T_sizes[] DataSection(".NIVS.defaultparamsizes")
   { sizeof(P_ctrl_custom_T), 1 },
 
   { sizeof(real_T), 36, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 1, 0 },
 
