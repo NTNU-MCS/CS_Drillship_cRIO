@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.86
+ * Model version              : 1.87
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Sat Nov 18 16:28:39 2017
+ * C source code generated on : Sat Nov 18 18:28:22 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -937,6 +937,9 @@ typedef struct {
   real_T u4_DWORK1;                    /* '<S5>/u4' */
   real_T u5_DWORK1;                    /* '<S5>/u5' */
   real_T u6_DWORK1;                    /* '<S5>/u6' */
+  real_T X_DWORK1;                     /* '<S13>/X' */
+  real_T Y_DWORK1;                     /* '<S13>/Y' */
+  real_T N_DWORK1;                     /* '<S13>/N' */
   real_T Acc_x_DWORK1;                 /* '<S3>/Acc_x' */
   real_T Acc_y_DWORK1;                 /* '<S3>/Acc_y' */
   real_T Acc_z_DWORK1;                 /* '<S3>/Acc_z' */
@@ -1080,6 +1083,9 @@ typedef struct {
   uint8_T u4_DWORK2[12];               /* '<S5>/u4' */
   uint8_T u5_DWORK2[12];               /* '<S5>/u5' */
   uint8_T u6_DWORK2[12];               /* '<S5>/u6' */
+  uint8_T X_DWORK2[12];                /* '<S13>/X' */
+  uint8_T Y_DWORK2[12];                /* '<S13>/Y' */
+  uint8_T N_DWORK2[12];                /* '<S13>/N' */
   uint8_T Acc_x_DWORK2[12];            /* '<S3>/Acc_x' */
   uint8_T Acc_y_DWORK2[12];            /* '<S3>/Acc_y' */
   uint8_T Acc_z_DWORK2[12];            /* '<S3>/Acc_z' */
@@ -1865,10 +1871,10 @@ struct P_ctrl_custom_T_ {
   real_T Integrator1_IC_pm;            /* Expression: 0
                                         * Referenced by: '<S7>/Integrator1'
                                         */
-  real_T Saturation_UpperSat_i;        /* Expression: 5
+  real_T Saturation_UpperSat_i;        /* Expression: 1
                                         * Referenced by: '<S7>/Saturation'
                                         */
-  real_T Saturation_LowerSat_l;        /* Expression: -5
+  real_T Saturation_LowerSat_l;        /* Expression: -1
                                         * Referenced by: '<S7>/Saturation'
                                         */
   real_T alpha1_P1;                    /* Expression: width
@@ -2086,6 +2092,60 @@ struct P_ctrl_custom_T_ {
                                         */
   real_T u6_P6;                        /* Expression: btype
                                         * Referenced by: '<S5>/u6'
+                                        */
+  real_T X_P1;                         /* Expression: width
+                                        * Referenced by: '<S13>/X'
+                                        */
+  real_T X_P2;                         /* Expression: dtype
+                                        * Referenced by: '<S13>/X'
+                                        */
+  real_T X_P3;                         /* Expression: portnum
+                                        * Referenced by: '<S13>/X'
+                                        */
+  real_T X_P4;                         /* Expression: stime
+                                        * Referenced by: '<S13>/X'
+                                        */
+  real_T X_P5;                         /* Expression: stype
+                                        * Referenced by: '<S13>/X'
+                                        */
+  real_T X_P6;                         /* Expression: btype
+                                        * Referenced by: '<S13>/X'
+                                        */
+  real_T Y_P1;                         /* Expression: width
+                                        * Referenced by: '<S13>/Y'
+                                        */
+  real_T Y_P2;                         /* Expression: dtype
+                                        * Referenced by: '<S13>/Y'
+                                        */
+  real_T Y_P3;                         /* Expression: portnum
+                                        * Referenced by: '<S13>/Y'
+                                        */
+  real_T Y_P4;                         /* Expression: stime
+                                        * Referenced by: '<S13>/Y'
+                                        */
+  real_T Y_P5;                         /* Expression: stype
+                                        * Referenced by: '<S13>/Y'
+                                        */
+  real_T Y_P6;                         /* Expression: btype
+                                        * Referenced by: '<S13>/Y'
+                                        */
+  real_T N_P1;                         /* Expression: width
+                                        * Referenced by: '<S13>/N'
+                                        */
+  real_T N_P2;                         /* Expression: dtype
+                                        * Referenced by: '<S13>/N'
+                                        */
+  real_T N_P3;                         /* Expression: portnum
+                                        * Referenced by: '<S13>/N'
+                                        */
+  real_T N_P4;                         /* Expression: stime
+                                        * Referenced by: '<S13>/N'
+                                        */
+  real_T N_P5;                         /* Expression: stype
+                                        * Referenced by: '<S13>/N'
+                                        */
+  real_T N_P6;                         /* Expression: btype
+                                        * Referenced by: '<S13>/N'
                                         */
   real_T Gain1_Gain_b;                 /* Expression: -1
                                         * Referenced by: '<S7>/Gain1'
@@ -2382,9 +2442,10 @@ extern RT_MODEL_ctrl_custom_T *const ctrl_custom_M;
  * '<S10>'  : 'ctrl_custom/Thrust allocation: Pseudo-inverse of extended thrust configuration matrix'
  * '<S11>'  : 'ctrl_custom/alpha_m'
  * '<S12>'  : 'ctrl_custom/eta_QTM'
- * '<S13>'  : 'ctrl_custom/Consecutive compensator/Error in body frame'
- * '<S14>'  : 'ctrl_custom/Projection [-pi,pi] to [-inf,inf] + shortest rotation/MATLAB Function11'
- * '<S15>'  : 'ctrl_custom/Thrust allocation: Pseudo-inverse of extended thrust configuration matrix/MATLAB Function11'
+ * '<S13>'  : 'ctrl_custom/thrust command'
+ * '<S14>'  : 'ctrl_custom/Consecutive compensator/Error in body frame'
+ * '<S15>'  : 'ctrl_custom/Projection [-pi,pi] to [-inf,inf] + shortest rotation/MATLAB Function11'
+ * '<S16>'  : 'ctrl_custom/Thrust allocation: Pseudo-inverse of extended thrust configuration matrix/MATLAB Function11'
  */
 #endif                                 /* RTW_HEADER_ctrl_custom_h_ */
 
@@ -2392,9 +2453,9 @@ extern RT_MODEL_ctrl_custom_T *const ctrl_custom_M;
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.86
+ * Model version : 1.87
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Sat Nov 18 16:28:39 2017
+ * Source generated on : Sat Nov 18 18:28:21 2017
  *========================================================================*/
 #if !defined(NI_HEADER_ctrl_custom_h_)
 #define NI_HEADER_ctrl_custom_h_

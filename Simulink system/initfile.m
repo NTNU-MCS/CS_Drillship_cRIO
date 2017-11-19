@@ -243,7 +243,7 @@ zero_pwm    = min_pwm + u2pwm_gain;
 zero_alpha_1  = -90; 
 zero_alpha_2  = -40; 
 zero_alpha_3  = 5; 
-zero_alpha_4  = -25;
+zero_alpha_4  = 25;
 zero_alpha_5  = 127;
 zero_alpha_6  = -34;
 

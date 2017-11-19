@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_sixaxis2thruster".
  *
- * Model version              : 1.72
+ * Model version              : 1.73
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Mon Aug 21 16:42:38 2017
+ * C source code generated on : Sun Nov 19 13:12:34 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -814,46 +814,50 @@ typedef struct {
   real_T alpha_out;                    /* '<S1>/MATLAB Function10' */
 } B_MATLABFunction10_ctrl_sixax_T;
 
-/* Block signals for system '<S3>/MATLAB Function11' */
-typedef struct {
-  real_T alpha_infinf;                 /* '<S3>/MATLAB Function11' */
-} B_MATLABFunction11_ctrl_sixax_T;
-
 /* Block signals (auto storage) */
 typedef struct {
+  real_T alpha1_rad;                   /* '<S4>/alpha1_rad' */
+  real_T alpha2_rad;                   /* '<S4>/alpha2_rad' */
+  real_T alpha3_rad;                   /* '<S4>/alpha3_rad' */
+  real_T alpha4_rad;                   /* '<S4>/alpha4_rad' */
+  real_T alpha5_rad;                   /* '<S4>/alpha5_rad' */
+  real_T alpha6_rad;                   /* '<S4>/alpha6_rad' */
   real_T PosXLeft;                     /* '<Root>/PosXLeft' */
   real_T PosYLeft;                     /* '<Root>/PosYLeft' */
-  real_T ArrowDown;                    /* '<Root>/ArrowDown' */
   real_T PosXRight;                    /* '<Root>/PosXRight' */
   real_T PosYRight;                    /* '<Root>/PosYRight' */
+  real_T ArrowDown;                    /* '<Root>/ArrowDown' */
   real_T ArrowUp;                      /* '<Root>/ArrowUp' */
   real_T Start;                        /* '<Root>/Start' */
   real_T Product;                      /* '<Root>/Product' */
   real_T Product1;                     /* '<Root>/Product1' */
   real_T y;                            /* '<S5>/MATLAB Function' */
-  B_MATLABFunction11_ctrl_sixax_T sf_MATLABFunction11_o;/* '<S4>/MATLAB Function11' */
-  B_MATLABFunction11_ctrl_sixax_T sf_MATLABFunction11;/* '<S3>/MATLAB Function11' */
+  real_T alpha_infinf[6];              /* '<S3>/MATLAB Function11' */
   B_MATLABFunction10_ctrl_sixax_T sf_MATLABFunction10;/* '<S2>/MATLAB Function10' */
   B_MATLABFunction10_ctrl_sixax_T sf_MATLABFunction10_o;/* '<S1>/MATLAB Function10' */
 } B_ctrl_sixaxis2thruster_T;
 
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
-  real_T DelayInput1_DSTATE;           /* '<S10>/Delay Input1' */
-  real_T DelayInput1_DSTATE_i;         /* '<S11>/Delay Input1' */
-  real_T DelayInput1_DSTATE_j;         /* '<S12>/Delay Input1' */
-  real_T Memory4_PreviousInput;        /* '<S3>/Memory4' */
+  real_T DelayInput1_DSTATE;           /* '<S9>/Delay Input1' */
+  real_T DelayInput1_DSTATE_i;         /* '<S10>/Delay Input1' */
+  real_T DelayInput1_DSTATE_j;         /* '<S11>/Delay Input1' */
+  real_T alpha1_rad_DWORK1;            /* '<S4>/alpha1_rad' */
+  real_T alpha2_rad_DWORK1;            /* '<S4>/alpha2_rad' */
+  real_T alpha3_rad_DWORK1;            /* '<S4>/alpha3_rad' */
+  real_T alpha4_rad_DWORK1;            /* '<S4>/alpha4_rad' */
+  real_T alpha5_rad_DWORK1;            /* '<S4>/alpha5_rad' */
+  real_T alpha6_rad_DWORK1;            /* '<S4>/alpha6_rad' */
   real_T Memory5_PreviousInput;        /* '<S2>/Memory5' */
   real_T PosXLeft_DWORK1;              /* '<Root>/PosXLeft' */
   real_T PosYLeft_DWORK1;              /* '<Root>/PosYLeft' */
+  real_T Memory5_PreviousInput_a;      /* '<S1>/Memory5' */
+  real_T PosXRight_DWORK1;             /* '<Root>/PosXRight' */
+  real_T PosYRight_DWORK1;             /* '<Root>/PosYRight' */
   real_T alpha_1_DWORK1;               /* '<Root>/alpha_1' */
   real_T alpha_2_DWORK1;               /* '<Root>/alpha_2' */
   real_T alpha_3_DWORK1;               /* '<Root>/alpha_3' */
   real_T ArrowDown_DWORK1;             /* '<Root>/ArrowDown' */
-  real_T Memory4_PreviousInput_c;      /* '<S4>/Memory4' */
-  real_T Memory5_PreviousInput_a;      /* '<S1>/Memory5' */
-  real_T PosXRight_DWORK1;             /* '<Root>/PosXRight' */
-  real_T PosYRight_DWORK1;             /* '<Root>/PosYRight' */
   real_T alpha_5_DWORK1;               /* '<Root>/alpha_5' */
   real_T ArrowUp_DWORK1;               /* '<Root>/ArrowUp' */
   real_T alpha_4_DWORK1;               /* '<Root>/alpha_4' */
@@ -867,14 +871,20 @@ typedef struct {
   real_T u_4_DWORK1;                   /* '<Root>/u_4' */
   real_T u_5_DWORK1;                   /* '<Root>/u_5' */
   real_T u_6_DWORK1;                   /* '<Root>/u_6' */
+  uint8_T alpha1_rad_DWORK2[22];       /* '<S4>/alpha1_rad' */
+  uint8_T alpha2_rad_DWORK2[22];       /* '<S4>/alpha2_rad' */
+  uint8_T alpha3_rad_DWORK2[22];       /* '<S4>/alpha3_rad' */
+  uint8_T alpha4_rad_DWORK2[22];       /* '<S4>/alpha4_rad' */
+  uint8_T alpha5_rad_DWORK2[22];       /* '<S4>/alpha5_rad' */
+  uint8_T alpha6_rad_DWORK2[22];       /* '<S4>/alpha6_rad' */
   uint8_T PosXLeft_DWORK2[22];         /* '<Root>/PosXLeft' */
   uint8_T PosYLeft_DWORK2[22];         /* '<Root>/PosYLeft' */
+  uint8_T PosXRight_DWORK2[22];        /* '<Root>/PosXRight' */
+  uint8_T PosYRight_DWORK2[22];        /* '<Root>/PosYRight' */
   uint8_T alpha_1_DWORK2[22];          /* '<Root>/alpha_1' */
   uint8_T alpha_2_DWORK2[22];          /* '<Root>/alpha_2' */
   uint8_T alpha_3_DWORK2[22];          /* '<Root>/alpha_3' */
   uint8_T ArrowDown_DWORK2[22];        /* '<Root>/ArrowDown' */
-  uint8_T PosXRight_DWORK2[22];        /* '<Root>/PosXRight' */
-  uint8_T PosYRight_DWORK2[22];        /* '<Root>/PosYRight' */
   uint8_T alpha_5_DWORK2[22];          /* '<Root>/alpha_5' */
   uint8_T ArrowUp_DWORK2[22];          /* '<Root>/ArrowUp' */
   uint8_T alpha_4_DWORK2[22];          /* '<Root>/alpha_4' */
@@ -905,16 +915,121 @@ struct P_ctrl_sixaxis2thruster_T_ {
                                         *   '<S2>/Joystick angle threshold'
                                         */
   real_T DetectIncrease_vinit;         /* Mask Parameter: DetectIncrease_vinit
-                                        * Referenced by: '<S10>/Delay Input1'
+                                        * Referenced by: '<S9>/Delay Input1'
                                         */
   real_T DetectIncrease1_vinit;        /* Mask Parameter: DetectIncrease1_vinit
-                                        * Referenced by: '<S11>/Delay Input1'
+                                        * Referenced by: '<S10>/Delay Input1'
                                         */
   real_T DetectIncrease2_vinit;        /* Mask Parameter: DetectIncrease2_vinit
-                                        * Referenced by: '<S12>/Delay Input1'
+                                        * Referenced by: '<S11>/Delay Input1'
                                         */
-  real_T Memory4_X0;                   /* Expression: 0
-                                        * Referenced by: '<S3>/Memory4'
+  real_T alpha1_rad_P1;                /* Expression: width
+                                        * Referenced by: '<S4>/alpha1_rad'
+                                        */
+  real_T alpha1_rad_P2;                /* Expression: dtype
+                                        * Referenced by: '<S4>/alpha1_rad'
+                                        */
+  real_T alpha1_rad_P3;                /* Expression: portnum
+                                        * Referenced by: '<S4>/alpha1_rad'
+                                        */
+  real_T alpha1_rad_P4;                /* Expression: stime
+                                        * Referenced by: '<S4>/alpha1_rad'
+                                        */
+  real_T alpha1_rad_P5;                /* Expression: stype
+                                        * Referenced by: '<S4>/alpha1_rad'
+                                        */
+  real_T alpha1_rad_P6;                /* Expression: btype
+                                        * Referenced by: '<S4>/alpha1_rad'
+                                        */
+  real_T alpha2_rad_P1;                /* Expression: width
+                                        * Referenced by: '<S4>/alpha2_rad'
+                                        */
+  real_T alpha2_rad_P2;                /* Expression: dtype
+                                        * Referenced by: '<S4>/alpha2_rad'
+                                        */
+  real_T alpha2_rad_P3;                /* Expression: portnum
+                                        * Referenced by: '<S4>/alpha2_rad'
+                                        */
+  real_T alpha2_rad_P4;                /* Expression: stime
+                                        * Referenced by: '<S4>/alpha2_rad'
+                                        */
+  real_T alpha2_rad_P5;                /* Expression: stype
+                                        * Referenced by: '<S4>/alpha2_rad'
+                                        */
+  real_T alpha2_rad_P6;                /* Expression: btype
+                                        * Referenced by: '<S4>/alpha2_rad'
+                                        */
+  real_T alpha3_rad_P1;                /* Expression: width
+                                        * Referenced by: '<S4>/alpha3_rad'
+                                        */
+  real_T alpha3_rad_P2;                /* Expression: dtype
+                                        * Referenced by: '<S4>/alpha3_rad'
+                                        */
+  real_T alpha3_rad_P3;                /* Expression: portnum
+                                        * Referenced by: '<S4>/alpha3_rad'
+                                        */
+  real_T alpha3_rad_P4;                /* Expression: stime
+                                        * Referenced by: '<S4>/alpha3_rad'
+                                        */
+  real_T alpha3_rad_P5;                /* Expression: stype
+                                        * Referenced by: '<S4>/alpha3_rad'
+                                        */
+  real_T alpha3_rad_P6;                /* Expression: btype
+                                        * Referenced by: '<S4>/alpha3_rad'
+                                        */
+  real_T alpha4_rad_P1;                /* Expression: width
+                                        * Referenced by: '<S4>/alpha4_rad'
+                                        */
+  real_T alpha4_rad_P2;                /* Expression: dtype
+                                        * Referenced by: '<S4>/alpha4_rad'
+                                        */
+  real_T alpha4_rad_P3;                /* Expression: portnum
+                                        * Referenced by: '<S4>/alpha4_rad'
+                                        */
+  real_T alpha4_rad_P4;                /* Expression: stime
+                                        * Referenced by: '<S4>/alpha4_rad'
+                                        */
+  real_T alpha4_rad_P5;                /* Expression: stype
+                                        * Referenced by: '<S4>/alpha4_rad'
+                                        */
+  real_T alpha4_rad_P6;                /* Expression: btype
+                                        * Referenced by: '<S4>/alpha4_rad'
+                                        */
+  real_T alpha5_rad_P1;                /* Expression: width
+                                        * Referenced by: '<S4>/alpha5_rad'
+                                        */
+  real_T alpha5_rad_P2;                /* Expression: dtype
+                                        * Referenced by: '<S4>/alpha5_rad'
+                                        */
+  real_T alpha5_rad_P3;                /* Expression: portnum
+                                        * Referenced by: '<S4>/alpha5_rad'
+                                        */
+  real_T alpha5_rad_P4;                /* Expression: stime
+                                        * Referenced by: '<S4>/alpha5_rad'
+                                        */
+  real_T alpha5_rad_P5;                /* Expression: stype
+                                        * Referenced by: '<S4>/alpha5_rad'
+                                        */
+  real_T alpha5_rad_P6;                /* Expression: btype
+                                        * Referenced by: '<S4>/alpha5_rad'
+                                        */
+  real_T alpha6_rad_P1;                /* Expression: width
+                                        * Referenced by: '<S4>/alpha6_rad'
+                                        */
+  real_T alpha6_rad_P2;                /* Expression: dtype
+                                        * Referenced by: '<S4>/alpha6_rad'
+                                        */
+  real_T alpha6_rad_P3;                /* Expression: portnum
+                                        * Referenced by: '<S4>/alpha6_rad'
+                                        */
+  real_T alpha6_rad_P4;                /* Expression: stime
+                                        * Referenced by: '<S4>/alpha6_rad'
+                                        */
+  real_T alpha6_rad_P5;                /* Expression: stype
+                                        * Referenced by: '<S4>/alpha6_rad'
+                                        */
+  real_T alpha6_rad_P6;                /* Expression: btype
+                                        * Referenced by: '<S4>/alpha6_rad'
                                         */
   real_T Memory5_X0;                   /* Expression: 0
                                         * Referenced by: '<S2>/Memory5'
@@ -963,6 +1078,54 @@ struct P_ctrl_sixaxis2thruster_T_ {
                                         */
   real_T Saturation_LowerSat;          /* Expression: -1
                                         * Referenced by: '<S2>/Saturation'
+                                        */
+  real_T Memory5_X0_i;                 /* Expression: 0
+                                        * Referenced by: '<S1>/Memory5'
+                                        */
+  real_T PosXRight_P1;                 /* Expression: width
+                                        * Referenced by: '<Root>/PosXRight'
+                                        */
+  real_T PosXRight_P2;                 /* Expression: dtype
+                                        * Referenced by: '<Root>/PosXRight'
+                                        */
+  real_T PosXRight_P3;                 /* Expression: portnum
+                                        * Referenced by: '<Root>/PosXRight'
+                                        */
+  real_T PosXRight_P4;                 /* Expression: stime
+                                        * Referenced by: '<Root>/PosXRight'
+                                        */
+  real_T PosXRight_P5;                 /* Expression: stype
+                                        * Referenced by: '<Root>/PosXRight'
+                                        */
+  real_T PosXRight_P6;                 /* Expression: btype
+                                        * Referenced by: '<Root>/PosXRight'
+                                        */
+  real_T PosYRight_P1;                 /* Expression: width
+                                        * Referenced by: '<Root>/PosYRight'
+                                        */
+  real_T PosYRight_P2;                 /* Expression: dtype
+                                        * Referenced by: '<Root>/PosYRight'
+                                        */
+  real_T PosYRight_P3;                 /* Expression: portnum
+                                        * Referenced by: '<Root>/PosYRight'
+                                        */
+  real_T PosYRight_P4;                 /* Expression: stime
+                                        * Referenced by: '<Root>/PosYRight'
+                                        */
+  real_T PosYRight_P5;                 /* Expression: stype
+                                        * Referenced by: '<Root>/PosYRight'
+                                        */
+  real_T PosYRight_P6;                 /* Expression: btype
+                                        * Referenced by: '<Root>/PosYRight'
+                                        */
+  real_T Gain_Gain_k;                  /* Expression: -1
+                                        * Referenced by: '<S1>/Gain'
+                                        */
+  real_T Saturation_UpperSat_h;        /* Expression: 1
+                                        * Referenced by: '<S1>/Saturation'
+                                        */
+  real_T Saturation_LowerSat_h;        /* Expression: -1
+                                        * Referenced by: '<S1>/Saturation'
                                         */
   real_T alpha_1_P1;                   /* Expression: width
                                         * Referenced by: '<Root>/alpha_1'
@@ -1035,57 +1198,6 @@ struct P_ctrl_sixaxis2thruster_T_ {
                                         */
   real_T ArrowDown_P6;                 /* Expression: btype
                                         * Referenced by: '<Root>/ArrowDown'
-                                        */
-  real_T Memory4_X0_f;                 /* Expression: 0
-                                        * Referenced by: '<S4>/Memory4'
-                                        */
-  real_T Memory5_X0_i;                 /* Expression: 0
-                                        * Referenced by: '<S1>/Memory5'
-                                        */
-  real_T PosXRight_P1;                 /* Expression: width
-                                        * Referenced by: '<Root>/PosXRight'
-                                        */
-  real_T PosXRight_P2;                 /* Expression: dtype
-                                        * Referenced by: '<Root>/PosXRight'
-                                        */
-  real_T PosXRight_P3;                 /* Expression: portnum
-                                        * Referenced by: '<Root>/PosXRight'
-                                        */
-  real_T PosXRight_P4;                 /* Expression: stime
-                                        * Referenced by: '<Root>/PosXRight'
-                                        */
-  real_T PosXRight_P5;                 /* Expression: stype
-                                        * Referenced by: '<Root>/PosXRight'
-                                        */
-  real_T PosXRight_P6;                 /* Expression: btype
-                                        * Referenced by: '<Root>/PosXRight'
-                                        */
-  real_T PosYRight_P1;                 /* Expression: width
-                                        * Referenced by: '<Root>/PosYRight'
-                                        */
-  real_T PosYRight_P2;                 /* Expression: dtype
-                                        * Referenced by: '<Root>/PosYRight'
-                                        */
-  real_T PosYRight_P3;                 /* Expression: portnum
-                                        * Referenced by: '<Root>/PosYRight'
-                                        */
-  real_T PosYRight_P4;                 /* Expression: stime
-                                        * Referenced by: '<Root>/PosYRight'
-                                        */
-  real_T PosYRight_P5;                 /* Expression: stype
-                                        * Referenced by: '<Root>/PosYRight'
-                                        */
-  real_T PosYRight_P6;                 /* Expression: btype
-                                        * Referenced by: '<Root>/PosYRight'
-                                        */
-  real_T Gain_Gain_k;                  /* Expression: -1
-                                        * Referenced by: '<S1>/Gain'
-                                        */
-  real_T Saturation_UpperSat_h;        /* Expression: 1
-                                        * Referenced by: '<S1>/Saturation'
-                                        */
-  real_T Saturation_LowerSat_h;        /* Expression: -1
-                                        * Referenced by: '<S1>/Saturation'
                                         */
   real_T alpha_5_P1;                   /* Expression: width
                                         * Referenced by: '<Root>/alpha_5'
@@ -1447,17 +1559,16 @@ extern RT_MODEL_ctrl_sixaxis2thruste_T *const ctrl_sixaxis2thruster_M;
  * '<Root>' : 'ctrl_sixaxis2thruster'
  * '<S1>'   : 'ctrl_sixaxis2thruster/Back'
  * '<S2>'   : 'ctrl_sixaxis2thruster/Front'
- * '<S3>'   : 'ctrl_sixaxis2thruster/Projection [-pi,pi] to [-inf,inf] + shortest rotation'
- * '<S4>'   : 'ctrl_sixaxis2thruster/Projection [-pi,pi] to [-inf,inf] + shortest rotation1'
+ * '<S3>'   : 'ctrl_sixaxis2thruster/Projection [-pi,pi] to [-inf,inf] + shortest rotation1'
+ * '<S4>'   : 'ctrl_sixaxis2thruster/alpha_m'
  * '<S5>'   : 'ctrl_sixaxis2thruster/u_limit'
  * '<S6>'   : 'ctrl_sixaxis2thruster/Back/MATLAB Function10'
  * '<S7>'   : 'ctrl_sixaxis2thruster/Front/MATLAB Function10'
- * '<S8>'   : 'ctrl_sixaxis2thruster/Projection [-pi,pi] to [-inf,inf] + shortest rotation/MATLAB Function11'
- * '<S9>'   : 'ctrl_sixaxis2thruster/Projection [-pi,pi] to [-inf,inf] + shortest rotation1/MATLAB Function11'
- * '<S10>'  : 'ctrl_sixaxis2thruster/u_limit/Detect Increase'
- * '<S11>'  : 'ctrl_sixaxis2thruster/u_limit/Detect Increase1'
- * '<S12>'  : 'ctrl_sixaxis2thruster/u_limit/Detect Increase2'
- * '<S13>'  : 'ctrl_sixaxis2thruster/u_limit/MATLAB Function'
+ * '<S8>'   : 'ctrl_sixaxis2thruster/Projection [-pi,pi] to [-inf,inf] + shortest rotation1/MATLAB Function11'
+ * '<S9>'   : 'ctrl_sixaxis2thruster/u_limit/Detect Increase'
+ * '<S10>'  : 'ctrl_sixaxis2thruster/u_limit/Detect Increase1'
+ * '<S11>'  : 'ctrl_sixaxis2thruster/u_limit/Detect Increase2'
+ * '<S12>'  : 'ctrl_sixaxis2thruster/u_limit/MATLAB Function'
  */
 #endif                                 /* RTW_HEADER_ctrl_sixaxis2thruster_h_ */
 
@@ -1465,9 +1576,9 @@ extern RT_MODEL_ctrl_sixaxis2thruste_T *const ctrl_sixaxis2thruster_M;
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_sixaxis2thruster
- * Model version : 1.72
+ * Model version : 1.73
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Mon Aug 21 16:42:37 2017
+ * Source generated on : Sun Nov 19 13:12:33 2017
  *========================================================================*/
 #if !defined(NI_HEADER_ctrl_sixaxis2thruster_h_)
 #define NI_HEADER_ctrl_sixaxis2thruster_h_

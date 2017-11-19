@@ -52,4 +52,7 @@
 <outport> Id = "11"  Name = "Output/u4" Width = "1" DataType = "real_T" </outport>
 <outport> Id = "12"  Name = "Output/u5" Width = "1" DataType = "real_T" </outport>
 <outport> Id = "13"  Name = "Output/u6" Width = "1" DataType = "real_T" </outport>
+<outport> Id = "14"  Name = "thrust command/X" Width = "1" DataType = "real_T" </outport>
+<outport> Id = "15"  Name = "thrust command/Y" Width = "1" DataType = "real_T" </outport>
+<outport> Id = "16"  Name = "thrust command/N" Width = "1" DataType = "real_T" </outport>
 </portlist>

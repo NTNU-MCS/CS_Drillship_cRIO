@@ -10,7 +10,7 @@
 				<String>CSAD</String>
 			</Property>
 			<Property Name="Version">
-				<String>1.0.0.106</String>
+				<String>1.0.0.110</String>
 			</Property>
 			<Property Name="Creator">
 				<String />
@@ -2614,10 +2614,10 @@
 									<Double>10000</Double>
 								</Property>
 								<Property Name="DLL Size">
-									<I32>146249</I32>
+									<I32>153241</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3586171370.612246</Double>
+									<Double>3593938362.2426996</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -2650,7 +2650,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>fa6a1253dba7effbae0ea451f114a74f</String>
+									<String>169017499f8c6e24faf873ee7b388b54</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -2664,7 +2664,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\ctrl_sixaxis2thruster.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>fa6a1253dba7effbae0ea451f114a74f</MD5>
+										<MD5>169017499f8c6e24faf873ee7b388b54</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">
@@ -2748,6 +2748,101 @@
 									<Properties />
 									<Errors />
 								</Section>
+								<Section Name="alpha_m" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+									<Description />
+									<Properties />
+									<Errors />
+									<Channel Name="alpha1_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha1_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>0</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha2_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha2_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>1</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha3_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha3_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>2</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha4_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha4_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>3</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha5_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha5_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>4</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="alpha6_rad" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>alpha_m/alpha6_rad</String>
+											</Property>
+											<Property Name="Index">
+												<I32>5</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+								</Section>
 								<Channel Name="PosXLeft" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
 									<Description />
 									<Properties>
@@ -2755,7 +2850,7 @@
 											<String>PosXLeft</String>
 										</Property>
 										<Property Name="Index">
-											<I32>0</I32>
+											<I32>6</I32>
 										</Property>
 										<Property Name="DataSource">
 											<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/PosXLeft" />
@@ -2773,7 +2868,7 @@
 											<String>PosYLeft</String>
 										</Property>
 										<Property Name="Index">
-											<I32>1</I32>
+											<I32>7</I32>
 										</Property>
 										<Property Name="DataSource">
 											<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/PosYLeft" />
@@ -2791,7 +2886,7 @@
 											<String>ArrowDown</String>
 										</Property>
 										<Property Name="Index">
-											<I32>2</I32>
+											<I32>10</I32>
 										</Property>
 										<Property Name="DataSource">
 											<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/ArrowDo" />
@@ -2809,7 +2904,7 @@
 											<String>PosYRight</String>
 										</Property>
 										<Property Name="Index">
-											<I32>4</I32>
+											<I32>9</I32>
 										</Property>
 										<Property Name="DataSource">
 											<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/PosYRight" />
@@ -2827,7 +2922,7 @@
 											<String>PosXRight</String>
 										</Property>
 										<Property Name="Index">
-											<I32>3</I32>
+											<I32>8</I32>
 										</Property>
 										<Property Name="DataSource">
 											<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/PosXRight" />
@@ -2845,7 +2940,7 @@
 											<String>ArrowUp</String>
 										</Property>
 										<Property Name="Index">
-											<I32>5</I32>
+											<I32>11</I32>
 										</Property>
 										<Property Name="DataSource">
 											<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/ArrowUP" />
@@ -2863,7 +2958,7 @@
 											<String>Start</String>
 										</Property>
 										<Property Name="Index">
-											<I32>6</I32>
+											<I32>12</I32>
 										</Property>
 										<Property Name="DataSource">
 											<DataSourceNode Channel="Targets/Controller/Custom Devices/WL_Joystick/Start" />
@@ -2886,7 +2981,7 @@
 											<String>alpha_1</String>
 										</Property>
 										<Property Name="Index">
-											<I32>7</I32>
+											<I32>13</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -2901,7 +2996,7 @@
 											<String>alpha_2</String>
 										</Property>
 										<Property Name="Index">
-											<I32>8</I32>
+											<I32>14</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -2916,7 +3011,7 @@
 											<String>alpha_3</String>
 										</Property>
 										<Property Name="Index">
-											<I32>9</I32>
+											<I32>15</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -2931,7 +3026,7 @@
 											<String>alpha_5</String>
 										</Property>
 										<Property Name="Index">
-											<I32>10</I32>
+											<I32>16</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -2946,7 +3041,7 @@
 											<String>alpha_4</String>
 										</Property>
 										<Property Name="Index">
-											<I32>11</I32>
+											<I32>17</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -2961,7 +3056,7 @@
 											<String>alpha_6</String>
 										</Property>
 										<Property Name="Index">
-											<I32>12</I32>
+											<I32>18</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -2976,7 +3071,7 @@
 											<String>u_limit_out</String>
 										</Property>
 										<Property Name="Index">
-											<I32>13</I32>
+											<I32>19</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -2991,7 +3086,7 @@
 											<String>u_1</String>
 										</Property>
 										<Property Name="Index">
-											<I32>14</I32>
+											<I32>20</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -3006,7 +3101,7 @@
 											<String>u_2</String>
 										</Property>
 										<Property Name="Index">
-											<I32>15</I32>
+											<I32>21</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -3021,7 +3116,7 @@
 											<String>u_3</String>
 										</Property>
 										<Property Name="Index">
-											<I32>16</I32>
+											<I32>22</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -3036,7 +3131,7 @@
 											<String>u_4</String>
 										</Property>
 										<Property Name="Index">
-											<I32>17</I32>
+											<I32>23</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -3051,7 +3146,7 @@
 											<String>u_5</String>
 										</Property>
 										<Property Name="Index">
-											<I32>18</I32>
+											<I32>24</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -3066,7 +3161,7 @@
 											<String>u_6</String>
 										</Property>
 										<Property Name="Index">
-											<I32>19</I32>
+											<I32>25</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -4335,10 +4430,10 @@
 									<Double>10000</Double>
 								</Property>
 								<Property Name="DLL Size">
-									<I32>255954</I32>
+									<I32>259982</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3593863731.3187389</Double>
+									<Double>3593870914.65602</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -4371,7 +4466,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>c7bbb8340c6e76acf49a5b4d5c37b5b2</String>
+									<String>1dfeaade6eabf08b27f89f4c75e36778</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -4385,7 +4480,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\ctrl_custom.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>c7bbb8340c6e76acf49a5b4d5c37b5b2</MD5>
+										<MD5>1dfeaade6eabf08b27f89f4c75e36778</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">
@@ -5553,6 +5648,56 @@
 									<Properties />
 									<Errors />
 								</Section>
+								<Section Name="thrust command" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+									<Description />
+									<Properties />
+									<Errors />
+									<Channel Name="X" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>thrust command/X</String>
+											</Property>
+											<Property Name="Index">
+												<I32>53</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="Y" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>thrust command/Y</String>
+											</Property>
+											<Property Name="Index">
+												<I32>54</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="N" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>thrust command/N</String>
+											</Property>
+											<Property Name="Index">
+												<I32>55</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+								</Section>
 								<Channel Name="Output to Workspace" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
 									<Description />
 									<Properties>
@@ -5590,7 +5735,7 @@
 									<I32>274525</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3593863834.7845244</Double>
+									<Double>3593939445.2962909</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -5623,7 +5768,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>470e9cb463f7d2e008ff1230b1a48ee5</String>
+									<String>bff3139c13c4a07d7584be17fe49dbc4</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -5637,7 +5782,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\u2pwm.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>470e9cb463f7d2e008ff1230b1a48ee5</MD5>
+										<MD5>bff3139c13c4a07d7584be17fe49dbc4</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">

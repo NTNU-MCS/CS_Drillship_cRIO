@@ -7,9 +7,9 @@
  *
  * Code generation for model "u2pwm".
  *
- * Model version              : 1.20
+ * Model version              : 1.21
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Sat Nov 18 16:30:06 2017
+ * C source code generated on : Sun Nov 19 13:30:28 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -3196,9 +3196,9 @@ extern RT_MODEL_u2pwm_T *const u2pwm_M;
  * NI VeriStand Model Framework code generation
  *
  * Model : u2pwm
- * Model version : 1.20
+ * Model version : 1.21
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Sat Nov 18 16:30:06 2017
+ * Source generated on : Sun Nov 19 13:30:27 2017
  *========================================================================*/
 #if !defined(NI_HEADER_u2pwm_h_)
 #define NI_HEADER_u2pwm_h_

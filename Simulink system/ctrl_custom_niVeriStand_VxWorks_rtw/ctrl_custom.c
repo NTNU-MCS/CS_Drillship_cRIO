@@ -7,9 +7,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.86
+ * Model version              : 1.87
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Sat Nov 18 16:28:39 2017
+ * C source code generated on : Sat Nov 18 18:28:22 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -584,8 +584,8 @@ void ctrl_custom_output(void)
   /* End of Gain: '<S10>/Gain' */
 
   /* MATLAB Function: '<S10>/MATLAB Function11' */
-  /* MATLAB Function 'Thrust allocation: Pseudo-inverse of extended thrust configuration matrix/MATLAB Function11': '<S15>:1' */
-  /* '<S15>:1:2' */
+  /* MATLAB Function 'Thrust allocation: Pseudo-inverse of extended thrust configuration matrix/MATLAB Function11': '<S16>:1' */
+  /* '<S16>:1:2' */
   alpha_tilde = ctrl_custom_norm(&rtb_u_e[0]);
   tmp_1 = ctrl_custom_norm(&rtb_u_e[2]);
   tmp_2 = ctrl_custom_norm(&rtb_u_e[4]);
@@ -599,7 +599,7 @@ void ctrl_custom_output(void)
   ctrl_custom_B.u[4] = tmp_4;
   ctrl_custom_B.u[5] = tmp_5;
 
-  /* '<S15>:1:10' */
+  /* '<S16>:1:10' */
   ctrl_custom_B.alpha[0] = rt_atan2d_snf(rtb_u_e[1], rtb_u_e[0]);
   ctrl_custom_B.alpha[1] = rt_atan2d_snf(rtb_u_e[3], rtb_u_e[2]);
   ctrl_custom_B.alpha[2] = rt_atan2d_snf(rtb_u_e[5], rtb_u_e[4]);
@@ -607,7 +607,7 @@ void ctrl_custom_output(void)
   ctrl_custom_B.alpha[4] = rt_atan2d_snf(rtb_u_e[9], rtb_u_e[8]);
   ctrl_custom_B.alpha[5] = rt_atan2d_snf(rtb_u_e[11], rtb_u_e[10]);
 
-  /* SignalConversion: '<S14>/TmpSignal ConversionAt SFunction Inport1' incorporates:
+  /* SignalConversion: '<S15>/TmpSignal ConversionAt SFunction Inport1' incorporates:
    *  MATLAB Function: '<S6>/MATLAB Function11'
    */
   rtb_TmpSignalConversionAtSFunct[0] = ctrl_custom_B.alpha1_rad;
@@ -618,14 +618,14 @@ void ctrl_custom_output(void)
   rtb_TmpSignalConversionAtSFunct[5] = ctrl_custom_B.alpha6_rad;
 
   /* MATLAB Function: '<S6>/MATLAB Function11' */
-  /* MATLAB Function 'Projection [-pi,pi] to [-inf,inf] + shortest rotation/MATLAB Function11': '<S14>:1' */
-  /* '<S14>:1:1' */
-  /* '<S14>:1:4' */
+  /* MATLAB Function 'Projection [-pi,pi] to [-inf,inf] + shortest rotation/MATLAB Function11': '<S15>:1' */
+  /* '<S15>:1:1' */
+  /* '<S15>:1:4' */
   for (i = 0; i < 6; i++) {
-    /* '<S14>:1:4' */
+    /* '<S15>:1:4' */
     /*  current rotation */
-    /* '<S14>:1:6' */
-    /* '<S14>:1:8' */
+    /* '<S15>:1:6' */
+    /* '<S15>:1:8' */
     if (rtb_TmpSignalConversionAtSFunct[i] < 0.0) {
       alpha_tilde = -1.0;
     } else if (rtb_TmpSignalConversionAtSFunct[i] > 0.0) {
@@ -641,14 +641,14 @@ void ctrl_custom_output(void)
       6.2831853071795862) * alpha_tilde * 6.2831853071795862 +
       ctrl_custom_B.alpha[i];
 
-    /* '<S14>:1:10' */
+    /* '<S15>:1:10' */
     alpha_tilde = ctrl_custom_B.alpha_infinf[i] -
       rtb_TmpSignalConversionAtSFunct[i];
 
     /*  Shortest rotation */
     if (fabs(alpha_tilde) > 3.1415926535897931) {
-      /* '<S14>:1:13' */
-      /* '<S14>:1:14' */
+      /* '<S15>:1:13' */
+      /* '<S15>:1:14' */
       if (alpha_tilde < 0.0) {
         alpha_tilde = -1.0;
       } else if (alpha_tilde > 0.0) {
@@ -894,7 +894,9 @@ void ctrl_custom_output(void)
         }
       }
     }
+  }
 
+  if (rtmIsMajorTimeStep(ctrl_custom_M)) {
     /* ToFile: '<S7>/To File3' */
     {
       if (!(++ctrl_custom_DW.ToFile3_IWORK_g.Decimation % 1) &&
@@ -1927,9 +1929,9 @@ RT_MODEL_ctrl_custom_T *ctrl_custom(void)
   ctrl_custom_M->Sizes.numU = (0);     /* Number of model inputs */
   ctrl_custom_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   ctrl_custom_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  ctrl_custom_M->Sizes.numBlocks = (169);/* Number of blocks */
+  ctrl_custom_M->Sizes.numBlocks = (172);/* Number of blocks */
   ctrl_custom_M->Sizes.numBlockIO = (63);/* Number of block outputs */
-  ctrl_custom_M->Sizes.numBlockPrms = (383);/* Sum of parameter "widths" */
+  ctrl_custom_M->Sizes.numBlockPrms = (401);/* Sum of parameter "widths" */
   return ctrl_custom_M;
 }
 
@@ -1941,9 +1943,9 @@ RT_MODEL_ctrl_custom_T *ctrl_custom(void)
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.86
+ * Model version : 1.87
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Sat Nov 18 16:28:39 2017
+ * Source generated on : Sat Nov 18 18:28:21 2017
  *========================================================================*/
 
 /* This file contains automatically generated code for functions
@@ -2540,10 +2542,10 @@ int32_t NumInputPorts(void)
 
 int32_t NumOutputPorts(void)
 {
-  return 13;
+  return 16;
 }
 
-double ni_extout[13];
+double ni_extout[16];
 
 /*========================================================================*
  * Function: SetExternalOutputs
@@ -2660,6 +2662,30 @@ void SetExternalOutputs(double* data, int_T* TaskSampleHit)
     index += 1;
   }
 
+  // ctrl_custom/thrust command/X: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Saturation, 0, 0,
+      0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/thrust command/Y: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Saturation_e, 0,
+      0, 0);
+  } else {
+    index += 1;
+  }
+
+  // ctrl_custom/thrust command/N: Virtual Signal # 0
+  if (TaskSampleHit[0]) {              // sample and hold
+    ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Saturation_m, 0,
+      0, 0);
+  } else {
+    index += 1;
+  }
+
   if (data != NULL) {
     memcpy(&data[0], &ni_extout[0], sizeof(ni_extout));
   }
@@ -2727,6 +2753,18 @@ int32_t NI_InitExternalOutputs()
 
   // ctrl_custom/Output/u6: Virtual Signal # 0
   ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.u, 5, 20, 0);
+
+  // ctrl_custom/thrust command/X: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Saturation, 0, 0,
+    0);
+
+  // ctrl_custom/thrust command/Y: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Saturation_e, 0, 0,
+    0);
+
+  // ctrl_custom/thrust command/N: Virtual Signal # 0
+  ni_extout[index++] = NIRT_GetValueByDataType(&ctrl_custom_B.Saturation_m, 0, 0,
+    0);
   UNUSED_PARAMETER(count);
   return NI_OK;
 }
@@ -3161,7 +3199,7 @@ static int32_t NI_SigDimList[] DataSection(".NIVS.sigdimlist") =
 { 1, 1
 };
 
-static int32_t NI_ExtListSize DataSection(".NIVS.extlistsize") = 53;
+static int32_t NI_ExtListSize DataSection(".NIVS.extlistsize") = 56;
 static NI_ExternalIO NI_ExtList[] DataSection(".NIVS.extlist") =
 {
   { 1, "Input to model", 1, EXT_IN, 1, 1, 1 },
@@ -3270,6 +3308,12 @@ static NI_ExternalIO NI_ExtList[] DataSection(".NIVS.extlist") =
 
   { 13, "Output/u6", 0, EXT_OUT, 1, 1, 1 },
 
+  { 14, "thrust command/X", 0, EXT_OUT, 1, 1, 1 },
+
+  { 15, "thrust command/Y", 0, EXT_OUT, 1, 1, 1 },
+
+  { 16, "thrust command/N", 0, EXT_OUT, 1, 1, 1 },
+
   { -1, "", 0, 0, 0, 0, 0 }
 };
 
@@ -3286,8 +3330,8 @@ NI_Task NI_TaskList[] DataSection(".NIVS.tasklist") =
 int32_t NI_NumTasks DataSection(".NIVS.numtasks") = 1;
 static const char* NI_CompiledModelName DataSection(".NIVS.compiledmodelname") =
   "ctrl_custom";
-static const char* NI_CompiledModelVersion = "1.86";
-static const char* NI_CompiledModelDateTime = "Sat Nov 18 16:28:39 2017";
+static const char* NI_CompiledModelVersion = "1.87";
+static const char* NI_CompiledModelDateTime = "Sat Nov 18 18:28:21 2017";
 static const char* NI_builder DataSection(".NIVS.builder") =
   "NI Model Framework 2017.0.0.143 (2017) for Simulink Coder 8.11 (R2016b)";
 static const char* NI_BuilderVersion DataSection(".NIVS.builderversion") =
@@ -4098,7 +4142,7 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
        NULL)) {
     if (*numContStates < 0 || *numDiscStates < 0 || *numClockTicks < 0) {
       *numContStates = 9;
-      *numDiscStates = 719;
+      *numDiscStates = 758;
       *numClockTicks = NUMST - TID01EQ;
       return NI_OK;
     }
@@ -4274,6 +4318,12 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.u5_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.u6_DWORK1, 0, 0, 0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.u6_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.X_DWORK1, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.X_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Y_DWORK1, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Y_DWORK1");
+    discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.N_DWORK1, 0, 0, 0);
+    strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.N_DWORK1");
     discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Acc_x_DWORK1, 0, 0,
       0);
     strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Acc_x_DWORK1");
@@ -4693,6 +4743,24 @@ DLL_EXPORT int32_t NIRT_GetSimState(int32_t* numContStates, char
     }
 
     for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.X_DWORK2, count,
+        19, 0);
+      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.X_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Y_DWORK2, count,
+        19, 0);
+      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Y_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
+      discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.N_DWORK2, count,
+        19, 0);
+      strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.N_DWORK2");
+    }
+
+    for (count = 0; count < 12; count++) {
       discStates[idx] = NIRT_GetValueByDataType(&ctrl_custom_DW.Acc_x_DWORK2,
         count, 19, 0);
       strcpy(discStatesNames + (idx++ * 100), "&ctrl_custom_DW.Acc_x_DWORK2");
@@ -4868,6 +4936,9 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
       0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.u6_DWORK1, 0, discStates[idx++], 0,
       0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.X_DWORK1, 0, discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.Y_DWORK1, 0, discStates[idx++], 0, 0);
+    NIRT_SetValueByDataType(&ctrl_custom_DW.N_DWORK1, 0, discStates[idx++], 0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.Acc_x_DWORK1, 0, discStates[idx++],
       0, 0);
     NIRT_SetValueByDataType(&ctrl_custom_DW.Acc_y_DWORK1, 0, discStates[idx++],
@@ -5172,6 +5243,21 @@ DLL_EXPORT int32_t NIRT_SetSimState(double* contStates, double* discStates,
 
     for (count = 0; count < 12; count++) {
       NIRT_SetValueByDataType(&ctrl_custom_DW.u6_DWORK2, count, discStates[idx++],
+        19, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.X_DWORK2, count, discStates[idx++],
+        19, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.Y_DWORK2, count, discStates[idx++],
+        19, 0);
+    }
+
+    for (count = 0; count < 12; count++) {
+      NIRT_SetValueByDataType(&ctrl_custom_DW.N_DWORK2, count, discStates[idx++],
         19, 0);
     }
 
