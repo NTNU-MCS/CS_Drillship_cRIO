@@ -10,7 +10,7 @@
 				<String>CSAD</String>
 			</Property>
 			<Property Name="Version">
-				<String>1.0.0.110</String>
+				<String>1.0.0.114</String>
 			</Property>
 			<Property Name="Creator">
 				<String />
@@ -4430,10 +4430,10 @@
 									<Double>10000</Double>
 								</Property>
 								<Property Name="DLL Size">
-									<I32>259982</I32>
+									<I32>269066</I32>
 								</Property>
 								<Property Name="DLL Timestamp">
-									<Double>3593870914.65602</Double>
+									<Double>3593951166.6101756</Double>
 								</Property>
 								<Property Name="Decimation">
 									<I32>1</I32>
@@ -4466,7 +4466,7 @@
 									<Boolean>true</Boolean>
 								</Property>
 								<Property Name="MD5">
-									<String>1dfeaade6eabf08b27f89f4c75e36778</String>
+									<String>1a941d5542d742db085d84a985991ff4</String>
 								</Property>
 								<Property Name="NIVeriStandServer Port">
 									<U32>6012</U32>
@@ -4480,7 +4480,7 @@
 										<ForceDownload>false</ForceDownload>
 										<RTDestination>c:\ni-rt\system\ctrl_custom.out</RTDestination>
 										<SupportedTarget>VxWorks</SupportedTarget>
-										<MD5>1dfeaade6eabf08b27f89f4c75e36778</MD5>
+										<MD5>1a941d5542d742db085d84a985991ff4</MD5>
 									</DependentFile>
 								</Property>
 								<Property Name="GlobalParameterScopes">
@@ -4570,7 +4570,7 @@
 												<String>IMU/Acc_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>34</I32>
+												<I32>37</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -4585,7 +4585,7 @@
 												<String>IMU/Acc_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>35</I32>
+												<I32>38</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Acc_y" />
@@ -4603,7 +4603,7 @@
 												<String>IMU/Acc_z</String>
 											</Property>
 											<Property Name="Index">
-												<I32>36</I32>
+												<I32>39</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Acc_z" />
@@ -4621,7 +4621,7 @@
 												<String>IMU/Gyro_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>37</I32>
+												<I32>40</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Gyro_x" />
@@ -4639,7 +4639,7 @@
 												<String>IMU/Gyro_y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>38</I32>
+												<I32>41</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Gyro_y" />
@@ -4657,7 +4657,7 @@
 												<String>IMU/Gyro_z</String>
 											</Property>
 											<Property Name="Index">
-												<I32>39</I32>
+												<I32>42</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Hardware/Chassis/FPGA/RIO0/Input/IMU/Gyro_z" />
@@ -4850,7 +4850,7 @@
 												<String>eta_QTM/x_m</String>
 											</Property>
 											<Property Name="Index">
-												<I32>17</I32>
+												<I32>1</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Custom Devices/Oqus/X" />
@@ -5024,7 +5024,7 @@
 												<String>Regulator 2 x/sigma_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>9</I32>
+												<I32>10</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5039,7 +5039,7 @@
 												<String>Regulator 2 x/k1_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>10</I32>
+												<I32>11</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5054,7 +5054,7 @@
 												<String>Regulator 2 x/k2_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>11</I32>
+												<I32>12</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5069,7 +5069,7 @@
 												<String>Regulator 2 x/k0_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>12</I32>
+												<I32>13</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5084,7 +5084,7 @@
 												<String>Regulator 2 x/nu_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>13</I32>
+												<I32>14</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5099,7 +5099,7 @@
 												<String>Regulator 2 x/gamma_x</String>
 											</Property>
 											<Property Name="Index">
-												<I32>14</I32>
+												<I32>15</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5114,7 +5114,7 @@
 												<String>Regulator 2 x/reset</String>
 											</Property>
 											<Property Name="Index">
-												<I32>15</I32>
+												<I32>16</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5244,7 +5244,7 @@
 												<String>alpha_m/alpha1_rad</String>
 											</Property>
 											<Property Name="Index">
-												<I32>3</I32>
+												<I32>4</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_1" />
@@ -5262,7 +5262,7 @@
 												<String>alpha_m/alpha2_rad</String>
 											</Property>
 											<Property Name="Index">
-												<I32>4</I32>
+												<I32>5</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_2" />
@@ -5280,7 +5280,7 @@
 												<String>alpha_m/alpha3_rad</String>
 											</Property>
 											<Property Name="Index">
-												<I32>5</I32>
+												<I32>6</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5295,7 +5295,7 @@
 												<String>alpha_m/alpha4_rad</String>
 											</Property>
 											<Property Name="Index">
-												<I32>6</I32>
+												<I32>7</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_4" />
@@ -5313,7 +5313,7 @@
 												<String>alpha_m/alpha5_rad</String>
 											</Property>
 											<Property Name="Index">
-												<I32>7</I32>
+												<I32>8</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_5" />
@@ -5331,10 +5331,60 @@
 												<String>alpha_m/alpha6_rad</String>
 											</Property>
 											<Property Name="Index">
-												<I32>8</I32>
+												<I32>9</I32>
 											</Property>
 											<Property Name="DataSource">
 												<DataSourceNode Channel="Targets/Controller/Simulation Models/Models/comp2deg/Outports/alpha_rad_6" />
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+								</Section>
+								<Section Name="current emulator" TypeGUID="cbfdde93-6581-4b7c-83b8-e88484f25b2e">
+									<Description />
+									<Properties />
+									<Errors />
+									<Channel Name="current velocity" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>current emulator/current velocity</String>
+											</Property>
+											<Property Name="Index">
+												<I32>34</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="current offset max" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>current emulator/current offset max</String>
+											</Property>
+											<Property Name="Index">
+												<I32>35</I32>
+											</Property>
+										</Properties>
+										<Errors />
+										<DefaultValue>
+											<Elem>0</Elem>
+										</DefaultValue>
+									</Channel>
+									<Channel Name="current offset min" TypeGUID="03D3B985-1485-13A6-56FC3200A1C00087" RowDim="1" ColDim="1" Units="" BitFields="7">
+										<Description />
+										<Properties>
+											<Property Name="Model Path">
+												<String>current emulator/current offset min</String>
+											</Property>
+											<Property Name="Index">
+												<I32>36</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5365,7 +5415,7 @@
 											<String>x_ref</String>
 										</Property>
 										<Property Name="Index">
-											<I32>1</I32>
+											<I32>2</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -5380,7 +5430,7 @@
 											<String>y_ref</String>
 										</Property>
 										<Property Name="Index">
-											<I32>2</I32>
+											<I32>3</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -5395,7 +5445,7 @@
 											<String>psi_ref [deg]</String>
 										</Property>
 										<Property Name="Index">
-											<I32>16</I32>
+											<I32>17</I32>
 										</Property>
 									</Properties>
 									<Errors />
@@ -5469,7 +5519,7 @@
 												<String>Output/alpha1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>41</I32>
+												<I32>46</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5484,7 +5534,7 @@
 												<String>Output/alpha2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>42</I32>
+												<I32>47</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5499,7 +5549,7 @@
 												<String>Output/alpha3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>43</I32>
+												<I32>48</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5514,7 +5564,7 @@
 												<String>Output/alpha4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>44</I32>
+												<I32>49</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5529,7 +5579,7 @@
 												<String>Output/alpha5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>45</I32>
+												<I32>50</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5544,7 +5594,7 @@
 												<String>Output/alpha6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>46</I32>
+												<I32>51</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5559,7 +5609,7 @@
 												<String>Output/u1</String>
 											</Property>
 											<Property Name="Index">
-												<I32>47</I32>
+												<I32>52</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5574,7 +5624,7 @@
 												<String>Output/u2</String>
 											</Property>
 											<Property Name="Index">
-												<I32>48</I32>
+												<I32>53</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5589,7 +5639,7 @@
 												<String>Output/u3</String>
 											</Property>
 											<Property Name="Index">
-												<I32>49</I32>
+												<I32>54</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5604,7 +5654,7 @@
 												<String>Output/u4</String>
 											</Property>
 											<Property Name="Index">
-												<I32>50</I32>
+												<I32>55</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5619,7 +5669,7 @@
 												<String>Output/u5</String>
 											</Property>
 											<Property Name="Index">
-												<I32>51</I32>
+												<I32>56</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5634,7 +5684,7 @@
 												<String>Output/u6</String>
 											</Property>
 											<Property Name="Index">
-												<I32>52</I32>
+												<I32>57</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5659,7 +5709,7 @@
 												<String>thrust command/X</String>
 											</Property>
 											<Property Name="Index">
-												<I32>53</I32>
+												<I32>58</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5674,7 +5724,7 @@
 												<String>thrust command/Y</String>
 											</Property>
 											<Property Name="Index">
-												<I32>54</I32>
+												<I32>59</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5689,7 +5739,7 @@
 												<String>thrust command/N</String>
 											</Property>
 											<Property Name="Index">
-												<I32>55</I32>
+												<I32>60</I32>
 											</Property>
 										</Properties>
 										<Errors />
@@ -5705,7 +5755,37 @@
 											<String>Output to Workspace</String>
 										</Property>
 										<Property Name="Index">
-											<I32>40</I32>
+											<I32>43</I32>
+										</Property>
+									</Properties>
+									<Errors />
+									<DefaultValue>
+										<Elem>0</Elem>
+									</DefaultValue>
+								</Channel>
+								<Channel Name="x_biased" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+									<Description />
+									<Properties>
+										<Property Name="Model Path">
+											<String>x_biased</String>
+										</Property>
+										<Property Name="Index">
+											<I32>44</I32>
+										</Property>
+									</Properties>
+									<Errors />
+									<DefaultValue>
+										<Elem>0</Elem>
+									</DefaultValue>
+								</Channel>
+								<Channel Name="x_bias" TypeGUID="03D3B995-1485-13A6-56ABA0860ADF91DF" RowDim="1" ColDim="1" Units="" BitFields="5">
+									<Description />
+									<Properties>
+										<Property Name="Model Path">
+											<String>x_bias</String>
+										</Property>
+										<Property Name="Index">
+											<I32>45</I32>
 										</Property>
 									</Properties>
 									<Errors />

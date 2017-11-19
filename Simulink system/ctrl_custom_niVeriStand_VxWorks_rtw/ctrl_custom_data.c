@@ -12,9 +12,9 @@
  *
  * Code generation for model "ctrl_custom".
  *
- * Model version              : 1.87
+ * Model version              : 1.88
  * Simulink Coder version : 8.11 (R2016b) 25-Aug-2016
- * C source code generated on : Sat Nov 18 18:28:22 2017
+ * C source code generated on : Sun Nov 19 16:45:51 2017
  *
  * Target selection: NIVeriStand_VxWorks.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -78,6 +78,48 @@ P_ctrl_custom_T ctrl_custom_P = {
   0.0,                                 /* Expression: btype
                                         * Referenced by: '<Root>/Output to Workspace'
                                         */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S12>/Integrator'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S13>/x_m'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S13>/x_m'
+                                        */
+  1.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S13>/x_m'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S13>/x_m'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S13>/x_m'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S13>/x_m'
+                                        */
+  0.001,                               /* Expression: 1/1000
+                                        * Referenced by: '<S13>/mm2m'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<Root>/x_biased'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<Root>/x_biased'
+                                        */
+  2.0,                                 /* Expression: portnum
+                                        * Referenced by: '<Root>/x_biased'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<Root>/x_biased'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<Root>/x_biased'
+                                        */
+  0.0,                                 /* Expression: btype
+                                        * Referenced by: '<Root>/x_biased'
+                                        */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<Root>/x_ref'
                                         */
@@ -95,6 +137,24 @@ P_ctrl_custom_T ctrl_custom_P = {
                                         */
   1.0,                                 /* Expression: btype
                                         * Referenced by: '<Root>/x_ref'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<Root>/x_bias'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<Root>/x_bias'
+                                        */
+  3.0,                                 /* Expression: portnum
+                                        * Referenced by: '<Root>/x_bias'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<Root>/x_bias'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<Root>/x_bias'
+                                        */
+  0.0,                                 /* Expression: btype
+                                        * Referenced by: '<Root>/x_bias'
                                         */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<Root>/y_ref'
@@ -370,79 +430,58 @@ P_ctrl_custom_T ctrl_custom_P = {
                                         * Referenced by: '<Root>/deg2rad'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S12>/x_m'
+                                        * Referenced by: '<S13>/y_m'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S12>/x_m'
-                                        */
-  1.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S12>/x_m'
-                                        */
-  -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S12>/x_m'
-                                        */
-  1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S12>/x_m'
-                                        */
-  1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S12>/x_m'
-                                        */
-  0.001,                               /* Expression: 1/1000
-                                        * Referenced by: '<S12>/mm2m'
-                                        */
-  -1.0,                                /* Expression: width
-                                        * Referenced by: '<S12>/y_m'
-                                        */
-  1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S12>/y_m'
+                                        * Referenced by: '<S13>/y_m'
                                         */
   2.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S12>/y_m'
+                                        * Referenced by: '<S13>/y_m'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S12>/y_m'
+                                        * Referenced by: '<S13>/y_m'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S12>/y_m'
+                                        * Referenced by: '<S13>/y_m'
                                         */
   1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S12>/y_m'
+                                        * Referenced by: '<S13>/y_m'
                                         */
   0.001,                               /* Expression: 1/1000
-                                        * Referenced by: '<S12>/Gain1'
+                                        * Referenced by: '<S13>/Gain1'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S12>/psi_m'
+                                        * Referenced by: '<S13>/psi_m'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S12>/psi_m'
+                                        * Referenced by: '<S13>/psi_m'
                                         */
   3.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S12>/psi_m'
+                                        * Referenced by: '<S13>/psi_m'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S12>/psi_m'
+                                        * Referenced by: '<S13>/psi_m'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S12>/psi_m'
+                                        * Referenced by: '<S13>/psi_m'
                                         */
   1.0,                                 /* Expression: btype
-                                        * Referenced by: '<S12>/psi_m'
+                                        * Referenced by: '<S13>/psi_m'
                                         */
   0.017453292519943295,                /* Expression: pi/180
-                                        * Referenced by: '<S12>/deg2rad'
+                                        * Referenced by: '<S13>/deg2rad'
                                         */
   1.0E+10,                             /* Expression: 1e10
-                                        * Referenced by: '<S12>/Saturation'
+                                        * Referenced by: '<S13>/Saturation'
                                         */
   -1.0E+10,                            /* Expression: -1e10
-                                        * Referenced by: '<S12>/Saturation'
+                                        * Referenced by: '<S13>/Saturation'
                                         */
   3.1415926535897931,                  /* Expression: pi
-                                        * Referenced by: '<S12>/Gain6'
+                                        * Referenced by: '<S13>/Gain6'
                                         */
   6.2831853071795862,                  /* Expression: 2*pi
-                                        * Referenced by: '<S12>/Constant1'
+                                        * Referenced by: '<S13>/Constant1'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S8>/Integrator'
@@ -453,10 +492,10 @@ P_ctrl_custom_T ctrl_custom_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S8>/Integrator1'
                                         */
-  5.0,                                 /* Expression: 5
+  0.2,                                 /* Expression: .2
                                         * Referenced by: '<S8>/Saturation'
                                         */
-  -5.0,                                /* Expression: -5
+  -0.2,                                /* Expression: -.2
                                         * Referenced by: '<S8>/Saturation'
                                         */
   -1.0,                                /* Expression: width
@@ -594,10 +633,10 @@ P_ctrl_custom_T ctrl_custom_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S9>/Integrator1'
                                         */
-  5.0,                                 /* Expression: 5
+  0.2,                                 /* Expression: .2
                                         * Referenced by: '<S9>/Saturation'
                                         */
-  -5.0,                                /* Expression: -5
+  -0.2,                                /* Expression: -.2
                                         * Referenced by: '<S9>/Saturation'
                                         */
   -1.0,                                /* Expression: width
@@ -735,10 +774,10 @@ P_ctrl_custom_T ctrl_custom_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S7>/Integrator1'
                                         */
-  1.0,                                 /* Expression: 1
+  0.2,                                 /* Expression: .2
                                         * Referenced by: '<S7>/Saturation'
                                         */
-  -1.0,                                /* Expression: -1
+  -0.2,                                /* Expression: -0.2
                                         * Referenced by: '<S7>/Saturation'
                                         */
   -1.0,                                /* Expression: width
@@ -958,58 +997,58 @@ P_ctrl_custom_T ctrl_custom_P = {
                                         * Referenced by: '<S5>/u6'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S13>/X'
+                                        * Referenced by: '<S14>/X'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S13>/X'
+                                        * Referenced by: '<S14>/X'
                                         */
   1.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S13>/X'
+                                        * Referenced by: '<S14>/X'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S13>/X'
+                                        * Referenced by: '<S14>/X'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S13>/X'
+                                        * Referenced by: '<S14>/X'
                                         */
   0.0,                                 /* Expression: btype
-                                        * Referenced by: '<S13>/X'
+                                        * Referenced by: '<S14>/X'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S13>/Y'
+                                        * Referenced by: '<S14>/Y'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S13>/Y'
+                                        * Referenced by: '<S14>/Y'
                                         */
   2.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S13>/Y'
+                                        * Referenced by: '<S14>/Y'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S13>/Y'
+                                        * Referenced by: '<S14>/Y'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S13>/Y'
+                                        * Referenced by: '<S14>/Y'
                                         */
   0.0,                                 /* Expression: btype
-                                        * Referenced by: '<S13>/Y'
+                                        * Referenced by: '<S14>/Y'
                                         */
   -1.0,                                /* Expression: width
-                                        * Referenced by: '<S13>/N'
+                                        * Referenced by: '<S14>/N'
                                         */
   1.0,                                 /* Expression: dtype
-                                        * Referenced by: '<S13>/N'
+                                        * Referenced by: '<S14>/N'
                                         */
   3.0,                                 /* Expression: portnum
-                                        * Referenced by: '<S13>/N'
+                                        * Referenced by: '<S14>/N'
                                         */
   -1.0,                                /* Expression: stime
-                                        * Referenced by: '<S13>/N'
+                                        * Referenced by: '<S14>/N'
                                         */
   1.0,                                 /* Expression: stype
-                                        * Referenced by: '<S13>/N'
+                                        * Referenced by: '<S14>/N'
                                         */
   0.0,                                 /* Expression: btype
-                                        * Referenced by: '<S13>/N'
+                                        * Referenced by: '<S14>/N'
                                         */
   -1.0,                                /* Expression: -1
                                         * Referenced by: '<S7>/Gain1'
@@ -1028,6 +1067,63 @@ P_ctrl_custom_T ctrl_custom_P = {
                                         */
   -1.0,                                /* Expression: -1
                                         * Referenced by: '<S9>/Gain2'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S12>/current velocity'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S12>/current velocity'
+                                        */
+  1.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S12>/current velocity'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S12>/current velocity'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S12>/current velocity'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S12>/current velocity'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S12>/current offset max'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S12>/current offset max'
+                                        */
+  2.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S12>/current offset max'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S12>/current offset max'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S12>/current offset max'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S12>/current offset max'
+                                        */
+  -1.0,                                /* Expression: width
+                                        * Referenced by: '<S12>/current offset min'
+                                        */
+  1.0,                                 /* Expression: dtype
+                                        * Referenced by: '<S12>/current offset min'
+                                        */
+  3.0,                                 /* Expression: portnum
+                                        * Referenced by: '<S12>/current offset min'
+                                        */
+  -1.0,                                /* Expression: stime
+                                        * Referenced by: '<S12>/current offset min'
+                                        */
+  1.0,                                 /* Expression: stype
+                                        * Referenced by: '<S12>/current offset min'
+                                        */
+  1.0,                                 /* Expression: btype
+                                        * Referenced by: '<S12>/current offset min'
+                                        */
+  1.0,                                 /* Expression: 1
+                                        * Referenced by: '<S12>/Memory'
                                         */
   -1.0,                                /* Expression: width
                                         * Referenced by: '<S3>/Acc_x'
@@ -1143,9 +1239,9 @@ P_ctrl_custom_T ctrl_custom_P = {
  * NI VeriStand Model Framework code generation
  *
  * Model : ctrl_custom
- * Model version : 1.87
+ * Model version : 1.88
  * VeriStand Model Framework version : 2017.0.0.143 (2017)
- * Source generated on : Sat Nov 18 18:28:21 2017
+ * Source generated on : Sun Nov 19 16:45:51 2017
  *========================================================================*/
 #if defined VXWORKS || defined kNIOSLinux
 
@@ -1160,6 +1256,70 @@ NI_ParamSizeWidth P_ctrl_custom_T_sizes[] DataSection(".NIVS.defaultparamsizes")
   { sizeof(P_ctrl_custom_T), 1 },
 
   { sizeof(real_T), 36, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
+
+  { sizeof(real_T), 1, 0 },
 
   { sizeof(real_T), 1, 0 },
 
